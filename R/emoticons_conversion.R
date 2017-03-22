@@ -8,7 +8,7 @@ url <- "http://apps.timwhitlock.info/emoji/tables/unicode"
 
 # get emoticons
 emoticons <- url %>%
-  html() %>%
+  read_html() %>%
   html_nodes(xpath='/html/body/div[2]/div/div/table[1]') %>%
   html_table()
 emoticons <- data.frame(emoticons[[1]]$Native, emoticons[[1]]$Bytes, 
@@ -17,7 +17,7 @@ names(emoticons) <- c("Native", "Bytes", "Description")
 
 # get additional emoticons
 addemoticons <- url %>%
-  html() %>%
+  read_html() %>%
   html_nodes(xpath='/html/body/div[2]/div/div/table[6]') %>%
   html_table()
 addemoticons <- data.frame(addemoticons[[1]]$Native, addemoticons[[1]]$Bytes, 
@@ -26,7 +26,7 @@ names(addemoticons) <- c("Native", "Bytes", "Description")
 
 # get dingbats
 dingbats <- url %>%
-  html() %>%
+  read_html() %>%
   html_nodes(xpath='/html/body/div[2]/div/div/table[2]') %>%
   html_table()
 dingbats <- data.frame(dingbats[[1]]$Native, dingbats[[1]]$Bytes, 
@@ -35,7 +35,7 @@ names(dingbats) <- c("Native", "Bytes", "Description")
 
 # get transports
 transport <- url %>%
-  html() %>%
+  read_html() %>%
   html_nodes(xpath='/html/body/div[2]/div/div/table[3]') %>%
   html_table()
 transport <- data.frame(transport[[1]]$Native, transport[[1]]$Bytes, 
@@ -44,7 +44,7 @@ names(transport) <- c("Native", "Bytes", "Description")
 
 # get additional transports
 addtransport <- url %>%
-  html() %>%
+  read_html() %>%
   html_nodes(xpath='/html/body/div[2]/div/div/table[7]') %>%
   html_table()
 addtransport <- data.frame(addtransport[[1]]$Native, addtransport[[1]]$Bytes, 
@@ -53,7 +53,7 @@ names(addtransport) <- c("Native", "Bytes", "Description")
 
 # get enclosed emoticons
 enclosed <- url %>%
-  html() %>%
+  read_html() %>%
   html_nodes(xpath='/html/body/div[2]/div/div/table[4]') %>%
   html_table()
 enclosed <- data.frame(enclosed[[1]]$Native, enclosed[[1]]$Bytes, 
@@ -62,7 +62,7 @@ names(enclosed) <- c("Native", "Bytes", "Description")
 
 # get uncategorized emoticons
 uncategorized <- url %>%
-  html() %>%
+  read_html() %>%
   html_nodes(xpath='/html/body/div[2]/div/div/table[5]') %>%
   html_table()
 uncategorized <- data.frame(uncategorized[[1]]$Native, uncategorized[[1]]$Bytes, 
@@ -71,7 +71,7 @@ names(uncategorized) <- c("Native", "Bytes", "Description")
 
 # get additional other emoticons
 addothers <- url %>%
-  html() %>%
+  read_html() %>%
   html_nodes(xpath='/html/body/div[2]/div/div/table[8]') %>%
   html_table()
 addothers <- data.frame(addothers[[1]]$Native, addothers[[1]]$Bytes, 
@@ -84,3 +84,6 @@ alltogether <- bind_rows(list(emoticons, addemoticons, dingbats, transport,
 rm(emoticons,addemoticons,dingbats
    ,transport,addtransport,enclosed
    ,uncategorized,addothers)
+
+write.csv2(alltogether,file = "emoticon_dict.csv")
+

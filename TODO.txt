@@ -1,3 +1,5 @@
 22.03.2017
 -Install python 3.#
 -Install anaconda https://www.continuum.io/downloads
+-Setup anaconda as python interperter
+-to setup pydot : http://stackoverflow.com/questions/26349314/how-can-i-use-conda-to-install-pydot

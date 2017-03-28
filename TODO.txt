@@ -1,3 +1,9 @@
+28.03.2017
+-changed python version to 3.5.2 (64bit), because no tensorflow support for 3.6.x
+
+27.03.2017
+-Sentdex tutorials on youtube <Data Analysis with Python and Pandas>
+
 22.03.2017
 -Install python 3.#
 -Install anaconda https://www.continuum.io/downloads

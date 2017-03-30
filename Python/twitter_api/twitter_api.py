@@ -29,7 +29,7 @@ class listener(StreamListener):
             try:
                 self.count += 1
                 # print(self.count)
-                save_name = search_term + "_db.csv"
+                save_name = search_term + "_db.json"
 
                 tweet = data.split(',"text":"')[1].split(',"source":')[0]
                 print(tweet)
@@ -38,6 +38,7 @@ class listener(StreamListener):
                 saveFile = open(save_name,"a")
                 saveFile.write(data)
                 saveFile.close()
+
             except Exception as e:
                 print("failed ondata,",save_name(e))
 

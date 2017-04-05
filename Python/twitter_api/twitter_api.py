@@ -42,11 +42,10 @@ class listener(StreamListener):
         if time.time() - self.start_time >= int(search_duration):
             print('\nSearch timed out at ',self.time_now() ,'.' ,str(self.count) ,'tweets collected.')
             dest = str(getcwd())
-            print('Data saved to' + dest + "\\" + self.save_name )
+            print('Data saved to ' + dest + "\\" + self.save_name )
 
             # save to file
-            self.tw_df.to_json(self.save_name,orient='records',lines=True)
-
+            self.tw_df.to_pickle(self.save_name)
             return False
 
         # Time remaining, continue listening on stream
@@ -56,11 +55,13 @@ class listener(StreamListener):
                 self.count += 1
 
                 # Defines save file name + converts tweets to dataframe
-                self.save_name = search_term + "_db.json"
+                self.save_name = search_term + "_db.pickle"
+
                 data_json = json.loads(data)
+                print(data_json)
                 data_json = pd.Series(data_json)
 
-                print(data_json['text'].translate(non_bmp_map))
+                # print(data_json['text'].translate(non_bmp_map))
 
                 self.tw_df = self.tw_df.append(data_json,ignore_index=True)
                 # saveFile = open(save_name,"a")
@@ -85,6 +86,6 @@ auth = OAuthHandler(api_key['consumer_key'], api_key['consumer_secret'])
 auth.set_access_token(api_key['access_token'],api_key['access_secret'])
 
 twitterStream = Stream(auth, listener())
-twitterStream.filter(track=[search_term])
+twitterStream.filter(track=[search_term],languages=['en'])
 
 

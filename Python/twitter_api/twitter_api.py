@@ -33,43 +33,51 @@ class listener(StreamListener):
         self.start_time = time.time()
         self.count = 0
         self.tw_df = pd.DataFrame()
-        self.save_name = ""
+        self.json_name = search_term + "_dataset.json"
+        self.pickle_name = search_term + '_dataset.pickle'
 
     def on_data(self, data):
-        save_name = ""
 
         # Time runs out, drop dataframe to file
         if time.time() - self.start_time >= int(search_duration):
             print('\nSearch timed out at ',self.time_now() ,'.' ,str(self.count) ,'tweets collected.')
             dest = str(getcwd())
-            print('Data saved to ' + dest + "\\" + self.save_name )
+            print('Data saved to ' + dest + "\\" + self.pickle_name )
 
             # save to file
-            self.tw_df.to_pickle(self.save_name)
+            self.tw_df.to_pickle(self.pickle_name)
             return False
 
         # Time remaining, continue listening on stream
         else:
             try:
-                # Counts tweets collected
-                self.count += 1
 
                 # Defines save file name + converts tweets to dataframe
-                self.save_name = search_term + "_db.pickle"
+                # self.save_name = search_term
 
                 data_json = json.loads(data)
-                print(data_json)
                 data_json = pd.Series(data_json)
 
-                # print(data_json['text'].translate(non_bmp_map))
+                if str(data_json['text'].translate(non_bmp_map)).find('RT',0,4) == -1:
+                    # Counts tweets collected
+                    self.count += 1
 
-                self.tw_df = self.tw_df.append(data_json,ignore_index=True)
-                # saveFile = open(save_name,"a")
-                # saveFile.write(data)
-                # saveFile.close()
+                    try:
+                        print(data_json['text'].translate(non_bmp_map))
+                    except Exception as e:
+                        print('cant print string',e)
+
+                    self.tw_df = self.tw_df.append(data_json,ignore_index=True)
+
+                    saveFile = open(self.json_name,"a")
+                    saveFile.write(data)
+                    saveFile.close()
+
+                else:
+                    print('------------- retweet, not saved.')
 
             except Exception as e:
-                print("failed ondata,",save_name(e))
+                print("failed on_data,",save_name(e))
 
             return(True)
 
@@ -86,6 +94,6 @@ auth = OAuthHandler(api_key['consumer_key'], api_key['consumer_secret'])
 auth.set_access_token(api_key['access_token'],api_key['access_secret'])
 
 twitterStream = Stream(auth, listener())
-twitterStream.filter(track=[search_term],languages=['en'])
+twitterStream.filter(track=[search_term],languages=['en'],)
 
 

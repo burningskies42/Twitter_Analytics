@@ -1,0 +1,7 @@
+The purpose of the thesis is to reseach possible methods, which would allow to classify "infomative posts"
+from junk posts. Several machine learning algorithems are to be tested (through implementation in python).
+
+Possible methods to try:
+
+1. Linear regression - less for classification, more for general analysis of features
+2 K - nearest neighbours

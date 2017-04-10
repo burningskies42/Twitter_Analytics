@@ -3,13 +3,14 @@ import numpy as np
 import json
 pd.set_option('display.float_format', lambda x: '%.3f' % x)
 
+
 def tweet2df(fileName):
     data = []
     cnt = 0
     try:
         with open(fileName) as data_file:
             for line in data_file:
-                cnt+=1
+                cnt += 1
                 line = json.loads(line)
                 # print(cnt,line)
                 data.append(line)
@@ -36,7 +37,7 @@ def build_user_df(df):
     return users
 
 
-# df = tweet2df('amazon_db.json')
+df = tweet2df('amazon_db.json')
 
 def pickled_tweet2df(pth):
     df = pd.read_pickle(pth)
@@ -46,11 +47,12 @@ def pickled_tweet2df(pth):
     pd.DataFrame.reset_index(df,'id_str',inplace=True)
     return df
 
-df = pickled_tweet2df('amazon_db.pickle')
-print(df['id_str'])
-df['id_str'] = "'" + df['id_str']
-df.to_csv('amazon_sample.csv',sep=';')
+df = pickled_tweet2df('amazon_dataset.pickle')
+# print(df['id_str'])
+# df['id_str'] = "'" + df['id_str']
+# df.to_csv('amazon_sample.csv',sep=';')
 
+print(df['text'])
 
 
 

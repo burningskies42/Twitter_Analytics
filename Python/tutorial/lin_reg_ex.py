@@ -8,7 +8,7 @@ from matplotlib import style
 style.use('ggplot')
 
 def quandl_key():
-    api_key = pd.read_pickle('twitter_api\quandl_key.pickle')
+    api_key = pd.read_pickle('quandl_key.pickle')
     return api_key
 
 # Build dataset

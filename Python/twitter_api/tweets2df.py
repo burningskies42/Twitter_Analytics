@@ -4,7 +4,7 @@ import json
 pd.set_option('display.float_format', lambda x: '%.3f' % x)
 
 
-def tweet2df(fileName):
+def tweet_json_to_df(fileName):
     data = []
     cnt = 0
     try:
@@ -36,10 +36,9 @@ def build_user_df(df):
     users.set_index('id', inplace=True)
     return users
 
-
-df = tweet2df('amazon_db.json')
-
-def pickled_tweet2df(pth):
+# converts from pickle to tweet DB
+# also flattens out all user columns
+def tweet_pickle_to_df(pth):
     df = pd.read_pickle(pth)
     users_df = df['user'].apply(pd.Series)
     users_df.columns = 'user_' + users_df.columns
@@ -47,12 +46,10 @@ def pickled_tweet2df(pth):
     pd.DataFrame.reset_index(df,'id_str',inplace=True)
     return df
 
-df = pickled_tweet2df('amazon_dataset.pickle')
-# print(df['id_str'])
-# df['id_str'] = "'" + df['id_str']
-# df.to_csv('amazon_sample.csv',sep=';')
 
-print(df['text'])
+# df = tweet_json_to_df('amazon_db.json')
+
+
 
 
 

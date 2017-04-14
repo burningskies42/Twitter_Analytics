@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d75bc99-52ce-481c-ba6c-99f97a927e0d" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/twitter_api/emoji_parser.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/twitter_api/emoji_sentiment.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/twitter_api/tweets2df.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../key.pub" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tutorial/.idea/workspace.xml" afterPath="$PROJECT_DIR$/tutorial/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitter_api/.idea/workspace.xml" afterPath="$PROJECT_DIR$/twitter_api/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitter_api/build_features.py" afterPath="$PROJECT_DIR$/twitter_api/build_features.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -45,7 +38,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="emoticons_parser.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="emoticons_parser.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/twitter_api/emoticons_parser.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="300">
@@ -61,11 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build_features.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="build_features.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/twitter_api/build_features.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+            <state relative-caret-position="90">
+              <caret line="36" column="24" lean-forward="false" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
                 <element signature="e#198#1238#0" expanded="false" />
@@ -406,6 +399,14 @@
       <option name="presentableId" value="Default" />
       <updated>1490963621504</updated>
     </task>
+    <task id="LOCAL-00001" summary="testing commit through pycharm">
+      <created>1492190885798</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1492190885798</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -415,7 +416,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27121374" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32842582" sideWeight="0.5042965" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32842582" sideWeight="0.49570355" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32842582" sideWeight="0.49570355" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -434,6 +435,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="testing commit through pycharm" />
+    <option name="LAST_COMMIT_MESSAGE" value="testing commit through pycharm" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -664,20 +669,6 @@
     <entry file="file://$PROJECT_DIR$/twitter_api/emoji_sentiment.py" />
     <entry file="file://$PROJECT_DIR$/twitter_api/tweets2df.py" />
     <entry file="file://$PROJECT_DIR$/twitter_api/emoji_parser.py" />
-    <entry file="file://$PROJECT_DIR$/twitter_api/emoticons_parser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="50" column="4" lean-forward="false" selection-start-line="50" selection-start-column="4" selection-end-line="50" selection-end-column="4" />
-          <folding>
-            <element signature="e#265#1257#0" expanded="false" />
-            <element signature="e#1321#1743#0" expanded="false" />
-            <element signature="e#1834#1945#0" expanded="false" />
-            <element signature="e#1956#2060#0" expanded="false" />
-            <element signature="e#2093#2486#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/twitter_api/tweets_to_df.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -690,11 +681,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/twitter_api/build_features.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+        <state relative-caret-position="90">
+          <caret line="36" column="24" lean-forward="false" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
             <element signature="e#198#1238#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/twitter_api/emoticons_parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="50" column="4" lean-forward="false" selection-start-line="50" selection-start-column="4" selection-end-line="50" selection-end-column="4" />
+          <folding>
+            <element signature="e#265#1257#0" expanded="false" />
+            <element signature="e#1321#1743#0" expanded="false" />
+            <element signature="e#1834#1945#0" expanded="false" />
+            <element signature="e#1956#2060#0" expanded="false" />
+            <element signature="e#2093#2486#0" expanded="false" />
           </folding>
         </state>
       </provider>

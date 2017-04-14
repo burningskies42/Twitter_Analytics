@@ -1,5 +1,7 @@
 from tweets_to_df import tweet_json_to_df
 from emoticons_parser import emoticons_score
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
 import pandas as pd
 
 # the class will produce and contain all features
@@ -30,17 +32,27 @@ class tweet_fetures():
         }, index = [self.id])
         return row
 
+def tokenize_and_filter(sentence):
+    sentence = word_tokenize(sentence)
+    stop_words = set(stopwords.words('english'))
+    words = [w for w in sentence if w.lower() not in stop_words]
+    return words
+
+def build_feature_df(df):
+    df['words'] = df['text'].apply(lambda x : tokenize_and_filter(x))
+    df['len_characters'] = df['text'].apply(lambda x : len(x))
+    df['num_words'] = df['words'].apply(lambda x : len(x))
+    df['has_question_mark'] = df['text'].apply(lambda x : x.find('?') != -1)
+    df['has_exclamation_mark'] = df['text'].apply(lambda x : x.find('!') != -1)
+    df['has_multi_quest_exclam'] = df['text'].apply(lambda x : (x.count('?') > 1 or x.count('!') > 1))
+    df['emotji_sent_score'] = df['text'].apply(lambda x : emoticons_score(x))
+    df = df[['words','len_characters','num_words','has_question_mark',
+        'has_exclamation_mark','has_multi_quest_exclam','emotji_sent_score']]
+
+    return df
+
 df = tweet_json_to_df('amazon_dataset.json')
 
-df['words'] = df['text'].apply(lambda x : x.split())
-df['len_characters'] = df['text'].apply(lambda x : len(x))
-df['num_words'] = df['words'].apply(lambda x : len(x))
-df['has_question_mark'] = df['text'].apply(lambda x : x.find('?') != -1)
-df['has_exclamation_mark'] = df['text'].apply(lambda x : x.find('!') != -1)
-df['has_multi_quest_exclam'] = df['text'].apply(lambda x : (x.count('?') > 1 or x.count('!') > 1))
-df['emotji_sent_score'] = df['text'].apply(lambda x : emoticons_score(x))
+df = build_feature_df(df)
 
-df = df[['words','len_characters','num_words','has_question_mark',
-    'has_exclamation_mark','has_multi_quest_exclam','emotji_sent_score']]
-
-print(df.head(),)
+print(df['words'].head())

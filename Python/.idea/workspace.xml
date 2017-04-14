@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d75bc99-52ce-481c-ba6c-99f97a927e0d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/twitter_api/nltk_tutorial.py" />
+    <list default="true" id="6d75bc99-52ce-481c-ba6c-99f97a927e0d" name="Default" comment="test">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tutorial/nltk_tutorial.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/twitter_api/nltk_tutorial.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitter_api/build_features.py" afterPath="$PROJECT_DIR$/twitter_api/build_features.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -43,25 +45,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build_features.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="build_features.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/twitter_api/build_features.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
-              <caret line="36" column="24" lean-forward="false" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
+              <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
-                <element signature="e#198#1238#0" expanded="false" />
+                <element signature="e#272#1312#0" expanded="false" />
+                <element signature="e#838#1312#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nltk_tutorial.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/twitter_api/nltk_tutorial.py">
+      <file leaf-file-name="nltk_tutorial.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tutorial/nltk_tutorial.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="120">
+              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#54#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -84,6 +89,7 @@
     </replaceStrings>
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="IdeDocumentHistory">
@@ -98,8 +104,9 @@
         <option value="$PROJECT_DIR$/twitter_api/tweets_to_df.py" />
         <option value="$PROJECT_DIR$/twitter_api/emoji_parser.py" />
         <option value="$PROJECT_DIR$/twitter_api/emoticons_parser.py" />
-        <option value="$PROJECT_DIR$/twitter_api/build_features.py" />
         <option value="$PROJECT_DIR$/twitter_api/nltk_tutorial.py" />
+        <option value="$PROJECT_DIR$/tutorial/nltk_tutorial.py" />
+        <option value="$PROJECT_DIR$/twitter_api/build_features.py" />
       </list>
     </option>
   </component>
@@ -150,6 +157,10 @@
               <option name="myItemId" value="Python" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tutorial" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -161,6 +172,9 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Leon\Documents\Masterarbeit\Python\tutorial" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Leon\Documents\Masterarbeit\Python\twitter_api" />
     </key>
@@ -177,7 +191,43 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.nltk_tutorial">
+  <component name="RunManager" selected="Python.build_features">
+    <configuration default="false" name="nltk_tutorial" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/twitter_api" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Python" />
+      <option name="SCRIPT_NAME" value="C:\Users\Leon\Documents\Masterarbeit\Python\tutorial\nltk_tutorial.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="nltk_tutorial (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tutorial" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Python" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tutorial/nltk_tutorial.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
     <configuration default="false" name="emoji_sentiment" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -196,24 +246,6 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="linear_reg" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tutorial" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Python" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tutorial/linear_reg.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
     <configuration default="false" name="lin_reg_ex" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -227,42 +259,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Python" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tutorial/lin_reg_ex.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="build_features" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/twitter_api" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Python" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/twitter_api/build_features.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="nltk_tutorial" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/twitter_api" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Python" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/twitter_api/nltk_tutorial.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -368,22 +364,39 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
+    <configuration default="false" name="build_features" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/twitter_api" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Python" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/twitter_api/build_features.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
     <list size="7">
       <item index="0" class="java.lang.String" itemvalue="Python.emoji_parser" />
       <item index="1" class="java.lang.String" itemvalue="Python.twitter_api" />
-      <item index="2" class="java.lang.String" itemvalue="Python.emoji_sentiment" />
-      <item index="3" class="java.lang.String" itemvalue="Python.linear_reg" />
-      <item index="4" class="java.lang.String" itemvalue="Python.lin_reg_ex" />
-      <item index="5" class="java.lang.String" itemvalue="Python.build_features" />
-      <item index="6" class="java.lang.String" itemvalue="Python.nltk_tutorial" />
+      <item index="2" class="java.lang.String" itemvalue="Python.build_features" />
+      <item index="3" class="java.lang.String" itemvalue="Python.nltk_tutorial" />
+      <item index="4" class="java.lang.String" itemvalue="Python.nltk_tutorial (1)" />
+      <item index="5" class="java.lang.String" itemvalue="Python.emoji_sentiment" />
+      <item index="6" class="java.lang.String" itemvalue="Python.lin_reg_ex" />
     </list>
     <recent_temporary>
-      <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.nltk_tutorial" />
-        <item index="1" class="java.lang.String" itemvalue="Python.build_features" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Python.nltk_tutorial (1)" />
+        <item index="1" class="java.lang.String" itemvalue="Python.nltk_tutorial" />
         <item index="2" class="java.lang.String" itemvalue="Python.emoji_sentiment" />
         <item index="3" class="java.lang.String" itemvalue="Python.lin_reg_ex" />
-        <item index="4" class="java.lang.String" itemvalue="Python.linear_reg" />
       </list>
     </recent_temporary>
   </component>
@@ -405,14 +418,21 @@
       <option name="project" value="LOCAL" />
       <updated>1492190885798</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="test">
+      <created>1492197682032</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1492197682032</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="952" y="0" width="976" height="1038" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5611111" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55961335" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32842582" sideWeight="0.5042965" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33218786" sideWeight="0.49570355" order="2" side_tool="false" content_ui="tabs" />
@@ -437,7 +457,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="testing commit through pycharm" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing commit through pycharm" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -447,8 +468,13 @@
           <line>61</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/twitter_api/build_features.py</url>
+          <line>21</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="15" />
+      <option name="time" value="17" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -493,7 +519,8 @@
           <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
-            <element signature="e#198#1238#0" expanded="false" />
+            <element signature="e#272#1312#0" expanded="false" />
+            <element signature="e#838#1312#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -538,7 +565,8 @@
           <caret line="30" column="18" lean-forward="true" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
-            <element signature="e#198#1238#0" expanded="false" />
+            <element signature="e#272#1312#0" expanded="false" />
+            <element signature="e#838#1312#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -658,31 +686,6 @@
     <entry file="file://$PROJECT_DIR$/twitter_api/emoji_sentiment.py" />
     <entry file="file://$PROJECT_DIR$/twitter_api/tweets2df.py" />
     <entry file="file://$PROJECT_DIR$/twitter_api/emoji_parser.py" />
-    <entry file="file://$PROJECT_DIR$/twitter_api/emoticons_parser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="66" column="16" lean-forward="true" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
-          <folding>
-            <element signature="e#265#1257#0" expanded="false" />
-            <element signature="e#1321#1743#0" expanded="false" />
-            <element signature="e#1834#1945#0" expanded="false" />
-            <element signature="e#1956#2060#0" expanded="false" />
-            <element signature="e#2093#2486#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/twitter_api/build_features.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="36" column="24" lean-forward="false" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-            <element signature="e#198#1238#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/twitter_api/twitter_api.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -703,11 +706,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/twitter_api/nltk_tutorial.py">
+    <entry file="file://$PROJECT_DIR$/twitter_api/emoticons_parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="360">
+          <caret line="66" column="16" lean-forward="true" selection-start-line="66" selection-start-column="16" selection-end-line="66" selection-end-column="16" />
+          <folding>
+            <element signature="e#265#1257#0" expanded="false" />
+            <element signature="e#1321#1743#0" expanded="false" />
+            <element signature="e#1834#1945#0" expanded="false" />
+            <element signature="e#1956#2060#0" expanded="false" />
+            <element signature="e#2093#2486#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tutorial/nltk_tutorial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/twitter_api/build_features.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#272#1312#0" expanded="false" />
+            <element signature="e#838#1312#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

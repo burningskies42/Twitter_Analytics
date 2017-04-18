@@ -1,45 +1,37 @@
-from statistics import mean
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib import style
+import pandas as pd
+from tweepy import OAuthHandler, API
+import tweets_to_df
 
-style.use('fivethirtyeight')
+# extract as list of tweet ids
 
-'''
-     E(x)*E(y) - E(x*y)
-m =  ------------------
-      (E(x))^2 - E(x^2)
-      
-n = E(y)-m*E(x)
-'''
+# dataset = pd.read_pickle('amazon_dataset.pickle') #from pickle
 
-# Example data:
-xs = np.array([1,2,3,4,5,6], dtype=np.float64)
-ys = np.array([5,4,6,5,6,7], dtype=np.float64)
+dataset = tweets_to_df.tweet_json_to_df('amazon_dataset.json') #from json
+# dataset = dataset[:100]
+ids = list(dataset['id_str'])
 
-# Gives slope for x,y datasets
-def best_lin_fit(xs,ys):
-    Ex = mean(xs)
-    Ex2 = mean(xs**2)
-    E2x = mean(xs)**2
-    Ey = mean(ys)
-    Ey2 = mean(ys ** 2)
-    E2y = mean(ys) ** 2
-    Exy = mean(xs * ys)
-    m = ( ( ( Ex * Ey ) - Exy )/
-          (E2x - Ex2 ))
-    n = Ey- (m*Ex)
-    return m, n
+# connect to twitter server
+api_key = pd.read_pickle('twitter_auth_key.pickle')
+auth = OAuthHandler(api_key['consumer_key'], api_key['consumer_secret'])
+auth.set_access_token(api_key['access_token'],api_key['access_secret'])
+api = API(auth)
 
-m,n = best_lin_fit(xs,ys)
+tweets_df = pd.DataFrame()
+i=0
+while i <= len(ids):
+    # query to get list of STATUS objects from ids
 
-reg_line = [(m*x)+n for x in xs]
+    ids_chunk = ids[i:min(i + 100, len(ids))]
 
-predict_x = 8
-predict_y = m*predict_x + n
+    print('queried',i,'to',min(i + 100, len(ids)))
+    tweets_chunk = API.statuses_lookup(api, ids_chunk)
+    i+=100
 
+    for tweet in tweets_chunk:
+        se = pd.Series(tweet._json)
+        tweets_df = tweets_df.append(se,ignore_index=True)
 
-plt.scatter(xs,ys)
-plt.scatter(predict_x,predict_x, color = 'g')
-plt.plot(xs, reg_line)
-plt.show()
+tweets_df.set_index('id',inplace=True)
+tweets_df[['id','created_at','retweet_count']].to_csv('retweet_count.csv',sep=';')
+print('saved to retweet_count.csv')
+

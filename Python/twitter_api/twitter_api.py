@@ -55,7 +55,7 @@ class listener(StreamListener):
                 # Defines save file name + converts tweets to dataframe
                 # self.save_name = search_term
 
-                data_json = json.loads(data)
+                data_json = json.loads(data,)
                 data_json = pd.Series(data_json)
 
                 if str(data_json['text'].translate(non_bmp_map)).find('RT',0,4) == -1:
@@ -63,7 +63,7 @@ class listener(StreamListener):
                     self.count += 1
 
                     try:
-                        print(data_json['text'].translate(non_bmp_map))
+                        print(json.dumps(data_json['text'],ensure_ascii=False))
                     except Exception as e:
                         print('cant print string',e)
 
@@ -78,12 +78,23 @@ class listener(StreamListener):
 
             except Exception as e:
                 print("failed on_data,",save_name(e))
+                return True  # Don't kill the stream
+                print('Stream restarted')
 
             return(True)
 
 
     def on_error(self, status):
-        print(status)
+        print(sys.stderr, 'Encountered error with status:', status)
+        return True  # Don't kill the stream
+        print('Stream restarted')
+
+    def on_timeout(self):
+        print(sys.stderr, 'Timeout...')
+        return True  # Don't kill the stream
+        print('Stream restarted')
+
+
 
     def time_now(self):
         return dt.datetime.now().strftime('%H:%M:%S %d/%m/%y')
@@ -93,7 +104,17 @@ class listener(StreamListener):
 auth = OAuthHandler(api_key['consumer_key'], api_key['consumer_secret'])
 auth.set_access_token(api_key['access_token'],api_key['access_secret'])
 
-twitterStream = Stream(auth, listener())
-twitterStream.filter(track=[search_term],languages=['en'],)
+def start_stream(search):
+    while True:
+        try:
+            sapi = Stream(auth, listener())
+            sapi.filter(track=[search],languages=['en'])
+        except:
+            continue
+
+start_stream(search=search_term)
+
+# twitterStream = Stream(auth, listener())
+# twitterStream.filter(track=[search_term],languages=['en'])
 
 

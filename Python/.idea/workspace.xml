@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d75bc99-52ce-481c-ba6c-99f97a927e0d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tutorial/test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/twitter_api/retweet_fetcher.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/twitter_api/amazon_dataset.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/twitter_api/amazon_dataset.pickle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/twitter_api/amazon_db.pickle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/twitter_api/amazon_sample.csv" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitter_api/test.py" afterPath="$PROJECT_DIR$/twitter_api/test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitter_api/twitter_api.py" afterPath="$PROJECT_DIR$/twitter_api/twitter_api.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Writing/Methods.txt" afterPath="$PROJECT_DIR$/../Writing/Methods.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -461,7 +452,14 @@
       <option name="project" value="LOCAL" />
       <updated>1492528073850</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="EOD 2017.04.19">
+      <created>1492632926680</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1492632926680</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TodoView">
@@ -506,7 +504,8 @@
     <MESSAGE value="added function to add all features as df" />
     <MESSAGE value="EOD 2017.05.15" />
     <MESSAGE value="added connection restarter for on_error and on_timeout" />
-    <option name="LAST_COMMIT_MESSAGE" value="added connection restarter for on_error and on_timeout" />
+    <MESSAGE value="EOD 2017.04.19" />
+    <option name="LAST_COMMIT_MESSAGE" value="EOD 2017.04.19" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -837,6 +836,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -844,6 +844,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="2" column="27" lean-forward="false" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>

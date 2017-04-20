@@ -12,4 +12,5 @@ Supervised learning:
 5. SVM With different kernels
 
 Clustering:
-6. K-means
+6. K-means (super vised learning) 
+7. Mean Shift (unsupervised learning)

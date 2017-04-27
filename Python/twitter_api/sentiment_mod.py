@@ -3,11 +3,11 @@
 import nltk
 import random
 #from nltk.corpus import movie_reviews
-from nltk.classify.scikitlearn import SklearnClassifier
+# from nltk.classify.scikitlearn import SklearnClassifier
 import pickle
-from sklearn.naive_bayes import MultinomialNB, BernoulliNB
-from sklearn.linear_model import LogisticRegression, SGDClassifier
-from sklearn.svm import SVC, LinearSVC, NuSVC
+# from sklearn.naive_bayes import MultinomialNB, BernoulliNB
+# from sklearn.linear_model import LogisticRegression, SGDClassifier
+# from sklearn.svm import SVC, LinearSVC, NuSVC
 from nltk.classify import ClassifierI
 from statistics import mode
 from nltk.tokenize import word_tokenize
@@ -59,9 +59,6 @@ featuresets = pickle.load(featuresets_f)
 featuresets_f.close()
 
 random.shuffle(featuresets)
-
-# testing_set = featuresets[9500:]
-# training_set = featuresets[:9500]
 
 
 open_file = open("pickled_algos/originalnaivebayes5k.pickle", "rb")

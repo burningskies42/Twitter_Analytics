@@ -2,8 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d75bc99-52ce-481c-ba6c-99f97a927e0d" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/twitter_api/emoticons_sentiment.csv.xlsx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/twitter_api/feature_set.csv" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitter_api/Alibaba_feature_set.csv" afterPath="$PROJECT_DIR$/twitter_api/Alibaba_feature_set.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitter_api/Groupon_feature_set.csv" afterPath="$PROJECT_DIR$/twitter_api/Groupon_feature_set.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitter_api/captured_tweets/Amazon_dataset.pickle" afterPath="$PROJECT_DIR$/twitter_api/captured_tweets/Amazon_dataset.pickle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitter_api/pickled_algos/BernoulliNB_classifier5k.pickle" afterPath="$PROJECT_DIR$/twitter_api/pickled_algos/BernoulliNB_classifier5k.pickle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitter_api/pickled_algos/LinearSVC_classifier5k.pickle" afterPath="$PROJECT_DIR$/twitter_api/pickled_algos/LinearSVC_classifier5k.pickle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitter_api/pickled_algos/LogisticRegression_classifier5k.pickle" afterPath="$PROJECT_DIR$/twitter_api/pickled_algos/LogisticRegression_classifier5k.pickle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitter_api/pickled_algos/MNB_classifier5k.pickle" afterPath="$PROJECT_DIR$/twitter_api/pickled_algos/MNB_classifier5k.pickle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitter_api/pickled_algos/SGDC_classifier5k.pickle" afterPath="$PROJECT_DIR$/twitter_api/pickled_algos/SGDC_classifier5k.pickle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitter_api/pickled_algos/originalnaivebayes5k.pickle" afterPath="$PROJECT_DIR$/twitter_api/pickled_algos/originalnaivebayes5k.pickle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitter_api/pickled_algos/word_features5k.pickle" afterPath="$PROJECT_DIR$/twitter_api/pickled_algos/word_features5k.pickle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Python.iml" afterPath="$PROJECT_DIR$/.idea/Python.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitter_api/captured_tweets/Groupon_dataset.json" afterPath="$PROJECT_DIR$/twitter_api/captured_tweets/Groupon_dataset.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitter_api/build_features.py" afterPath="$PROJECT_DIR$/twitter_api/build_features.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitter_api/captured_tweets/Amazon_dataset.json" afterPath="$PROJECT_DIR$/twitter_api/captured_tweets/Amazon_dataset.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitter_api/sentiment_mod.py" afterPath="$PROJECT_DIR$/twitter_api/sentiment_mod.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitter_api/sentiment_train_mod.py" afterPath="$PROJECT_DIR$/twitter_api/sentiment_train_mod.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,12 +35,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="twitter_api.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="twitter_api.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/twitter_api/twitter_api.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1525">
-              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="21" />
+            <state relative-caret-position="300">
+              <caret line="36" column="20" lean-forward="false" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
               <folding>
+                <element signature="e#0#55#0" expanded="true" />
                 <element signature="e#2619#2982#0" expanded="false" />
                 <element signature="e#3018#3146#0" expanded="false" />
                 <element signature="e#3180#3234#0" expanded="false" />
@@ -33,45 +51,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build_features.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/twitter_api/build_features.py">
+      <file leaf-file-name="sentiment_train_mod.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/twitter_api/sentiment_train_mod.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="29" selection-end-column="10" />
+            <state relative-caret-position="170">
+              <caret line="10" column="9" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="9" />
               <folding>
-                <element signature="e#13#54#0" expanded="true" />
-                <element signature="e#1043#2083#0" expanded="false" />
-                <element signature="e#1609#2083#0" expanded="false" />
-                <element signature="e#2124#2430#0" expanded="false" />
-                <element signature="e#2459#2554#0" expanded="false" />
-                <element signature="e#2583#2635#0" expanded="false" />
-                <element signature="e#2663#3014#0" expanded="false" />
-                <element signature="e#3044#5214#0" expanded="false" />
-                <element signature="e#5244#6581#0" expanded="false" />
-                <element signature="e#5386#5530#0" expanded="false" />
+                <element signature="e#3756#3889#0" expanded="false" />
+                <marker date="1493293004950" expanded="false" signature="495:1022" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="retweet_fetcher.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/twitter_api/retweet_fetcher.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="29" selection-end-column="47" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tweet_sentiment.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/twitter_api/tweet_sentiment.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -79,8 +67,8 @@
       <file leaf-file-name="sentiment_mod.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/twitter_api/sentiment_mod.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="64" column="0" lean-forward="true" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+            <state relative-caret-position="340">
+              <caret line="17" column="23" lean-forward="true" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
               <folding>
                 <element signature="e#25#36#0" expanded="true" />
               </folding>
@@ -88,13 +76,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sentiment_train_mod.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/twitter_api/sentiment_train_mod.py">
+      <file leaf-file-name="build_features.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/twitter_api/build_features.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+            <state relative-caret-position="110">
+              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding>
-                <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#13#54#0" expanded="true" />
+                <element signature="e#264#358#0" expanded="false" />
+                <element signature="e#386#405#0" expanded="false" />
+                <element signature="e#1741#1759#0" expanded="false" />
+                <element signature="e#2983#3289#0" expanded="false" />
+                <element signature="e#3318#3413#0" expanded="false" />
+                <element signature="e#3442#3494#0" expanded="false" />
+                <element signature="e#3522#3873#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -164,18 +159,18 @@
         <option value="$PROJECT_DIR$/tutorial/knn_vis.py" />
         <option value="$PROJECT_DIR$/twitter_api/url_parser.py" />
         <option value="$PROJECT_DIR$/twitter_api/retweet_fetcher.py" />
-        <option value="$PROJECT_DIR$/twitter_api/build_features.py" />
-        <option value="$PROJECT_DIR$/twitter_api/sentiment_mod.py" />
         <option value="$PROJECT_DIR$/twitter_api/tweet_sentiment.py" />
+        <option value="$PROJECT_DIR$/twitter_api/sentiment_mod.py" />
         <option value="$PROJECT_DIR$/twitter_api/sentiment_train_mod.py" />
+        <option value="$PROJECT_DIR$/twitter_api/build_features.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1938" />
-    <option name="height" value="1048" />
+    <option name="x" value="1672" />
+    <option name="y" value="206" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -193,18 +188,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Python" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-          </PATH>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="Python" />
@@ -231,13 +218,11 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="C:/Python/Python35/Lib/site-packages/tweepy/__init__.py" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Console Font" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -262,7 +247,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.twitter_api">
+  <component name="RunManager" selected="Python.build_features (1)">
     <configuration default="false" name="build_features (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -483,10 +468,10 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.tweet_sentiment" />
+        <item index="0" class="java.lang.String" itemvalue="Python.build_features (1)" />
         <item index="1" class="java.lang.String" itemvalue="Python.sentiment_train_mod" />
         <item index="2" class="java.lang.String" itemvalue="Python.sentiment_mod" />
-        <item index="3" class="java.lang.String" itemvalue="Python.build_features (1)" />
+        <item index="3" class="java.lang.String" itemvalue="Python.tweet_sentiment" />
         <item index="4" class="java.lang.String" itemvalue="Python.url_parser" />
       </list>
     </recent_temporary>
@@ -564,18 +549,18 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
+    <frame x="1672" y="206" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24543501" sideWeight="0.49245283" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24886535" sideWeight="0.49245283" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.50537056" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33846155" sideWeight="0.4935553" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4428086" sideWeight="0.4935553" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32820514" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.49462944" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21160042" sideWeight="0.50754714" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997735" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21160042" sideWeight="0.50754714" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -611,18 +596,11 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="39" />
+      <option name="time" value="44" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tutorial/support_vector_machine.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tutorial/linear_reg.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1500">
@@ -646,6 +624,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="e#0#55#0" expanded="true" />
             <element signature="e#2619#2982#0" expanded="false" />
             <element signature="e#3018#3146#0" expanded="false" />
             <element signature="e#3180#3234#0" expanded="false" />
@@ -666,6 +645,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="e#0#55#0" expanded="true" />
             <element signature="e#2619#2982#0" expanded="false" />
             <element signature="e#3018#3146#0" expanded="false" />
             <element signature="e#3180#3234#0" expanded="false" />
@@ -686,6 +666,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="e#0#55#0" expanded="true" />
             <element signature="e#2619#2982#0" expanded="false" />
             <element signature="e#3018#3146#0" expanded="false" />
             <element signature="e#3180#3234#0" expanded="false" />
@@ -884,10 +865,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#31#0" expanded="false" />
-            <element signature="e#114#239#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -895,7 +872,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -903,9 +879,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="155">
           <caret line="31" column="16" lean-forward="false" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#18#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -913,10 +886,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
           <caret line="2" column="19" lean-forward="true" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#16#0" expanded="false" />
-            <element signature="e#432#623#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -924,9 +893,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
           <caret line="20" column="12" lean-forward="false" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="50" />
-          <folding>
-            <element signature="e#972#1252#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -934,7 +900,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1518">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -942,7 +907,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -950,55 +914,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4784">
           <caret line="76" column="23" lean-forward="false" selection-start-line="76" selection-start-column="23" selection-end-line="76" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/twitter_api/retweet_fetcher.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="29" selection-end-column="47" />
+        <state relative-caret-position="360">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/twitter_api/build_features.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="29" selection-end-column="10" />
-          <folding>
-            <element signature="e#13#54#0" expanded="true" />
-            <element signature="e#1043#2083#0" expanded="false" />
-            <element signature="e#1609#2083#0" expanded="false" />
-            <element signature="e#2124#2430#0" expanded="false" />
-            <element signature="e#2459#2554#0" expanded="false" />
-            <element signature="e#2583#2635#0" expanded="false" />
-            <element signature="e#2663#3014#0" expanded="false" />
-            <element signature="e#3044#5214#0" expanded="false" />
-            <element signature="e#5244#6581#0" expanded="false" />
-            <element signature="e#5386#5530#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/twitter_api/sentiment_train_mod.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/twitter_api/sentiment_mod.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="64" column="0" lean-forward="true" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-          <folding>
-            <element signature="e#25#36#0" expanded="true" />
+            <element signature="e#0#19#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1007,19 +931,65 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
           <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python/Python35/Lib/site-packages/nltk/corpus/util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-741">
+          <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/twitter_api/twitter_api.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1525">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="21" />
+        <state relative-caret-position="300">
+          <caret line="36" column="20" lean-forward="false" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
           <folding>
+            <element signature="e#0#55#0" expanded="true" />
             <element signature="e#2619#2982#0" expanded="false" />
             <element signature="e#3018#3146#0" expanded="false" />
             <element signature="e#3180#3234#0" expanded="false" />
             <element signature="e#3292#3417#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/twitter_api/sentiment_mod.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="17" column="23" lean-forward="true" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
+          <folding>
+            <element signature="e#25#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/twitter_api/sentiment_train_mod.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="9" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="9" />
+          <folding>
+            <element signature="e#3756#3889#0" expanded="false" />
+            <marker date="1493293004950" expanded="false" signature="495:1022" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/twitter_api/build_features.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="e#13#54#0" expanded="true" />
+            <element signature="e#264#358#0" expanded="false" />
+            <element signature="e#386#405#0" expanded="false" />
+            <element signature="e#1741#1759#0" expanded="false" />
+            <element signature="e#2983#3289#0" expanded="false" />
+            <element signature="e#3318#3413#0" expanded="false" />
+            <element signature="e#3442#3494#0" expanded="false" />
+            <element signature="e#3522#3873#0" expanded="false" />
           </folding>
         </state>
       </provider>

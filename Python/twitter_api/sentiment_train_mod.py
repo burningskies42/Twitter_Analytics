@@ -1,6 +1,6 @@
 import nltk
 import random
-from nltk.corpus import twitter_samples
+from nltk.corpus import twitter_samples, movie_reviews
 from nltk.classify.scikitlearn import SklearnClassifier
 import pickle
 from sklearn.naive_bayes import MultinomialNB, BernoulliNB
@@ -9,6 +9,7 @@ from sklearn.svm import SVC, LinearSVC, NuSVC
 from nltk.classify import ClassifierI
 from statistics import mode
 from nltk.tokenize import word_tokenize
+from datetime import datetime
 
 
 class VoteClassifier(ClassifierI):
@@ -32,9 +33,13 @@ class VoteClassifier(ClassifierI):
         conf = choice_votes / len(votes)
         return conf
 
+start_time = datetime.now()
 # Load training data
-short_pos = twitter_samples.strings('positive_tweets.json')
-short_neg = twitter_samples.strings('negative_tweets.json')
+tweet_pos = twitter_samples.strings('positive_tweets.json')
+tweet_neg = twitter_samples.strings('negative_tweets.json')
+
+# short_pos = open("short_reviews/positive.txt","r").read()
+# short_neg = open("short_reviews/negative.txt","r").read()
 
 # move this up here
 all_words = []  # List of words
@@ -43,24 +48,51 @@ documents = []  # List of tweets (strings)
 #  j is adject, r is adverb, and v is verb
 # allowed_word_types = ["J","R","V"]
 allowed_word_types = ["J"]
+print('opening sample files ...',str(datetime.now()-start_time).split('.', 2)[0])
 
-# Load positive sample
-for p in short_pos:
+start_time = datetime.now()
+# Load positive tweets sample
+for p in tweet_pos:
     documents.append((p, "pos"))
     words = word_tokenize(p)
     pos = nltk.pos_tag(words)
     for w in pos:
         if w[1][0] in allowed_word_types:
             all_words.append(w[0].lower())
+print('loaded positive tweet samples...',str(datetime.now()-start_time).split('.', 2)[0])
 
-for p in short_neg:
+start_time = datetime.now()
+# Load negative tweets sample
+for p in tweet_neg:
     documents.append((p, "neg"))
     words = word_tokenize(p)
     pos = nltk.pos_tag(words)
     for w in pos:
         if w[1][0] in allowed_word_types:
             all_words.append(w[0].lower())
+print('loaded negative tweet samples...',str(datetime.now()-start_time).split('.', 2)[0])
 
+# start_time = datetime.now()
+# for p in short_pos.split('\n'):
+#     documents.append((p, "pos"))
+#     words = word_tokenize(p)
+#     pos = nltk.pos_tag(words)
+#     for w in pos:
+#         if w[1][0] in allowed_word_types:
+#             all_words.append(w[0].lower())
+# print('loaded positive review samples...',str(datetime.now()-start_time).split('.', 2)[0])
+#
+# start_time = datetime.now()
+# for p in short_neg.split('\n'):
+#     documents.append((p, "neg"))
+#     words = word_tokenize(p)
+#     pos = nltk.pos_tag(words)
+#     for w in pos:
+#         if w[1][0] in allowed_word_types:
+#             all_words.append(w[0].lower())
+# print('loaded negative review samples...', str(datetime.now() - start_time).split('.', 2)[0])
+
+start_time = datetime.now()
 # save all tweets to file
 save_documents = open("pickled_algos/documents.pickle", "wb")
 pickle.dump(documents, save_documents)
@@ -74,6 +106,9 @@ word_features = list(all_words.keys())[:5000]
 save_word_features = open("pickled_algos/word_features5k.pickle", "wb")
 pickle.dump(word_features, save_word_features)
 save_word_features.close()
+print('saved word features...',str(datetime.now()-start_time).split('.', 2)[0])
+
+start_time = datetime.now()
 
 # Return dictionary where: keys=all_words_in_text values=do_they_appear_in_most_pop_words(word_features)
 def find_features(document):
@@ -91,10 +126,14 @@ random.shuffle(featuresets)
 save_featuresets = save_classifier = open("pickled_algos/featuresets.pickle", "wb")
 pickle.dump(featuresets, save_featuresets)
 save_featuresets.close()
-# print(len(featuresets))
+print('saved featuresets',str(datetime.now()-start_time).split('.', 2)[0])
 
-testing_set = featuresets[9500:]
-training_set = featuresets[:9500]
+set_size = int(len(featuresets)*0.9)
+size_str = str(set_size)+'/'+str(len(featuresets))
+print('training set:',size_str)
+
+training_set = featuresets[:set_size]
+testing_set = featuresets[set_size:]
 
 classifier = nltk.NaiveBayesClassifier.train(training_set)
 print("Original Naive Bayes Algo accuracy percent:", (nltk.classify.accuracy(classifier, testing_set)) * 100)

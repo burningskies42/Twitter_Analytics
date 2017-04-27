@@ -1,37 +1,37 @@
 import pandas as pd
 from tweepy import OAuthHandler, API
-import tweets_to_df
-
-# extract as list of tweet ids
-
-# dataset = pd.read_pickle('amazon_dataset.pickle') #from pickle
-
-dataset = tweets_to_df.tweet_json_to_df('amazon_dataset.json') #from json
-# dataset = dataset[:100]
-ids = list(dataset['id_str'])
 
 # connect to twitter server
-api_key = pd.read_pickle('twitter_auth_key.pickle')
-auth = OAuthHandler(api_key['consumer_key'], api_key['consumer_secret'])
-auth.set_access_token(api_key['access_token'],api_key['access_secret'])
-api = API(auth)
+def retweet_cnt(id_list):
+    api_key = pd.read_pickle('twitter_auth_key.pickle')
+    auth = OAuthHandler(api_key['consumer_key'], api_key['consumer_secret'])
+    auth.set_access_token(api_key['access_token'],api_key['access_secret'])
+    api = API(auth)
+    print('\nQuerying tweet ids from server:')
 
-tweets_df = pd.DataFrame()
-i=0
-while i <= len(ids):
-    # query to get list of STATUS objects from ids
+    tweets_df = id_list
+    i=0
+    tweets_df = pd.DataFrame(columns=['retweet_count'])
 
-    ids_chunk = ids[i:min(i + 100, len(ids))]
+    while i <= len(id_list):
+        # query to get list of STATUS objects from ids
 
-    print('queried',i,'to',min(i + 100, len(ids)))
-    tweets_chunk = API.statuses_lookup(api, ids_chunk)
-    i+=100
+        ids_chunk = id_list[i:min(i + 100, len(id_list))]
 
-    for tweet in tweets_chunk:
-        se = pd.Series(tweet._json)
-        tweets_df = tweets_df.append(se,ignore_index=True)
+        print('queried',i,'to',min(i + 100, len(id_list)))
+        # print(list(ids_chunk))
+        tweets_chunk = API.statuses_lookup(api, list(ids_chunk.index))
+        # tweets_chunk = tweets_chunk['retweet_count']
+        tweets_dict = {}
+        for tweet in tweets_chunk:
+            tweets_dict[tweet._json['id']] =  tweet._json['retweet_count']
 
-tweets_df.set_index('id',inplace=True)
-tweets_df[['id','created_at','retweet_count']].to_csv('retweet_count.csv',sep=';')
-print('saved to retweet_count.csv')
+        tweets_dict = pd.DataFrame.from_dict(tweets_dict,orient='index')
+        tweets_dict.columns = ['retweet_count']
+        tweets_df = tweets_df.append(tweets_dict)
+
+        i += 100
+
+    # tweets_df.set_index('id',inplace=True)
+    return tweets_df
 

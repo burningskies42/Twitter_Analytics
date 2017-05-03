@@ -1,5 +1,5 @@
 # Tweeter toolkit contains all auxilary functions
-from TweeterTK import *
+from tweet_tk import *
 print('loaded toolkit')
 
 

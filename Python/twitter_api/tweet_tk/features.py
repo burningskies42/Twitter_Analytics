@@ -98,7 +98,7 @@ def get_urls(entity):
     return flag
 
 def clear_urls(text):
-    clear_text = sub(r'https?:\/{2}[\d\w-]+(\.[\d\w-]+)*(?:(?:\/[^\s/]*))*', '', text,flags=MULTILINE)
+    clear_text = sub(r'https?:\/{2}[\d\w-]+(\.[\d\w-]+)*(?:(?:\/[^\s/]*))*', '', text,flags = MULTILINE)
     return clear_text
 
 def account_age(user_created_at):

@@ -38,9 +38,6 @@ start_time = datetime.now()
 tweet_pos = twitter_samples.strings('positive_tweets.json')
 tweet_neg = twitter_samples.strings('negative_tweets.json')
 
-# short_pos = open("short_reviews/positive.txt","r").read()
-# short_neg = open("short_reviews/negative.txt","r").read()
-
 # move this up here
 all_words = []  # List of words
 documents = []  # List of tweets (strings)
@@ -71,26 +68,6 @@ for p in tweet_neg:
         if w[1][0] in allowed_word_types:
             all_words.append(w[0].lower())
 print('loaded negative tweet samples...',str(datetime.now()-start_time).split('.', 2)[0])
-
-# start_time = datetime.now()
-# for p in short_pos.split('\n'):
-#     documents.append((p, "pos"))
-#     words = word_tokenize(p)
-#     pos = nltk.pos_tag(words)
-#     for w in pos:
-#         if w[1][0] in allowed_word_types:
-#             all_words.append(w[0].lower())
-# print('loaded positive review samples...',str(datetime.now()-start_time).split('.', 2)[0])
-#
-# start_time = datetime.now()
-# for p in short_neg.split('\n'):
-#     documents.append((p, "neg"))
-#     words = word_tokenize(p)
-#     pos = nltk.pos_tag(words)
-#     for w in pos:
-#         if w[1][0] in allowed_word_types:
-#             all_words.append(w[0].lower())
-# print('loaded negative review samples...', str(datetime.now() - start_time).split('.', 2)[0])
 
 start_time = datetime.now()
 # save all tweets to file

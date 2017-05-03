@@ -3,7 +3,7 @@ from tweets_to_df import tweet_json_to_df
 from emoticons_parser import emoticons_score
 from retweet_fetcher import retweet_cnt
 from url_parser import most_pop_urls
-from sentiment_mod import sentiment
+from tweet_sentiment import sentiment
 
 # generate list of most popular websites
 try:
@@ -21,6 +21,7 @@ import time
 from datetime import datetime,timezone
 import re
 from difflib import SequenceMatcher
+from pickle import dump, load
 
 def similar(df):
     sent_df = df.to_frame()
@@ -58,34 +59,6 @@ if dataset_path == None:
 # Extract dataset name from path
 file_name = dataset_path.split('\\')[len(dataset_path.split('\\'))-1].split('_dataset.json')[0]
 # print(file_name)
-
-# the class will produce and contain all features
-# not in use
-# class tweet_fetures():
-#     def __init__(self,tweet,tweet_index):
-#         # msg. features
-#         self.id = tweet_index
-#         self.text = tweet['text']
-#         self.words = self.text.split()
-#         self.len_characters = len(self.text)
-#         self.len_words = len(self.words)
-#         self.has_question_mark = self.text.find('?') != -1
-#         self.has_exclamation_mark = self.text.find('!') != -1
-#         self.has_multi_quest_exclam = self.text.count('?') > 1 or self.text.count('!') > 1
-#         self.emotji_sent_score = emoticons_score(self.text)
-#
-#     def features_as_series(self):
-#         row = pd.Series({
-#             'text' : self.text,
-#             'words' : self.words,
-#             'len_characters' : self.len_characters,
-#             'len_words' : self.len_words,
-#             'has_question_mark' : self.has_question_mark,
-#             'has_exclamation_mark' : self.has_exclamation_mark,
-#             'has_multi_quest_exclam' : self.has_multi_quest_exclam,
-#             'emotji_sent_score' : self.emotji_sent_score,
-#         }, index = [self.id])
-#         # return row
 
 def tokenize_and_filter(sentence):
     sentence = word_tokenize(sentence)
@@ -126,6 +99,27 @@ def clear_urls(text):
     clear_text = re.sub(r'https?:\/{2}[\d\w-]+(\.[\d\w-]+)*(?:(?:\/[^\s/]*))*', '', text,flags=re.MULTILINE)
     return clear_text
 
+def add_suspects(set_of_new_ids):
+    suspect_file = open('bot_suspects\\bot_suspects.pickle','rb')
+    old_suspects = set(load(suspect_file))
+    print('------------------\n'+str(len(old_suspects))
+          ,'old suspects in list')
+    suspect_file.close()
+
+    unique_suspects = set_of_new_ids.difference(old_suspects)
+    print(len(set_of_new_ids),'bot suspects in current dataset, of them',
+          len(unique_suspects), 'are new')
+
+    updated_suspects = set(old_suspects).union(unique_suspects)
+    # updated_suspects = set_of_new_ids
+    print('updated suspect list length is',
+          len(updated_suspects),
+          '\n------------------')
+    suspect_file = open('bot_suspects\\bot_suspects.pickle', 'wb')
+    dump(updated_suspects, suspect_file)
+    suspect_file.close()
+
+
 def msg_feature_df(df):
     df_msg = pd.DataFrame()
     df_msg['id'] = df.index
@@ -147,10 +141,17 @@ def msg_feature_df(df):
     print('duplicates:', dur)
 
     start = time.time()
-    df_msg['similiarity'] = similar(df_msg['words_no_url'])
-    # print(similar(df_msg['words_no_url']))
+    bot_suspects = set(df['user_id'][df_msg['duplicate']==True])
+    add_suspects(bot_suspects)
     dur = time.time() - start
-    print('similiarity:', dur)
+    print('add_suspects:', dur)
+
+
+    # start = time.time()
+    # df_msg['similiarity'] = similar(df_msg['words_no_url'])
+    # print(similar(df_msg['words_no_url']))
+    # dur = time.time() - start
+    # print('similiarity:', dur)
 
     start = time.time()
     stop_words = set(stopwords.words('english'))
@@ -284,7 +285,7 @@ df = pd.concat([df, retweet_cnt], axis=1)
 # missing = pd.Series(df.index[pd.isnull(df['retweet_count'])])
 # print(missing)
 
-df.to_csv(file_name+'_feature_set.csv',sep=';',index = True)
+df.to_csv('feature_sets\\'+file_name+'_feature_set.csv',sep=';',index = True)
 print('\nSaved to ...\\'+file_name+'_feature_set.csv')
 
 # pd.DataFrame.to_csv(df,path_or_buf = file_name+'_feature_set.csv',sep=';')

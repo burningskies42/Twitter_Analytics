@@ -1,1 +1,5 @@
 Python/twitter_api/captured_tweets/*
+Python/twitter_api/pickled_algos/*
+Python/twitter_api/.idea/*
+Python/twitter_api/__pycache__/*
+Python/.idea/*

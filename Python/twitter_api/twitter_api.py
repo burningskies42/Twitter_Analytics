@@ -1,9 +1,9 @@
 from tweepy import Stream, OAuthHandler, StreamListener
-import pandas as pd
-import time
-import datetime as dt
-import json
 from os import getcwd, system, path
+import pandas as pd
+import datetime as dt
+import time
+import json
 import sys
 
 api_key = pd.read_pickle('twitter_auth_key.pickle')

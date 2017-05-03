@@ -1,6 +1,7 @@
-import json, re
+from json import dumps
+from re import compile,VERBOSE
 import pandas as pd
-from tweets_to_df import tweet_json_to_df
+# from TweeterTK.tweets_to_df import tweet_json_to_df
 from bs4 import BeautifulSoup
 from urllib.request import Request,urlopen
 from pathlib import Path
@@ -35,14 +36,14 @@ def emoji_sentiment_ranking_dict():
     return df
 
 # regex pattern to find emoticons
-emoticon_pattern=re.compile(r" " " [\U0001F600-\U0001F64F] # emoticons \
+emoticon_pattern=compile(r" " " [\U0001F600-\U0001F64F] # emoticons \
                                  |\
                                  [\U0001F300-\U0001F5FF] # symbols & pictographs\
                                  |\
                                  [\U0001F680-\U0001F6FF] # transport & map symbols\
                                  |\
                                  [\U0001F1E0-\U0001F1FF] # flags (iOS)\
-                          " " ", re.VERBOSE)
+                          " " ", VERBOSE)
 
 # import sentiment scores
 if Path('Sentiment_Scores.pickle').is_file():
@@ -57,7 +58,7 @@ def emoticons_score(text):
     em_list = []
     score = 0
     for emoticon in emoticons:
-        emoticon = json.dumps(emoticon,ensure_ascii=False).strip('"')
+        emoticon = dumps(emoticon,ensure_ascii=False).strip('"')
         if emoticon in emoticons_sentiment.keys():
             em_list.append(emoticon)
             score += float(emoticons_sentiment[emoticon])
@@ -80,7 +81,7 @@ for tweet_id, tweet in df.iterrows():
 
     print(len(emoticons), 'chars found in post',tweet_id,', score:',emoticons_score(text))
     for emoticon in emoticons:
-        emoticon = json.dumps(emoticon,ensure_ascii=False).strip('"')
+        emoticon = dumps(emoticon,ensure_ascii=False).strip('"')
         if emoticon in emoticons_sentiment.keys():
             print(emoticon,emoticons_sentiment[emoticon])
         else:

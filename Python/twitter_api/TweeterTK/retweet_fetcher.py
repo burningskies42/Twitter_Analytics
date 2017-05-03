@@ -1,9 +1,9 @@
-import pandas as pd
+from pandas import DataFrame,read_pickle
 from tweepy import OAuthHandler, API
 
 # connect to twitter server
 def retweet_cnt(id_list):
-    api_key = pd.read_pickle('twitter_auth_key.pickle')
+    api_key = read_pickle('twitter_auth_key.pickle')
     auth = OAuthHandler(api_key['consumer_key'], api_key['consumer_secret'])
     auth.set_access_token(api_key['access_token'],api_key['access_secret'])
     api = API(auth)
@@ -11,7 +11,7 @@ def retweet_cnt(id_list):
 
     tweets_df = id_list
     i=0
-    tweets_df = pd.DataFrame(columns=['retweet_count'])
+    tweets_df = DataFrame(columns=['retweet_count'])
 
     while i <= len(id_list):
         # query to get list of STATUS objects from ids
@@ -26,7 +26,7 @@ def retweet_cnt(id_list):
         for tweet in tweets_chunk:
             tweets_dict[tweet._json['id']] =  tweet._json['retweet_count']
 
-        tweets_dict = pd.DataFrame.from_dict(tweets_dict,orient='index')
+        tweets_dict = DataFrame.from_dict(tweets_dict,orient='index')
         tweets_dict.columns = ['retweet_count']
         tweets_df = tweets_df.append(tweets_dict)
 

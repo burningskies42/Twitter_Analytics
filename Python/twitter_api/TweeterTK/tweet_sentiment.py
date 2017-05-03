@@ -1,17 +1,9 @@
-#File: sentiment_mod.py
-
-import nltk
-import random
-#from nltk.corpus import movie_reviews
-# from nltk.classify.scikitlearn import SklearnClassifier
-import pickle
-# from sklearn.naive_bayes import MultinomialNB, BernoulliNB
-# from sklearn.linear_model import LogisticRegression, SGDClassifier
-# from sklearn.svm import SVC, LinearSVC, NuSVC
+# run classifier trainer first, File: TweeterTK.sentiment_train.py
+from random import shuffle
+from pickle import load
 from nltk.classify import ClassifierI
 from statistics import mode
 from nltk.tokenize import word_tokenize
-
 
 
 class VoteClassifier(ClassifierI):
@@ -35,13 +27,12 @@ class VoteClassifier(ClassifierI):
         conf = choice_votes / len(votes)
         return conf
 
-
 documents_f = open("pickled_algos/documents.pickle", "rb")
-documents = pickle.load(documents_f)
+documents = load(documents_f)
 documents_f.close()
 
 word_features5k_f = open("pickled_algos/word_features5k.pickle", "rb")
-word_features = pickle.load(word_features5k_f)
+word_features = load(word_features5k_f)
 word_features5k_f.close()
 
 
@@ -53,46 +44,37 @@ def find_features(document):
 
     return features
 
-
 featuresets_f = open("pickled_algos/featuresets.pickle", "rb")
-featuresets = pickle.load(featuresets_f)
+featuresets = load(featuresets_f)
 featuresets_f.close()
 
-random.shuffle(featuresets)
+shuffle(featuresets)
 
 
 open_file = open("pickled_algos/originalnaivebayes5k.pickle", "rb")
-classifier = pickle.load(open_file)
+classifier = load(open_file)
 open_file.close()
 
 
 open_file = open("pickled_algos/MNB_classifier5k.pickle", "rb")
-MNB_classifier = pickle.load(open_file)
+MNB_classifier = load(open_file)
 open_file.close()
-
-
 
 open_file = open("pickled_algos/BernoulliNB_classifier5k.pickle", "rb")
-BernoulliNB_classifier = pickle.load(open_file)
+BernoulliNB_classifier = load(open_file)
 open_file.close()
-
 
 open_file = open("pickled_algos/LogisticRegression_classifier5k.pickle", "rb")
-LogisticRegression_classifier = pickle.load(open_file)
+LogisticRegression_classifier = load(open_file)
 open_file.close()
-
 
 open_file = open("pickled_algos/LinearSVC_classifier5k.pickle", "rb")
-LinearSVC_classifier = pickle.load(open_file)
+LinearSVC_classifier = load(open_file)
 open_file.close()
-
 
 open_file = open("pickled_algos/SGDC_classifier5k.pickle", "rb")
-SGDC_classifier = pickle.load(open_file)
+SGDC_classifier = load(open_file)
 open_file.close()
-
-
-
 
 voted_classifier = VoteClassifier(
                                   classifier,

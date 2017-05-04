@@ -3,12 +3,13 @@ from .emoticons_parser import emoticons_score
 from .retweet_fetcher import retweet_cnt
 from .tweet_sentiment import sentiment
 from .features import *
+from .bots import *
 
-# All foreign modules
+# All native modules
 from time import time
-import pandas as pd
 from pickle import dump, load
+from os import getcwd, system, path
 
-# pip install -U git+https://github.com/sloria/textblob-aptagger.git@dev
-
-import easygui
+# Third party modules
+import pandas as pd
+import easygui                  # pip install -U git+https://github.com/sloria/textblob-aptagger.git@dev

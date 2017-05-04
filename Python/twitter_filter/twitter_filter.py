@@ -6,17 +6,17 @@ import time
 import json
 import sys
 
-api_key = pd.read_pickle('twitter_auth_key.pickle')
+api_key = pd.read_pickle('tweet_tk\\auth\\twitter_auth_key.pickle')
 system('CLS')
 # Greeting
 print('''
-    ***********************************************************************
-    *                                                                     *
-    *           Interface and Query laucher for the Twitter API           *
-    *                              Version 0.1                            *
-    *             Author: Leon Edelmann        Copyright 2017 (c)         *
-    *                                                                     *
-    ***********************************************************************
+                ***********************************************************************
+                *                                                                     *
+                *           Interface and Query laucher for the Twitter API           *
+                *                              Version 0.2                            *
+                *             Author: Leon Edelmann        Copyright 2017 (c)         *
+                *                                                                     *
+                ***********************************************************************
 ''')
 
 # Define stream search parameters
@@ -33,7 +33,8 @@ class listener(StreamListener):
         self.tw_df = pd.DataFrame()
         self.json_name = path.join('captured_tweets',search_term + "_dataset.json")
         self.pickle_name = path.join('captured_tweets',search_term + "_dataset.pickle")
-
+    def on_connect(self):
+        print('Connected to server ...\n')
     def on_data(self, data):
 
         # Time runs out, drop dataframe to file
@@ -52,7 +53,9 @@ class listener(StreamListener):
             if str(data_json['text']).find('RT',0,4) == -1:
                 # Output tweets captured and amount, ensure_ascii prevents emoticons
                 self.count += 1
-                print(json.dumps(data_json['text'],ensure_ascii=False))
+                twt_text = json.dumps(data_json['text'],ensure_ascii=False)
+                # twt_text.replace('\n')
+                print(twt_text)
 
                 # appends tweet to json (backup for failure on pickle)
                 self.tw_df = self.tw_df.append(data_json,ignore_index=True)
@@ -90,7 +93,7 @@ class listener(StreamListener):
     def save_tweets(self):
         dest = str(getcwd())
         self.tw_df.to_pickle(self.pickle_name)
-        print('Data saved to'+dest+"\\"+self.pickle_name)
+        print('Data saved to '+dest+"\\"+self.pickle_name)
 
 
 # Connects to twitter API
@@ -99,7 +102,7 @@ auth.set_access_token(api_key['access_token'],api_key['access_secret'])
 
 # Captures tweet according to a search term
 def start_stream(search):
-        print('connecting...\n')
+        print('connecting...')
         listen = listener()
         sapi = Stream(auth,listen)
         sapi.filter(track=[search],languages=['en'])

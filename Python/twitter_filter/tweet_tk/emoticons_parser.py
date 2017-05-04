@@ -1,7 +1,6 @@
 from json import dumps
 from re import compile,VERBOSE
 import pandas as pd
-# from TweeterTK.tweets_to_df import tweet_json_to_df
 from bs4 import BeautifulSoup
 from urllib.request import Request,urlopen
 from pathlib import Path
@@ -70,21 +69,4 @@ def emoticons_score(text):
 def surr_pair_to_utf(str):
     return str.strip('"').encode('utf-16', 'surrogatepass').decode('utf-16')
 
-'''
-df = tweet_json_to_df('amazon_dataset.json')
 
-# find all emoticons in df
-for tweet_id, tweet in df.iterrows():
-    text = tweet['text']
-    screen_name = tweet['user_name']
-    emoticons = emoticon_pattern.findall(text)
-
-    print(len(emoticons), 'chars found in post',tweet_id,', score:',emoticons_score(text))
-    for emoticon in emoticons:
-        emoticon = dumps(emoticon,ensure_ascii=False).strip('"')
-        if emoticon in emoticons_sentiment.keys():
-            print(emoticon,emoticons_sentiment[emoticon])
-        else:
-            print(emoticon, 'not found')
-
-'''

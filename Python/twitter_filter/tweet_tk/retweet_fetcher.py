@@ -1,9 +1,10 @@
 from pandas import DataFrame,read_pickle
 from tweepy import OAuthHandler, API
+from os import getcwd
 
 # connect to twitter server
 def retweet_cnt(id_list):
-    api_key = read_pickle('twitter_auth_key.pickle')
+    api_key = read_pickle(getcwd()+'\\tweet_tk\\auth\\twitter_auth_key.pickle')
     auth = OAuthHandler(api_key['consumer_key'], api_key['consumer_secret'])
     auth.set_access_token(api_key['access_token'],api_key['access_secret'])
     api = API(auth)

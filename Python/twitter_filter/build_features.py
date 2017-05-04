@@ -1,36 +1,29 @@
 # Tweeter toolkit contains all auxilary functions
 from tweet_tk import *
-print('loaded toolkit')
 
+# Clear console and print greeting
+system('CLS')
+print('''
+                ***********************************************************************
+                *                                                                     *
+                *              Feature Set Builder for Twitter Datasets               *
+                *                              Version 0.1                            *
+                *             Author: Leon Edelmann        Copyright 2017 (c)         *
+                *                                                                     *
+                ***********************************************************************
+''')
+
+print('loaded toolkit packages ...')
 
 # open target tweets dataset
-dataset_path = easygui.fileopenbox(default='*.JSON',filetypes=[["*.pickle", "Binary files"]])
+default_path = getcwd()+'\captured_tweets\*.JSON'
+dataset_path = easygui.fileopenbox(default=default_path,filetypes=[["*.pickle", "Binary files"]])
 if dataset_path == None:
     quit()
 
 # Extract dataset name from path
 file_name = dataset_path.split('\\')[len(dataset_path.split('\\'))-1].split('_dataset.json')[0]
 # print(file_name)
-
-def add_suspects(set_of_new_ids):
-    suspect_file = open('bot_suspects\\bot_suspects.pickle','rb')
-    old_suspects = set(load(suspect_file))
-    print('------------------\n'+str(len(old_suspects))
-          ,'old suspects in list')
-    suspect_file.close()
-
-    unique_suspects = set_of_new_ids.difference(old_suspects)
-    print(len(set_of_new_ids),'bot suspects in current dataset, of them',
-          len(unique_suspects), 'are new')
-
-    updated_suspects = set(old_suspects).union(unique_suspects)
-    # updated_suspects = set_of_new_ids
-    print('updated suspect list length is',
-          len(updated_suspects),
-          '\n------------------')
-    suspect_file = open('bot_suspects\\bot_suspects.pickle', 'wb')
-    dump(updated_suspects, suspect_file)
-    suspect_file.close()
 
 def msg_feature_df(df):
     df_msg = pd.DataFrame()

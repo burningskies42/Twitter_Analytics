@@ -35,10 +35,6 @@ def most_pop_urls():
     except Exception as e:
         print(e)
 
-# generate list of most popular websites
-most_pop_urls = list(most_pop_urls()['Domain'])
-print('downloaded most popular domains\n')
-
 def similar(df):
     sent_df = df.to_frame()
     sent_df['similiarity'] = ''

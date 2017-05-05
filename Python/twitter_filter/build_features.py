@@ -15,6 +15,10 @@ print('''
 
 print('loaded toolkit packages ...')
 
+# generate list of most popular websites
+most_pop_urls = list(most_pop_urls()['Domain'])
+print('downloaded most popular domains\n')
+
 # open target tweets dataset
 default_path = getcwd()+'\captured_tweets\*.JSON'
 dataset_path = easygui.fileopenbox(default=default_path,filetypes=[["*.pickle", "Binary files"]])

@@ -21,7 +21,14 @@ print('''
 
 # Define stream search parameters
 search_term = input("please give search term: ")
+
+ignore_terms = input("ignore tweets containing (optional, semicolon-separated): ")
+ignore_terms = [w.replace(' ','') for w in ignore_terms.split(';') if len(w.replace(' ',''))>0]
+print(ignore_terms)
+
 search_duration = input("please give search duration in seconds: ")
+
+
 
 
 # listen to data stream from twitter
@@ -50,18 +57,26 @@ class listener(StreamListener):
             data_json = pd.Series(data_json)
 
             # check if retweet
-            if str(data_json['text']).find('RT',0,4) == -1:
-                # Output tweets captured and amount, ensure_ascii prevents emoticons
-                self.count += 1
-                twt_text = json.dumps(data_json['text'],ensure_ascii=False)
-                # twt_text.replace('\n')
-                print(twt_text)
+            text = str(data_json['text'])
+            if text.find('RT',0,4) == -1:
 
-                # appends tweet to json (backup for failure on pickle)
-                self.tw_df = self.tw_df.append(data_json,ignore_index=True)
-                saveFile = open(self.json_name,"a")
-                saveFile.write(data)
-                saveFile.close()
+                # Check for ignore terms
+                if not any(ignore_str in text.lower() for ignore_str in ignore_terms):
+                    # Output tweets captured and amount, ensure_ascii prevents emoticons
+                    self.count += 1
+                    twt_text = json.dumps(data_json['text'],ensure_ascii=False)
+                    # twt_text.replace('\n')
+                    print(twt_text)
+
+                    # appends tweet to json (backup for failure on pickle)
+                    self.tw_df = self.tw_df.append(data_json,ignore_index=True)
+                    saveFile = open(self.json_name,"a")
+                    saveFile.write(data)
+                    saveFile.close()
+
+                # Disregard tweets with ignore-terms
+                else:
+                    print('------------- contains ignore-term, not saved.')
 
             # Disregard retweets
             else:

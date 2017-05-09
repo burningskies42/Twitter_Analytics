@@ -13,6 +13,22 @@ print('''
                 ***********************************************************************
 ''')
 
+def get_urls(entity):
+    if len(entity) > 0:
+        urls = [x['expanded_url'] for x in entity['urls']]
+
+        flag = False
+        url = None
+        for each in urls:
+            url = each.split('/')[2]
+            if len(url.split('www.')) > 1:
+                url = url.split('www.')[1]
+
+            if url in most_pop_urls:
+                flag = True
+
+    return flag
+
 print('loaded toolkit packages ...')
 
 # generate list of most popular websites

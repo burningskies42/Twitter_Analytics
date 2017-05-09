@@ -6,46 +6,25 @@ import time
 import json
 import sys
 
-api_key = pd.read_pickle('tweet_tk\\auth\\twitter_auth_key.pickle')
-system('CLS')
-# Greeting
-print('''
-                ***********************************************************************
-                *                                                                     *
-                *           Interface and Query laucher for the Twitter API           *
-                *                              Version 0.2                            *
-                *             Author: Leon Edelmann        Copyright 2017 (c)         *
-                *                                                                     *
-                ***********************************************************************
-''')
-
-# Define stream search parameters
-search_term = input("please give search term: ")
-
-ignore_terms = input("ignore tweets containing (optional, semicolon-separated): ")
-ignore_terms = [w.replace(' ','') for w in ignore_terms.split(';') if len(w.replace(' ',''))>0]
-print(ignore_terms)
-
-search_duration = input("please give search duration in seconds: ")
-
-
-
-
 # listen to data stream from twitter
 class listener(StreamListener):
-    def __init__(self, api=None):
+    def __init__(self, search_duration, search_term, ignore_terms=['gift','giftcard','giveaway'], api=None):
         super(listener,self).__init__()
         self.start_time = time.time()
         self.count = 0
         self.tw_df = pd.DataFrame()
         self.json_name = path.join('captured_tweets',search_term + "_dataset.json")
         self.pickle_name = path.join('captured_tweets',search_term + "_dataset.pickle")
+        self.search_duration = search_duration
+        self.ignore_terms = ignore_terms
+
     def on_connect(self):
         print('Connected to server ...\n')
+
     def on_data(self, data):
 
         # Time runs out, drop dataframe to file
-        if time.time() - self.start_time >= float(search_duration):
+        if time.time() - self.start_time >= float(self.search_duration):
             print('\nSearch timed out at ',self.time_now() ,'.' ,str(self.count) ,'tweets collected.')
             self.save_tweets()
             return False
@@ -57,11 +36,16 @@ class listener(StreamListener):
             data_json = pd.Series(data_json)
 
             # check if retweet
-            text = str(data_json['text'])
+            try:
+                text = str(data_json['text'])
+            except Exception as e:
+                print('error reading tweet, skippnig ...')
+                return(True)
+
             if text.find('RT',0,4) == -1:
 
                 # Check for ignore terms
-                if not any(ignore_str in text.lower() for ignore_str in ignore_terms):
+                if not any(ignore_str in text.lower() for ignore_str in self.ignore_terms):
                     # Output tweets captured and amount, ensure_ascii prevents emoticons
                     self.count += 1
                     twt_text = json.dumps(data_json['text'],ensure_ascii=False)
@@ -110,18 +94,50 @@ class listener(StreamListener):
         self.tw_df.to_pickle(self.pickle_name)
         print('Data saved to '+dest+"\\"+self.pickle_name)
 
-
-# Connects to twitter API
-auth = OAuthHandler(api_key['consumer_key'], api_key['consumer_secret'])
-auth.set_access_token(api_key['access_token'],api_key['access_secret'])
+def get_auth():
+    api_key = pd.read_pickle('tweet_tk\\auth\\twitter_auth_key.pickle')
+    auth = OAuthHandler(api_key['consumer_key'], api_key['consumer_secret'])
+    auth.set_access_token(api_key['access_token'], api_key['access_secret'])
+    return auth
 
 # Captures tweet according to a search term
-def start_stream(search):
-        print('connecting...')
-        listen = listener()
-        sapi = Stream(auth,listen)
-        sapi.filter(track=[search],languages=['en'])
+def start_stream():
 
-start_stream(search=search_term)
+    system('CLS')
+    # Greeting
+    print('''
+                    ***********************************************************************
+                    *                                                                     *
+                    *           Interface and Query laucher for the Twitter API           *
+                    *                              Version 0.2                            *
+                    *             Author: Leon Edelmann        Copyright 2017 (c)         *
+                    *                                                                     *
+                    ***********************************************************************
+    ''')
+
+    # Define stream search parameters
+    search_term = input("please give search term: ")
+    ignore_terms = input("ignore tweets containing (optional, semicolon-separated): ")
+    ignore_terms = [w.replace(' ', '') for w in ignore_terms.split(';') if len(w.replace(' ', '')) > 0]
+    print(ignore_terms)
+
+    search_duration = input("please give search duration in seconds: ")
+
+    # Connects to twitter API
+    auth = get_auth()
+
+    while True:
+        try:
+            print('connecting...')
+            listen = listener(search_duration=search_duration,search_term=search_term,ignore_terms=ignore_terms)
+            sapi = Stream(auth,listen)
+            sapi.filter(track=[search_term],languages=['en'])
+        except Exception as e:
+            print('error:',e)
+            continue
+
+        if listen.start_time + float(search_duration) +2  > time.time() :
+            print('breaking loop')
+            quit()
 
 

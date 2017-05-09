@@ -77,21 +77,6 @@ def has_pronoun(text):
 def count_upper(text):
     return sum(1 for c in text if c.isupper())/len(text)
 
-def get_urls(entity):
-    if len(entity) > 0:
-        urls = [x['expanded_url'] for x in entity['urls']]
-
-        flag = False
-        url = None
-        for each in urls:
-            url = each.split('/')[2]
-            if len(url.split('www.')) > 1:
-                url = url.split('www.')[1]
-
-            if url in most_pop_urls:
-                flag = True
-
-    return flag
 
 def clear_urls(text):
     clear_text = sub(r'https?:\/{2}[\d\w-]+(\.[\d\w-]+)*(?:(?:\/[^\s/]*))*', '', text,flags = MULTILINE)

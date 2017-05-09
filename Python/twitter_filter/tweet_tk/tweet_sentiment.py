@@ -4,6 +4,7 @@ from pickle import load
 from nltk.classify import ClassifierI
 from statistics import mode
 from nltk.tokenize import word_tokenize
+from os import getcwd
 
 
 class VoteClassifier(ClassifierI):
@@ -27,11 +28,12 @@ class VoteClassifier(ClassifierI):
         conf = choice_votes / len(votes)
         return conf
 
-documents_f = open("pickled_algos/documents.pickle", "rb")
+f_path = getcwd() + '\\tweet_tk\\pickled_algos\\'
+documents_f = open(f_path + "documents.pickle", "rb")
 documents = load(documents_f)
 documents_f.close()
 
-word_features5k_f = open("pickled_algos/word_features5k.pickle", "rb")
+word_features5k_f = open(f_path +"word_features5k.pickle", "rb")
 word_features = load(word_features5k_f)
 word_features5k_f.close()
 
@@ -44,35 +46,35 @@ def find_features(document):
 
     return features
 
-featuresets_f = open("pickled_algos/featuresets.pickle", "rb")
+featuresets_f = open(f_path + "featuresets.pickle", "rb")
 featuresets = load(featuresets_f)
 featuresets_f.close()
 
 shuffle(featuresets)
 
 
-open_file = open("pickled_algos/originalnaivebayes5k.pickle", "rb")
+open_file = open(f_path + "originalnaivebayes5k.pickle", "rb")
 classifier = load(open_file)
 open_file.close()
 
 
-open_file = open("pickled_algos/MNB_classifier5k.pickle", "rb")
+open_file = open(f_path + "MNB_classifier5k.pickle", "rb")
 MNB_classifier = load(open_file)
 open_file.close()
 
-open_file = open("pickled_algos/BernoulliNB_classifier5k.pickle", "rb")
+open_file = open(f_path + "BernoulliNB_classifier5k.pickle", "rb")
 BernoulliNB_classifier = load(open_file)
 open_file.close()
 
-open_file = open("pickled_algos/LogisticRegression_classifier5k.pickle", "rb")
+open_file = open(f_path + "LogisticRegression_classifier5k.pickle", "rb")
 LogisticRegression_classifier = load(open_file)
 open_file.close()
 
-open_file = open("pickled_algos/LinearSVC_classifier5k.pickle", "rb")
+open_file = open(f_path + "LinearSVC_classifier5k.pickle", "rb")
 LinearSVC_classifier = load(open_file)
 open_file.close()
 
-open_file = open("pickled_algos/SGDC_classifier5k.pickle", "rb")
+open_file = open(f_path + "SGDC_classifier5k.pickle", "rb")
 SGDC_classifier = load(open_file)
 open_file.close()
 

@@ -9,24 +9,29 @@ import random
 file = fileopenbox()
 file_name=file.split('\\')[-1].split('_')[0] +'_labeled_tweets.csv'
 
-if not path.isfile(file_name):
+if not path.isfile(file_name) :
     print('new file')
     df = pd.DataFrame(tweet_json_to_df(file))
     id_df = pd.DataFrame(df.index.values,columns=['id'])
     id_df['label'] = 0
     id_df.set_index('id',inplace=True)
-    id_df.to_csv(file_name)
+    id_df.to_csv(file_name,sep=';')
+
 else:
     print('existing file')
 
 label_dict = {}
-df = pd.DataFrame.from_csv(file_name)
-
-ids = [id for id in df.index.values if df['label'][id] == 0]
+df = pd.DataFrame.from_csv(file_name,sep=';')
+print(len(df))
+# ids = [id for id in df.index.values if df['label'][id] == 0]
+ids = df[df['label']==0].index.values
+# for id in df.index.values:
+#     print(id,df['label'][id],df['label'][id] != 0)
 random.shuffle(ids)
 
-for id in df.index.values:
-    print(id,df['label'][id],df['label'][id] == 0)
+print('Labeled',str(len(df) - len(ids))+'/'+str(len(df)))
+# for id in df.index.values:
+#     print(id,df['label'][id],df['label'][id] != 0)
 
 
 
@@ -38,8 +43,9 @@ if len(ids) == 0:
 chromedriver = "C:/Program Files (x86)/Google/Chrome/Application/chromedriver.exe"
 driver = webdriver.Chrome(chromedriver)
 driver.maximize_window()
-
-for i in ids[:5]:
+cnt = 0
+for i in ids[:100]:
+    cnt+=1
     tweet_address = 'https://twitter.com/anyuser/status/' + str(i)
     driver.get(tweet_address)
 
@@ -48,13 +54,11 @@ for i in ids[:5]:
         driver.close()
         quit()
 
-    print(choice)
+    print(choice,str(cnt)+'/100')
     label_dict[i] = (1 if choice == 'News' else 2)
 
 driver.close()
 
 for key,val in label_dict.items():
     df['label'][key] = val
-    df.to_csv(file_name)
-# for key,val in label_dict.items():
-#     print(key,val)
+    df.to_csv(file_name,sep=';')

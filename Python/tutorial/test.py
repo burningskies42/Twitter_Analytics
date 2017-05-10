@@ -1,37 +1,23 @@
-import time
-from PyQt4 import QtCore, QtGui
+from pyqt
 
-class Window(QtGui.QWidget):
+def ShowGroupROIFunction(self):
+    dialog = SGROIWidget_ui.Ui_ShowGroupWidget()
+    if dialog.exec_():
+        print(dialog.roiGroups)
+The other one:
+
+...
+
+class Ui_ShowGroupWidget(QtGui.QDialog):
     def __init__(self):
-        QtGui.QWidget.__init__(self)
-        layout = QtGui.QVBoxLayout(self)
-        self.label = QtGui.QLabel(self)
-        layout.addWidget(self.label)
-        self.buttonStart = QtGui.QPushButton('Start', self)
-        self.buttonStart.clicked.connect(self.handleStart)
-        layout.addWidget(self.buttonStart)
-        self.buttonStop = QtGui.QPushButton('Stop', self)
-        self.buttonStop.clicked.connect(self.handleStop)
-        layout.addWidget(self.buttonStop)
-        self._running = False
+        QtGui.QDialog.__init__(self)
+        self.setupUi(self)
+        self.roiGroups = {}
+        self.Submit.clicked.connect(self.submitclose)
 
-    def handleStart(self):
-        self.buttonStart.setDisabled(True)
-        self._running = True
-        while self._running:
-            self.label.setText(str(time.clock()))
-            QtGui.qApp.processEvents()
-            time.sleep(0.05)
-        self.buttonStart.setDisabled(False)
+    def setupUi(self, ShowGroupWidget):
+        #sets up Submit button
 
-    def handleStop(self):
-        self._running = False
-
-if __name__ == '__main__':
-
-    import sys
-    app = QtGui.QApplication(sys.argv)
-    window = Window()
-    window.setGeometry(500, 300, 200, 100)
-    window.show()
-    sys.exit(app.exec_())
+    def submitclose(self):
+        #do whatever you need with self.roiGroups
+        self.accept()

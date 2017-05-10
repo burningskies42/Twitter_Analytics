@@ -1,6 +1,9 @@
 import sys
 from PyQt4 import QtGui, QtCore
-
+from tweet_tk.tweets_to_df import tweet_json_to_df
+import pandas as pd
+from selenium import webdriver
+from easygui import buttonbox,fileopenbox
 
 class Window(QtGui.QDialog):
     def __init__(self):
@@ -11,18 +14,6 @@ class Window(QtGui.QDialog):
         self.setWindowIcon(QtGui.QIcon('pylogo.png'))
         self.setWindowFlags(QtCore.Qt.Sheet)
         self.label = None
-        self.setWindowModality(QtCore.Qt.WindowModal)
-        # extractAction = QtGui.QAction("&Exit", self)
-        # extractAction.setShortcut("Ctrl+Q")
-        # extractAction.setStatusTip('Leave The App')
-        # extractAction.triggered.connect(self.close_application)
-
-        # self.statusBar()
-        #
-        # mainMenu = self.menuBar()
-        # fileMenu = mainMenu.addMenu('&File')
-        # fileMenu.addAction(extractAction)
-
         self.home()
 
     def home(self):
@@ -33,7 +24,6 @@ class Window(QtGui.QDialog):
         lbl.setFont(myfont)
         lbl.resize(lbl.minimumSizeHint())
         lbl.move(50,15)
-
 
         btnnews = QtGui.QPushButton("News", self)
         btnnews.clicked.connect(self.set_label_one)
@@ -46,34 +36,56 @@ class Window(QtGui.QDialog):
         btnnot.resize(btnnot.minimumSizeHint())
         btnnot.move(140, 60)
         btnnot.setStatusTip('Mark tweet as "Not News"')
-
         self.show()
 
     def set_label_one(self):
         self.label = 1
-        self.close()
+        # self.close_application()
 
     def set_label_two(self):
         self.label = 2
-        self.close()
+        # self.close_application()
 
-    def get_label(self):
-        return self.label
-        self.close()
-
-    def close_application(self):
-        sys.exit()
+    # def close_application(self):
+    #     sys.exit()
 
 
 def run():
+    # Create List in csv
+    file = fileopenbox()
+    df = pd.DataFrame(tweet_json_to_df(file))
+    id_df = pd.DataFrame(df.index.values,columns=['id'])
+    id_df['label'] = 0
+    id_df.set_index('id',inplace=True)
+    id_df.to_csv('labeled_tweets.csv')
 
 
+    label_dict = {}
+    df = pd.DataFrame.from_csv('labeled_tweets.csv')
+
+    # Open chrome browser
+    chromedriver = "C:/Program Files (x86)/Google/Chrome/Application/chromedriver.exe"
+    driver = webdriver.Chrome(chromedriver)
+    driver.maximize_window()
 
     app = QtGui.QApplication(sys.argv)
-    GUI = Window()
-    print(GUI.result())
 
-    sys.exit(app.exec_())
 
+    for i in df.index.values[:10]:
+        tweet_address = 'https://twitter.com/anyuser/status/' + str(i)
+        driver.get(tweet_address)
+        # GUI = Window()
+        # GUI.setWindowState(GUI.windowState() & ~QtCore.Qt.WindowMinimized | QtCore.Qt.WindowActive)
+        # GUI.activateWindow()
+        # choice = buttonbox('News or not',choices=['News','Not News'])
+        # sys(app.exec_())
+        choice = buttonbox('News or not', choices=['News', 'Not News'],root_height=10,root_width=20)
+        print(choice)
+        # label_dict[i] = (1 if choice == 'News' else 2)
+
+    driver.close()
+
+    for key, val in label_dict.items():
+        print(key, val)
 
 run()

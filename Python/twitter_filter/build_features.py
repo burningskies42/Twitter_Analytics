@@ -1,5 +1,12 @@
 # Tweeter toolkit contains all auxilary functions
 from tweet_tk import *
+from tweet_tk.features import most_pop_urls
+from tweet_tk.tweets_to_df import tweet_json_to_df
+from tweet_tk.emoticons_parser import emoticons_score
+from tweet_tk.retweet_fetcher import retweet_cnt
+from tweet_tk.tweet_sentiment import sentiment
+from tweet_tk.features import *
+from tweet_tk.bots import *
 
 # Clear console and print greeting
 system('CLS')

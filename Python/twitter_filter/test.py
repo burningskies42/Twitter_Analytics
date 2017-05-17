@@ -1,30 +1,47 @@
-import sys
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from pandas import DataFrame,read_pickle
+from tweepy import OAuthHandler, API
+from os import getcwd
 
-def window():
-   app = QApplication(sys.argv)
-   win = QDialog()
-   b1 = QPushButton(win)
-   b1.setText("Button1")
-   b1.move(50,20)
-   b1.clicked.connect(b1_clicked)
+# connect to twitter server
+def retweet_cnt(id_list):
+    api_key = read_pickle(getcwd()+'\\tweet_tk\\auth\\twitter_auth_key.pickle')
+    auth = OAuthHandler(api_key['consumer_key'], api_key['consumer_secret'])
+    auth.set_access_token(api_key['access_token'],api_key['access_secret'])
+    api = API(auth)
+    print('\nQuerying tweet ids from server:')
 
-   b2 = QPushButton(win)
-   b2.setText("Button2")
-   b2.move(50,50)
-   QObject.connect(b2,SIGNAL("clicked()"),b2_clicked)
+    tweets_df = id_list
+    i=0
+    tweets_df = DataFrame(columns=['retweet_count'])
+    step = 100
 
-   win.setGeometry(100,100,200,100)
-   win.setWindowTitle("PyQt")
-   win.show()
-   sys.exit(app.exec_())
+    while i < len(id_list):
+        # query to get list of STATUS objects from ids
 
-def b1_clicked():
-   print("Button 1 clicked")
+        ids_chunk = id_list[i:min(i + step, len(id_list))]
 
-def b2_clicked():
-   print("Button 2 clicked")
+        print('queried',i,'to',min(i + step, len(id_list)))
+        # print(list(ids_chunk))
+        tweets_chunk = API.statuses_lookup(api, list(ids_chunk))
+        # tweets_chunk = tweets_chunk['retweet_count']
+        tweets_dict = {}
+        for tweet in tweets_chunk:
+            tweets_dict[tweet._json['id_str']] =  str(tweet._json['text']).replace('\n',' ')
 
-if __name__ == '__main__':
-   window()
+        tweets_dict = DataFrame.from_dict(tweets_dict,orient='index')
+        tweets_dict.columns = ['retweet_count']
+        tweets_df = tweets_df.append(tweets_dict)
+
+        i += step
+
+    # tweets_df.set_index('id',inplace=True)
+    return tweets_df
+
+
+# file = open(getcwd()+'\labels\Amazon_labeled_tweets.csv')
+df = DataFrame.from_csv(getcwd()+'\labels\Amazon_labeled_tweets.csv',sep=';')
+ids = df.index.values
+
+
+test = retweet_cnt(ids)
+test.to_csv('test_test.csv',sep=';')

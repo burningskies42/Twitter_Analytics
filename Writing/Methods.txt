@@ -6,6 +6,10 @@ Possible methods to try:
 1. Linear regression - less for classification, more for general analysis of features
 
 Supervised learning:
+	In classification problems:
+	- Binary classification
+	- Multiclass classification	
+
 2. K - nearest neighbours
 3. Support Vector Machines (hard margin)
 4. SVM (soft margins - cost function for outliers)

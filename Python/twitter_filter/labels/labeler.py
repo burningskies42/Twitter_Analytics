@@ -40,7 +40,7 @@ driver = get_chrome()
 driver.maximize_window()
 
 
-cnt = 0
+cnt = 1
 curr_list = ids[:100]
 for i in curr_list:
     tweet_address = 'https://twitter.com/anyuser/status/' + str(i)

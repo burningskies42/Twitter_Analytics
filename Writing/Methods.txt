@@ -9,11 +9,10 @@ Supervised learning:
 	In classification problems:
 	- Binary classification
 	- Multiclass classification	
-
-2. K - nearest neighbours
-3. Support Vector Machines (hard margin)
-4. SVM (soft margins - cost function for outliers)
-5. SVM With different kernels
+2. Support Vector Machines (hard margin)
+3. SVM (soft margins - cost function for outliers)
+4. SVM With different kernels
 
 Clustering:
-6. K-means
+5. K-means
+6. K-nearest neighbours

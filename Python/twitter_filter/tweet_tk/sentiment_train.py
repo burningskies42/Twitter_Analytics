@@ -50,7 +50,7 @@ print('opening sample files ...',str(datetime.now()-start_time).split('.', 2)[0]
 start_time = datetime.now()
 # Load positive tweets sample
 for p in tweet_pos:
-    documents.append((p, "pos"))
+    documents.append((p, 1)) # replaced string 'pos' with +1
     words = word_tokenize(p)
     pos = nltk.pos_tag(words)
     for w in pos:
@@ -61,7 +61,7 @@ print('loaded positive tweet samples...',str(datetime.now()-start_time).split('.
 start_time = datetime.now()
 # Load negative tweets sample
 for p in tweet_neg:
-    documents.append((p, "neg"))
+    documents.append((p, -1)) # replaced string 'neg' with -1
     words = word_tokenize(p)
     pos = nltk.pos_tag(words)
     for w in pos:

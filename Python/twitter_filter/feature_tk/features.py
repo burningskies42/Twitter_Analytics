@@ -8,9 +8,12 @@ from textblob_aptagger import PerceptronTagger
 import pandas as pd
 import easygui
 from os import system,getcwd
+from tweepy import OAuthHandler,API
+from csv import reader
+from codecs import iterdecode
 
 from tweet_tk.retweet_fetcher import retweet_cnt
-from tweet_tk.bots import *
+from tweet_tk.bots import add_suspects,is_suspect
 from tweet_tk.emoticons_parser import emoticons_score
 from tweet_tk.tweet_sentiment import sentiment
 from tweet_tk.tweets_to_df import tweet_json_to_df
@@ -24,7 +27,7 @@ import urllib.request
 from pandas import DataFrame,Series
 
 # Get ~100 most popular urls from wikipedia
-def most_pop_urls():
+def most_pop_urls_wiki():
     try:
         source = urllib.request.urlopen('https://en.wikipedia.org/wiki/List_of_most_popular_websites').read()
         soup = bs.BeautifulSoup(source,'lxml')
@@ -47,8 +50,25 @@ def most_pop_urls():
     except Exception as e:
         print(e)
 
+def most_pop_urls_moz():
+   df = None
+   url = 'https://moz.com/top500/domains/csv'
+   ftpstream = urllib.request.urlopen(url)
+   csvfile = reader(iterdecode(ftpstream, 'utf-8'))
+   for line in csvfile:
+      if df is None:
+         df = pd.DataFrame(columns=line[1:])
+      else:
+         df.loc[line[0]] = line[1:]
+
+   # print(df.head())
+   lst = df['URL'].tolist()
+   lst = [url.replace('/','') for url in lst]
+   return lst
+
 # generate list of most popular websites
-most_pop_urls = list(most_pop_urls()['Domain'])
+most_pop_urls_wiki = list(most_pop_urls_wiki()['Domain'])
+most_pop_urls_moz = most_pop_urls_moz()
 print('downloaded most popular domains\n')
 
 # CURRENTLY NOT IN USE !!!
@@ -93,8 +113,7 @@ def has_pronoun(text):
     return ('PRP' in dc)
 
 def count_upper(text):
-    return sum(1 for c in text if c.isupper())/len(text)
-
+    return round(sum(1 for c in text if c.isupper())/len(text),3)
 
 def clear_urls(text):
     clear_text = sub(r'https?:\/{2}[\d\w-]+(\.[\d\w-]+)*(?:(?:\/[^\s/]*))*', '', text,flags = MULTILINE)
@@ -105,27 +124,49 @@ def account_age(user_created_at):
     creataion_date = datetime.strptime(user_created_at, '%a %b %d %H:%M:%S %z %Y')
     return (datetime.now(timezone.utc) - creataion_date).days
 
-def get_urls(entity):
+def is_wiki_url(entity):
     if len(entity) > 0:
         urls = [x['expanded_url'] for x in entity['urls']]
 
-        flag = False
+        wiki_flag = False
         url = None
         for each in urls:
             url = each.split('/')[2]
             if len(url.split('www.')) > 1:
                 url = url.split('www.')[1]
 
-            if url in most_pop_urls:
-                flag = True
+            if url in most_pop_urls_wiki:
+                wiki_flag = True
 
-    return flag
+    return wiki_flag
+
+def is_moz_url(entity):
+    if len(entity) > 0:
+        urls = [x['expanded_url'] for x in entity['urls']]
+
+        moz_flag = False
+        url = None
+        for each in urls:
+            url = each.split('/')[2]
+            if len(url.split('www.')) > 1:
+                url = url.split('www.')[1]
+
+            if url in most_pop_urls_moz:
+                moz_flag = True
+
+    return moz_flag
+
+def flatten_users(df):
+    users_df = df['user'].apply(Series)
+    users_df.columns = 'user_' + users_df.columns
+    df = pd.concat([df.drop(['user'], axis=1), users_df], axis=1)
+    return df
 
 # Message content related features
 def msg_feature_df(df):
-    df_msg = pd.DataFrame()
-    df_msg['id'] = df.index
-    df_msg.set_index('id', inplace=True)
+    df_msg = pd.DataFrame(index=df.index)
+    # df_msg['id'] = df.index.values
+    # df_msg.set_index('id', inplace=True)
 
     start = time()
     df_msg['words'] = df['text'].apply(lambda x : word_tokenize(x))
@@ -200,8 +241,10 @@ def msg_feature_df(df):
     print('has_hashtag:', dur)
 
     start = time()
-    df_msg['urls'] = df['entities'].apply(lambda x: get_urls(x))
+    df_msg['urls_wiki'] = df['entities'].apply(lambda x: is_wiki_url(x))
+    df_msg['urls_moz'] = df['entities'].apply(lambda x: is_moz_url(x))
     dur = time() - start
+
     print('urls:', dur)
 
     start = time()
@@ -217,9 +260,9 @@ def msg_feature_df(df):
 
 # User related features
 def usr_feature_df(df):
-    df_user = pd.DataFrame()
-    df_user['id'] = df.index
-    df_user.set_index('id',inplace=True)
+    df_user = pd.DataFrame(index=df.index)
+    # df_user['id'] = df.index
+    # df_user.set_index('id',inplace=True)
 
     start = time()
     df_user['reg_age'] = df['user_created_at'].apply(lambda x: account_age(x))
@@ -256,23 +299,54 @@ def usr_feature_df(df):
     dur = time() - start
     print('has_url:', dur)
 
+    start = time()
+    df_user['msg_p_day'] = df['user_statuses_count']/df_user['reg_age']
+    dur = time() - start
+    print('msg_p_day:', dur)
+
+    df_user['friends_cnt']
+
     return df_user
 
 # Builds a featureset df from a captured_tweets_df
 def tweets_to_featureset(df):
+    # convert json object USER to columns
+
+    df = flatten_users(df)
+
     # build feature table for different feature categories
     msg_feat_df = msg_feature_df(df)
+    msg_feat_df.drop(['words','words_no_url'],axis=1,inplace=True)
     usr_feat_df = usr_feature_df(df)
-    retweets = retweet_cnt(df[['id_str']])
-    print(retweets['retweet_count'].value_counts())
+
+    retweets = retweet_cnt(df['id_str'].tolist())
+    # retweets = retweet_cnt(df.index.values)
 
     print('\nValue Frequencies:')
     print(retweets['retweet_count'].value_counts())
 
     df = pd.concat([msg_feat_df, usr_feat_df], axis=1)
+
     df = pd.concat([df, retweets], axis=1)
 
     return df
+
+def single_tweet_features(tweet_id):
+   api_key = pd.read_pickle('tweet_tk\\auth\\twitter_auth_key.pickle')
+   auth = OAuthHandler(api_key['consumer_key'], api_key['consumer_secret'])
+   auth.set_access_token(api_key['access_token'], api_key['access_secret'])
+   api = API(auth)
+
+   status = api.get_status(tweet_id)
+   ser = pd.Series(status._json)
+   print(ser)
+   quit()
+
+   features = {}
+   features['duplicate'] = is_suspect(tweet_id)
+
+   return features
+
 
 # GUI and file selector for "tweets_to_featureset"
 def features_from_file():

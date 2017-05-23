@@ -20,3 +20,10 @@ def add_suspects(set_of_new_ids):
     dump(updated_suspects, suspect_file)
     suspect_file.close()
 
+def is_suspect(user_id):
+   suspect_file = open('bot_suspects\\bot_suspects.pickle', 'rb')
+   suspects = set(load(suspect_file))
+   suspect_file.close()
+
+   return user_id in suspects
+

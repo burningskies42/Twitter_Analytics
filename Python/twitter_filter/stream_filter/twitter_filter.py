@@ -8,7 +8,7 @@ import sys
 
 # listen to data stream from twitter
 class listener(StreamListener):
-    def __init__(self, search_duration, search_term, ignore_terms=['gift','giftcard','giveaway'], api=None):
+    def __init__(self, search_duration, search_term, ignore_terms, api=None):
         super(listener,self).__init__()
         self.start_time = time.time()
         self.count = 0
@@ -17,12 +17,13 @@ class listener(StreamListener):
         self.pickle_name = path.join('captured_tweets',search_term + "_dataset.pickle")
         self.search_duration = search_duration
         self.ignore_terms = ignore_terms
+        self.recorded_ids = set()
 
     def on_connect(self):
         print('Connected to server ...\n')
 
     def on_data(self, data):
-
+        retweeted = False
         # Time runs out, drop dataframe to file
         if time.time() - self.start_time >= float(self.search_duration):
             print('\nSearch timed out at ',self.time_now() ,'.' ,str(self.count) ,'tweets collected.')
@@ -32,39 +33,60 @@ class listener(StreamListener):
         # Time remaining, continue listening on stream
         else:
             # Defines save file name + converts tweets to dataframe
+            if data.find('}{') != -1:
+                print(data)
+                quit()
             data_json = json.loads(data)
             data_json = pd.Series(data_json)
 
-            # check if retweet
             try:
                 text = str(data_json['text'])
             except Exception as e:
-                print('error reading tweet, skippnig ...')
+                print(e,'error reading tweet, skippnig ...')
                 return(True)
 
-            if text.find('RT',0,4) == -1:
+            # check if retweet
+            # Disregard retweets
+            if text.find('RT', 0, 4) != -1:
+                retweeted = True
+                if 'retweeted_status' in data_json.keys():
 
-                # Check for ignore terms
-                if not any(ignore_str in text.lower() for ignore_str in self.ignore_terms):
-                    # Output tweets captured and amount, ensure_ascii prevents emoticons
-                    self.count += 1
-                    twt_text = json.dumps(data_json['text'],ensure_ascii=False)
-                    # twt_text.replace('\n')
-                    print(twt_text)
+                    # extract the original Tweet and record it instead of the current tweet
+                    data_json = data_json['retweeted_status']
+                    data = json.dumps(data_json)+'\r\n'
 
+                else:
+                    print('no retweeted_status:' + str(data_json['id']))
+                    # quit()
+
+            # Check for ignore terms
+            if not any(ignore_str in text.lower() for ignore_str in self.ignore_terms):
+                # Output tweets captured and amount, ensure_ascii prevents emoticons
+                twt_text = json.dumps(data_json['text'],ensure_ascii=False)
+
+                if retweeted:
+                    twt_text = '------------- retweet source: ' + twt_text
+                print(twt_text)
+
+                # Check if already captured, if yes ignore
+                if data_json['id'] not in self.recorded_ids:
                     # appends tweet to json (backup for failure on pickle)
-                    self.tw_df = self.tw_df.append(data_json,ignore_index=True)
+                    self.recorded_ids.add(data_json['id'])
+                    self.count += 1
+
+                    # write pickle
+                    self.tw_df = self.tw_df.append(data_json, ignore_index=True)
+
+                    # write json
                     saveFile = open(self.json_name,"a")
                     saveFile.write(data)
                     saveFile.close()
-
-                # Disregard tweets with ignore-terms
                 else:
-                    print('------------- contains ignore-term, not saved.')
+                    print('------------- already captured. ignoring',str(data_json['id']))
 
-            # Disregard retweets
+            # Disregard tweets with ignore-terms
             else:
-                print('------------- retweet, not saved.')
+                print('------------- contains ignore-term, not saved.')
 
             return(True)
 
@@ -118,7 +140,10 @@ def start_stream():
     # Define stream search parameters
     search_term = input("please give search term: ")
     ignore_terms = input("ignore tweets containing (optional, semicolon-separated): ")
-    ignore_terms = [w.replace(' ', '') for w in ignore_terms.split(';') if len(w.replace(' ', '')) > 0]
+    if len(ignore_terms) == 0:
+        ignore_terms = ['gift', 'giftcard', 'giveaway']
+    else:
+        ignore_terms = [w.replace(' ', '') for w in ignore_terms.split(';') if len(w.replace(' ', '')) > 0]
     print(ignore_terms)
 
     search_duration = input("please give search duration in seconds: ")

@@ -24,6 +24,7 @@ class listener(StreamListener):
 
     def on_data(self, data):
         retweeted = False
+        quoted = False
         # Time runs out, drop dataframe to file
         if time.time() - self.start_time >= float(self.search_duration):
             print('\nSearch timed out at ',self.time_now() ,'.' ,str(self.count) ,'tweets collected.')
@@ -33,9 +34,6 @@ class listener(StreamListener):
         # Time remaining, continue listening on stream
         else:
             # Defines save file name + converts tweets to dataframe
-            if data.find('}{') != -1:
-                print(data)
-                quit()
             data_json = json.loads(data)
             data_json = pd.Series(data_json)
 
@@ -58,6 +56,12 @@ class listener(StreamListener):
                 else:
                     print('no retweeted_status:' + str(data_json['id']))
                     # quit()
+            elif 'quoted_status' in data_json.keys():
+                quoted = True
+                # extract the original Tweet and record it instead of the current tweet
+                data_json = data_json['quoted_status']
+                data = json.dumps(data_json) + '\r\n'
+
 
             # Check for ignore terms
             if not any(ignore_str in text.lower() for ignore_str in self.ignore_terms):
@@ -66,6 +70,8 @@ class listener(StreamListener):
 
                 if retweeted:
                     twt_text = '------------- retweet source: ' + twt_text
+                elif quoted:
+                    twt_text = '------------- quote source: ' + twt_text
                 print(twt_text)
 
                 # Check if already captured, if yes ignore

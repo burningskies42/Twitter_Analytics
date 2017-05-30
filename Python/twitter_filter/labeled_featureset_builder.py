@@ -46,12 +46,12 @@ def fetch_tweet(tweet_id):
 
    return tweet
 
-def open_and_join(file,save_to_file = False):
+def open_and_join(file,save_to_file = False, with_sentiment = True):
    label_df = pd.DataFrame.from_csv(file, sep=';')
    ids = label_df.index.values
    df = fetch_tweets_by_ids(ids)
 
-   featureset = tweets_to_featureset(df)
+   featureset = tweets_to_featureset(df,with_sentiment)
    labeled_featureset = pd.concat([featureset,label_df],axis=1,join='outer')
 
    if save_to_file:

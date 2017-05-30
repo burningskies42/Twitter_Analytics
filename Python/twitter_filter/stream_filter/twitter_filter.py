@@ -2,9 +2,25 @@ from tweepy import Stream, OAuthHandler, StreamListener
 from os import getcwd, system, path
 import pandas as pd
 import datetime as dt
+import numpy as np
 import time
 import json
 import sys
+import pickle
+from sklearn import preprocessing
+
+# ----------------------------------------------------------
+#
+#    Dont start directly ! use stream.py instead !
+#
+# ----------------------------------------------------------
+
+
+import stream_filter.filtergui
+from sys import argv
+from PyQt4 import QtGui, QtCore
+
+from feature_tk.features import tweets_to_featureset
 
 # listen to data stream from twitter
 class listener(StreamListener):
@@ -23,6 +39,19 @@ class listener(StreamListener):
         print('Connected to server ...\n')
 
     def on_data(self, data):
+
+        with open('lin_clf.pkl', 'rb') as fid:
+            lin_clf = pickle.load(fid)
+            fid.close()
+
+        with open('svm_clf.pkl', 'rb') as fid:
+            svm_clf = pickle.load(fid)
+            fid.close()
+
+        with open('RF_clf.pkl', 'rb') as fid:
+            RF_clf = pickle.load(fid)
+            fid.close()
+
         retweeted = False
         quoted = False
         # Time runs out, drop dataframe to file
@@ -87,6 +116,25 @@ class listener(StreamListener):
                     saveFile = open(self.json_name,"a")
                     saveFile.write(data)
                     saveFile.close()
+
+                    a = pd.DataFrame([pd.Series(data_json)])
+                    a.set_index('id',inplace=True)
+
+                    featureset = tweets_to_featureset(a,with_sentiment=False,with_timing=False)
+
+                    flat_featureset = np.array(featureset)
+                    # PP_X = preprocessing.scale(flat_featureset)
+
+                    # print(featureset)
+                    # print(flat_featureset)
+                    # quit()
+                    print(
+                        lin_clf.predict(flat_featureset),
+                        svm_clf.predict(flat_featureset),
+                        RF_clf.predict(flat_featureset)
+                        )
+
+
                 else:
                     print('------------- already captured. ignoring',str(data_json['id']))
 
@@ -158,17 +206,63 @@ def start_stream():
     auth = get_auth()
 
     while True:
-        try:
-            print('connecting...')
-            listen = listener(search_duration=search_duration,search_term=search_term,ignore_terms=ignore_terms)
-            sapi = Stream(auth,listen)
-            sapi.filter(track=[search_term],languages=['en'])
-        except Exception as e:
-            print('error:',e)
-            continue
+        # try:
+        print('connecting...')
+        listen = listener(search_duration=search_duration,search_term=search_term,ignore_terms=ignore_terms)
+        sapi = Stream(auth,listen)
+        sapi.filter(track=[search_term],languages=['en'])
+        # except Exception as e:
+        #     print('error:',e)
+        #     continue
 
         if listen.start_time + float(search_duration) +2  > time.time() :
             print('breaking loop')
             quit()
+
+
+# def start_stream_pyqt(ignore_items=['gift','giftcard','giveaway']):
+#     app = QtGui.QApplication(argv)
+#     GUI = stream_filter.filtergui.Window(ignore_items)
+#     GUI.setWindowState(GUI.windowState() & ~QtCore.Qt.WindowMinimized | QtCore.Qt.WindowActive)
+#     GUI.activateWindow()
+#     GUI.exec()
+#
+#
+#     # Define stream search parameters
+#     # search_term = input("please give search term: ")
+#     # ignore_terms = input("ignore tweets containing (optional, semicolon-separated): ")
+#
+#     # nead to rethink this entire scheme for the search GUI
+#     #
+#     #
+#
+#     # search_term = GUI.sea
+#     ignore_terms = GUI.ignore_terms
+#
+#     if len(ignore_terms) == 0:
+#         ignore_terms = ['gift', 'giftcard', 'giveaway']
+#     else:
+#         ignore_terms = [w.replace(' ', '') for w in ignore_terms.split(';') if len(w.replace(' ', '')) > 0]
+#     print(ignore_terms)
+#
+#     search_duration = input("please give search duration in seconds: ")
+#
+#     # Connects to twitter API
+#     auth = get_auth()
+#
+#     while True:
+#         try:
+#             print('connecting...')
+#             listen = listener(search_duration=search_duration, search_term=search_term, ignore_terms=ignore_terms)
+#             sapi = Stream(auth, listen)
+#             sapi.filter(track=[search_term], languages=['en'])
+#         except Exception as e:
+#             print('error:', e)
+#             continue
+#
+#         if listen.start_time + float(search_duration) + 2 > time.time():
+#             print('breaking loop')
+#             quit()
+
 
 

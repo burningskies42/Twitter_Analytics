@@ -26,7 +26,7 @@ def retweet_cnt(id_list):
         # tweets_chunk = tweets_chunk['retweet_count']
         tweets_dict = {}
         for tweet in tweets_chunk:
-            tweets_dict[tweet._json['id_str']] =  str(tweet._json['text']).replace('\n',' ')
+            tweets_dict[tweet._json['id_str']] =  str(tweet._json['text']).replace('\n',' ').replace(';',',')
 
         tweets_dict = DataFrame.from_dict(tweets_dict,orient='index')
         tweets_dict.columns = ['retweet_count']
@@ -44,4 +44,5 @@ ids = df.index.values
 
 
 test = retweet_cnt(ids)
+
 test.to_csv('test_test.csv',sep=';')

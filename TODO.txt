@@ -1,3 +1,9 @@
+29.05.2017
+-collect more tweets, prefrebly heterogenous - goal: 10k
+-start writing, maybe start with definitions of the different classifier types
+-read on the book about ML in Python
+-filter GUI
+
 28.03.2017
 -changed python version to 3.5.2 (64bit), because no tensorflow support for 3.6.x
 

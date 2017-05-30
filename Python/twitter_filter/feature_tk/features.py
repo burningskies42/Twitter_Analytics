@@ -163,7 +163,7 @@ def flatten_users(df):
     return df
 
 # Message content related features
-def msg_feature_df(df):
+def msg_feature_df(df,with_sentiment = True,with_timing = False):
     df_msg = pd.DataFrame(index=df.index)
     # df_msg['id'] = df.index.values
     # df_msg.set_index('id', inplace=True)
@@ -171,95 +171,95 @@ def msg_feature_df(df):
     start = time()
     df_msg['words'] = df['text'].apply(lambda x : word_tokenize(x))
     dur = time() - start
-    print('tokenize words:',dur)
+    if with_timing: print('tokenize words:',dur)
 
     start = time()
     df_msg['words_no_url'] = df['text'].apply(lambda x : clear_urls(x))
     dur = time() - start
-    print('clear urls:', dur)
+    if with_timing: print('clear urls:', dur)
 
     start = time()
     df_msg['duplicate'] = df_msg['words_no_url'].duplicated(keep=False)
     dur = time() - start
-    print('duplicates:', dur)
+    if with_timing: print('duplicates:', dur)
 
     start = time()
     bot_suspects = set(df['user_id'][df_msg['duplicate']==True])
-    add_suspects(bot_suspects)
+    add_suspects(bot_suspects,with_text = with_timing)
     dur = time() - start
-    print('add_suspects:', dur)
+    if with_timing: print('add_suspects:', dur)
 
     start = time()
     stop_words = set(stopwords.words('english'))
     df_msg['words'] = df_msg['words'].apply(lambda x : [w for w in x if w.lower() not in stop_words])
     dur = time() - start
-    print('filter out stop words:',dur)
+    if with_timing: print('filter out stop words:',dur)
 
     start = time()
     df_msg['len_characters'] = df['text'].apply(lambda x : len(x))
     dur = time() - start
-    print('len_characters:', dur)
+    if with_timing: print('len_characters:', dur)
 
     start = time()
     df_msg['num_words'] = df_msg['words'].apply(lambda x : len(x))
     dur = time() - start
-    print('num_words:', dur)
+    if with_timing: print('num_words:', dur)
 
     start = time()
     df_msg['has_question_mark'] = df['text'].apply(lambda x : x.find('?') != -1)
     dur = time() - start
-    print('has_question_mark:', dur)
+    if with_timing: print('has_question_mark:', dur)
 
     start = time()
     df_msg['has_exclamation_mark'] = df['text'].apply(lambda x : x.find('!') != -1)
     dur = time() - start
-    print('has_exclamation_mark:', dur)
+    if with_timing: print('has_exclamation_mark:', dur)
 
     start = time()
     df_msg['has_multi_quest_exclam'] = df['text'].apply(lambda x : (x.count('?') > 1 or x.count('!') > 1))
     dur = time() - start
-    print('has_multi_quest_exclam:', dur)
+    if with_timing: print('has_multi_quest_exclam:', dur)
 
     start = time()
     df_msg['emotji_sent_score'] = df['text'].apply(lambda x : emoticons_score(x))
     dur = time() - start
-    print('emotji_sent_score:', dur)
+    if with_timing: print('emotji_sent_score:', dur)
 
     start = time()
     df_msg['has_pronoun'] = df['text'].apply(lambda x : has_pronoun(x))
     dur = time() - start
-    print('has_pronoun:', dur)
+    if with_timing: print('has_pronoun:', dur)
 
     start = time()
     df_msg['count_upper'] = df['text'].apply(lambda x : count_upper(x))
     dur = time() - start
-    print('count_upper:', dur)
+    if with_timing: print('count_upper:', dur)
 
     start = time()
     df_msg['has_hashtag'] = df['text'].apply(lambda x: x.find('#') != -1)
     dur = time() - start
-    print('has_hashtag:', dur)
+    if with_timing: print('has_hashtag:', dur)
 
     start = time()
     df_msg['urls_wiki'] = df['entities'].apply(lambda x: is_wiki_url(x))
     df_msg['urls_moz'] = df['entities'].apply(lambda x: is_moz_url(x))
     dur = time() - start
+    if with_timing: print('urls:', dur)
 
-    print('urls:', dur)
-
-    start = time()
-    sentm = df['text'].apply(lambda x: sentiment(x))
-    sentm = sentm.apply(pd.Series)
-    sentm.columns = ['class', 'conf']
-    df_msg['senitment'] = sentm['class']
-    df_msg['senitment_conf'] = sentm['conf']
-    dur = time() - start
-    print('senitment:', dur)
+    if with_sentiment:
+        start = time()
+        sentm = df['text'].apply(lambda x: sentiment(x))
+        sentm = sentm.apply(pd.Series)
+        sentm.columns = ['class', 'conf']
+        df_msg['senitment'] = sentm['class']
+        df_msg['senitment_conf'] = sentm['conf']
+        dur = time() - start
+        if with_timing: print('senitment:', dur)
 
     return df_msg
 
 # User related features
-def usr_feature_df(df):
+def usr_feature_df(df,with_timing=False):
     df_user = pd.DataFrame(index=df.index)
     # df_user['id'] = df.index
     # df_user.set_index('id',inplace=True)
@@ -267,63 +267,65 @@ def usr_feature_df(df):
     start = time()
     df_user['reg_age'] = df['user_created_at'].apply(lambda x: account_age(x))
     dur = time() - start
-    print('reg_age:', dur)
+    if with_timing: print('reg_age:', dur)
 
     start = time()
     df_user['status_cnt'] = df['user_statuses_count']
     dur = time() - start
-    print('statuses_count:', dur)
+    if with_timing: print('statuses_count:', dur)
 
     start = time()
     df_user['followers_cnt'] = df['user_followers_count']
     dur = time() - start
-    print('followers_count:', dur)
+    if with_timing: print('followers_count:', dur)
 
     start = time()
     df_user['friends_cnt'] = df['user_friends_count']
     dur = time() - start
-    print('friends_count:', dur)
+    if with_timing: print('friends_count:', dur)
 
     start = time()
     df_user['verified'] = df['user_verified']
     dur = time() - start
-    print('verified:', dur)
+    if with_timing: print('verified:', dur)
 
     start = time()
     df_user['has_desc'] = df['user_description'].apply(lambda x: x != None)
     dur = time() - start
-    print('has_desc:', dur)
+    if with_timing: print('has_desc:', dur)
 
     start = time()
     df_user['has_url'] = df['user_url'].apply(lambda x: x != None)
     dur = time() - start
-    print('has_url:', dur)
+    if with_timing: print('has_url:', dur)
 
     start = time()
     df_user['msg_p_day'] = df['user_statuses_count']/df_user['reg_age']
     dur = time() - start
-    print('msg_p_day:', dur)
+    if with_timing: print('msg_p_day:', dur)
 
     df_user['friends_cnt']
 
     return df_user
 
 # Builds a featureset df from a captured_tweets_df
-def tweets_to_featureset(df):
+def tweets_to_featureset(df,with_sentiment = True,with_timing = True):
     # convert json object USER to columns
 
     df = flatten_users(df)
 
     # build feature table for different feature categories
-    msg_feat_df = msg_feature_df(df)
+    msg_feat_df = msg_feature_df(df,with_sentiment,with_timing)
     msg_feat_df.drop(['words','words_no_url'],axis=1,inplace=True)
-    usr_feat_df = usr_feature_df(df)
+    usr_feat_df = usr_feature_df(df,with_timing)
 
-    retweets = retweet_cnt(df['id_str'].tolist())
+    retweets = retweet_cnt(df['id_str'].tolist(),with_timing=False)
+
     # retweets = retweet_cnt(df.index.values)
 
-    print('\nValue Frequencies:')
-    print(retweets['retweet_count'].value_counts())
+    if with_timing:
+        print('\nValue Frequencies:')
+        print(retweets['retweet_count'].value_counts())
 
     df = pd.concat([msg_feat_df, usr_feat_df], axis=1)
 

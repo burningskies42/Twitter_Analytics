@@ -3,12 +3,12 @@ from tweepy import OAuthHandler, API
 from os import getcwd
 
 # connect to twitter server
-def retweet_cnt(id_list):
+def retweet_cnt(id_list,with_timing = False):
     api_key = read_pickle(getcwd()+'\\tweet_tk\\auth\\twitter_auth_key.pickle')
     auth = OAuthHandler(api_key['consumer_key'], api_key['consumer_secret'])
     auth.set_access_token(api_key['access_token'],api_key['access_secret'])
     api = API(auth)
-    print('\nQuerying tweet ids from server:')
+    if with_timing: print('\nQuerying tweet ids from server:')
 
     i=0
     tweets_dict = {}
@@ -17,7 +17,7 @@ def retweet_cnt(id_list):
 
         # query to get list of STATUS objects from ids
         ids_chunk = id_list[i:min(i + 100, len(id_list))]
-        print('retweets counted for:',i,'to',min(i + 100, len(id_list)))
+        if with_timing: print('retweets counted for:',i,'to',min(i + 100, len(id_list)))
 
         tweets_chunk = API.statuses_lookup(api, ids_chunk)
 

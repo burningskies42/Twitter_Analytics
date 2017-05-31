@@ -20,7 +20,11 @@ def fetch_tweets_by_ids(id_list):
 
          if df is None:
             df = pd.DataFrame(index=id_list,columns=new_row.keys())
-         df.loc[tweet._json['id']] = new_row
+         try:
+            df.loc[tweet._json['id']] = new_row
+         except Exception as e:
+            print(new_row)
+            quit()
 
          # json.dump(tweet._json,file)
          # file.write('\n\n')

@@ -21,15 +21,15 @@ def retweet_cnt(id_list):
         ids_chunk = id_list[i:min(i + step, len(id_list))]
 
         print('queried',i,'to',min(i + step, len(id_list)))
-        # print(list(ids_chunk))
+
         tweets_chunk = API.statuses_lookup(api, list(ids_chunk))
-        # tweets_chunk = tweets_chunk['retweet_count']
+
         tweets_dict = {}
         for tweet in tweets_chunk:
             tweets_dict[tweet._json['id_str']] =  str(tweet._json['text']).replace('\n',' ').replace(';',',')
 
         tweets_dict = DataFrame.from_dict(tweets_dict,orient='index')
-        tweets_dict.columns = ['retweet_count']
+        tweets_dict.columns = ['text']
         tweets_df = tweets_df.append(tweets_dict)
 
         i += step
@@ -43,6 +43,9 @@ df = DataFrame.from_csv(getcwd()+'\labels\Amazon_labeled_tweets.csv',sep=';')
 ids = df.index.values
 
 
-test = retweet_cnt(ids)
+df_w_text = retweet_cnt(ids)
 
-test.to_csv('test_test.csv',sep=';')
+df_w_text['text'] = df_w_text['text'].apply(lambda x : x.replace('\n',''))
+
+
+df_w_text.to_csv('test_test.csv',sep=';')

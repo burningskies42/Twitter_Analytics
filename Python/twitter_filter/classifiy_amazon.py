@@ -27,9 +27,9 @@ def build_and_classify():
    y = np.array(df['label'])
 
    # Not needed for RF
-   # PP_X = preprocessing.scale(X)
+   PP_X = preprocessing.scale(X)
 
-   PP_X = X
+   # PP_X = X
 
    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.2)
 
@@ -52,6 +52,13 @@ def build_and_classify():
       'SVM confidence:', svm_confidence,'\n'+
       'Random Forest confidence:', RF_confidence,'\n'+
       '--------------------------------------------\n')
+
+   # Regression print-out:
+   # X2 = sm.add_constant(X)
+   # est = sm.OLS(y, X2)
+   # est2 = est.fit()
+
+   print(est2.summary())
 
 
    # save the classifiers
@@ -88,12 +95,7 @@ tester = tweets_to_featureset(tester,with_sentiment=False)
 
 test = np.array(tester)
 
-# # Regression print-out:
-# X2 = sm.add_constant(X)
-# est = sm.OLS(y, X2)
-# est2 = est.fit()
-#
-# print(est2.summary())
+
 
 print('Linear:',lin_clf.predict(test))
 print('SVM:',svm_clf.predict(test))

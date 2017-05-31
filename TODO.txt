@@ -1,3 +1,11 @@
+31.05.2017
+-write Andreas an email regarding a meeting (w. Uli in skype) on Friday(before 1pm)
+-try other classifiers
+-inspect the diffrence between w. Preprocessing and without
+-complete the collecting of 10k tweets
+-visual representation von Random forests
+-try using a manual trainig/testing split - so an average confidence could be established
+
 29.05.2017
 -collect more tweets, prefrebly heterogenous - goal: 10k
 -start writing, maybe start with definitions of the different classifier types

@@ -231,7 +231,7 @@ def msg_feature_df(df, with_sentiment=True, with_timing=False):
    # get the 50 most common words in all the tweets
    most_pop_words = sorted(all_words.items(), key=lambda x: x[1], reverse=True)[:50]
    most_pop_words = [w[0] for w in most_pop_words]
-   print('most_pop_words:',most_pop_words)
+   # print('most_pop_words:',most_pop_words)
 
    start = time()
    df_msg['words'] = df_msg['words'].apply(lambda x: [w for w in x if w.lower() not in stop_words])

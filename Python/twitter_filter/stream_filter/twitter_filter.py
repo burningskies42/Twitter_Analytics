@@ -125,14 +125,21 @@ class listener(StreamListener):
                     flat_featureset = np.array(featureset)
                     # PP_X = preprocessing.scale(flat_featureset)
 
-                    # print(featureset)
-                    # print(flat_featureset)
-                    # quit()
-                    print(
-                        lin_clf.predict(flat_featureset),
-                        svm_clf.predict(flat_featureset),
-                        RF_clf.predict(flat_featureset)
-                        )
+                    lin_predict = lin_clf.predict(flat_featureset)
+                    svm_predict = svm_clf.predict(flat_featureset)
+                    RF_predict = RF_clf.predict(flat_featureset)
+
+                    print(data_json['id'],lin_predict,svm_predict,RF_predict)
+
+                    if not path.isfile('captured_classified.csv'):
+                        f = open('captured_classified.csv', 'w')
+                        f.close()
+
+                    save_file_classified = open('captured_classified.csv','a')
+                    cls_str = [data_json['id'], lin_predict, svm_predict, RF_predict]
+                    cls_str = ';'.join([str(x) for x in cls_str])+'\n'
+                    save_file_classified.write(cls_str)
+                    save_file_classified.close()
 
 
                 else:
@@ -141,6 +148,7 @@ class listener(StreamListener):
             # Disregard tweets with ignore-terms
             else:
                 print('------------- contains ignore-term, not saved.')
+
 
             return(True)
 

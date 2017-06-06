@@ -208,7 +208,7 @@ def flatten_users(df):
 
 
 # Message content related features
-def msg_feature_df(df, with_sentiment=True, with_timing=False):
+def msg_feature_df(df, with_sentiment=True, with_timing=True):
    df_msg = pd.DataFrame(index=df.index)
    # df_msg['id'] = df.index.values
    # df_msg.set_index('id', inplace=True)
@@ -329,7 +329,7 @@ def msg_feature_df(df, with_sentiment=True, with_timing=False):
 
 
 # User related features
-def usr_feature_df(df, with_timing=False):
+def usr_feature_df(df, with_timing=True):
    df_user = pd.DataFrame(index=df.index)
    # df_user['id'] = df.index
    # df_user.set_index('id',inplace=True)
@@ -387,7 +387,7 @@ def tweets_to_featureset(df, with_sentiment=True, with_timing=True):
 
    # build feature table for different feature categories
    msg_feat_df = msg_feature_df(df, with_sentiment, with_timing)
-   msg_feat_df.drop(['words', 'words_no_url'], axis=1, inplace=True)
+   # msg_feat_df.drop(['words', 'words_no_url'], axis=1, inplace=True)
    usr_feat_df = usr_feature_df(df, with_timing)
 
    retweets = retweet_cnt(df['id_str'].tolist(), with_timing=False)
@@ -396,7 +396,7 @@ def tweets_to_featureset(df, with_sentiment=True, with_timing=True):
 
    if with_timing:
       print('\nValue Frequencies:')
-      print(retweets['retweet_count'].value_counts())
+      print(retweets['retweet_count'].value_counts()[:10])
 
    df = pd.concat([msg_feat_df, usr_feat_df], axis=1)
 

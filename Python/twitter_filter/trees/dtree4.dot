@@ -1,0 +1,29 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname=helvetica] ;
+edge [fontname=helvetica] ;
+0 [label="num_stop_words <= 1.5\ngini = 0.3303\nsamples = 121\nvalue = [43, 163]", fillcolor="#399de5bc"] ;
+1 [label="gini = 0.0\nsamples = 14\nvalue = [0, 22]", fillcolor="#399de5ff"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="has_question_mark <= 0.5\ngini = 0.3582\nsamples = 107\nvalue = [43, 141]", fillcolor="#399de5b1"] ;
+0 -> 2 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+3 [label="emotji_sent_score <= 0.0395\ngini = 0.3609\nsamples = 106\nvalue = [43, 139]", fillcolor="#399de5b0"] ;
+2 -> 3 ;
+4 [label="gini = 0.0\nsamples = 2\nvalue = [3, 0]", fillcolor="#e58139ff"] ;
+3 -> 4 ;
+5 [label="status_cnt <= 876.0\ngini = 0.3471\nsamples = 104\nvalue = [40, 139]", fillcolor="#399de5b6"] ;
+3 -> 5 ;
+6 [label="len_characters <= 0.5\ngini = 0.4556\nsamples = 52\nvalue = [33, 61]", fillcolor="#399de575"] ;
+5 -> 6 ;
+7 [label="gini = 0.4601\nsamples = 50\nvalue = [33, 59]", fillcolor="#399de570"] ;
+6 -> 7 ;
+8 [label="gini = 0.0\nsamples = 2\nvalue = [0, 2]", fillcolor="#399de5ff"] ;
+6 -> 8 ;
+9 [label="emotji_sent_score <= 0.147\ngini = 0.1511\nsamples = 52\nvalue = [7, 78]", fillcolor="#399de5e8"] ;
+5 -> 9 ;
+10 [label="gini = 0.0624\nsamples = 38\nvalue = [2, 60]", fillcolor="#399de5f6"] ;
+9 -> 10 ;
+11 [label="gini = 0.3403\nsamples = 14\nvalue = [5, 18]", fillcolor="#399de5b8"] ;
+9 -> 11 ;
+12 [label="gini = 0.0\nsamples = 1\nvalue = [0, 2]", fillcolor="#399de5ff"] ;
+2 -> 12 ;
+}

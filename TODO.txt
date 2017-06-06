@@ -1,9 +1,9 @@
 31.05.2017
--write Andreas an email regarding a meeting (w. Uli in skype) on Friday(before 1pm)
+-write Andreas an email regarding a meeting (w. Uli in skype) on Friday(before 1pm) -DONE
 -try other classifiers
 -inspect the diffrence between w. Preprocessing and without
 -complete the collecting of 10k tweets
--visual representation von Random forests
+-visual representation of Random forests
 -try using a manual trainig/testing split - so an average confidence could be established
 
 29.05.2017

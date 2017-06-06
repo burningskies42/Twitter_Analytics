@@ -1,0 +1,37 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname=helvetica] ;
+edge [fontname=helvetica] ;
+0 [label="num_stop_words <= 11.0\ngini = 0.3726\nsamples = 136\nvalue = [51, 155]", fillcolor="#399de5ab"] ;
+1 [label="has_question_mark <= 0.5\ngini = 0.365\nsamples = 134\nvalue = [49, 155]", fillcolor="#399de5ae"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="status_cnt <= 212.5\ngini = 0.3712\nsamples = 131\nvalue = [49, 150]", fillcolor="#399de5ac"] ;
+1 -> 2 ;
+3 [label="reg_age <= 8.5\ngini = 0.4734\nsamples = 42\nvalue = [25, 40]", fillcolor="#399de560"] ;
+2 -> 3 ;
+4 [label="gini = 0.0\nsamples = 16\nvalue = [0, 25]", fillcolor="#399de5ff"] ;
+3 -> 4 ;
+5 [label="words <= 0.5\ngini = 0.4688\nsamples = 26\nvalue = [25, 15]", fillcolor="#e5813966"] ;
+3 -> 5 ;
+6 [label="gini = 0.0\nsamples = 4\nvalue = [0, 4]", fillcolor="#399de5ff"] ;
+5 -> 6 ;
+7 [label="gini = 0.4244\nsamples = 22\nvalue = [25, 11]", fillcolor="#e581398f"] ;
+5 -> 7 ;
+8 [label="has_hashtag <= 0.5\ngini = 0.2941\nsamples = 89\nvalue = [24, 110]", fillcolor="#399de5c7"] ;
+2 -> 8 ;
+9 [label="urls_moz <= 13234.0\ngini = 0.4346\nsamples = 31\nvalue = [15, 32]", fillcolor="#399de587"] ;
+8 -> 9 ;
+10 [label="gini = 0.142\nsamples = 10\nvalue = [1, 12]", fillcolor="#399de5ea"] ;
+9 -> 10 ;
+11 [label="gini = 0.4844\nsamples = 21\nvalue = [14, 20]", fillcolor="#399de54d"] ;
+9 -> 11 ;
+12 [label="followers_cnt <= 0.5\ngini = 0.1855\nsamples = 58\nvalue = [9, 78]", fillcolor="#399de5e2"] ;
+8 -> 12 ;
+13 [label="gini = 0.1356\nsamples = 54\nvalue = [6, 76]", fillcolor="#399de5eb"] ;
+12 -> 13 ;
+14 [label="gini = 0.48\nsamples = 4\nvalue = [3, 2]", fillcolor="#e5813955"] ;
+12 -> 14 ;
+15 [label="gini = 0.0\nsamples = 3\nvalue = [0, 5]", fillcolor="#399de5ff"] ;
+1 -> 15 ;
+16 [label="gini = 0.0\nsamples = 2\nvalue = [2, 0]", fillcolor="#e58139ff"] ;
+0 -> 16 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+}

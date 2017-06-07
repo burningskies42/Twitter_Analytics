@@ -1,10 +1,7 @@
 from labeled_featureset_builder import open_and_join
-from sklearn import preprocessing, model_selection
-from sklearn.preprocessing import StandardScaler
-from sklearn import svm
-from sklearn import neighbors
-from sklearn.cluster import KMeans, MeanShift
+
 import os
+from time import strftime
 
 from sklearn.linear_model import LinearRegression,LogisticRegression
 from sklearn.tree import export_graphviz
@@ -16,7 +13,7 @@ import pickle
 import pydot
 import easygui
 
-
+from sklearn import preprocessing, model_selection
 from sklearn.neural_network import MLPClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC, LinearSVR
@@ -56,11 +53,22 @@ names = ["Linear Regression",
          "QDA"]
 
 
-def build_and_classify():
+def build_and_classify(ask_path = True, build_new_featureset = True):
+
+   if ask_path:
+      f_path = easygui.fileopenbox()  #   'labels/Amazon_labeled_tweets.csv'
+   else:
+      f_path = 'labels/Amazon_labeled_tweets.csv.new_collection'
+
    # # Build the feature_set - Only necessary once
-   f_path = easygui.fileopenbox()  #   'labels/Amazon_labeled_tweets.csv'
-   df = open_and_join(f_path,True,with_sentiment = False,with_timing=True)
-   # df = pd.DataFrame.from_csv('labeled_featureset.csv', sep=';')
+   if build_new_featureset:
+      df = open_and_join(f_path, True, with_sentiment=False, with_timing=True)
+   else:
+      with open('labeled_featureset.pkl', 'rb') as fid:
+         df = pickle.load(fid)
+         fid.close()
+
+   # # Drop incomplete rows
    df = df[df['label'] != 3]
    df.dropna(axis=0, how='any', inplace=True)
    print('Sample size:', len(df))
@@ -75,7 +83,10 @@ def build_and_classify():
 
    PP_X = X
 
-   X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.9)
+   X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.1)
+   print('  ','Train','Test')
+   print(' X ', len(X_train), len(X_test))
+   print(' Y ', len(y_train), len(y_test))
 
    # # Manual division
    # X_train = X[:-2000]
@@ -86,15 +97,16 @@ def build_and_classify():
    # Preprocessed
    # pp_X_train, pp_X_test, y_train, y_test = model_selection.train_test_split(PP_X, y, test_size=0.2)
 
-   tester = fetch_tweets_by_ids([866661103203360768, 866668601419456512, 866668290290184192, 866630898715947009])
-   tester = tweets_to_featureset(tester, with_sentiment=False)
-   tester.drop(['words', 'words_no_url'], axis=1, inplace=True)
+   confs = pd.Series()
+   confs_old = None
 
-   test = np.array(tester)
+   if os.path.exists('classifiers\\confs.csv'):
+      confs_old = pd.DataFrame.from_csv('classifiers\\confs.csv',sep=';')
 
    for name, clf in zip(names, classifiers):
       clf.fit(X_train, y_train)
       print(name+' confidence:', clf.score(X_test, y_test))
+      confs[name] = round(clf.score(X_test, y_test),2)
 
       f_name = os.getcwd()+'\\classifiers\\' + name.replace(' ','_') + '_clf.pkl'
 
@@ -106,21 +118,69 @@ def build_and_classify():
          pickle.dump(clf, fid)
          fid.close()
 
-   for name, clf in zip(names, classifiers):
-      print(name,clf.predict(test))
+   confs['timestamp'] = strftime("%Y_%m_%d %H:%M:%S")
+   confs['len'] = len(X_train)
 
+   confs = pd.DataFrame([confs])
+   confs.set_index('timestamp',inplace=True)
+   if confs_old is not None:
+      confs = confs.append(confs_old)
+
+   confs.to_csv('classifiers\\confs.csv',sep=';')
    print('------------------------------------')
 
-   # for filename in os.listdir('classifiers'):
-   #    with open(filename, 'rb') as fid:
-   #       f_name = filename.split('_clf')[0]
-   #       cls = pickle.loads(fid)
-   #
-   #       cls_dict.append((f_name,cls))
-   #       print('loaded',filename)
-   #       fid.close()
+   # Store predictions results to file
+   new_results = None
+   old_results = None
 
-   # print('------------------------------------')
+   if os.path.exists('classifiers\\results.csv'):
+      old_results = pd.DataFrame.from_csv('classifiers\\results.csv',sep=';')
+
+   testset = [866661103203360768, 866668601419456512, 866668290290184192, 866630898715947009]
+
+
+   for t in testset:
+      new_line = pd.Series()
+      tester = fetch_tweets_by_ids([t])
+      tester = tweets_to_featureset(tester, with_sentiment=False,with_timing=False)
+      tester.drop(['words', 'words_no_url'], axis=1, inplace=True)
+      tester = np.array(tester)
+
+      new_line['id'] = t
+      new_line['timestamp'] = strftime("%Y_%m_%d %H:%M:%S")
+
+      for name, clf in zip(names, classifiers):
+         new_line[name] = clf.predict(tester)
+
+      new_line = pd.DataFrame([new_line])
+      # print(new_line)
+      if new_results is None:
+         new_results = new_line
+      else:
+         new_results = new_results.append(new_line)
+
+
+   # new_results['timestamp'] = strftime("%Y_%m_%d %H:%M:%S")
+   # new_results.set_index('timestamp', inplace=True)
+
+   if old_results is not None:
+      new_results = new_results.append(old_results)
+
+   new_results.to_csv('classifiers\\results.csv',sep=';')
+
+
+   # for filename in os.listdir('classifiers'):
+   #    if filename.endswith('.pkl'):
+   #       with open(filename, 'rb') as fid:
+   #          f_name = filename.split('_clf')[0]
+   #          loaded_classifier = pickle.load(fid)
+   #
+   #          print('loaded ' + f_name,loaded_classifier.predict(tester))
+
+
+
+
+   print('------------------------------------')
 
    # import statsmodels.api as sm
    #
@@ -155,5 +215,12 @@ def build_and_classify():
 
 
 # Uncomment when training again, otherwise use existing classifier
-build_and_classify()
+for i in range(10):
+   if i == 0:
+      build_and_classify(ask_path=False, build_new_featureset=True)
+   else:
+      build_and_classify(ask_path=False,build_new_featureset=False)
 
+   print('----------------------------------------------------------------------')
+   print('---------------------       '+str(i)+'      --------------------------')
+   print('----------------------------------------------------------------------')

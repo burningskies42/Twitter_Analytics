@@ -1,8 +1,8 @@
 Python/twitter_filter/captured_tweets/*
 Python/twitter_filter/feature_sets/*
 **/pickled_algos/*
-Python/twitter_filter/twitter_auth_key.pickle
-Python/twitter_filter/quandl_key.pickle
+**/twitter_auth_key.pickle
+**/quandl_key.pickle
 id_rsa
 **/.idea/*
 **/__pycache__/*

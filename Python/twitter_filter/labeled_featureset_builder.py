@@ -2,6 +2,7 @@ import pandas as pd
 from tweepy import OAuthHandler,API
 from feature_tk.features import tweets_to_featureset
 from nltk.corpus import stopwords
+import pickle
 
 def fetch_tweets_by_ids(id_list):
    api_key = pd.read_pickle('tweet_tk\\auth\\twitter_auth_key.pickle')
@@ -94,7 +95,12 @@ def open_and_join(file,save_to_file = False, with_sentiment = True,with_timing=T
 
    if save_to_file:
       labeled_featureset = labeled_featureset[labeled_featureset['label']!= 3]
-      labeled_featureset.to_csv('labeled_featureset.csv',sep=';')
+
+      with open('labeled_featureset.pkl','wb') as  fid:
+         pickle.dump(labeled_featureset,fid)
+         fid.close()
+
+      # pd.DataFrame(labeled_featureset).to_pickle()
 
    return labeled_featureset
 

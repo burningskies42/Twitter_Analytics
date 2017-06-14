@@ -57,8 +57,9 @@ class listener(StreamListener):
             try:
                 text = str(data_json['text'])
             except Exception as e:
-                print(e,'error reading tweet, skippnig ...')
-                return(True)
+                print(data_json+'\n\n'+'error reading tweet, skippnig ...')
+                quit()
+            # return(True)
 
             # check if retweet
             # Disregard retweets

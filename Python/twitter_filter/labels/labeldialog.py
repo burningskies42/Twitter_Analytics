@@ -2,10 +2,16 @@ from sys import argv
 from PyQt4 import QtGui, QtCore
 
 
+
 class Window(QtGui.QDialog):
     def __init__(self,progress):
         super(QtGui.QDialog, self).__init__()
-        self.setGeometry(1400, 400, 0, 0)
+
+        desktop = QtGui.QDesktopWidget()
+        screen_width = desktop.screenGeometry().width()
+        screen_height = desktop.screenGeometry().height()
+        self.setGeometry(screen_width*0.7,screen_height*0.2, 0, 0)
+
         self.setFixedSize(280, 120)
         self.setWindowTitle("Labeler")
         self.setWindowIcon(QtGui.QIcon('pylogo.png'))
@@ -13,6 +19,7 @@ class Window(QtGui.QDialog):
         self.label = None
         # self.statusTip()
         self.set_dialog(progress)
+
 
 
 

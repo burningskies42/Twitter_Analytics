@@ -390,8 +390,8 @@ def usr_feature_df(df, with_timing=True):
 
 # Builds a featureset df from a captured_tweets_df
 def tweets_to_featureset(df, with_sentiment=True, with_timing=True):
-   # convert json object USER to columns
 
+   # convert json object USER to columns
    df = flatten_users(df)
 
    # build feature table for different feature categories

@@ -1,3 +1,9 @@
+09.06.2017
+1. Clear duplicates
+2. Check for Overfitting
+3. Explore other properties of Confidence
+4. Examine False-Negatives/-Positives classification
+
 31.05.2017
 -write Andreas an email regarding a meeting (w. Uli in skype) on Friday(before 1pm) -DONE
 -try other classifiers

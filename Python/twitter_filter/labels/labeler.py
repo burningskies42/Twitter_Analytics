@@ -15,7 +15,15 @@ def launch_labeler():
     if not path.isfile(file_name) :
         print('new file',file)
 
-        df = pd.DataFrame(tweet_json_to_df(file))
+        # check for input file type:
+        file_type = file.split('.')[len(file.split('.'))-1]
+        if file_type == 'json':
+            df = pd.DataFrame(tweet_json_to_df(file))
+        elif file_type == 'csv':
+            # csv_to_df(file)
+           df = pd.DataFrame.from_csv(file,sep=';',encoding = "ISO-8859-1")
+           # print(df.head())
+
         id_df = pd.DataFrame(df.index.values,columns=['id'])
         id_df['label'] = 0
         id_df.set_index('id',inplace=True)

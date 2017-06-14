@@ -50,11 +50,14 @@ def tweet_text(id_list):
    return tweets_df
 
 
-def remove_similiar_tweets(df):
+def remove_similiar_tweets(df,sim_upper_lim = 0.7):
    ids = df.index.values
    # df = df[:10]
 
    df_w_text = tweet_text(ids)
+   print(df_w_text.head())
+   quit()
+
    df_w_text['text'] = df_w_text['text'].apply(lambda x: x.replace('\n', ''))
 
    # df = df.join(df_w_text)
@@ -75,7 +78,11 @@ def remove_similiar_tweets(df):
 
       for indexJ, rowJ in new_df.iterrows():
          similiarity = similar(str(rowI['text']), str(rowJ['text']))
-         if similiarity > 0.5:
+
+         # When as similiar tweet already in new df, chuck if its older
+         # if older - replace, otherwise ignore
+         if similiarity > sim_upper_lim:
+
             addrow = False
             break
 

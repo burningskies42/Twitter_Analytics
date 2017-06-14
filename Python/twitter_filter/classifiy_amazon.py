@@ -136,7 +136,16 @@ def build_and_classify(ask_path = True, build_new_featureset = True):
    if os.path.exists('classifiers\\results.csv'):
       old_results = pd.DataFrame.from_csv('classifiers\\results.csv',sep=';')
 
-   testset = [866661103203360768, 866668601419456512, 866668290290184192, 866630898715947009]
+   #    twitter.com/anyuser/status/
+
+   testset = [866661103203360768, # Pilot-Wages
+              866668601419456512, # Supermarket
+              866668290290184192, # Bananas
+              869132139186573312, # Gym
+              866630898715947009, # MKBHD - gray
+              860779411116888064, # not-news
+              869140128438136832] # not-news
+
 
 
    for t in testset:
@@ -215,7 +224,7 @@ def build_and_classify(ask_path = True, build_new_featureset = True):
 
 
 # Uncomment when training again, otherwise use existing classifier
-for i in range(10):
+for i in range(1):
    if i == 0:
       build_and_classify(ask_path=False, build_new_featureset=True)
    else:

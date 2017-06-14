@@ -1,0 +1,6 @@
+TODO:
+
+1. Clear duplicates
+2. Check for Overfitting
+3. Weitere Confidence Eigenschaften recherchieren
+4. Den False-Negatives Features zuschauen

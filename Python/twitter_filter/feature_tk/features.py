@@ -11,6 +11,7 @@ from os import system, getcwd
 from tweepy import OAuthHandler, API
 from csv import reader
 from codecs import iterdecode
+import pickle
 
 from tweet_tk.retweet_fetcher import retweet_cnt
 from tweet_tk.bots import add_suspects, is_suspect
@@ -32,70 +33,78 @@ def most_pop_urls_wiki():
    try:
       source = urllib.request.urlopen('https://en.wikipedia.org/wiki/List_of_most_popular_websites').read()
       soup = bs.BeautifulSoup(source, 'lxml')
-      table = soup.table
 
+      table = soup.find(class_="wikitable sortable")
       table_rows = table.find_all('tr')
 
       rating_table = DataFrame()
-      # columns=('Site','Domain','Alexa','SimilarWeb','Type','Country')
 
       for tr in table_rows:
          td = tr.find_all('td')
          row = [i.text for i in td]
          if len(row) > 0:
-            # print(len(row))
             rating_table = rating_table.append(Series(row), ignore_index=True)
 
       rating_table.columns = ['Site', 'Domain', 'Alexa', 'SimilarWeb', 'Type', 'Country']
-      return rating_table
+
+      with open('feature_tk/wiki_top_100.pkl','wb') as fid:
+         pickle.dump(rating_table,fid)
+         fid.close()
+
+
+
    except Exception as e:
-      print(e)
+      with open('feature_tk/wiki_top_100.pkl', 'rb') as fid:
+         rating_table = pickle.load(fid)
+         fid.close()
+
+      print('Error when downloading from wikipedia, used local copy')
+
+   finally:
+      # print(rating_table['Domain'])
+      return set(rating_table['Domain'].tolist())
 
 
 def most_pop_urls_moz():
-   df = None
-   local_copy = False
 
    try:
-      url = 'https://moz.com/top500/domains/csv'
-      ftpstream = urllib.request.urlopen(url)
-      csvfile = reader(iterdecode(ftpstream, 'utf-8'))
+      source = urllib.request.urlopen('https://moz.com/top500').read()
+      soup = bs.BeautifulSoup(source, 'lxml')
+
+      table = soup.find(class_="table table-bordered table-zebra")
+      table_rows = table.find_all('tr')
+      rating_table = DataFrame()
+
+      for tr in table_rows:
+         td = tr.find_all('td')
+         row = [i.text.replace('\n','').replace(' ','') for i in td]
+         if len(row) > 0:
+            rating_table = rating_table.append(Series(row), ignore_index=True)
+
+      rating_table.columns = ['Rank','Root Domain','Linking Root Domains',
+                              'External Links','Domain mozRank','Domain mozTrust','Change']
+      rating_table.set_index('Rank',inplace=True)
+
+      # Save local copy
+      with open('feature_tk/moz_top_500.pkl', 'wb') as fid:
+         pickle.dump(rating_table,fid)
+         fid.close()
 
    except Exception as e:
-      print('Moz top 500 site is not responding, using local copy')
-      local_copy = True
-      csvfile = open('feature_tk\\top500.csv','r')
+      print('Error when downloading from MOZ, using local copy')
+      fid = open('feature_tk/moz_top_500.pkl','rb')
+      rating_table = pickle.load(fid)
+      fid.close()
 
-   if not local_copy :
-      for line in csvfile:
-         if df is None:
-            df = pd.DataFrame(columns=line[1:])
-         else:
-            df.loc[line[0]] = line[1:]
-   else:
-      for line in csvfile:
-         line = line.replace('\n','').split(',')
-         line = [word.replace('"','') for word in line]
-         if df is None:
-            df = pd.DataFrame(columns=line[1:])
-         else:
-            df.loc[line[0]] = line[1:]
+   finally:
 
-   # save to file - DEBUG !!!!!!
-   # if local_copy:
-      # localfile = open('feature_tk\\top500.csv', 'w')
-      #
-      # for line in csvfile:
-      #    localfile.write(line)
-      # localfile.close()
-
-   lst = df['URL'].tolist()
-   lst = [url.replace('/', '') for url in lst]
-   return lst
+      lst = set(rating_table['Root Domain'].tolist())
+      lst = [url.replace('/', '') for url in lst]
+      return lst
 
 
 # generate list of most popular websites
-most_pop_urls_wiki = list(most_pop_urls_wiki()['Domain'])
+most_pop_urls_wiki = list(most_pop_urls_wiki())
 most_pop_urls_moz = most_pop_urls_moz()
 print('downloaded most popular domains\n')
 

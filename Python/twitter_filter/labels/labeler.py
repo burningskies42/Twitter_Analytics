@@ -14,6 +14,7 @@ def launch_labeler():
 
     if not path.isfile(file_name) :
         print('new file',file)
+
         df = pd.DataFrame(tweet_json_to_df(file))
         id_df = pd.DataFrame(df.index.values,columns=['id'])
         id_df['label'] = 0

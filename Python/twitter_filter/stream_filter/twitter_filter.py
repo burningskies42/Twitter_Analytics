@@ -40,18 +40,6 @@ class listener(StreamListener):
 
     def on_data(self, data):
 
-        with open('lin_clf.pkl', 'rb') as fid:
-            lin_clf = pickle.load(fid)
-            fid.close()
-
-        with open('svm_clf.pkl', 'rb') as fid:
-            svm_clf = pickle.load(fid)
-            fid.close()
-
-        with open('RF_clf.pkl', 'rb') as fid:
-            RF_clf = pickle.load(fid)
-            fid.close()
-
         retweeted = False
         quoted = False
         # Time runs out, drop dataframe to file
@@ -116,31 +104,6 @@ class listener(StreamListener):
                     saveFile = open(self.json_name,"a")
                     saveFile.write(data)
                     saveFile.close()
-
-                    a = pd.DataFrame([pd.Series(data_json)])
-                    a.set_index('id',inplace=True)
-
-                    featureset = tweets_to_featureset(a,with_sentiment=False,with_timing=False)
-
-                    flat_featureset = np.array(featureset)
-                    # PP_X = preprocessing.scale(flat_featureset)
-
-                    lin_predict = lin_clf.predict(flat_featureset)
-                    svm_predict = svm_clf.predict(flat_featureset)
-                    RF_predict = RF_clf.predict(flat_featureset)
-
-                    print(data_json['id'],lin_predict,svm_predict,RF_predict)
-
-                    if not path.isfile('captured_classified.csv'):
-                        f = open('captured_classified.csv', 'w')
-                        f.close()
-
-                    save_file_classified = open('captured_classified.csv','a')
-                    cls_str = [data_json['id'], lin_predict, svm_predict, RF_predict]
-                    cls_str = ';'.join([str(x) for x in cls_str])+'\n'
-                    save_file_classified.write(cls_str)
-                    save_file_classified.close()
-
 
                 else:
                     print('------------- already captured. ignoring',str(data_json['id']))

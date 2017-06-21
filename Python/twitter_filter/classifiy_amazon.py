@@ -58,7 +58,7 @@ def build_and_classify(ask_path = True, build_new_featureset = True):
    if ask_path:
       f_path = easygui.fileopenbox()  #   'labels/Amazon_labeled_tweets.csv'
    else:
-      f_path = 'labels/Amazon_labeled_tweets.csv.new_collection'
+      f_path = 'labels/Amazon_labeled_tweets.csv'
 
    # # Build the feature_set - Only necessary once
    if build_new_featureset:
@@ -75,7 +75,9 @@ def build_and_classify(ask_path = True, build_new_featureset = True):
 
    #
    # df = df.drop(['has_pronoun','count_upper','has_hashtag','friends_cnt'],axis=1)
+
    X = np.array(df.drop(['words','words_no_url','label'], 1))
+
    y = np.array(df['label'])
 
    # Not needed for RF
@@ -224,7 +226,7 @@ def build_and_classify(ask_path = True, build_new_featureset = True):
 
 
 # Uncomment when training again, otherwise use existing classifier
-for i in range(1):
+for i in range(10):
    if i == 0:
       build_and_classify(ask_path=False, build_new_featureset=True)
    else:

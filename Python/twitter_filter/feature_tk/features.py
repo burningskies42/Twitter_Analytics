@@ -219,13 +219,15 @@ def flatten_users(df):
 # Message content related features
 def msg_feature_df(df, with_sentiment=True, with_timing=True):
    df_msg = pd.DataFrame(index=df.index)
+   # df_msg = []
    # df_msg['id'] = df.index.values
    # df_msg.set_index('id', inplace=True)
    all_words = {}
    stop_words = set(stopwords.words('english'))
 
    start = time()
-   df_msg['words'] = df['text'].apply(lambda x: word_tokenize(x))
+   df_msg['words'] = df['text'].apply(lambda x : x.replace('\r','').replace('\n',''))
+   df_msg['words'] = df_msg['words'].apply(lambda x: word_tokenize(x))
    df_msg['num_stop_words'] = df_msg['words'].apply(lambda x: len(x))
    dur = time() - start
    if with_timing: print('tokenize words:', dur)
@@ -319,6 +321,11 @@ def msg_feature_df(df, with_sentiment=True, with_timing=True):
    if with_timing: print('has_hashtag:', dur)
 
    start = time()
+   df_msg['retweet_count'] = df['retweet_count']
+   dur = time() - start
+   if with_timing: print('retweet_count:', dur)
+
+   start = time()
    df_msg['urls_wiki'] = df['entities'].apply(lambda x: is_wiki_url(x))
    df_msg['urls_moz'] = df['entities'].apply(lambda x: is_moz_url(x))
    dur = time() - start
@@ -399,18 +406,23 @@ def tweets_to_featureset(df, with_sentiment=True, with_timing=True):
    # msg_feat_df.drop(['words', 'words_no_url'], axis=1, inplace=True)
    usr_feat_df = usr_feature_df(df, with_timing)
 
-   retweets = retweet_cnt(df['id_str'].tolist(), with_timing=False)
+   # print(df)
+
+   # retweets = retweet_cnt(df['id_str'].tolist(), with_timing=False)
+   # retweets = retweet_cnt(df.index.values, with_timing=False)
+
 
    # retweets = retweet_cnt(df.index.values)
 
    if with_timing:
       print('\nValue Frequencies:')
-      print(retweets['retweet_count'].value_counts()[:10])
+      print(msg_feat_df['retweet_count'].value_counts()[:10])
 
    df = pd.concat([msg_feat_df, usr_feat_df], axis=1)
 
-   df = pd.concat([df, retweets], axis=1)
-
+   # Obsolete, since retweets are counted from captured df
+   # df = pd.concat([df, retweets], axis=1)
+   # df.set_index('id_str')
    return df
 
 

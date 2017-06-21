@@ -101,7 +101,6 @@ def remove_similiar_tweets(df,sim_upper_lim = 0.7):
 
    return(new_df)
 
-
 df_path = easygui.fileopenbox(default='*.json',filetypes=['*.json','*.csv'])
 
 file_type = df_path.split('.')[len(df_path.split('.'))-1]

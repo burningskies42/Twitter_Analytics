@@ -54,12 +54,11 @@ def tweet_text(id_list):
 
 def remove_similiar_tweets(df, sim_upper_lim=0.6):
    ids = df.index.values
-   # df = df[:10]
 
    # df_w_text = tweet_text(ids)
    df.sort_index(axis='index', inplace=True)
    # print(df['id_str'])
-   df['id_str'].to_csv('foobar.foobar',sep=';')
+   # df['id_str'].to_csv('foobar.foobar',sep=';')
 
    df_w_text = fetch_tweets_by_ids(ids)
 
@@ -73,6 +72,7 @@ def remove_similiar_tweets(df, sim_upper_lim=0.6):
 
    last_len = 0
    scanned_len = 0
+
 
    for indexI, rowI in df_w_text.iterrows():
 
@@ -125,8 +125,10 @@ if file_type == 'csv':
 elif file_type == 'json':
    df = tweet_json_to_df(df_path)
    # df = df[:100]
+
    df = remove_similiar_tweets(df)
    df_path = df_path.replace('.json', '_filtered.csv')
+   # print(df.head())
    df.to_csv(df_path, sep=';')
 
 

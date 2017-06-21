@@ -18,12 +18,21 @@ def fetch_tweet(tweet_id):
    return tweet
 
 def open_and_join(file,save_to_file = False, with_sentiment = True,with_timing=True):
+   print(file)
    label_df = pd.DataFrame.from_csv(file, sep=';')
+   label_df.index = label_df.index.map(str)
+   label_df = label_df[label_df['label']!= 0]
+   print(len(label_df),'labels found in file')
+
    ids = label_df.index.values
    df = fetch_tweets_by_ids(ids)
 
    featureset = tweets_to_featureset(df,with_sentiment,with_timing)
-   labeled_featureset = pd.concat([featureset,label_df],axis=1,join='outer')
+   # print(type(featureset.index.values[0]))
+   # print(type(label_df.index.values[0]))
+
+   labeled_featureset = pd.concat([featureset,label_df],axis=1,join='inner')
+   # labeled_featureset.to_csv('fuck.fuck',sep = ";")
    labeled_featureset.dropna(axis = 0,how = 'any',inplace = True)
 
    stop_words = set(stopwords.words('english'))

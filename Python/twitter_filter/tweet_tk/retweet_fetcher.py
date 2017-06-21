@@ -29,6 +29,7 @@ def retweet_cnt(id_list,with_timing = False):
         i += 100
 
     tweets_df = DataFrame.from_dict(tweets_dict,orient='index')
+    print(tweets_df)
     tweets_df.columns = ['retweet_count']
 
     return tweets_df

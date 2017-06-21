@@ -38,6 +38,6 @@ def fetch_tweets_by_ids(id_list):
    print('------------------------------------')
    # remove empty rows (deleted tweets)
    df.dropna(inplace=True,how='all')
-   df.set_index('id',inplace=True)
+   df.set_index('id_str',inplace=True)
 
    return df

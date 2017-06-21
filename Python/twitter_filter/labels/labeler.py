@@ -56,6 +56,7 @@ def launch_labeler():
         tweet_address = 'https://twitter.com/anyuser/status/' + str(i)
         driver.get(tweet_address)
 
+
         # opens labeling promt
         percent_completed = int(100*cnt/len(curr_list))
         choice = get_labeler(percent_completed)
@@ -69,8 +70,17 @@ def launch_labeler():
 
     driver.close()
 
+
     for key,val in label_dict.items():
-        df['label'][key] = val
-        df.to_csv(file_name,sep=';')
+        if key in df.index.values:
+            df['label'][key] = val
+        else:
+            print('tweet id',key,'not found')
+
+    df.to_csv(file_name,sep=';')
+
+
+    print('Labeled', str(len(df[df['label']!=0])) + '/' + str(len(df)))
+
 
 launch_labeler()

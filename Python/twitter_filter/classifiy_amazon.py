@@ -153,7 +153,7 @@ def build_and_classify(ask_path = True, build_new_featureset = True):
    for t in testset:
       new_line = pd.Series()
       tester = fetch_tweets_by_ids([t])
-      tester = tweets_to_featureset(tester, with_sentiment=False,with_timing=False)
+      tester = tweets_to_featureset(tester, with_sentiment=False,with_timing=False,with_most_pop_words=False)
       tester.drop(['words', 'words_no_url'], axis=1, inplace=True)
       tester = np.array(tester)
 
@@ -180,21 +180,9 @@ def build_and_classify(ask_path = True, build_new_featureset = True):
    new_results.to_csv('classifiers\\results.csv',sep=';')
 
 
-   # for filename in os.listdir('classifiers'):
-   #    if filename.endswith('.pkl'):
-   #       with open(filename, 'rb') as fid:
-   #          f_name = filename.split('_clf')[0]
-   #          loaded_classifier = pickle.load(fid)
-   #
-   #          print('loaded ' + f_name,loaded_classifier.predict(tester))
-
-
-
-
    print('------------------------------------')
 
    # import statsmodels.api as sm
-   #
    # # Note the swap of X and y
    #
    # # Regression print-out:
@@ -226,7 +214,7 @@ def build_and_classify(ask_path = True, build_new_featureset = True):
 
 
 # Uncomment when training again, otherwise use existing classifier
-for i in range(10):
+for i in range(1):
    if i == 0:
       build_and_classify(ask_path=False, build_new_featureset=True)
    else:

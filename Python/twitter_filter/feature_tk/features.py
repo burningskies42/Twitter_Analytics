@@ -12,6 +12,7 @@ from tweepy import OAuthHandler, API
 from csv import reader
 from codecs import iterdecode
 import pickle
+from string import punctuation
 
 from tweet_tk.retweet_fetcher import retweet_cnt
 from tweet_tk.bots import add_suspects, is_suspect
@@ -208,6 +209,10 @@ def count_most_pop(words,most_pop_words):
 
    return cnt
 
+def clear_punctuation(string):
+   string = string.replace('\r', '').replace('\n', '')
+   string = string.translate(punctuation)
+   return string
 
 def flatten_users(df):
    users_df = df['user'].apply(Series)
@@ -217,42 +222,116 @@ def flatten_users(df):
 
 
 # Message content related features
-def msg_feature_df(df, with_sentiment=True, with_timing=True):
+def msg_feature_df(df, with_sentiment=True, with_timing=True,with_most_pop_words=True):
    df_msg = pd.DataFrame(index=df.index)
    # df_msg = []
    # df_msg['id'] = df.index.values
    # df_msg.set_index('id', inplace=True)
-   all_words = {}
+   news_all_words = {}
+   not_news_all_words = {}
    stop_words = set(stopwords.words('english'))
 
    start = time()
-   df_msg['words'] = df['text'].apply(lambda x : x.replace('\r','').replace('\n',''))
+   df_msg['words'] = df['text'].apply(lambda x : clear_punctuation(x))
    df_msg['words'] = df_msg['words'].apply(lambda x: word_tokenize(x))
    df_msg['num_stop_words'] = df_msg['words'].apply(lambda x: len(x))
    dur = time() - start
    if with_timing: print('tokenize words:', dur)
 
-   for sentence in df_msg['words']:
-      for word in [w for w in sentence if len(w)>1 and w not in stop_words]:
-         if word in all_words.keys():
-            all_words[word] += 1
-         else:
-            all_words[word] = 1
+   if with_most_pop_words:
+      df_msg['label'] = df['label']
 
-   # get the 50 most common words in all the tweets
-   most_pop_words = sorted(all_words.items(), key=lambda x: x[1], reverse=True)[:50]
-   most_pop_words = [w[0] for w in most_pop_words]
-   # print('most_pop_words:',most_pop_words)
+      for index,row in df_msg.iterrows() :
+            for word in [w for w in row['words'] if len(w)>1 and w not in stop_words and str.find(w,'/')==-1]:
+               if row['label'] == 1:
+                  if word in news_all_words.keys():
+                     news_all_words[word] += 1
+                  else:
+                     news_all_words[word] = 1
+               elif row['label'] == 2:
+                  if word in not_news_all_words.keys():
+                     not_news_all_words[word] += 1
+                  else:
+                     not_news_all_words[word] = 1
+
+      df_msg.drop('label',axis=1,inplace=True)
+
+      # get the 50 most common words in all the tweets
+      news_words = sorted(news_all_words.items(), key=lambda x: x[1], reverse=True)[:50]
+      news_words = [w[0] for w in news_words]
+      news_words_w = {}
+      news_len = len(df[df['label']==1])
+
+      print('~~~~~~~~~~~~~~~~~~~~~~~~')
+      print('News samples:',news_len)
+
+      i=1
+      for key in news_words:
+         news_words_w[key] = news_all_words[key]/news_len
+         print(i,key,news_words_w[key])
+         i+=1
+
+      print('~~~~~~~~~~~~~~~~~~~~~~~~')
+      not_news_words = sorted(not_news_all_words.items(), key=lambda x: x[1], reverse=True)[:50]
+      not_news_words = [w[0] for w in not_news_words]
+      not_news_words_w = {}
+      not_news_len = len(df[df['label'] == 2])
+
+      # save to file
+      with open('news_words.pkl','wb') as fid:
+         pickle.dump(news_words,fid)
+         fid.close()
+
+      print('Not-News samples:',not_news_len)
+      # print('most_pop_words:',most_pop_words)
+
+      i = 1
+      for key in not_news_words:
+         if key not in news_words or news_words_w[key] < not_news_all_words[key]/not_news_len:
+            not_news_words_w[key] = not_news_all_words[key]/not_news_len
+            print(i,key, not_news_words_w[key])
+            i += 1
+
+      # this removes words that already appeared in [news_words]
+      not_news_words = list(not_news_words_w.keys())
+
+
+      # save to file
+      with open('not_news_words.pkl','wb') as fid:
+         pickle.dump(not_news_words,fid)
+         fid.close()
+
+      print('~~~~~~~~~~~~~~~~~~~~~~~~')
+
+
 
    start = time()
    df_msg['words'] = df_msg['words'].apply(lambda x: [w for w in x if w.lower() not in stop_words])
    dur = time() - start
    if with_timing: print('filter out stop words:', dur)
 
-   start = time()
-   df_msg['cnt_most_pop'] = df_msg['words'].apply(lambda x: count_most_pop(x,most_pop_words))
-   dur = time() - start
-   if with_timing: print('count frequent words:', dur)
+   # When building features for the trainig set - simply count the occurences of
+   # each word category in a gieven tweet
+   if with_most_pop_words:
+      start = time()
+      df_msg['pos_words'] = df_msg['words'].apply(lambda x: count_most_pop(x, news_words))
+      df_msg['neg_words'] = df_msg['words'].apply(lambda x: count_most_pop(x, not_news_words))
+      dur = time() - start
+      if with_timing: print('count frequent words:', dur)
+
+   # When building features for the small test set - load most pop words from pickle
+   # and count occurances
+   else:
+      with open('news_words.pkl','rb') as fid:
+         news_words = pickle.load(fid)
+         fid.close()
+      with open('not_news_words.pkl','rb') as fid:
+         not_news_words = pickle.load(fid)
+         fid.close()
+      print(news_words)
+      print(not_news_words)
+      df_msg['pos_words'] = df_msg['words'].apply(lambda x: len(list(   set(x)&set(news_words)   )))
+      df_msg['neg_words'] = df_msg['words'].apply(lambda x: len(list(   set(x)&set(not_news_words)   )))
 
    start = time()
    df_msg['num_stop_words'] = df_msg['num_stop_words'] - df_msg['words'].apply(lambda x: len(x))
@@ -261,6 +340,7 @@ def msg_feature_df(df, with_sentiment=True, with_timing=True):
 
    start = time()
    df_msg['words_no_url'] = df['text'].apply(lambda x: clear_urls(x))
+   df_msg['words_no_url'] = df_msg['words_no_url'].apply(lambda x : x.replace('\r',' ').replace('\n',' '))
    dur = time() - start
    if with_timing: print('clear urls:', dur)
 
@@ -387,6 +467,7 @@ def usr_feature_df(df, with_timing=True):
 
    start = time()
    df_user['msg_p_day'] = df['user_statuses_count'] / df_user['reg_age']
+   df_user['msg_p_day'] = df_user['msg_p_day'].apply(lambda x : round(x,3))
    dur = time() - start
    if with_timing: print('msg_p_day:', dur)
 
@@ -396,23 +477,16 @@ def usr_feature_df(df, with_timing=True):
 
 
 # Builds a featureset df from a captured_tweets_df
-def tweets_to_featureset(df, with_sentiment=True, with_timing=True):
+def tweets_to_featureset(df, with_sentiment=True, with_timing=True,with_most_pop_words=True):
 
    # convert json object USER to columns
    df = flatten_users(df)
 
    # build feature table for different feature categories
-   msg_feat_df = msg_feature_df(df, with_sentiment, with_timing)
+   msg_feat_df = msg_feature_df(df, with_sentiment, with_timing,with_most_pop_words)
    # msg_feat_df.drop(['words', 'words_no_url'], axis=1, inplace=True)
    usr_feat_df = usr_feature_df(df, with_timing)
 
-   # print(df)
-
-   # retweets = retweet_cnt(df['id_str'].tolist(), with_timing=False)
-   # retweets = retweet_cnt(df.index.values, with_timing=False)
-
-
-   # retweets = retweet_cnt(df.index.values)
 
    if with_timing:
       print('\nValue Frequencies:')

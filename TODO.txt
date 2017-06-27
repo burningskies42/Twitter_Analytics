@@ -1,3 +1,7 @@
+26.06.2017
+- performed examination by neural networks networks parameters for training classifiers (algo and activation)
+-	- activation = 'tanh' seems to perform better
+
 09.06.2017
 1. Clear duplicates
 2. Check for Overfitting

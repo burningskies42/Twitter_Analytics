@@ -45,6 +45,8 @@ class Window(QtGui.QDialog):
         btnnews.resize(button_size[0],button_size[1])
         btnnews.move(10, 40)
         btnnews.setStatusTip('Mark tweet as "News"')
+        # btnnews.setDefault(False)
+        # btnnews.setAutoDefault(False)
 
         # Not-News button geometry
         btnnot = QtGui.QPushButton("Not News", self)
@@ -52,13 +54,17 @@ class Window(QtGui.QDialog):
         btnnot.resize(button_size[0],button_size[1])
         btnnot.move(100, 40)
         btnnot.setStatusTip('Mark tweet as "Not News"')
+        btnnot.setDefault(True)
+        btnnot.setAutoDefault(True)
 
         # Not-News button geometry
-        btnnot = QtGui.QPushButton("Not Found", self)
-        btnnot.clicked.connect(self.return_three)
-        btnnot.resize(button_size[0],button_size[1])
-        btnnot.move(190, 40)
-        btnnot.setStatusTip('Tweet was not found')
+        btnnotfound = QtGui.QPushButton("Not Found", self)
+        btnnotfound.clicked.connect(self.return_three)
+        btnnotfound.resize(button_size[0],button_size[1])
+        btnnotfound.move(190, 40)
+        btnnotfound.setStatusTip('Tweet was not found')
+        # btnnotfound.setDefault(False)
+        # btnnotfound.setAutoDefault(False)
 
     def return_one(self):
         self.done(1)

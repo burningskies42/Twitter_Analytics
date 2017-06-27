@@ -314,8 +314,8 @@ def msg_feature_df(df, with_sentiment=True, with_timing=True,with_most_pop_words
    # each word category in a gieven tweet
    if with_most_pop_words:
       start = time()
-      df_msg['pos_words'] = df_msg['words'].apply(lambda x: count_most_pop(x, news_words))
-      df_msg['neg_words'] = df_msg['words'].apply(lambda x: count_most_pop(x, not_news_words))
+      df_msg['news_words'] = df_msg['words'].apply(lambda x: count_most_pop(x, news_words))
+      df_msg['not_news_words'] = df_msg['words'].apply(lambda x: count_most_pop(x, not_news_words))
       dur = time() - start
       if with_timing: print('count frequent words:', dur)
 
@@ -328,8 +328,8 @@ def msg_feature_df(df, with_sentiment=True, with_timing=True,with_most_pop_words
       with open('not_news_words.pkl','rb') as fid:
          not_news_words = pickle.load(fid)
          fid.close()
-      print(news_words)
-      print(not_news_words)
+      # print(news_words)
+      # print(not_news_words)
       df_msg['pos_words'] = df_msg['words'].apply(lambda x: len(list(   set(x)&set(news_words)   )))
       df_msg['neg_words'] = df_msg['words'].apply(lambda x: len(list(   set(x)&set(not_news_words)   )))
 
@@ -471,8 +471,6 @@ def usr_feature_df(df, with_timing=True):
    dur = time() - start
    if with_timing: print('msg_p_day:', dur)
 
-   df_user['friends_cnt']
-
    return df_user
 
 
@@ -490,7 +488,9 @@ def tweets_to_featureset(df, with_sentiment=True, with_timing=True,with_most_pop
 
    if with_timing:
       print('\nValue Frequencies:')
-      print(msg_feat_df['retweet_count'].value_counts()[:10])
+      # print(msg_feat_df['retweet_count'].value_counts()[:10])
+      retweets_freq = msg_feat_df['retweet_count'].value_counts()
+      print(retweets_freq)
 
    df = pd.concat([msg_feat_df, usr_feat_df], axis=1)
 

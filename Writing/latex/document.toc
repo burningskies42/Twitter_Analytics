@@ -10,5 +10,5 @@
 \contentsline {subsection}{\numberline {3.1}Information Procurement}{3}
 \contentsline {subsection}{\numberline {3.2}Building the Datasets}{5}
 \contentsline {subsection}{\numberline {3.3}Training Classifier}{5}
-\contentsline {subsection}{\numberline {3.4}Classifier Types}{5}
-\contentsline {section}{\numberline {4}Genaral Use Cases}{6}
+\contentsline {subsection}{\numberline {3.4}Classifier Types}{6}
+\contentsline {section}{\numberline {4}Genaral Use Cases}{7}

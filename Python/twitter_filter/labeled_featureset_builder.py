@@ -28,6 +28,7 @@ def open_and_join(file,save_to_file = False, with_sentiment = True,with_timing=T
    df = fetch_tweets_by_ids(ids)
 
    if 'label' in label_df.columns.values:
+   # if 'label' in df.columns.values:
       df['label'] = label_df['label']
 
    featureset = tweets_to_featureset(df,with_sentiment,with_timing)

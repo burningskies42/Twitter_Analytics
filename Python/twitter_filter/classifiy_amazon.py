@@ -34,7 +34,7 @@ classifiers = [
    # GaussianProcessClassifier(1.0 * RBF(1.0), warm_start=True),
    DecisionTreeClassifier(max_depth=5),
    RandomForestClassifier(max_depth=5, n_estimators=10, max_features=1),
-   MLPClassifier(alpha=1),
+   MLPClassifier(alpha=1,solver='sgd',activation='tanh'),
    AdaBoostClassifier(),
    GaussianNB(),
    QuadraticDiscriminantAnalysis()]
@@ -53,12 +53,12 @@ names = ["Linear Regression",
          "QDA"]
 
 
-def build_and_classify(ask_path = True, build_new_featureset = True):
+def build_and_classify(set_name,ask_path = True, build_new_featureset = True):
 
    if ask_path:
       f_path = easygui.fileopenbox()  #   'labels/Amazon_labeled_tweets.csv'
    else:
-      f_path = 'labels/Amazon_labeled_tweets.csv'
+      f_path = 'labels/combo.csv'
 
    # # Build the feature_set - Only necessary once
    if build_new_featureset:
@@ -122,6 +122,7 @@ def build_and_classify(ask_path = True, build_new_featureset = True):
 
    confs['timestamp'] = strftime("%Y_%m_%d %H:%M:%S")
    confs['len'] = len(X_train)
+   confs['set_name'] = set_name
 
    confs = pd.DataFrame([confs])
    confs.set_index('timestamp',inplace=True)
@@ -196,29 +197,30 @@ def build_and_classify(ask_path = True, build_new_featureset = True):
    # Print out all trees in forest to jpg
    i = 0
 
-   RF_clf_f = open('classifiers\\Random_Forest_clf.pkl','rb')
-   RF_clf = pickle.load(RF_clf_f)
-   RF_clf_f.close()
+   # # DECISION TREES GRAPHIC OUTPUT
+   # RF_clf_f = open('classifiers\\Random_Forest_clf.pkl','rb')
+   # RF_clf = pickle.load(RF_clf_f)
+   # RF_clf_f.close()
+   #
+   # for tree in RF_clf:
+   #    i += 1
+   #    fn = 'trees\\dtree' + str(i) + '.dot'
+   #    dotfile = open(fn, 'w')
+   #
+   #    export_graphviz(tree, feature_names=df.columns.values, filled=True, rounded=True, out_file=dotfile)
+   #    dotfile.close()
+   #
+   #    (graph,) = pydot.graph_from_dot_file(fn)
+   #    print('exported', fn)
+   #    graph.write_png('trees\\dtree' + str(i) + '.png')
 
-   for tree in RF_clf:
-      i += 1
-      fn = 'trees\\dtree' + str(i) + '.dot'
-      dotfile = open(fn, 'w')
-
-      export_graphviz(tree, feature_names=df.columns.values, filled=True, rounded=True, out_file=dotfile)
-      dotfile.close()
-
-      (graph,) = pydot.graph_from_dot_file(fn)
-      print('exported', fn)
-      graph.write_png('trees\\dtree' + str(i) + '.png')
-
-
+set_name = 'solver_sgd_activation_tanh'
 # Uncomment when training again, otherwise use existing classifier
-for i in range(1):
+for i in range(10):
    if i == 0:
-      build_and_classify(ask_path=False, build_new_featureset=True)
+      build_and_classify(set_name=set_name,ask_path=True, build_new_featureset=True)
    else:
-      build_and_classify(ask_path=False,build_new_featureset=False)
+      build_and_classify(set_name=set_name,ask_path=False,build_new_featureset=False)
 
    print('----------------------------------------------------------------------')
    print('---------------------       '+str(i)+'      --------------------------')

@@ -19,6 +19,15 @@
 		
 	\subsection{Building the Datasets}
 	Once a list of labeled Tweets is obtained, the next stage is constructing a feature-set to be later passed on as input for training an ML Classifier. The features contained if the feature sets describe certain aspects and characteristics of a Tweet and its owner. Since Tweeters API provides a complete user profile incorporated inside the tweet itself, constructing features describing the user is done simultaneously to the features of the tweet itself.
+	\\~\\
+	{\LARGE \color{red}
+		elaborate about stages of data collection:
+	} \\ 
+	{\color{red}
+		1. Initial data: full of duplicates\\
+		2. Filtered data - fewer duplicates and spam, but still rather very one-subject-centered. Leads to overfitting when classifying \\
+		3. still untried - collect up to x (~400) tweets per day, for a duration of ~ 2 weeks
+	}
 		
 		\subsubsection*{Types of Features}
 		The features could be segregated into three distinctive groups. The first will be referred to as text-based features. As the name suggests, the features will mostly denote the presence or lack of specific characters such as emoticons and signs in the tweets text. Whether a tweet contains combinations or sequences of certain symbols as well as ratios defining the text also belong to this category.

@@ -15,16 +15,9 @@ from sklearn import preprocessing
 #
 # ----------------------------------------------------------
 
-
-import stream_filter.filtergui
-from sys import argv
-from PyQt4 import QtGui, QtCore
-
-from feature_tk.features import tweets_to_featureset
-
 # listen to data stream from twitter
 class listener(StreamListener):
-    def __init__(self, search_duration, search_term, ignore_terms, api=None):
+    def __init__(self, search_duration, search_term, ignore_terms,tweet_cnt_limit = -1, api=None):
         super(listener,self).__init__()
         self.start_time = time.time()
         self.count = 0
@@ -33,18 +26,31 @@ class listener(StreamListener):
         self.pickle_name = path.join('captured_tweets',search_term + "_dataset.pickle")
         self.search_duration = search_duration
         self.ignore_terms = ignore_terms
+        self.tweet_cnt_limit = tweet_cnt_limit
         self.recorded_ids = set()
+
+        if self.tweet_cnt_limit == -1:
+            self.count_cap = False
+        else:
+            self.count_cap = True
+
 
     def on_connect(self):
         print('Connected to server ...\n')
 
     def on_data(self, data):
-
         retweeted = False
         quoted = False
+
         # Time runs out, drop dataframe to file
-        if time.time() - self.start_time >= float(self.search_duration):
+        if time.time() - self.start_time >= float(self.search_duration) :
             print('\nSearch timed out at ',self.time_now() ,'.' ,str(self.count) ,'tweets collected.')
+            self.save_tweets()
+            return False
+
+        # Tweet cap reached, drop dataframe to file
+        if self.count_cap and int(self.count)>=int(self.tweet_cnt_limit) :
+            print('\nSearch reached tweet count limit at ',self.time_now() ,'.' ,str(self.count) ,'tweets collected.')
             self.save_tweets()
             return False
 
@@ -86,14 +92,16 @@ class listener(StreamListener):
                 # Output tweets captured and amount, ensure_ascii prevents emoticons
                 twt_text = json.dumps(data_json['text'],ensure_ascii=False)
 
-                if retweeted:
-                    twt_text = '------------- retweet source: ' + twt_text
-                elif quoted:
-                    twt_text = '------------- quote source: ' + twt_text
-                print(twt_text)
-
                 # Check if already captured, if yes ignore
                 if data_json['id'] not in self.recorded_ids:
+
+                    if retweeted:
+                        twt_text = '------------- retweet source: ' + twt_text
+                    elif quoted:
+                        twt_text = '------------- quote source: ' + twt_text
+                    print(str(self.count+1)+'.',twt_text)
+
+
                     # appends tweet to json (backup for failure on pickle)
                     self.recorded_ids.add(data_json['id'])
                     self.count += 1
@@ -172,69 +180,37 @@ def start_stream():
         ignore_terms = [w.replace(' ', '') for w in ignore_terms.split(';') if len(w.replace(' ', '')) > 0]
     print(ignore_terms)
 
-    search_duration = input("please give search duration in seconds: ")
+    incorrect_input = True
+    while incorrect_input:
+        search_duration = input("please give search duration in seconds: ")
+        if len(search_duration) == 0:
+            search_duration = 3600
+            incorrect_input = False
+        elif str(search_duration).isnumeric():
+            incorrect_input = False
+
+    incorrect_input = True
+    while incorrect_input:
+        count_cap = input("please give max # of tweets to be collected (leave blank - no cap): ")
+        if len(count_cap) == 0:
+            count_cap = -1
+            incorrect_input = False
+        elif count_cap.isnumeric():
+            incorrect_input = False
+        else:
+            print('non numeric input, leave blank for no cap')
 
     # Connects to twitter API
     auth = get_auth()
 
     while True:
-        # try:
         print('connecting...')
-        listen = listener(search_duration=search_duration,search_term=search_term,ignore_terms=ignore_terms)
+        listen = listener(search_duration=search_duration,search_term=search_term,ignore_terms=ignore_terms,tweet_cnt_limit=count_cap)
         sapi = Stream(auth,listen)
         sapi.filter(track=[search_term],languages=['en'])
-        # except Exception as e:
-        #     print('error:',e)
-        #     continue
 
-        if listen.start_time + float(search_duration) +2  > time.time() :
+        if (listen.start_time + float(search_duration) +2  > time.time()) or (listen.count_cap and listen.count == listen.tweet_cnt_limit) :
             print('breaking loop')
             quit()
-
-
-# def start_stream_pyqt(ignore_items=['gift','giftcard','giveaway']):
-#     app = QtGui.QApplication(argv)
-#     GUI = stream_filter.filtergui.Window(ignore_items)
-#     GUI.setWindowState(GUI.windowState() & ~QtCore.Qt.WindowMinimized | QtCore.Qt.WindowActive)
-#     GUI.activateWindow()
-#     GUI.exec()
-#
-#
-#     # Define stream search parameters
-#     # search_term = input("please give search term: ")
-#     # ignore_terms = input("ignore tweets containing (optional, semicolon-separated): ")
-#
-#     # nead to rethink this entire scheme for the search GUI
-#     #
-#     #
-#
-#     # search_term = GUI.sea
-#     ignore_terms = GUI.ignore_terms
-#
-#     if len(ignore_terms) == 0:
-#         ignore_terms = ['gift', 'giftcard', 'giveaway']
-#     else:
-#         ignore_terms = [w.replace(' ', '') for w in ignore_terms.split(';') if len(w.replace(' ', '')) > 0]
-#     print(ignore_terms)
-#
-#     search_duration = input("please give search duration in seconds: ")
-#
-#     # Connects to twitter API
-#     auth = get_auth()
-#
-#     while True:
-#         try:
-#             print('connecting...')
-#             listen = listener(search_duration=search_duration, search_term=search_term, ignore_terms=ignore_terms)
-#             sapi = Stream(auth, listen)
-#             sapi.filter(track=[search_term], languages=['en'])
-#         except Exception as e:
-#             print('error:', e)
-#             continue
-#
-#         if listen.start_time + float(search_duration) + 2 > time.time():
-#             print('breaking loop')
-#             quit()
-
 
 

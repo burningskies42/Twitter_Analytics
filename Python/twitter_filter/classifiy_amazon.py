@@ -110,7 +110,7 @@ def build_and_classify(set_name,ask_path = True, build_new_featureset = True):
       print(name+' confidence:', clf.score(X_test, y_test))
       confs[name] = round(clf.score(X_test, y_test),2)
 
-      f_name = os.getcwd()+'\\classifiers\\' + name.replace(' ','_') + '_clf.pkl'
+      f_name = os.getcwd()+'\\classifiers\\prop_features\\' + name.replace(' ','_') + '_clf.pkl'
 
       if not os.path.exists(f_name):
          open(f_name, 'a').close()

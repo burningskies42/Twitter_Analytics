@@ -6,6 +6,7 @@
 \contentsline {subsection}{\numberline {2.1}Machine Learning}{2}
 \contentsline {subsection}{\numberline {2.2}Text Mining}{2}
 \contentsline {subsection}{\numberline {2.3}Classification}{2}
+\contentsline {subsection}{\numberline {2.4}Information Quality}{2}
 \contentsline {section}{\numberline {3}Methodology}{3}
 \contentsline {subsection}{\numberline {3.1}Information Procurement}{3}
 \contentsline {subsection}{\numberline {3.2}Building the Datasets}{5}

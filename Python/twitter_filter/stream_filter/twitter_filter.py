@@ -37,6 +37,8 @@ class listener(StreamListener):
 
     def on_connect(self):
         print('Connected to server ...\n')
+        print('Stream capture started at', time.strftime("%H:%M:%S %a, %d %b %Y "))
+        print('--------------------------------------------------')
 
     def on_data(self, data):
         retweeted = False

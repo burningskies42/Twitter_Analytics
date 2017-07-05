@@ -7,10 +7,12 @@ import time
 import json
 import sys
 import pickle
-from sklearn import preprocessing
-import words_as_features
 from colorama import init,Fore, Back, Style
 init()
+
+import words_as_features
+
+
 
 # ----------------------------------------------------------
 #
@@ -31,7 +33,7 @@ class listener(StreamListener):
         self.ignore_terms = ignore_terms
         self.tweet_cnt_limit = tweet_cnt_limit
         self.recorded_ids = set()
-        self.word_classifier = words_as_features.words_classifier('load')
+        self.word_classifier = words_as_features.WordsClassifier('load')
 
         if self.tweet_cnt_limit == -1:
             self.count_cap = False
@@ -67,16 +69,16 @@ class listener(StreamListener):
             data_json = json.loads(data)
             data_json = pd.Series(data_json)
 
-            try:
-                text = str(data_json['text'])
-                featureset = self.word_classifier.str_to_featureset(text)
-                self.classification = self.word_classifier.voted_classifier.classify(featureset)
+            # try:
+            text = str(data_json['text'])
+            featureset = self.word_classifier.str_to_featureset(text)
+            self.classification = self.word_classifier.voter.classify(featureset)
                 # print(text,classification)
-            except Exception as e:
-                print(e)
-                print('error reading tweet, skippnig ...')
-                quit()
-                return(True)
+            # except Exception as e:
+            #     print(e)
+            #     print('error reading tweet, skippnig ...')
+            #     quit()
+            #     return(True)
 
             # check if retweet
             # Disregard retweets

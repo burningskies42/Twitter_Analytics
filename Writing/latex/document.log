@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100) (preloaded format=pdflatex 2017.3.31)  30 JUN 2017 12:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100) (preloaded format=pdflatex 2017.3.31)  5 JUL 2017 16:16
 entering extended mode
 **./document.tex
 (document.tex
@@ -286,43 +286,73 @@ oc)
 ]
 \openout2 = `2_basic_concepts.aux'.
 
- (2_basic_concepts.tex) [2
+ (2_basic_concepts.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--11
+
+ []
 
 
-]
+Underfull \hbox (badness 10000) in paragraph at lines 3--11
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--11
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 12--17
+
+ []
+
+
+Overfull \hbox (8.97829pt too wide) in paragraph at lines 12--17
+\OT1/cmr/m/n/12 Methods used in text min-ing in-volve sta-tis-ti-cal pat-tern r
+ecognition,tagging-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 12--17
+
+ []
+
+[2
+
+
+]) [3]
 \openout2 = `3_method.aux'.
 
- (3_method.tex
-[3
+ (3_method.tex [4
 
 
-] [4]
+] [5]
 Underfull \hbox (badness 10000) in paragraph at lines 21--31
 
  []
 
-<images/methods.png, id=25, 350.5095pt x 154.176pt>
+<images/methods.png, id=29, 350.5095pt x 154.176pt>
 File: images/methods.png Graphic file (type png)
  <use images/methods.png>
 Package pdftex.def Info: images/methods.png used on input line 41.
 (pdftex.def)             Requested size: 184.94292pt x 81.35059pt.
 
-[5 <./images/methods.png>]) [6]
+[6 <./images/methods.png>]) [7]
 \openout2 = `4_general_use_cases.aux'.
 
- (4_general_use_cases.tex) [7
+ (4_general_use_cases.tex) [8
 
 
 ] (document.bbl)
-[8
+[9
 
 ] (document.aux (title.aux) (1_intro.aux) (2_basic_concepts.aux)
 (3_method.aux) (4_general_use_cases.aux)) ) 
 Here is how much of TeX's memory you used:
- 2930 strings out of 493333
- 40679 string characters out of 3136611
- 116479 words of memory out of 3000000
- 6361 multiletter control sequences out of 15000+200000
+ 2931 strings out of 493333
+ 40690 string characters out of 3136611
+ 116483 words of memory out of 3000000
+ 6362 multiletter control sequences out of 15000+200000
  11057 words of font info for 41 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  40i,7n,28p,1202b,236s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -333,9 +363,9 @@ s/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
 type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
 e1/public/amsfonts/cm/cmr17.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/
 public/amsfonts/cm/cmti12.pfb>
-Output written on document.pdf (10 pages, 103689 bytes).
+Output written on document.pdf (11 pages, 110665 bytes).
 PDF statistics:
- 60 PDF objects out of 1000 (max. 8388607)
+ 63 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

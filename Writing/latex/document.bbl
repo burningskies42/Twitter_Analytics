@@ -1,5 +1,11 @@
 \begin{thebibliography}{1}
 
+\bibitem{nltk_book}
+{\sc Bird, S., Klein, E., and Loper, E.}
+\newblock {\em Natural language processing with Python: analyzing text with the
+  natural language toolkit}.
+\newblock O'Reilly Media, Inc., 2009.
+
 \bibitem{mitchell}
 {\sc Mitchell, T.}
 \newblock {\em Machine Learning}.

@@ -8,6 +8,9 @@ import json
 import sys
 import pickle
 from sklearn import preprocessing
+import words_as_features
+from colorama import init,Fore, Back, Style
+init()
 
 # ----------------------------------------------------------
 #
@@ -28,6 +31,7 @@ class listener(StreamListener):
         self.ignore_terms = ignore_terms
         self.tweet_cnt_limit = tweet_cnt_limit
         self.recorded_ids = set()
+        self.word_classifier = words_as_features.words_classifier('load')
 
         if self.tweet_cnt_limit == -1:
             self.count_cap = False
@@ -39,6 +43,7 @@ class listener(StreamListener):
         print('Connected to server ...\n')
         print('Stream capture started at', time.strftime("%H:%M:%S %a, %d %b %Y "))
         print('--------------------------------------------------')
+
 
     def on_data(self, data):
         retweeted = False
@@ -64,10 +69,14 @@ class listener(StreamListener):
 
             try:
                 text = str(data_json['text'])
+                featureset = self.word_classifier.str_to_featureset(text)
+                self.classification = self.word_classifier.voted_classifier.classify(featureset)
+                # print(text,classification)
             except Exception as e:
-                print(data_json+'\n\n'+'error reading tweet, skippnig ...')
+                print(e)
+                print('error reading tweet, skippnig ...')
                 quit()
-            # return(True)
+                return(True)
 
             # check if retweet
             # Disregard retweets
@@ -101,7 +110,11 @@ class listener(StreamListener):
                         twt_text = '------------- retweet source: ' + twt_text
                     elif quoted:
                         twt_text = '------------- quote source: ' + twt_text
-                    print(str(self.count+1)+'.',twt_text)
+
+                    if self.classification == 'news':
+                        print(str(self.count+1)+'.',Fore.GREEN +self.classification+Style.RESET_ALL,twt_text)
+                    else:
+                        print(str(self.count + 1) + '.', Fore.RED + self.classification+Style.RESET_ALL, twt_text)
 
 
                     # appends tweet to json (backup for failure on pickle)

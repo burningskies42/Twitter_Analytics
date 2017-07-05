@@ -1,7 +1,12 @@
 \begin{thebibliography}{1}
 
+\bibitem{mitchell}
+{\sc Mitchell, T.}
+\newblock {\em Machine Learning}.
+\newblock McGraw-Hill, 1997.
+
 \bibitem{dict_tweet}
-"tweet".
+{\sc "tweet"}.
 \newblock {\em Merriam-Webster.com}.
 \newblock Merriam-Webster, 2017. Web. 20 June 2017.
 

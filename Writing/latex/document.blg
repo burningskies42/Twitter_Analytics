@@ -3,5 +3,6 @@ A level-1 auxiliary file: title.aux
 A level-1 auxiliary file: 1_intro.aux
 A level-1 auxiliary file: 2_basic_concepts.aux
 A level-1 auxiliary file: 3_method.aux
-The style file: plain.bst
+A level-1 auxiliary file: 4_general_use_cases.aux
+The style file: acm.bst
 Database file #1: bibfile.bib

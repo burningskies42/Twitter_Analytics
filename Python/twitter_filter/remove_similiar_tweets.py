@@ -54,7 +54,7 @@ def tweet_text(id_list):
 
 def remove_similiar_tweets(df, sim_upper_lim=0.6):
    ids = df.index.values
-
+   print('Unfiltered dataset size is',len(ids))
    # df_w_text = tweet_text(ids)
    df.sort_index(axis='index', inplace=True)
    # print(df['id_str'])

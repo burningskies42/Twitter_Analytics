@@ -33,7 +33,6 @@ def open_and_join(file,save_to_file = False, with_sentiment = True,with_timing=T
 
    featureset = tweets_to_featureset(df,with_sentiment,with_timing)
    # print(type(featureset.index.values[0]))
-   # print(type(label_df.index.values[0]))
 
    labeled_featureset = pd.concat([featureset,label_df],axis=1,join='inner')
    labeled_featureset.dropna(axis = 0,how = 'any',inplace = True)
@@ -42,7 +41,7 @@ def open_and_join(file,save_to_file = False, with_sentiment = True,with_timing=T
    # labeled_featureset.drop(['words', 'words_no_url'], axis=1, inplace=True)
 
    if save_to_file:
-      labeled_featureset = labeled_featureset[labeled_featureset['label']!= 3]
+      # labeled_featureset = labeled_featureset[labeled_featureset['label']!= 3]
 
       with open('labeled_featureset.pkl','wb') as  fid:
          pickle.dump(labeled_featureset,fid)

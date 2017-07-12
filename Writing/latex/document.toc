@@ -1,16 +1,21 @@
 \select@language {english}
-\contentsline {section}{\numberline {1}Introduction}{1}
-\contentsline {subsection}{\numberline {1.1}Motivation}{1}
-\contentsline {subsection}{\numberline {1.2}Current State of Research}{1}
-\contentsline {section}{\numberline {2}Basic Concepts}{2}
-\contentsline {subsection}{\numberline {2.1}Machine Learning}{2}
-\contentsline {subsection}{\numberline {2.2}Text Mining}{2}
-\contentsline {subsection}{\numberline {2.3}Unstructured data}{3}
-\contentsline {subsection}{\numberline {2.4}Classification}{3}
-\contentsline {subsection}{\numberline {2.5}Information Quality}{3}
-\contentsline {section}{\numberline {3}Methodology}{4}
-\contentsline {subsection}{\numberline {3.1}Information Procurement}{4}
-\contentsline {subsection}{\numberline {3.2}Building the Datasets}{6}
-\contentsline {subsection}{\numberline {3.3}Training Classifier}{6}
-\contentsline {subsection}{\numberline {3.4}Classifier Types}{7}
-\contentsline {section}{\numberline {4}Genaral Use Cases}{8}
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}Motivation}{1}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Current State of Research}{1}{subsection.1.2}
+\contentsline {section}{\numberline {2}Basic Concepts}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Machine Learning}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Text Mining}{2}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Unstructured data}{3}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Classification}{3}{subsection.2.4}
+\contentsline {paragraph}{Supervised Learning}{3}{section*.3}
+\contentsline {paragraph}{Unsupervised Learning}{3}{section*.4}
+\contentsline {subsection}{\numberline {2.5}Information Quality}{4}{subsection.2.5}
+\contentsline {section}{\numberline {3}Methodology}{5}{section.3}
+\contentsline {section}{\numberline {4}Application}{6}{section.4}
+\contentsline {subsection}{\numberline {4.1}Information Procurement}{6}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Building the Datasets}{10}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}Word-Based Features}{10}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}Descriptive Features}{10}{subsubsection.4.2.2}
+\contentsline {subsection}{\numberline {4.3}Training Classifier}{11}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Classifier Types}{11}{subsection.4.4}
+\contentsline {section}{\numberline {5}Genaral Use Cases}{12}{section.5}

@@ -96,9 +96,6 @@ def build_and_classify(set_name,ask_path = True, build_new_featureset = True):
    # y_train = y[:-2000]
    # y_test = y[-2000:]
 
-   # Preprocessed
-   # pp_X_train, pp_X_test, y_train, y_test = model_selection.train_test_split(PP_X, y, test_size=0.2)
-
    confs = pd.Series()
    confs_old = None
 
@@ -174,7 +171,7 @@ def build_and_classify(set_name,ask_path = True, build_new_featureset = True):
 
    # new_results['timestamp'] = strftime("%Y_%m_%d %H:%M:%S")
    # new_results.set_index('timestamp', inplace=True)
-
+   
    if old_results is not None:
       new_results = new_results.append(old_results)
 
@@ -216,7 +213,7 @@ def build_and_classify(set_name,ask_path = True, build_new_featureset = True):
 
 set_name = 'solver_sgd_activation_tanh'
 # Uncomment when training again, otherwise use existing classifier
-for i in range(10):
+for i in range(1):
    if i == 0:
       build_and_classify(set_name=set_name,ask_path=True, build_new_featureset=True)
    else:

@@ -6,12 +6,30 @@
   natural language toolkit}.
 \newblock O'Reilly Media, Inc., 2009.
 
+\bibitem{bigdata}
+{\sc Demchenko, Y., Grosso, P., De~Laat, C., and Membrey, P.}
+\newblock Addressing big data issues in scientific data infrastructure.
+\newblock In {\em Collaboration Technologies and Systems (CTS), 2013
+  International Conference on\/} (2013), IEEE, pp.~48--55.
+
+\bibitem{klier2016datenqualitat}
+{\sc Klier, M., and Heinrich, B.}
+\newblock Datenqualit{\"a}t als erfolgsfaktor im business analytics.
+\newblock {\em Controlling 28}, 8-9 (2016), 488--494.
+
 \bibitem{mitchell}
 {\sc Mitchell, T.}
 \newblock {\em Machine Learning}.
 \newblock McGraw-Hill, 1997.
 
-\bibitem{dict_tweet}
+\bibitem{sorensen1948method}
+{\sc S{\o}rensen, T.}
+\newblock A method of establishing groups of equal amplitude in plant sociology
+  based on similarity of species and its application to analyses of the
+  vegetation on danish commons.
+\newblock {\em Biol. Skr. 5\/} (1948), 1--34.
+
+\bibitem{dict_Tweet}
 {\sc "tweet"}.
 \newblock {\em Merriam-Webster.com}.
 \newblock Merriam-Webster, 2017. Web. 20 June 2017.

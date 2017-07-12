@@ -1,0 +1,89 @@
+\section{Methodology}
+	\subsection{Information Procurement}
+	The main theme of the collected data would concentrate around the topic of internet sales platforms also known as E-Commerce. Several aspects make the topic beneficial for this research. Firstly, the very nature of E-Commerce. By nature of E-Commerce Platforms, I refer to the fact, that such companies are almost exclusively web-based. It is therefore probable that most of the company's marketing efforts as well as overall news relating to such a company, would circulate first and foremost in the Internet. Secondly, having all company-relevant news attainable foremostly from the web, means that such news would seep to social media faster in comparison to news, which are usually covered initially by traditional media such as television and Newspapers. 
+	
+		\subsubsection*{Search Terms}
+		The data was collected in the form of relevant Tweets from the Twitter Stream API. A Tweet would be considered relevant if it contained a search parameter related contextually to E-Commerce. The initial efforts were concentrated around the web-store Amazon. Amazon appears to the most fruitful search parameter in terms of the quantity of Tweets relating to it. Additional search words that were tested were {\bfseries Alibaba, Zalando} and {\bfseries Groupon}. 
+		The widespread mention of Amazon in Tweets is however somewhat over-inflated due to the extensive use of Amazon gift cards. Amazon gift-cards have become prominent due their variety of uses. A few examples of common practices involving Amazon gift cards are rewarding users for services, such as polls and questionnaires, enticing people to take part in events or groups, and being offered as general rewards in competitions and games. The plethora of uses, facilitates Amazon gift cards to be viewed as a sort of pseudo-currency in the internet. In turn this means, that Amazon could be mentioned in a Tweet, despite the context only indicating the Gift-card and being completely unassociated to the E-Commerce platform whatsoever.
+		
+		\subsubsection*{Collecting the Data}
+		\label{sec:collectdata}
+		The gathering of Tweets was executed using a program written by me in the Python programming language. The main module being used in the program was a Twitter Streaming API called Tweepy. Tweepy is an open source interface, which allows communicating with the Twitters servers and sending queries requesting specific information from Twitter's databases. The interface allows for two main type of queries, Rest and Streaming. The former allows looking up information posted on Twitter in the past whereas the latter, as the name implies connects to an active data stream containing a narrowed down flow of Tweets being actively published by Twitter users. Both types of API's are being offered for free to a certain extent, whereas almost unrestricted versions of the same API are offered as a proprietary fee-based product of Twitter. The free version of the REST API is restricted to only looking up Tweets posted in the last two to three weeks. And the gratis version of the Streaming API is restricted to a firehose narrowed down to about 15\% of the total Bandwidth of all current Tweets.
+		The Tweets from the Twitter servers come in form of JSON strings, which allows for embedding other JSON objects in them, which allows for multi-level storage of Tweet properties. For example, one of the JSON objects integrated in each Tweet JSON object is the USER object for the Tweet-poster. The USER object in turn contains all data publicly available in Twitter about a Twitter account such as, location, date of registration, homepage etc. An additional object of interest is the ENTITIES JSON object, which contains all outside references from the Tweet's text such as, URLs, Multimedia, References to other Tweets or other users. 
+		This structure greatly eases the construction an analysis of a Tweet and its features, since most of the necessary data is available from the Tweet self and no further queries about the Tweets and its posting-user are necessary.
+		\\~\\
+		{\LARGE \color{red}
+			elaborate about stages of data collection:
+		} \\ 
+		{\color{red}
+			1. Initial data: full of duplicates\\
+			2. Filtered data - fewer duplicates and spam, but still rather very one-subject-centered. Leads to overfitting when classifying \\
+			3. still untried - collect up to x (~400) Tweets per day, for a duration of ~ 2 weeks
+		}
+		
+		\subsubsection*{Data cleansing}
+		It was observed that numerous Tweets were being posted more than once and in several occurrences even hundreds of times. These duplicates were being primarily posted by bots, as was evident from a short observation of user profiles belonging the Tweets original posters. Evidently, additional effort was being made by the programmers of the bots to try and mask them by slightly altering the content of the Tweets, or the user account. This was usually done by changing or adding characters to the text, which carry no lingual significance in themselves. Moreover, in furtherance of increasing the bots' credibility as an actual people \hyperref[fig:twitterbot]{(Fig. 1)}, often times entire nets of such bot could be observed, wherein the bots would maintain friendship and following connections among themselves. This in turn, further adding to each of them having a multiplicity of friends and followers contributing to their veil of disguise as real human users of Tweeter. Upon closer observation such accounts reveal their true essence, since most of the content propagated by them is commercial in nature and is repeated verbatim time and again across many of the related accounts \textit{followers} and \textit{followees}, it would be safe to assume that no actual people are behind them. 
+		\\~\\
+		
+		\begin{figure}[h]
+			\centering
+			\label{fig:twitterbot}
+			\includegraphics[width=0.5\textwidth]{twitterbot.PNG}
+			\caption{Twitter accounts, which present themselves as actual people}
+		\end{figure}
+		
+		\newpage
+		\noindent
+		Several precautions were undertaken to try and filter out such bots. A passive precaution which was implemented, was blacklisting users, which had priorly been observed posting Tweets, which were verbatim copies of other Tweets within the same query. The suspected users were added to a suspect database and content originating from them was ignored in future queries. Another action made with the same purpose in mind was a retrospective cleanup of the collected Tweets, based on their content similarity. After closing a collection query, a maximum similarity measure for each Tweet in relation to all other recorded Tweets was calculated using a simple . Following, Tweets which were found to have a maximal similarity score to other previously captured Tweets  higher than a predetermined threshold were classified as non-unique copies and were disregarded. As a measure of similarity, the S\o rensen-Dice coefficient\cite{sorensen1948method} \hyperref[fig:sorenson_dice]{(Fig. 2)} was implemendted using the \textit{SequenceMatcher.ratio()} function from the difflib Python module {\color{red} \Large also try Levenshtein }. A round of cleanup using this procedure would usually reduce a data set by from one quarter and up to one half of its original size.
+		
+		\begin{figure}[h]
+			\begin{center}
+				\label{fig:sorenson_dice}
+				$QS_{XY} = \dfrac{2|X\cap Y|}{|X|+|Y|},$ \hspace{10pt}  $QS_{XY} \in [0:1]$
+				\\~\\
+			\end{center}
+			{\small
+				* $|X|$ and $|Y|$ are the numbers of elements in given Tweets X and Y accordingly 
+				\\
+				** QS ranges from 0 (completely different) to 1 (identical)
+				\caption{S\o rensen-Dice coefficient}
+			}
+		\end{figure}
+		
+		\newpage
+		
+	\subsection{Building the Datasets}
+	Once a list of labeled Tweets is obtained, the next stage is constructing a feature-set to be later passed on as input for training an ML Classifier. The features contained if the feature sets describe certain aspects and characteristics of a Tweet and its owner. Two main approaches to feature sets are found in the literature, \textit{Word-Based} as can be observed in \textbf{\color{red} insert citation} and \textit{Descriptive} \textbf{\color{red} insert citation}. 
+	
+		\subsubsection{Word-Based Features}
+		The former approach simply converts the entire text corpus to a frequency charts of all the words contained within. Words are then selected to act as features in incoming data, which is to be classified. The features are hence a variable list (usually of several thousands in length), where each variable is a boolean representation, indicating the presence or absence of a certain word. Usually the words undergo preprocessing as is common in Natural Language Processing prior to being used as features. The corpora are segmented to lists of words, often omitting articles, proposition and punctuation. Such grammatical structures are critical in human speech and writing ind order to convey ones meaning clearly and explicitly, however for the purposes of more ambiguous classification as in our case, such nuances are avoided for the sake of simplicity. Words are then \textit{stemmed} or \textit{lemmatized}, meaning their are reverted to their grammatical stem - dropping all prefixes and suffixes. This eases the enumeration of words, since it is preferable that the same words in different inclinations would be counted as the same. For example, the word pair \textit{eating} and \textit{ate} would be reverted to their stem \textit{eat}, as well as \textit{apple} and \textit{apples} would be considered as one and the same. Finally, words would be assigned their part of speech (noun, verb, adjective ..) and could be either ignored or incorporated into the feature set, according to the conceived importance of a given part of speech.
+		
+		
+		\subsubsection{Descriptive Features}
+		The latter approach mentioned is based of more generalized view of the Tweet, instead of concentrating on the actual textual content. Descriptive features are aimed at describing the Tweet implicit properties, such as attitude, sentiment, seriousness and trustworthiness. These features detect presence of different symbols, their frequency and consecutiveness. Additionally, unlike the Web-Based approach, non-textual objects such as multimedia, links and mentions of other users and Tweets are also taken into account. Furthermore, features of a Tweets owner are included alongside. Since Tweeters API provides a complete user profile incorporated inside the Tweet data object itself, constructing features describing the user is done simultaneously to features describing the content of the Tweet itself. This approach might be viewed as an \textit{indirect} one, since less obvious properties of the Tweet are used to characterize it.
+		\\~\\
+		Descriptive features could be segregated into three distinctive groups. The first will be referred to as text-based features. As the name suggests, the features will mostly denote the presence or lack of specific characters such as emoticons and signs in the Tweets text. Whether a Tweet contains combinations or sequences of certain symbols as well as ratios defining the text also befit this category.
+		\\~\\
+		The second tier of features describe any special \textit{Entities} (Tweeter's nomenclature) contained within a Tweet. \textit{Entities} refer to non-textual contents of a Tweet such as media (in form of pictures, sound or videos), URL's linking to external websites, Mentions or ReTweets (Referring to other Tweets or to Tweeter user profiles) and finally Hashtags. A word or phrase preceded by the Hashtag symbol \textbf{\#} indicate the association of web content (such as a Tweet or other micro-blogging post) to a specific theme such as an event, news, gossip or any other tidbit \cite{dict_Tweet}. Hashtags are used primarily to simplify looking up Tweets or other social media content by technically associating them with the \textit{hashtagged} topic.
+		\\~\\
+		{\color{red}The third tier - subject}
+		
+		
+	\subsection{Training Classifier}	
+	{\Large \color{red} ----- describe training, testing for confidence and splitting(called the holdout method) the df to train-test ----}
+	\begin{figure}[h]
+		
+		\centering
+		\includegraphics[width=0.5\textwidth]{methods}
+		\caption{Clustering of Different Classifiers}
+	\end{figure}
+
+	\subsection{Classifier Types}
+		{\color{red} \Large placeholder}
+	
+	
+	
+		
+		
+		
+		

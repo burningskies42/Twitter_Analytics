@@ -132,7 +132,7 @@ class WordsClassifier():
       # df.to_csv('test.test',sep=';')
 
       self.documents = [(row['text'],row['label']) for ind,row in df.iterrows()]
-      print(self.documents)
+      # print(self.documents)
 
       random.shuffle(self.documents)
       self.class_ratio = int(len(df[df['label']=='spam'])/len(df[df['label']=='news']))

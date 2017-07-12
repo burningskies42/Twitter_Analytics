@@ -1,27 +1,37 @@
 \section{Basic Concepts}
 	\subsection{Machine Learning}
 		A sub-branch of computer science that rose to prominence and started evolving during the 1950s as part of research in the field of artificial intelligence. Machine learning refers the development of algorithms, which allow computers to learn from presented examples. The computer is thereafter supposed to learn from its collected experience and automate the process of solving similar tasks. This process is referred to by term \textit{training}.
-		\\~\\
+		\par
 		One official definition as coined by Tom M. Mitchell \cite{mitchell} is  "A computer program is said to learn from experience $E$ with respect to some class of tasks $ T $ and performance measure $ P $ if its performance at tasks in $ T $, as measured by $ P $, improves with experience $ E $."
-		\\~\\
+		\par
 		The most common use of machine learning algorithms is the analysis of real-world data for certain tasks, when a concrete programmer-written application would be ineffective in solving. Such is the case for example with problems, which a human would be able to solve, but would not be able to determine the rules for solving explicitly. Or alternatively, where the rules are not constant, but rather evolving as time progresses. The purpose of teaching a machine to solve such tasks, is modelling, prediction or detection of details or certainties about the real world. 
-		\\~\\
+		\par
 		Vivid examples of real world uses are speech recognition as used in cellphones or in 
 		call routing system as well as visual recognition, where and algorithm is trained to recognize graphic patterns and used in medicine or in hand written text recognition.
+		
 	\subsection{Text Mining}
 		Text mining refers to the practice of extracting facts out of raw meta-data, which comes in the form of text corpora or other unstructured data. Initially the data must be structured into a form compatible for its statistical analysis. This includes but not limited to, segmenting the text to more basic building blocks such as paragraphs or sentences. This practice is known as \textbf{stemming}. Cleaning up the data by removing non-informative words, which serve a grammatical role in human language, but tend to be of no use for language processing done by machines. In the next phase the words are normalized to their \textbf{stem} by removing inflection which modifies the word's tense, case number and other grammatical properties. In the professional nomenclature, this is referred to as \textbf{stemming} or \textbf{lemmatizing}.
-		\\~\\
+		\par
 		Methods used in text mining involve statistical pattern recognition,tagging-annotation, information extraction and frequency analysis. The end goal of text mining is namely, the production of qualitative information out of raw text, often automatically using machine learning.
-		\\~\\
+		\par
 		Most of the usage of text mining methods in this work will be with the use of the NLTK module for the Python programming language. NLTK is a suite of libraries developed in the Department of Computer and Information Science at the University of Pennsylvania for Natural Language Processing \cite{nltk_book}.
-		
-		{\color{red} \Large citation needed}
-		
+
 	\subsection{Unstructured data}
-		{\color{red} \Large placeholder}
+		Data which is derived from the Internet, namely social networks is oftentimes unstructured. Unstructured data refers to information which is not organized according to a unison manner or in a data model, that fits the structure in which the data is to be utilized. This information tend to be heterogeneous in its data types and may contain texts, number, dates as well as media. Additionally, the data can vary highly in its integrity, recurrently having missing or only partial data.
+		\par
+		In our case, the data comes in the form of Tweets originating from the Twitter servers. Tweets arrive packaged in the form JSON objects. These objects have no standard morphology, and many of the Tweets' fields are subject to variation. The most common approaches to dealing with such data are either restructuring it to a new data-model or conducting a textual analysis aimed at recognizing patterns in the information. Text Mining and Natural Language Processing are two prevailing mechanisms employed for this purpose. More on those in Chapter 3, \hyperref[sec:collectdata]{\textit{Collecting the Data}}.
 		
 	\subsection{Classification}
-		{\color{red} \Large placeholder}
+		The correct assignment of (often unstructured) data to a category out of a set of predetermined categories, in the case of supervised learning or creation of new categories which best segment the data, in case of unsupervised learning. Supervised and Unsupervised Learning, are different approaches in Machine Learning, where the former requires continues input from the user whereas the latter is more autonomous.
+		
+		\paragraph{Supervised Learning}
+		
+		\paragraph{Unsupervised Learning}
+		In the case of Unsupervised Learning, the task of classification is also commonly referred to as \textit{Clustering}. during the process of \textit{Clustering}, the Machine does not require the input (training-) data to be \textbf{labeled}, or classified anteriorly to predetermined categories. Instead, the \textit{Clustering} algorithm is usually given the number of categories, and the algorithm has to fracture the data according to what it observes to be distinguishing features of the each category. Two very common models are Hierarchical Cluster Analysis (HCA), K-Means and Mean Shift. {\color{red} elaborate ?} 
+		
+		
 		
 	\subsection{Information Quality}
-		{\color{red} \Large placeholder}
+		Social Networks incorporate the interactions of millions of individuals and organizations, thus allowing such an information flow to be classified as Big Data. Such data could be confined to the the widely acknowledged 5 characteristics of Big Data, also knowns as the 5 \textbf{V}'s\cite{bigdata}. Of interest here is the data's \textit{Veracity}, referring to the trustworthiness and statistical reliability of said facts, originating from a plethora of sources and presenting little to no accountability for its correctness. 
+		\par
+		The questionable quality of such information makes basing critical business decisions on it, risky at best. One solution proposed to overcome these shortcomings would be to attach alongside the information quality metrics, which would describe its correctness, completeness and topicality as proposed by Klier and Heinrich(2016)\cite{klier2016datenqualitat}

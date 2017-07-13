@@ -48,7 +48,7 @@ class VoteClassifier(ClassifierI):
       return conf
 
 class WordsClassifier():
-   def __init__(self,load_train='load',path = ''):
+   def __init__(self,load_train='load',pth = ''):
       assert load_train in ('load','train','')
 
       self.voter = None
@@ -64,7 +64,7 @@ class WordsClassifier():
       if load_train == 'load':
          self.load_classifier()
       elif load_train == 'train':
-         self.train()
+         self.train(pth=pth)
 
    def build_word_list(self, sentence):
       sentence = self.clear_urls(sentence)
@@ -114,9 +114,10 @@ class WordsClassifier():
 
       return featureset
 
-   def fetch_tweets(self,with_print=True,path='C:/Users/Leon/Documents/Masterarbeit/Python/twitter_filter/labels/combo.csv'):
+   def fetch_tweets(self,pth,with_print=True):
+
       # List of tuples: each tuple contains a list of words(tokenized sentence) + category('pos' or 'neg')
-      label_df = pd.DataFrame.from_csv(path,sep=';')
+      label_df = pd.DataFrame.from_csv(pth,sep=';')
       label_df.index = label_df.index.map(str)
       label_df['label'] = label_df['label'].apply(lambda x : self.txt_lbl(x) )
       ids = label_df.index.values
@@ -137,8 +138,9 @@ class WordsClassifier():
       random.shuffle(self.documents)
       self.class_ratio = int(len(df[df['label']=='spam'])/len(df[df['label']=='news']))
 
-   def train(self,with_print=True,path='C:/Users/Leon/Documents/Masterarbeit/Python/twitter_filter/labels/combo.csv'):
-      self.fetch_tweets(with_print,path)
+   def train(self,pth='C:/Users/Leon/Documents/Masterarbeit/Python/twitter_filter/labels/combo.csv',with_print=True):
+      print(pth)
+      self.fetch_tweets(with_print=with_print,pth=pth)
 
       for tweet in self.documents:
          if tweet[1] == 'news' :

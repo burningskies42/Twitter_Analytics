@@ -22,13 +22,20 @@ import words_as_features
 
 # listen to data stream from twitter
 class listener(StreamListener):
-    def __init__(self, search_duration, search_term, ignore_terms,tweet_cnt_limit = -1, api=None):
+    def __init__(self, search_duration, search_term, ignore_terms,tweet_cnt_limit = -1,
+                 api=None,
+                 save_as=''):
         super(listener,self).__init__()
         self.start_time = time.time()
         self.count = 0
         self.tw_df = pd.DataFrame()
-        self.json_name = path.join('captured_tweets',search_term + "_dataset.json")
-        self.pickle_name = path.join('captured_tweets',search_term + "_dataset.pickle")
+        if len(save_as) == 0:
+            self.json_name = path.join('captured_tweets',search_term + "_dataset.json")
+            self.pickle_name = path.join('captured_tweets',search_term + "_dataset.pickle")
+        else:
+            self.json_name = path.join('captured_tweets', save_as + "_dataset.json")
+            self.pickle_name = path.join('captured_tweets', save_as + "_dataset.pickle")
+
         self.search_duration = search_duration
         self.ignore_terms = ignore_terms
         self.tweet_cnt_limit = tweet_cnt_limit

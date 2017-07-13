@@ -213,7 +213,7 @@ def build_and_classify(set_name,ask_path = True, build_new_featureset = True):
 
 set_name = 'solver_sgd_activation_tanh'
 # Uncomment when training again, otherwise use existing classifier
-for i in range(1):
+for i in range(10):
    if i == 0:
       build_and_classify(set_name=set_name,ask_path=True, build_new_featureset=True)
    else:

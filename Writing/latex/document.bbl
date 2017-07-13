@@ -10,12 +10,12 @@
 {\sc Demchenko, Y., Grosso, P., De~Laat, C., and Membrey, P.}
 \newblock Addressing big data issues in scientific data infrastructure.
 \newblock In {\em Collaboration Technologies and Systems (CTS), 2013
-  International Conference on\/} (2013), IEEE, pp.~48--55.
+  International Conference on\/} (2013), IEEE, pp.~pp. 48--55.
 
 \bibitem{klier2016datenqualitat}
 {\sc Klier, M., and Heinrich, B.}
 \newblock Datenqualit{\"a}t als erfolgsfaktor im business analytics.
-\newblock {\em Controlling 28}, 8-9 (2016), 488--494.
+\newblock {\em Controlling 28}, 8-9 (2016), pp. 488--494.
 
 \bibitem{mitchell}
 {\sc Mitchell, T.}
@@ -27,11 +27,17 @@
 \newblock A method of establishing groups of equal amplitude in plant sociology
   based on similarity of species and its application to analyses of the
   vegetation on danish commons.
-\newblock {\em Biol. Skr. 5\/} (1948), 1--34.
+\newblock {\em Biol. Skr. 5\/} (1948), pp. 1--34.
+
+\bibitem{stream_api}
+{\sc {S}treaming {API}s}.
+\newblock {T}witter {D}eveloper {D}ocumentation.
+\newblock \url{https://dev.twitter.com/streaming/overview}.
+\newblock Accessed: July 13. 2017.
 
 \bibitem{dict_Tweet}
 {\sc "tweet"}.
-\newblock {\em Merriam-Webster.com}.
-\newblock Merriam-Webster, 2017. Web. 20 June 2017.
+\newblock {\em https://www.merriam-webster.com}.
+\newblock Merriam-Webster, Accessed: June 20. 2017.
 
 \end{thebibliography}

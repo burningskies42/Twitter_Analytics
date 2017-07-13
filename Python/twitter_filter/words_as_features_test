@@ -1,3 +1,0 @@
-import words_as_features
-
-word_classifier = words_as_features.WordsClassifier('train')

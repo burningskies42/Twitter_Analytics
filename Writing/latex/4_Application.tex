@@ -55,7 +55,7 @@
 		
 	\subsection{Building the Datasets}
 	\label{build_features}
-	Once a list of labeled Tweets is obtained, the next stage is constructing a feature-set to be later passed on as input for training an ML Classifier. The features contained if the feature sets describe certain aspects and characteristics of a Tweet and its owner. Two main approaches to feature sets are found in the literature, \textit{Word-Based} as can be observed in \textbf{\color{red} insert citation} and \textit{Descriptive} \textbf{\color{red} insert citation}. 
+	Once a list of labeled Tweets is obtained, the next stage is constructing a feature-set to be later passed on as input for training an ML Classifier. The features contained if the feature sets describe certain aspects and characteristics of a Tweet and its owner. Two main approaches to feature sets are found in the literature, \textit{Word-Based} also often called \textit{Bag-of-Words} as can be observed in \textbf{\color{red} insert citation} and \textit{Descriptive} \textbf{\color{red} insert citation}. 
 	
 		\subsubsection{Word-Based Features}
 		The former approach simply converts the entire text corpus to a frequency charts of all the words contained within. Words are then selected to act as features in incoming data, which is to be classified. The features are hence a variable list (usually of several thousands in length), where each variable is a boolean representation, indicating the presence or absence of a certain word. Usually the words undergo preprocessing as is common in Natural Language Processing prior to being used as features. The corpora are segmented to lists of words, often omitting articles, proposition and punctuation. Such grammatical structures are critical in human speech and writing ind order to convey ones meaning clearly and explicitly, however for the purposes of more ambiguous classification as in our case, such nuances are avoided for the sake of simplicity. Words are then \textit{stemmed} or \textit{lemmatized}, meaning their are reverted to their grammatical stem - dropping all prefixes and suffixes. This eases the enumeration of words, since it is preferable that the same words in different inclinations would be counted as the same. For example, the word pair \textit{eating} and \textit{ate} would be reverted to their stem \textit{eat}, as well as \textit{apple} and \textit{apples} would be considered as one and the same. Finally, words would be assigned their part of speech (noun, verb, adjective ..) and could be either ignored or incorporated into the feature set, according to the conceived importance of a given part of speech.
@@ -71,15 +71,36 @@
 		{\color{red}The third tier - subject}
 		
 		
-	\subsection{Training Classifier}	
-	{\Large \color{red} ----- describe training, testing for confidence and splitting(called the holdout method) the df to train-test ----}
+	\subsection{Training Classifier}
+	The purpose of \textit{training} is to create Classifiers, which automatically recognize and \textit{label} new observations. The intrinsic	decision algorithm, through which the Classifier will decide how to classify a novel observation, usually remain hidden and operate as a black-box of sorts. Since the decision rules could be numerous and far from intuitive for human readers. This is especially the case, when said algorithms are convolutional. Convolutional machine learning schemes, such as Deep Neural Networks, may incorporate numerous stages of parameter construction which renders them practically incomprehensible to human users. The actual implementation of all the algorithms would be programmed in the Python programming language and will be primarily making use of the scikit-learn\cite{scikit-learn} module.
+	\par
+	The data used for the purpose of this study consolidates 12.520 unique Tweets. For the purpose of reaching robust results, the \textit{Hold-out Method} is used as follows. For each instance of \textit{Algorithm training} the entire data corpus is split into two parts - a training set and testing set. The training set would usually be allocated the larger portion of the data (about 70\%) and would be used, as the name suggests for training the Classifiers. The rest of the data (about 30\%) would be used for testing the Classifiers accuracy. During each such training-testing session, the data corpus is shuffled. This in turn means, that the training and testing sets constantly differ. This process of splitting, training and testing using different data in each iteration should produce statistically significant results. This method of constantly splitting the data randomly ensures the results robustness.
+	\par
+	The following paragraphs expand on the different Machine Learning schemes. Figure 3 illustrates these schemes according to their types.
+	
 	\begin{figure}[h]
 		
 		\centering
 		\includegraphics[width=0.5\textwidth]{methods}
 		\caption{Clustering of Different Classifiers}
 	\end{figure}
+	
+	\subsubsection*{Regressions}
+	One approach and probably the most basic one is simply running a regression with all the features as the independent variables and the a numeric representation of the classes as the dependent variable. Some threshold value for the classes must be determined since the estimate for the explained variable, will have a non-deterministic value.
+	\par
+	\paragraph{Linear Regression} 
+	This method builds a linear dependency system between the explained variable (the \textit{class} in my case) and the explaining variables (\textit{features}). With the \textit{Bag-of-Words} feature-approach, each variable \textit{x} is a dummy variable indicating whether a given word \textit{m} is present in Tweet \textit{i}. The estimations parameters, which are denoted with $\beta_j$ are derived using Ordinary Least Squares. In itself, the linear regression estimation is a weak predictor for the purpose of classification, but it allows for calculating other useful statistics such as the coefficient of determination, commonly known as $R^2$. This static demonstrates the part of the variance that is explained using the provided variables. As a rule of thumb, I want the largest possible chunk of variance to be explained when building a regression. 
+	 \hyperref[Linear_Regression]{Equation 1} shows the basic scheme for the use of linear regressions as classification tools, where n is the number of observations, m is the number of features.
+	
+	\begin{equation}
+		y_i = \beta_1 x_{1i}+ \beta_2 x_{2i} + ... + \beta_m x_{mi} + \epsilon_i \ \ \ \ \ \ \ \ 
+		\forall \ i \in [1,n].
+		\label{Linear_Regression}
+	\end{equation}
+	
 
+		
+	
 	\subsection{Classifier Types}
 		{\color{red} \Large placeholder}
 	

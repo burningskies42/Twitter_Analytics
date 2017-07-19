@@ -22,6 +22,14 @@
 \newblock {\em Machine Learning}.
 \newblock McGraw-Hill, 1997.
 
+\bibitem{scikit-learn}
+{\sc Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B.,
+  Grisel, O., Blondel, M., Prettenhofer, P., Weiss, R., Dubourg, V.,
+  Vanderplas, J., Passos, A., Cournapeau, D., Brucher, M., Perrot, M., and
+  Duchesnay, E.}
+\newblock Scikit-learn: Machine learning in {P}ython.
+\newblock {\em Journal of Machine Learning Research 12\/} (2011), 2825--2830.
+
 \bibitem{sorensen1948method}
 {\sc S{\o}rensen, T.}
 \newblock A method of establishing groups of equal amplitude in plant sociology

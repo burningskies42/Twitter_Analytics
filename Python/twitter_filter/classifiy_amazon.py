@@ -77,9 +77,10 @@ def build_and_classify(set_name,ask_path = True, build_new_featureset = True):
    # df = df.drop(['has_pronoun','count_upper','has_hashtag','friends_cnt'],axis=1)
 
    X = np.array(df.drop(['words','words_no_url','label'], 1))
-
+   print(X)
    y = np.array(df['label'])
-
+   print(y)
+   quit()
    # Not needed for RF
    # PP_X = preprocessing.scale(X)
 

@@ -6,7 +6,7 @@ auth = get_auth()
 
 print('connecting...')
 
-search_duration = 10
+search_duration = 60
 search_term = 'Amazon'
 ignore_terms = ['gift', 'giftcard', 'giveaway']
 count_cap = None
@@ -55,13 +55,28 @@ class Trends():
          fid.close()
       self.trends_df.to_csv('trends/trends.csv',sep=';')
 
-t = Trends()
-trends = t.trends_df
 
+for i in range(5):
+   time_delay = 60*15
+   print('downloading trends ...')
+   trends_instance = Trends()
+   trends = trends_instance.trends_df
+   trends = list(trends['name'])
+   print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+   print('New trends:')
+   for t in trends:
+      print(t)
+   print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+   search_term = trends
 
-# quit()
-search_term = ['Froome','SUHO','Amazon']
+   listen = listener(search_duration=60, search_term=search_term, ignore_terms=ignore_terms,save_as='test')
+   sapi = Stream(auth, listen)
+   sapi.filter(track=search_term, languages=['en'])
 
-listen = listener(search_duration=search_duration, search_term=search_term, ignore_terms=ignore_terms,save_as='test')
-sapi = Stream(auth, listen)
-sapi.filter(track=search_term, languages=['en'])
+   i = time_delay
+   while i > 0:
+      print(i,'seconds remaining')
+      time.sleep(1)
+      i-=1
+
+   print()

@@ -17,6 +17,7 @@
 \contentsline {subsubsection}{\numberline {4.2.1}Word-Based Features}{9}{subsubsection.4.2.1}
 \contentsline {subsubsection}{\numberline {4.2.2}Descriptive Features}{9}{subsubsection.4.2.2}
 \contentsline {subsection}{\numberline {4.3}Training Classifier}{10}{subsection.4.3}
-\contentsline {paragraph}{Linear Regression}{11}{section*.9}
 \contentsline {subsection}{\numberline {4.4}Classifier Types}{11}{subsection.4.4}
+\contentsline {paragraph}{Linear Regression}{11}{section*.9}
+\contentsline {paragraph}{Logistic Regression}{12}{section*.10}
 \contentsline {section}{\numberline {5}Genaral Use Cases}{13}{section.5}

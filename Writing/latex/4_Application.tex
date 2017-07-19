@@ -84,25 +84,45 @@
 		\includegraphics[width=0.5\textwidth]{methods}
 		\caption{Clustering of Different Classifiers}
 	\end{figure}
-	
-	\subsubsection*{Regressions}
-	One approach and probably the most basic one is simply running a regression with all the features as the independent variables and the a numeric representation of the classes as the dependent variable. Some threshold value for the classes must be determined since the estimate for the explained variable, will have a non-deterministic value.
-	\par
-	\paragraph{Linear Regression} 
-	This method builds a linear dependency system between the explained variable (the \textit{class} in my case) and the explaining variables (\textit{features}). With the \textit{Bag-of-Words} feature-approach, each variable \textit{x} is a dummy variable indicating whether a given word \textit{m} is present in Tweet \textit{i}. The estimations parameters, which are denoted with $\beta_j$ are derived using Ordinary Least Squares. In itself, the linear regression estimation is a weak predictor for the purpose of classification, but it allows for calculating other useful statistics such as the coefficient of determination, commonly known as $R^2$. This static demonstrates the part of the variance that is explained using the provided variables. As a rule of thumb, I want the largest possible chunk of variance to be explained when building a regression. 
-	 \hyperref[Linear_Regression]{Equation 1} shows the basic scheme for the use of linear regressions as classification tools, where n is the number of observations, m is the number of features.
-	
-	\begin{equation}
-		y_i = \beta_1 x_{1i}+ \beta_2 x_{2i} + ... + \beta_m x_{mi} + \epsilon_i \ \ \ \ \ \ \ \ 
-		\forall \ i \in [1,n].
-		\label{Linear_Regression}
-	\end{equation}
-	
 
-		
-	
 	\subsection{Classifier Types}
-		{\color{red} \Large placeholder}
+	
+		\subsubsection*{Regressions}
+		One approach and probably the most basic one is simply running a regression with all the features as the independent variables and the a numeric representation of the classes as the dependent variable. Some threshold value for the classes must be determined since the estimate for the explained variable, will have a non-deterministic value.
+		\par
+			\paragraph{Linear Regression} 
+			This method builds a linear dependency system between the explained variable (the \textit{Class} in this case) and the explaining variables (\textit{features}). With the \textit{Bag-of-Words} approach, each variable \textit{x} is a dummy variable indicating whether a given word \textit{m} is present in Tweet \textit{i}. The estimations parameters, which are denoted with $\beta_j$ are derived using Ordinary Least Squares. In itself, the linear regression estimation is a weak predictor for the purpose of classification, but it allows for calculating other useful statistics such as the coefficient of determination, commonly known as $R^2$. This static demonstrates the part of the variance that is explained using the provided variables and is also sometimes called 'goodness of fit'. We therefore strive to maximize it as much as possible. The more of the variance that is covered by our variables, the better can we predict the out come of the classification. Another point of interest is the distribution of predicted classifications ($\hat{y}$). In an ideal scenario, the distribution of $\hat{y}$ would be concentrated around the numerical representations of the two classed, as follows:
+			
+			\begin{equation}
+				\mathbb{E}(\hat{y} \ \vert \ label) \approx \begin{cases}
+				1,   & \text{for } label = \text{News}\\
+				2, & \text{for } label = \text{Not News}
+				\end{cases}
+			\end{equation}
+			
+			\newpage
+			
+			\hyperref[Linear_Regression]{Equation 2} shows the basic scheme for the use of linear regressions as classification tools, where n is the number of observations, m is the number of features.
+			
+			\begin{equation}
+				y_i = \beta_1 x_{1i}+ \beta_2 x_{2i} + ... + \beta_m x_{mi} + \epsilon_i \ \ \ \ \ \ \ \ 
+				\forall \ i \in [1,n].
+				\label{Linear_Regression}
+			\end{equation}
+			
+			\paragraph{Logistic Regression} This regression scheme differs from linear firstly, in the fact, that the possible outcomes of the dependent variable are discreet rather than continuous. This allows for a much more fluent application as a classification tool and is therefore commonly employed in  Machine Learning. Logistic regression analysis is formally represented as follows in  \hyperref[logit]{Equation 3}
+			
+			\begin{equation}
+				y = 
+				\begin{cases}
+				1 \ \  \beta_0 + \beta_1 x + \epsilon > 0 \\
+				0 \ \  \text{else } 
+				\end{cases} \text{         } \forall \  x = 
+				\begin{pmatrix}x_1\\x_2\\...\\x_n \end{pmatrix}
+			\end{equation}
+			
+			The $x$ vector represents all explanatory variables, in our case, the Tweet features. The term error $\epsilon$ is distributed by the standard logistic distribution, which also gives the regression its name.
+	
 	
 	
 	

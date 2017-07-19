@@ -20,7 +20,7 @@ from sklearn.ensemble import RandomForestClassifier,AdaBoostClassifier
 from sklearn.metrics import cohen_kappa_score,confusion_matrix
 import numpy as np
 import scipy.stats as stats
-import pylab as pl
+# import pylab as pl
 
 
 from string import punctuation
@@ -126,7 +126,7 @@ class WordsClassifier():
    @:param(from_server) - If true, all tweets will be fetched from server. Else, tweets will be loaded
                           from last downloaded tweets file
    '''
-   def __init__(self,load_train='load',pth = '',from_server=True):
+   def __init__(self,load_train='load',pth = '',from_server=True,num_features=5000):
       assert load_train in ('load','train','')
 
       self.voter = None
@@ -148,7 +148,8 @@ class WordsClassifier():
       if load_train == 'load':
          self.load_classifier()
       elif load_train == 'train':
-         self.train(pth=pth,fetch_from_server=from_server)
+         print(pth)
+         self.train(num_features=num_features,pth=pth,fetch_from_server=from_server)
 
    def build_word_list(self, sentence):
       sentence = self.clear_urls(sentence)
@@ -214,7 +215,7 @@ class WordsClassifier():
 
       df = label_df.join(df)
       df.dropna(inplace=True)
-      # df.to_csv('test.test',sep=';')
+      df.to_csv(getcwd()+'\\classifiers\\words_as_features\\latest_dataset.csv',sep=';')
 
       self.documents = [(row['text'],row['label']) for ind,row in df.iterrows()]
       # print(self.documents)
@@ -231,7 +232,7 @@ class WordsClassifier():
          self.documents = pickle.load(fid)
          fid.close()
 
-   def train(self,pth,with_print=True,fetch_from_server=True):
+   def train(self,pth,num_features,with_print=True,fetch_from_server=True):
       print(pth)
 
       if fetch_from_server:
@@ -252,9 +253,10 @@ class WordsClassifier():
                self.all_words[word.lower()] = 1*mult
 
       # Get the 5000 most popular words
-      self.word_features=sorted(self.all_words.items(), key=lambda x:x[1],reverse=True)[:5000]
+      self.word_features=sorted(self.all_words.items(), key=lambda x:x[1],reverse=True)[10:(num_features+10)]
       self.word_features = [w[0] for w in self.word_features]
 
+      random.shuffle(self.documents)
       featuresets = [(self.find_features(rev,self.word_features), category) for (rev, category) in self.documents]
 
       with open(getcwd()+"\\classifiers\\words_as_features\\Words.pickle", "wb") as fid:
@@ -288,21 +290,17 @@ class WordsClassifier():
 
       # Linear Regression
       print('------------------------------------------------------------------------')
-      print('Linear Regression:')
-      # LinearRegression_classifier = SklearnClassifier(LinearRegression(),sparse=False)
-      # LinearRegression_classifier.train(self.training_set)
-      # LinReg_accuracy = round((classify.accuracy(LinearRegression_classifier, self.testing_set)) * 100,2)
-
-
+      # This split datasets are only used in linear regression
       X_train, y_train = zip(*self.training_set)
       X_train = np.array(pd.DataFrame.from_records(X_train))
-      y_train = [(i=='spam')+1 for i in y_train]
-      y_train = np.array(y_train)
+
+      # Covert labels to numbers: 1=News, 2=NotNews
+      y_train = np.array([(i=='spam')+1 for i in y_train])
 
       X_test, y_test = zip(*self.testing_set)
       X_test = np.array(pd.DataFrame.from_records(X_test))
-      y_test = [(i == 'spam') + 1 for i in y_test]
-      y_test = np.array(y_test)
+
+      y_test = np.array([(i == 'spam') + 1 for i in y_test])
 
       LinearRegression_classifier = LinearRegression()
       LinearRegression_classifier.fit(X_train,y_train)
@@ -324,36 +322,35 @@ class WordsClassifier():
       print('median:  ',round(np.median(news_ys),2),'  ', round(np.median(spam_ys),2))
       print('          ',len(news_ys),'    ',len(spam_ys))
 
-      # Plot distribution
-      fig = pl.figure(num='Distributions')
-
-      ax1 = fig.add_subplot(121)
-      news_ys = sorted(news_ys)
-      # bins1 = np.arange(min(news_ys), max(news_ys) + 0.5, 0.5)
-
-      fit_news = stats.norm.pdf(news_ys, np.mean(news_ys), np.std(news_ys))  # this is a fitting indeed
-      ax1.plot(news_ys, fit_news)
-      ax1.hist(news_ys, color='skyblue', normed=True,lw=1,ec='k'
-               # ,bins=bins1
-               )  # use this to draw histogram of your data
-      ax1.grid(True)
-      ax1.set_title('News')
-
-      ax2 = fig.add_subplot(122,sharex=ax1)
-      spam_ys = sorted(spam_ys)
-      # bins2 = np.arange(min(spam_ys), max(spam_ys) + 0.1, 0.1)
-
-      fit_spam = stats.norm.pdf(spam_ys, np.mean(spam_ys), np.std(spam_ys))  # this is a fitting indeed
-      ax2.plot(spam_ys, fit_spam)
-      ax2.hist(spam_ys,color='skyblue', normed=True,lw=1,ec='k'
-               # ,bins=bins2
-               )  # use this to draw histogram of your data
-      ax2.set_title('Not-News')
-      ax2.grid(True)
-
-      ax1.set_ylim(ax2.get_ylim())
-      ax1.set_xlim(ax2.get_xlim())
-
+      # # Plot distribution
+      #    fig = pl.figure(num='Distributions')
+      #
+      #    ax1 = fig.add_subplot(121)
+      #    news_ys = sorted(news_ys)
+      #    # bins1 = np.arange(min(news_ys), max(news_ys) + 0.5, 0.5)
+      #
+      #    fit_news = stats.norm.pdf(news_ys, np.mean(news_ys), np.std(news_ys))  # this is a fitting indeed
+      #    ax1.plot(news_ys, fit_news)
+      #    ax1.hist(news_ys, color='skyblue', normed=True,lw=1,ec='k'
+      #             # ,bins=bins1
+      #             )  # use this to draw histogram of your data
+      #    ax1.grid(True)
+      #    ax1.set_title('News')
+      #
+      #    ax2 = fig.add_subplot(122,sharex=ax1)
+      #    spam_ys = sorted(spam_ys)
+      #    # bins2 = np.arange(min(spam_ys), max(spam_ys) + 0.1, 0.1)
+      #
+      #    fit_spam = stats.norm.pdf(spam_ys, np.mean(spam_ys), np.std(spam_ys))  # this is a fitting indeed
+      #    ax2.plot(spam_ys, fit_spam)
+      #    ax2.hist(spam_ys,color='skyblue', normed=True,lw=1,ec='k'
+      #             # ,bins=bins2
+      #             )  # use this to draw histogram of your data
+      #    ax2.set_title('Not-News')
+      #    ax2.grid(True)
+      #
+      #    ax1.set_ylim(ax2.get_ylim())
+      #    ax1.set_xlim(ax2.get_xlim())
       # fig.show()  # use may also need add this
 
       print('------------------------------------------------------------------------')
@@ -483,7 +480,7 @@ class WordsClassifier():
 
       print('------------------------------------------------------------------------')
       print('Random Forest:')
-      RandomForest_Classifier = SklearnClassifier(RandomForestClassifier(max_depth=5, n_estimators=10, max_features=1))
+      RandomForest_Classifier = SklearnClassifier(RandomForestClassifier(n_jobs=-1, n_estimators=200, warm_start= True))
       RandomForest_Classifier.train(self.training_set)
       RandomForest_accuracy = round((classify.accuracy(RandomForest_Classifier, self.testing_set)) * 100,2)
       self.accuracies['acc_RandomForest'] = RandomForest_accuracy
@@ -529,6 +526,7 @@ class WordsClassifier():
       results = {**self.accuracies,**self.kappas}
       results['timestamp'] = time.strftime('%Y%m%d_%H:%M:%S',time.gmtime(time.time()))
       results['R2'] = R2
+      results['comments'] = ''
 
       df = pd.DataFrame().from_csv(getcwd() + "\\classifiers\\words_as_features\\confs.csv",sep=";")
       df = df.append(pd.Series(results),ignore_index=True)

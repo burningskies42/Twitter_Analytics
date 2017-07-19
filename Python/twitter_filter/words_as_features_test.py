@@ -13,7 +13,7 @@ while i <=10:
    print(str(i)+num_suff[i],'Itterance')
 
    if i==1:
-      word_classifier = words_as_features.WordsClassifier('train', pth=pth, from_server=False)
+      word_classifier = words_as_features.WordsClassifier('train', pth=pth, from_server=True,num_features=3000)
    else:
       word_classifier = words_as_features.WordsClassifier('train', pth=pth, from_server=False)
 

@@ -52,7 +52,7 @@ names = ["Linear Regression",
          "Naive Bayes",
          "QDA"]
 
-
+# Using the descriptive-features approach, downloads tweets and trains classifiers
 def build_and_classify(set_name,ask_path = True, build_new_featureset = True):
 
    if ask_path:
@@ -80,7 +80,7 @@ def build_and_classify(set_name,ask_path = True, build_new_featureset = True):
    print(X)
    y = np.array(df['label'])
    print(y)
-   quit()
+   # quit()
    # Not needed for RF
    # PP_X = preprocessing.scale(X)
 

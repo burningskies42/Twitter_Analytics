@@ -11,13 +11,18 @@
 \contentsline {paragraph}{Unsupervised Learning}{3}{section*.4}
 \contentsline {subsection}{\numberline {2.5}Information Quality}{4}{subsection.2.5}
 \contentsline {section}{\numberline {3}Methodology}{5}{section.3}
-\contentsline {section}{\numberline {4}Application}{6}{section.4}
-\contentsline {subsection}{\numberline {4.1}Information Procurement}{6}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Building the Datasets}{9}{subsection.4.2}
-\contentsline {subsubsection}{\numberline {4.2.1}Word-Based Features}{9}{subsubsection.4.2.1}
-\contentsline {subsubsection}{\numberline {4.2.2}Descriptive Features}{9}{subsubsection.4.2.2}
-\contentsline {subsection}{\numberline {4.3}Training Classifier}{10}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}Classifier Types}{11}{subsection.4.4}
-\contentsline {paragraph}{Linear Regression}{11}{section*.9}
-\contentsline {paragraph}{Logistic Regression}{12}{section*.10}
-\contentsline {section}{\numberline {5}Genaral Use Cases}{13}{section.5}
+\contentsline {subsection}{\numberline {3.1}Training Classifier}{6}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Supervised Learning}{6}{subsection.3.2}
+\contentsline {paragraph}{Linear Regression}{7}{section*.6}
+\contentsline {paragraph}{Logistic Regression}{8}{section*.7}
+\contentsline {paragraph}{Linear Kernel}{10}{section*.9}
+\contentsline {paragraph}{Polynomial Kernel}{10}{section*.10}
+\contentsline {paragraph}{Radial Basis Function Kernel}{10}{section*.11}
+\contentsline {paragraph}{Sigmoid Kernel}{10}{section*.12}
+\contentsline {subsection}{\numberline {3.3}Unsupervised Learning}{12}{subsection.3.3}
+\contentsline {section}{\numberline {4}Application}{13}{section.4}
+\contentsline {subsection}{\numberline {4.1}Information Procurement}{13}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Building the Datasets}{16}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}Word-Based Features}{16}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}Descriptive Features}{16}{subsubsection.4.2.2}
+\contentsline {section}{\numberline {5}Genaral Use Cases}{18}{section.5}

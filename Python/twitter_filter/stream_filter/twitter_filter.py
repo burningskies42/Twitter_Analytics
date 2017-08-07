@@ -40,7 +40,9 @@ class listener(StreamListener):
         self.ignore_terms = ignore_terms
         self.tweet_cnt_limit = tweet_cnt_limit
         self.recorded_ids = set()
-        self.word_classifier = words_as_features.WordsClassifier('load')
+
+        # Live classification
+        # self.word_classifier = words_as_features.WordsClassifier('load')
 
         if self.tweet_cnt_limit == -1:
             self.count_cap = False
@@ -76,20 +78,14 @@ class listener(StreamListener):
             data_json = json.loads(data)
             data_json = pd.Series(data_json)
 
-            # try:
-            text = str(data_json['text'])
-            featureset = self.word_classifier.str_to_featureset(text)
-            self.classification = self.word_classifier.voter.classify(featureset)
-                # print(text,classification)
-            # except Exception as e:
-            #     print(e)
-            #     print('error reading tweet, skippnig ...')
-            #     quit()
-            #     return(True)
+            try:
+                text = str(data_json['text'])
+            except Exception as e:
+                print(e,Fore.RED + 'error reading tweet, skippnig ...' + Style.RESET_ALL)
+                return(True)
 
-            # check if retweet
-            # Disregard retweets
-            if text.find('RT', 0, 4) != -1:
+            # check if retweet, if RT then fetch source
+            if text.lower().find('rt ') != -1:
                 retweeted = True
                 if 'retweeted_status' in data_json.keys():
 
@@ -98,8 +94,9 @@ class listener(StreamListener):
                     data = json.dumps(data_json)+'\r\n'
 
                 else:
-                    print('no retweeted_status:' + str(data_json['id']))
-                    # quit()
+                    print('no retweet source found:' + str(data_json['id']))
+
+
             elif 'quoted_status' in data_json.keys():
                 quoted = True
                 # extract the original Tweet and record it instead of the current tweet
@@ -120,10 +117,12 @@ class listener(StreamListener):
                     elif quoted:
                         twt_text = '------------- quote source: ' + twt_text
 
-                    if self.classification == 'news':
-                        print(str(self.count+1)+'.',Fore.GREEN +self.classification+Style.RESET_ALL,twt_text)
-                    else:
-                        print(str(self.count + 1) + '.', Fore.RED + self.classification+Style.RESET_ALL, twt_text)
+                    print(str(self.count + 1) + '.', twt_text)
+
+                    # if self.classification == 'news':
+                    #     print(str(self.count+1)+'.',Fore.GREEN +self.classification+Style.RESET_ALL,twt_text)
+                    # else:
+                    #     print(str(self.count + 1) + '.', Fore.RED + self.classification+Style.RESET_ALL, twt_text)
 
 
                     # appends tweet to json (backup for failure on pickle)
@@ -143,7 +142,11 @@ class listener(StreamListener):
 
             # Disregard tweets with ignore-terms
             else:
-                print('------------- contains ignore-term, not saved.')
+                for term in self.ignore_terms:
+                    if term in text.lower():
+                        found_ignore_word = term
+                        break
+                print('------------- contains ignore-term(',found_ignore_word,'), not saved.')
 
 
             return(True)

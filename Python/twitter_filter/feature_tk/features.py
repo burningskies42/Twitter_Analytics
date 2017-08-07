@@ -214,6 +214,23 @@ def clear_punctuation(string):
    string = string.translate(punctuation)
    return string
 
+def remove_punctuation_list(lst):
+   found_punct = False
+   ret_list = []
+
+
+   for word in lst:
+      found_punct = False
+      for p in punctuation:
+         if word.find(p) != -1:
+            found_punct = True
+            break
+
+      if not found_punct:
+         ret_list.append(word)
+
+   return ret_list
+
 def flatten_users(df):
    users_df = df['user'].apply(Series)
    users_df.columns = 'user_' + users_df.columns
@@ -233,6 +250,7 @@ def msg_feature_df(df, with_sentiment=True, with_timing=True,with_most_pop_words
    start = time()
    df_msg['words'] = df['text'].apply(lambda x : clear_punctuation(x))
    df_msg['words'] = df_msg['words'].apply(lambda x: word_tokenize(x))
+   df_msg['words'] = df_msg['words'].apply(lambda x: remove_punctuation_list(x))
    df_msg['num_stop_words'] = df_msg['words'].apply(lambda x: len(x))
    dur = time() - start
    if with_timing: print('tokenize words:', dur)
@@ -432,8 +450,12 @@ def tweets_to_featureset(df, with_sentiment=True, with_timing=True,with_most_pop
    usr_feat_df = usr_feature_df(df, with_timing)
 
    if with_timing:
-      print('\nValue Frequencies:')
-      print(msg_feat_df['retweet_count'].value_counts()[:10])
+      print('\n#RT Frequency:')
+      try:
+         print(msg_feat_df['retweet_count'].apply(lambda x: int(x)).value_counts()[:10])
+      except Exception as e:
+         print(msg_feat_df['retweet_count'].apply(lambda x: int(x)).value_counts()[:5])
+
       # retweets_freq = msg_feat_df['retweet_count'].value_counts(,)
       # print(retweets_freq)
 

@@ -1,4 +1,5 @@
 \select@language {english}
-\contentsline {figure}{\numberline {1}{\ignorespaces Twitter accounts, which present themselves as actual people}}{8}{figure.1}
-\contentsline {figure}{\numberline {2}{\ignorespaces S\o rensen-Dice coefficient}}{8}{figure.2}
-\contentsline {figure}{\numberline {3}{\ignorespaces Clustering of Different Classifiers}}{11}{figure.3}
+\contentsline {figure}{\numberline {1}{\ignorespaces Clustering of Different Classifiers}}{6}{figure.1}
+\contentsline {figure}{\numberline {2}{\ignorespaces Euclidean Imposition of data. The support vectors, marked with grey squares, define the margin of largest separation between the two classes. \textit {Source: Cortes and Vapnik (1995)} \cite {SVM_cortes1995support}}}{9}{figure.2}
+\contentsline {figure}{\numberline {3}{\ignorespaces Twitter accounts, which present themselves as actual people}}{15}{figure.3}
+\contentsline {figure}{\numberline {4}{\ignorespaces S\o rensen-Dice coefficient}}{15}{figure.4}

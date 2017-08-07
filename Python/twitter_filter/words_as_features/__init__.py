@@ -20,7 +20,9 @@ from sklearn.ensemble import RandomForestClassifier,AdaBoostClassifier
 from sklearn.metrics import cohen_kappa_score,confusion_matrix
 import numpy as np
 import scipy.stats as stats
-# import pylab as pl
+import os
+
+
 
 
 from string import punctuation
@@ -31,6 +33,8 @@ from re import MULTILINE,sub
 from os import getcwd,get_exec_path
 import pandas as pd
 import time
+import datetime
+import matplotlib.pyplot as plt
 
 from tweet_tk.fetch_tweets import fetch_tweets_by_ids
 
@@ -61,22 +65,22 @@ class Kappa():
    @:param(classifier) - classifier which was trained using a learning algorithm
    '''
    def __init__(self,classifier,testing_set):
-      self.kappa_matrix = {}
-      self.kappa_matrix['news'] = {}
-      self.kappa_matrix['news']['true'] = 0
-      self.kappa_matrix['news']['false'] = 0
-
-      self.kappa_matrix['spam'] = {}
-      self.kappa_matrix['spam']['true'] = 0
-      self.kappa_matrix['spam']['false'] = 0
+      self.kappa_matrix = {'news':{'true':0,'false':0},
+                           'spam':{'true':0,'false':0}}
       self.clf = classifier
 
+      # Get classifier name
+      try:
+         self.clf_name = self.clf._clf.__class__.__name__
+      except Exception as e:
+         self.clf_name = self.clf.__class__.__name__
+
+      self.clf_name = self.clf_name.replace('Classifier','')
+
+      # Count False Pos/Neg and True Pos/Neg
+      # Where Pos = News and Neg = Spam
       for fs in testing_set:
          # true classification is 'news'
-
-         # if reg:
-         #    alg_class = self.clf.predict(fs[0])
-         # else:
          alg_class = self.clf.classify(fs[0])
 
          if fs[1] == 'news':
@@ -98,23 +102,97 @@ class Kappa():
             else:
                self.kappa_matrix['news']['false'] +=1
 
-      for key, val in self.kappa_matrix.items():
-         print(key, val)
-
+      # Kappa Calculation
       # https://en.wikipedia.org/wiki/Cohen%27s_kappa
-
-      a = self.kappa_matrix['news']['true']
-      b = self.kappa_matrix['spam']['false']
-      c = self.kappa_matrix['news']['false']
-      d = self.kappa_matrix['spam']['true']
+      a = self.kappa_matrix['news']['true']  # True Positive
+      b = self.kappa_matrix['spam']['false'] # False Negative
+      c = self.kappa_matrix['news']['false'] # False Positive
+      d = self.kappa_matrix['spam']['true']  # True Negative
       abcd = a+b+c+d
       p_zero = (a+d)/abcd
       p_news = ((a + b) / abcd) * ((a + c) / abcd)
       p_spam = ((c + d) / abcd) * ((b + d) / abcd)
       p_e = p_news + p_spam
 
-      self.kappa_value = (p_zero - p_e) / (1 - p_e)
-      print("Cohen's Kappa:",self.kappa_value)
+      self.kappa_value = 100*(p_zero - p_e) / (1 - p_e)
+      self.kappa_value = round(self.kappa_value,2)
+      self.accuracy = round((classify.accuracy(classifier, testing_set)) * 100, 2)
+
+      '''
+      TPR       = TP/(TP+FN) = TP/P 
+      FPR       = FP/(FP+TN) = FP/N  
+      Precision = TP/(TP+FP) 
+      Recall    = TP/(TP+FN)
+      '''
+
+      self.prec_recall = pd.DataFrame(columns=['Name','True','False','TPR','FPR','Prec','Recall','F1','Kappa','Accuracy'],index=['News','Not-News'])
+      self.news = {}
+      self.news['tpr']    = round(a / (a + b), 2) if a+b != 0 else 0
+      self.news['fpr']    = round(c / (c + d), 2) if c+d != 0 else 0
+      self.news['prec']   = round(a / (a + c), 2) if a+c != 0 else 0
+      self.news['recall'] = round(a / (a + b), 2) if a+b != 0 else 0
+      self.news['F1'] = (2*self.news['prec']*self.news['recall'])/(self.news['prec']+self.news['recall']) if self.news['prec']+self.news['recall'] != 0 else 0
+      self.news['F1'] = round(self.news['F1'],2)
+      '''------------------------------------------------------------------------------------------'''
+      s_news = pd.Series({'Name':self.clf_name,
+                          'True':self.kappa_matrix['news']['true'],
+                          'False':self.kappa_matrix['news']['false'],
+                          'TPR':self.news['tpr'],
+                          'FPR':self.news['fpr'],
+                          'Prec':self.news['prec'],
+                          'Recall':self.news['recall'],
+                          'F1': self.news['F1'],
+                          'Kappa':self.kappa_value,
+                          'Accuracy': self.accuracy
+                          })
+      self.prec_recall.loc['News'] = s_news
+
+      self.spam = {}
+      self.spam['tpr']    = round(d / (c + d), 2) if c+d != 0 else 0
+      self.spam['fpr']    = round(b / (a + b), 2) if a+b != 0 else 0
+      self.spam['prec']   = round(d / (b + d), 2) if b+d != 0 else 0
+      self.spam['recall'] = round(d / (c + d), 2) if c+d != 0 else 0
+      self.spam['F1'] = (2 * self.spam['prec'] * self.spam['recall']) / (self.spam['prec'] + self.spam['recall']) if self.spam['prec']+self.spam['recall'] != 0 else 0
+      self.spam['F1'] = round(self.spam['F1'], 2)
+      '''------------------------------------------------------------------------------------------'''
+      s_spam = pd.Series({'Name':self.clf_name,
+                          'True': self.kappa_matrix['spam']['true'],
+                          'False': self.kappa_matrix['spam']['false'],
+                          'TPR':self.spam['tpr'],
+                          'FPR':self.spam['fpr'],
+                          'Prec':self.spam['prec'],
+                          'Recall':self.spam['recall'],
+                          'F1':self.spam['F1'],
+                          'Kappa':self.kappa_value,
+                          'Accuracy': self.accuracy
+                          })
+      self.prec_recall.loc['Not-News'] = s_spam
+      self.output = pd.Series({
+         'Name': self.clf_name,
+         'True_News': self.kappa_matrix['news']['true'],
+         'False_News': self.kappa_matrix['news']['false'],
+         'True_Spam': self.kappa_matrix['spam']['true'],
+         'False_Spam': self.kappa_matrix['spam']['false'],
+         'News_TPR': self.news['tpr'],
+         'News_FPR': self.news['fpr'],
+         'News_Prec': self.news['prec'],
+         'News_Recall': self.news['recall'],
+         'News_F1': self.news['F1'],
+         'Spam_TPR': self.spam['tpr'],
+         'Spam_FPR': self.spam['fpr'],
+         'Spam_Prec': self.spam['prec'],
+         'Spam_Recall': self.spam['recall'],
+         'Spam_F1':self.spam['F1'],
+         'Kappa': self.kappa_value,
+         'Accuracy': self.accuracy
+      })
+      self.output.name = self.clf_name
+      # self.prec_recall['clf'] =
+
+      print()
+      print(self.prec_recall[['True','False','TPR','FPR','Prec','Recall','F1']])
+      print('Accuracy:', self.accuracy,'%')
+      print('Kappa:   ', self.kappa_value,'%')
 
 class WordsClassifier():
    '''
@@ -138,9 +216,10 @@ class WordsClassifier():
       self.lmtzr = WordNetLemmatizer()
       self.allowed_word_types = ["N", "J", "R", "V"]
       self.word_features = []
-      self.accuracies = {}
-      self.kappas = {}
+      self.output_log = pd.DataFrame()
       self.class_ratio = 1
+      self.time_stamp = datetime.datetime.now().strftime("%Y_%m_%d_%H:%M:%S")
+
 
       self.training_set = None
       self.testining_set = None
@@ -148,8 +227,7 @@ class WordsClassifier():
       if load_train == 'load':
          self.load_classifier()
       elif load_train == 'train':
-         print(pth)
-         self.train(num_features=num_features,pth=pth,fetch_from_server=from_server)
+         self.train(self.time_stamp,num_features=num_features,pth=pth,fetch_from_server=from_server)
 
    def build_word_list(self, sentence):
       sentence = self.clear_urls(sentence)
@@ -232,7 +310,7 @@ class WordsClassifier():
          self.documents = pickle.load(fid)
          fid.close()
 
-   def train(self,pth,num_features,with_print=True,fetch_from_server=True):
+   def train(self,time_stamp,pth,num_features,with_print=True,fetch_from_server=True):
       print(pth)
 
       if fetch_from_server:
@@ -263,33 +341,26 @@ class WordsClassifier():
          pickle.dump(self.word_features, fid)
          fid.close()
 
+      # Sizes
       training_set_size = int(len(featuresets)*0.7)
-
       self.training_set = featuresets[:training_set_size]
       self.testing_set = featuresets[training_set_size:]
-
       train_news = sum([1 for obs in self.training_set if obs[1]=='news'])
       train_spam = training_set_size - train_news
       test_news = sum([1 for obs in self.testing_set if obs[1] == 'news'])
       test_spam = len(self.testing_set) - test_news
 
-      self.accuracies['train_news'] = train_news
-      self.accuracies['train_spam'] = train_spam
-      self.accuracies['test_news'] = test_news
-      self.accuracies['test_spam'] = test_spam
 
       if with_print:
-         print()
-         print('            News    Not-News   Total')
-         print('Training   ', train_news,'   ',train_spam,'     ',len(self.training_set))
-         print('Testing    ', test_news,'   ', test_spam,'     ', len(self.testing_set))
-         print()
+         sizes_df = pd.DataFrame(columns=['News','Not-News','Total'])
+         sizes_df.loc['Training'] = pd.Series({'News':train_news,'Not-News':train_spam, 'Total':len(self.training_set)})
+         sizes_df.loc['Testing'] = pd.Series({'News': test_news, 'Not-News': test_spam, 'Total': len(self.testing_set)})
+         sizes_df.loc['Total'] = pd.Series({'News': train_news+test_news,
+                                            'Not-News': train_spam+test_spam,
+                                            'Total': len(self.training_set)+len(self.testing_set)})
+         print(sizes_df.astype(int))
 
-      self.accuracies['training_set_len'] = len(self.training_set)
-      self.accuracies['testing_set_len'] = len(self.testing_set)
-
-      # Linear Regression
-      print('------------------------------------------------------------------------')
+      print('------------------------------------------------------------------------\n', 'Logistic Regression:')
       # This split datasets are only used in linear regression
       X_train, y_train = zip(*self.training_set)
       X_train = np.array(pd.DataFrame.from_records(X_train))
@@ -305,7 +376,6 @@ class WordsClassifier():
       LinearRegression_classifier = LinearRegression()
       LinearRegression_classifier.fit(X_train,y_train)
       R2 = round(LinearRegression_classifier.score(X_test,y_test),2)
-      print('Coeffiecient of Determination (R^2):',R2)
 
       news_ys = []
       spam_ys = []
@@ -316,192 +386,177 @@ class WordsClassifier():
          else:
             spam_ys.append(y_hat)
 
-      print('')
-      print('         News    Not-News')
-      print('mean:    ',round(np.mean(news_ys),2),'  ',round(np.mean(spam_ys),2))
-      print('median:  ',round(np.median(news_ys),2),'  ', round(np.median(spam_ys),2))
-      print('          ',len(news_ys),'    ',len(spam_ys))
+      if with_print:
+         gen_stats_df = pd.DataFrame(columns=['News','Not-News'])
+         gen_stats_df.loc['mean'] = pd.Series({'News':round(np.mean(news_ys),2),'Not-News':round(np.mean(spam_ys),2)})
+         gen_stats_df.loc['median'] = pd.Series({'News': round(np.median(news_ys), 2), 'Not-News': round(np.median(spam_ys), 2)})
+         print(gen_stats_df)
+         print('Coeffiecient of Determination (R^2):', R2)
 
-      # # Plot distribution
-      #    fig = pl.figure(num='Distributions')
-      #
-      #    ax1 = fig.add_subplot(121)
-      #    news_ys = sorted(news_ys)
-      #    # bins1 = np.arange(min(news_ys), max(news_ys) + 0.5, 0.5)
-      #
-      #    fit_news = stats.norm.pdf(news_ys, np.mean(news_ys), np.std(news_ys))  # this is a fitting indeed
-      #    ax1.plot(news_ys, fit_news)
-      #    ax1.hist(news_ys, color='skyblue', normed=True,lw=1,ec='k'
-      #             # ,bins=bins1
-      #             )  # use this to draw histogram of your data
-      #    ax1.grid(True)
-      #    ax1.set_title('News')
-      #
-      #    ax2 = fig.add_subplot(122,sharex=ax1)
-      #    spam_ys = sorted(spam_ys)
-      #    # bins2 = np.arange(min(spam_ys), max(spam_ys) + 0.1, 0.1)
-      #
-      #    fit_spam = stats.norm.pdf(spam_ys, np.mean(spam_ys), np.std(spam_ys))  # this is a fitting indeed
-      #    ax2.plot(spam_ys, fit_spam)
-      #    ax2.hist(spam_ys,color='skyblue', normed=True,lw=1,ec='k'
-      #             # ,bins=bins2
-      #             )  # use this to draw histogram of your data
-      #    ax2.set_title('Not-News')
-      #    ax2.grid(True)
-      #
-      #    ax1.set_ylim(ax2.get_ylim())
-      #    ax1.set_xlim(ax2.get_xlim())
-      # fig.show()  # use may also need add this
+      # Logistic Regression
+      print('------------------------------------------------------------------------\n','Logistic Regression:')
+      LogisticRegression_classifier = SklearnClassifier(LogisticRegression(fit_intercept=True))
+      LogisticRegression_classifier.train(self.training_set)
+      self.output_log = self.output_log.append(Kappa(LogisticRegression_classifier, self.testing_set).output)
 
-      print('------------------------------------------------------------------------')
-      print('Naive Bayes:')
+      with open(getcwd()+"\\classifiers\\words_as_features\\LogisticRegression.pickle", "wb") as classifier_f:
+         pickle.dump(LogisticRegression_classifier,classifier_f)
+         classifier_f.close()
+
+      print('------------------------------------------------------------------------\n','Naive Bayes:')
       Naivebayes_classifier = NaiveBayesClassifier.train(self.training_set)
+      self.output_log = self.output_log.append(Kappa(Naivebayes_classifier, self.testing_set).output)
+      Naivebayes_classifier.show_most_informative_features(15)
+
       with open(getcwd()+"\\classifiers\\words_as_features\\Naivebayes_classifier.pickle", "wb") as classifier_f:
          pickle.dump(Naivebayes_classifier,classifier_f)
          classifier_f.close()
-      Naivebayes_accuracy = round((classify.accuracy(Naivebayes_classifier, self.testing_set)) *100,2)
-      self.kappas['kappa_Naivebayes'] = Kappa(Naivebayes_classifier,self.testing_set).kappa_value
-      self.accuracies['acc_Naivebayes'] = Naivebayes_accuracy
 
-      if with_print:
-         print("Accuracy percent:",Naivebayes_accuracy)
-         Naivebayes_classifier.show_most_informative_features(15)
-
-      print('------------------------------------------------------------------------')
-      print('Multinomial Naive Bayes:')
+      print('------------------------------------------------------------------------\n','Multinomial Naive Bayes:')
       MNB_classifier = SklearnClassifier(MultinomialNB())
       MNB_classifier.train(self.training_set)
-      MNB_accuracy = round((classify.accuracy(MNB_classifier, self.testing_set)) * 100,2)
-      self.accuracies['acc_MNB'] = MNB_accuracy
-      self.kappas['kappa_MNB'] = Kappa(MNB_classifier,self.testing_set).kappa_value
+      self.output_log = self.output_log.append(Kappa(MNB_classifier, self.testing_set).output)
 
       with open(getcwd()+"\\classifiers\\words_as_features\\MNB_classifier.pickle", "wb") as classifier_f:
          pickle.dump(MNB_classifier,classifier_f)
          classifier_f.close()
-      if with_print:
-         print("Accuracy percent:",MNB_accuracy)
 
-      print('------------------------------------------------------------------------')
-      print('Bernoulli Naive Bayes:')
+      print('------------------------------------------------------------------------\n','Bernoulli Naive Bayes:')
       BernoulliNB_classifier = SklearnClassifier(BernoulliNB())
       BernoulliNB_classifier.train(self.training_set)
-      BernoulliNB_accuracy = round((classify.accuracy(BernoulliNB_classifier, self.testing_set)) * 100,2)
-      self.accuracies['acc_BernoulliNB'] = BernoulliNB_accuracy
-      self.kappas['kappa_BernoulliNB'] = Kappa(BernoulliNB_classifier,self.testing_set).kappa_value
+      self.output_log = self.output_log.append(Kappa(BernoulliNB_classifier, self.testing_set).output)
 
       with open(getcwd()+"\\classifiers\\words_as_features\\BernoulliNB_classifier.pickle", "wb") as classifier_f:
          pickle.dump(BernoulliNB_classifier,classifier_f)
          classifier_f.close()
-      if with_print: print("Accuracy percent:", BernoulliNB_accuracy)
 
-
-      # Logistic Regression
-      print('------------------------------------------------------------------------')
-      print('Logistic Regression:')
-      LogisticRegression_classifier = SklearnClassifier(LogisticRegression())
-      LogisticRegression_classifier.train(self.training_set)
-      LogReg_accuracy = round((classify.accuracy(LogisticRegression_classifier, self.testing_set)) * 100,2)
-      self.accuracies['acc_LogReg'] = LogReg_accuracy
-      self.kappas['kappa_LogReg'] = Kappa(LogisticRegression_classifier,self.testing_set).kappa_value
-
-      with open(getcwd()+"\\classifiers\\words_as_features\\LogisticRegression_classifier.pickle", "wb") as classifier_f:
-         pickle.dump(LogisticRegression_classifier,classifier_f)
-         classifier_f.close()
-      if with_print:
-         print("Accuracy percent:",LogReg_accuracy)
-
-      print('------------------------------------------------------------------------')
-      print('Stochastic Gradient Descent:')
-      SGD_classifier = SklearnClassifier(SGDClassifier())
-      SGD_classifier.train(self.training_set)
-      SGD_accuracy = round((classify.accuracy(SGD_classifier, self.testing_set)) * 100,2)
-      self.accuracies['acc_SGD'] = SGD_accuracy
-      self.kappas['kappa_SGD'] = Kappa(SGD_classifier,self.testing_set).kappa_value
-
-      with open(getcwd()+"\\classifiers\\words_as_features\\SGDClassifier_classifier.pickle", "wb") as classifier_f:
-         pickle.dump(SGD_classifier,classifier_f)
-         classifier_f.close()
-      if with_print:
-         print("Accuracy percent:",SGD_accuracy)
-
-      print('------------------------------------------------------------------------')
-      print('C-Support Vector Machine:')
-      SVC_classifier = SklearnClassifier(SVC())
-      SVC_classifier.train(self.training_set)
-      SVC_accuracy = round((classify.accuracy(SVC_classifier, self.testing_set)) * 100,2)
-      self.accuracies['acc_SVC'] = SVC_accuracy
-      self.kappas['kappa_SVC'] = Kappa(SVC_classifier,self.testing_set).kappa_value
-
-      with open(getcwd()+"\\classifiers\\words_as_features\\SVC_classifier.pickle", "wb") as classifier_f:
-         pickle.dump(SVC_classifier,classifier_f)
-         classifier_f.close()
-      if with_print:
-         print("Accuracy percent:",SVC_accuracy)
-
-      print('------------------------------------------------------------------------')
-      print('Linear Support Vector Machine:')
+      print('------------------------------------------------------------------------\n','Linear Support Vector Machine:')
       LinearSVC_classifier = SklearnClassifier(LinearSVC())
       LinearSVC_classifier.train(self.training_set)
-      LinearSVC_accuracy = round((classify.accuracy(LinearSVC_classifier, self.testing_set)) * 100,2)
-      self.accuracies['acc_LinearSVC'] = LinearSVC_accuracy
-      self.kappas['kappa_LinearSVC'] = Kappa(LinearSVC_classifier,self.testing_set).kappa_value
+      self.output_log = self.output_log.append(Kappa(LinearSVC_classifier, self.testing_set).output)
 
       with open(getcwd()+"\\classifiers\\words_as_features\\LinearSVC_classifier.pickle", "wb") as classifier_f:
          pickle.dump(LinearSVC_classifier,classifier_f)
          classifier_f.close()
-      if with_print:
-         print("Accuracy percent:",LinearSVC_accuracy)
 
-      # print('------------------------------------------------------------------------')
-      # print('Epsilon-Support Vector Machine:')
-      # SVR_classifier = SklearnClassifier(SVR())
-      # SVR_classifier.train(self.training_set)
-      #
-      # SVR_accuracy = round((classify.accuracy(SVR_classifier, self.testing_set)) * 100, 2)
-      # self.accuracies['SVR'] = SVR_accuracy
-      # self.kappas['SVR'] = Kappa(SVR_classifier, self.testing_set).kappa_value
-      #
-      # with open(getcwd() + "\\classifiers\\words_as_features\\SVR_classifier.pickle", "wb") as classifier_f:
-      #    pickle.dump(LinearSVC_classifier, classifier_f)
-      #    classifier_f.close()
-      # if with_print:
-      #    print("Accuracy percent:", SVR_classifier)
+      '''
+      ================================================================================================================================================
+      ~~~ SVM KERNELS ~~~ SVM KERNELS ~~~ SVM KERNELS ~~~ SVM KERNELS ~~~ SVM KERNELS ~~~ SVM KERNELS ~~~ SVM KERNELS ~~~ SVM KERNELS ~~~ SVM KERNELS 
+      ================================================================================================================================================
+      '''
+
+      print('------------------------------------------------------------------------\n','C-Support Vector Machine:')
+      print('======================\n','Linear Kernel')
+      SVC_lin_classifier = SklearnClassifier(SVC(kernel='linear'))
+      SVC_lin_classifier.train(self.training_set)
+      self.output_log = self.output_log.append(Kappa(SVC_lin_classifier, self.testing_set).output)
+
+      with open(getcwd()+"\\classifiers\\words_as_features\\SVC_lin.pickle", "wb") as classifier_f:
+         pickle.dump(SVC_lin_classifier,classifier_f)
+         classifier_f.close()
+
+      print('======================\n', 'Polynomial Kernel')
+      SVC_poly_classifier = SklearnClassifier(SVC(kernel='poly'))
+      SVC_poly_classifier.train(self.training_set)
+      self.output_log = self.output_log.append(Kappa(SVC_poly_classifier , self.testing_set).output)
+
+      with open(getcwd() + "\\classifiers\\words_as_features\\SVC_poly.pickle", "wb") as classifier_f:
+         pickle.dump(SVC_poly_classifier , classifier_f)
+         classifier_f.close()
+
+      # Also default kernel
+      print('======================\n', 'Radial Basis Function Kernel')
+      SVC_classifier = SklearnClassifier(SVC(kernel='rbf',gamma=10))
+      SVC_classifier.train(self.training_set)
+      self.output_log = self.output_log.append(Kappa(SVC_classifier, self.testing_set).output)
+
+      with open(getcwd() + "\\classifiers\\words_as_features\\SVC_rbf.pickle", "wb") as classifier_f:
+         pickle.dump(SVC_classifier, classifier_f)
+         classifier_f.close()
+
+      print('======================\n', 'Sigmoid Kernel')
+      SVC_sig_classifier = SklearnClassifier(SVC(kernel='sigmoid',gamma=10))
+      SVC_sig_classifier.train(self.training_set)
+      self.output_log = self.output_log.append(Kappa(SVC_sig_classifier, self.testing_set).output)
+
+      with open(getcwd() + "\\classifiers\\words_as_features\\SVC_sigmoid.pickle", "wb") as classifier_f:
+         pickle.dump(SVC_sig_classifier, classifier_f)
+         classifier_f.close()
+
+      '''
+      ================================================================================================================================================
+      '''
 
       print('------------------------------------------------------------------------')
-      print('Multi-layer Perceptron:')
+      print('Epsilon-Support Vector Machine:')
+      SVR_classifier = SVR()
+      SVR_classifier.fit(X_train, y_train)
+      SVR_classes = pd.DataFrame(columns=['True','False'],index=['News','Not-News'])
+      SVR_classes.loc['News'] = pd.Series({'True':0,'False':0})
+      SVR_classes.loc['Not-News'] = pd.Series({'True':0,'False':0})
+
+      preds_list = SVR_classifier.predict(X_test)
+
+      for xi,yi in zip(X_test,y_test):
+         alg_class = SVR_classifier.predict(xi.reshape(1,-1))
+
+         # News
+         if yi == 1:
+            if alg_class <= np.percentile(preds_list,q=20):
+               SVR_classes.loc['News']['True'] +=1
+            else:
+               SVR_classes.loc['Not-News']['False'] += 1
+         elif yi == 2:
+            if alg_class > np.percentile(preds_list,q=20):
+               SVR_classes.loc['Not-News']['True'] += 1
+            else:
+               SVR_classes.loc['News']['False'] += 1
+
+      print(SVR_classes)
+
+      SVR_accuracy = round(SVR_classifier.score(X_test, y_test), 2)
+
+      with open(getcwd() + "\\classifiers\\words_as_features\\SVR_classifier.pickle", "wb") as classifier_f:
+         pickle.dump(LinearSVC_classifier, classifier_f)
+         classifier_f.close()
+
+      print('------------------------------------------------------------------------\n','Stochastic Gradient Descent:')
+      SGD_classifier = SklearnClassifier(SGDClassifier())
+      SGD_classifier.train(self.training_set)
+      self.output_log = self.output_log.append(Kappa(SGD_classifier, self.testing_set).output)
+
+      with open(getcwd()+"\\classifiers\\words_as_features\\SGD_classifier.pickle", "wb") as classifier_f:
+         pickle.dump(SGD_classifier,classifier_f)
+         classifier_f.close()
+
+      print('------------------------------------------------------------------------\n','Multi-layer Perceptron:')
       MLP_Classifier = SklearnClassifier(MLPClassifier(alpha=1))
       MLP_Classifier.train(self.training_set)
-      MLP_accuracy = round((classify.accuracy(MLP_Classifier, self.testing_set)) * 100,2)
-      self.accuracies['acc_MLP'] = MLP_accuracy
-      self.kappas['kappa_MLP'] = Kappa(MLP_Classifier,self.testing_set).kappa_value
+      self.output_log = self.output_log.append(Kappa(MLP_Classifier, self.testing_set).output)
 
-      if with_print:
-         print("Accuracy percent:",MLP_accuracy)
+      with open(getcwd()+"\\classifiers\\words_as_features\\MLP_Classifier.pickle", "wb") as classifier_f:
+         pickle.dump(SGD_classifier,classifier_f)
+         classifier_f.close()
 
-      print('------------------------------------------------------------------------')
-      print('Random Forest:')
-      RandomForest_Classifier = SklearnClassifier(RandomForestClassifier(n_jobs=-1, n_estimators=200, warm_start= True))
+      print('------------------------------------------------------------------------\n','Random Forest:')
+      RandomForest_Classifier = SklearnClassifier(RandomForestClassifier(n_jobs=-1, n_estimators=25, warm_start= True,max_features=7))
       RandomForest_Classifier.train(self.training_set)
-      RandomForest_accuracy = round((classify.accuracy(RandomForest_Classifier, self.testing_set)) * 100,2)
-      self.accuracies['acc_RandomForest'] = RandomForest_accuracy
-      self.kappas['kappa_RandomForest'] = Kappa(RandomForest_Classifier,self.testing_set).kappa_value
+      self.output_log = self.output_log.append(Kappa(RandomForest_Classifier, self.testing_set).output)
 
-      if with_print:
-         print("Accuracy percent:",RandomForest_accuracy)
+      with open(getcwd() + "\\classifiers\\words_as_features\\RandomForest_Classifier.pickle", "wb") as classifier_f:
+         pickle.dump(SGD_classifier, classifier_f)
+         classifier_f.close()
 
-      print('------------------------------------------------------------------------')
-      print('Adaptive Boosting:')
+      print('------------------------------------------------------------------------\n','Adaptive Boosting:')
       AdaBoost_Classifier = SklearnClassifier(AdaBoostClassifier())
       AdaBoost_Classifier.train(np.array(self.training_set))
-      AdaBoost_accuracy = round((classify.accuracy(AdaBoost_Classifier, self.testing_set)) * 100,2)
-      self.accuracies['acc_AdaBoost'] = AdaBoost_accuracy
-      self.kappas['kappa_AdaBoost'] = Kappa(AdaBoost_Classifier,self.testing_set).kappa_value
+      self.output_log = self.output_log.append(Kappa(AdaBoost_Classifier, self.testing_set).output)
 
-      if with_print:
-         print("Accuracy percent:",AdaBoost_accuracy)
+      with open(getcwd() + "\\classifiers\\words_as_features\\AdaBoost_Classifier.pickle", "wb") as classifier_f:
+         pickle.dump(SGD_classifier, classifier_f)
+         classifier_f.close()
 
-      print('------------------------------------------------------------------------')
-      print('Voted Classifier:')
+      print('------------------------------------------------------------------------\n','Voted Classifier:')
       voted_classifier = VoteClassifier(Naivebayes_classifier,
                                         # SVR_classifier,
                                         MLP_Classifier,
@@ -514,24 +569,42 @@ class WordsClassifier():
                                         BernoulliNB_classifier,
                                         LogisticRegression_classifier)
 
-      Voted_accuracy = round((classify.accuracy(voted_classifier, self.testing_set)) * 100,2)
-      self.accuracies['acc_Voted'] = Voted_accuracy
-      self.kappas['kappa_voted'] = Kappa(voted_classifier,self.testing_set).kappa_value
-      if with_print: print("Accuracy percent:", Voted_accuracy)
-      print('------------------------------------------------------------------------')
+      with open(getcwd() + "\\classifiers\\words_as_features\\voted_classifier.pickle", "wb") as classifier_f:
+         pickle.dump(SGD_classifier, classifier_f)
+         classifier_f.close()
 
+      self.output_log = self.output_log.append(Kappa(voted_classifier, self.testing_set).output)
+
+      print('------------------------------------------------------------------------')
+      self.output_log['time_stamp']=time_stamp
+      self.output_log['Train_News'] = sizes_df.loc['Training']['News']
+      self.output_log['Train_Spam'] = sizes_df.loc['Training']['Not-News']
+      self.output_log['Test_News']  = sizes_df.loc['Testing']['News']
+      self.output_log['Test_Spam']  = sizes_df.loc['Testing']['Not-News']
+
+      # Reorder ouput log
+      self.output_log = self.output_log[[
+         # ID
+         'time_stamp','Name',
+         # Sizes
+         'Train_News','Train_Spam','Test_News','Test_Spam',
+         'True_News','True_Spam','False_News','False_Spam',
+
+         # Measures
+         'Accuracy','Kappa',
+         'News_TPR','News_FPR','News_Prec','News_Recall','News_F1',
+         'Spam_TPR','Spam_FPR','Spam_Prec','Spam_Recall','Spam_F1',
+      ]]
 
       # Saving results to file
 
-      results = {**self.accuracies,**self.kappas}
-      results['timestamp'] = time.strftime('%Y%m%d_%H:%M:%S',time.gmtime(time.time()))
-      results['R2'] = R2
-      results['comments'] = ''
+      if os.path.isfile(getcwd() + "\\classifiers\\words_as_features\\weighted_confs.csv"):
+         df = pd.DataFrame().from_csv(getcwd() + "\\classifiers\\words_as_features\\weighted_confs.csv",sep=";")
+         df = self.output_log.append(df,ignore_index=True)
+      else:
+         df = self.output_log
 
-      df = pd.DataFrame().from_csv(getcwd() + "\\classifiers\\words_as_features\\confs.csv",sep=";")
-      df = df.append(pd.Series(results),ignore_index=True)
-      df.to_csv(getcwd() + "\\classifiers\\words_as_features\\confs.csv",sep=";")
-      # print(df)
+      df.to_csv(getcwd() + "\\classifiers\\words_as_features\\weighted_confs.csv",sep=";")
 
 
    def load_classifier(self):

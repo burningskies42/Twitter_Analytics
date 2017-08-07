@@ -10,10 +10,11 @@ i=1
 total_run_time = time.time()
 while i <=10:
    start_time = time.time()
-   print(str(i)+num_suff[i],'Itterance')
+   print(str(i)+num_suff[(i%9)],'Itterance')
 
    if i==1:
-      word_classifier = words_as_features.WordsClassifier('train', pth=pth, from_server=True,num_features=3000)
+      # word_classifier = words_as_features.WordsClassifier('train', pth=pth, from_server=True,num_features=3000)
+      word_classifier = words_as_features.WordsClassifier('train', pth=pth, from_server=False)
    else:
       word_classifier = words_as_features.WordsClassifier('train', pth=pth, from_server=False)
 

@@ -1,4 +1,15 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{aly2005survey}
+{\sc Aly, M.}
+\newblock Survey on multiclass classification methods.
+\newblock vol.~19.
+
+\bibitem{bay1998combining}
+{\sc Bay, S.~D.}
+\newblock Combining nearest neighbor classifiers through multiple feature
+  subsets.
+\newblock 37--45.
 
 \bibitem{nltk_book}
 {\sc Bird, S., Klein, E., and Loper, E.}
@@ -6,11 +17,36 @@
   natural language toolkit}.
 \newblock O'Reilly Media, Inc., 2009.
 
+\bibitem{bishop1995neural}
+{\sc Bishop, C.~M.}
+\newblock {\em Neural networks for pattern recognition}.
+\newblock Oxford university press, 1995.
+
+\bibitem{breiman1984classification}
+{\sc Breiman, L., Friedman, J., Stone, C.~J., and Olshen, R.~A.}
+\newblock {\em Classification and regression trees}.
+\newblock CRC press, 1984.
+
+\bibitem{SVM_burges1998tutorial}
+{\sc Burges, C.~J.}
+\newblock A tutorial on support vector machines for pattern recognition.
+\newblock {\em Data mining and knowledge discovery 2}, 2 (1998), 121--167.
+
+\bibitem{SVM_cortes1995support}
+{\sc Cortes, C., and Vapnik, V.}
+\newblock Support-vector networks.
+\newblock {\em Machine learning 20}, 3 (1995), 273--297.
+
 \bibitem{bigdata}
 {\sc Demchenko, Y., Grosso, P., De~Laat, C., and Membrey, P.}
 \newblock Addressing big data issues in scientific data infrastructure.
 \newblock In {\em Collaboration Technologies and Systems (CTS), 2013
   International Conference on\/} (2013), IEEE, pp.~pp. 48--55.
+
+\bibitem{guyon1993automatic}
+{\sc Guyon, I., Boser, B., and Vapnik, V.}
+\newblock Automatic capacity tuning of very large vc-dimension classifiers.
+\newblock 147--155.
 
 \bibitem{klier2016datenqualitat}
 {\sc Klier, M., and Heinrich, B.}
@@ -29,6 +65,16 @@
   Duchesnay, E.}
 \newblock Scikit-learn: Machine learning in {P}ython.
 \newblock {\em Journal of Machine Learning Research 12\/} (2011), 2825--2830.
+
+\bibitem{quinlan2014c4}
+{\sc Quinlan, J.~R.}
+\newblock {\em C4. 5: programs for machine learning}.
+\newblock Elsevier, 2014.
+
+\bibitem{rish2001empirical}
+{\sc Rish, I.}
+\newblock An empirical study of the naive bayes classifier.
+\newblock 41--46.
 
 \bibitem{sorensen1948method}
 {\sc S{\o}rensen, T.}

@@ -7,3 +7,8 @@ A level-1 auxiliary file: 5_general_use_cases.aux
 A level-1 auxiliary file: conclussion.aux
 The style file: acm.bst
 Database file #1: bibfile.bib
+Warning--empty booktitle in aly2005survey
+Warning--empty journal in bay1998combining
+Warning--empty journal in guyon1993automatic
+Warning--empty journal in rish2001empirical
+(There were 4 warnings)

@@ -8,11 +8,12 @@
 \BOOKMARK [2][-]{subsection.2.4}{Classification}{section.2}% 8
 \BOOKMARK [2][-]{subsection.2.5}{Information Quality}{section.2}% 9
 \BOOKMARK [1][-]{section.3}{Methodology}{}% 10
-\BOOKMARK [1][-]{section.4}{Application}{}% 11
-\BOOKMARK [2][-]{subsection.4.1}{Information Procurement}{section.4}% 12
-\BOOKMARK [2][-]{subsection.4.2}{Building the Datasets}{section.4}% 13
-\BOOKMARK [3][-]{subsubsection.4.2.1}{Word-Based Features}{subsection.4.2}% 14
-\BOOKMARK [3][-]{subsubsection.4.2.2}{Descriptive Features}{subsection.4.2}% 15
-\BOOKMARK [2][-]{subsection.4.3}{Training Classifier}{section.4}% 16
-\BOOKMARK [2][-]{subsection.4.4}{Classifier Types}{section.4}% 17
-\BOOKMARK [1][-]{section.5}{Genaral Use Cases}{}% 18
+\BOOKMARK [2][-]{subsection.3.1}{Training Classifier}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.2}{Supervised Learning}{section.3}% 12
+\BOOKMARK [2][-]{subsection.3.3}{Unsupervised Learning}{section.3}% 13
+\BOOKMARK [1][-]{section.4}{Application}{}% 14
+\BOOKMARK [2][-]{subsection.4.1}{Information Procurement}{section.4}% 15
+\BOOKMARK [2][-]{subsection.4.2}{Building the Datasets}{section.4}% 16
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Word-Based Features}{subsection.4.2}% 17
+\BOOKMARK [3][-]{subsubsection.4.2.2}{Descriptive Features}{subsection.4.2}% 18
+\BOOKMARK [1][-]{section.5}{Genaral Use Cases}{}% 19

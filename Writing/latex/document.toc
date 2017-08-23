@@ -6,23 +6,33 @@
 \contentsline {subsection}{\numberline {2.1}Machine Learning}{2}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Text Mining}{2}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Unstructured data}{3}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Classification}{3}{subsection.2.4}
-\contentsline {paragraph}{Supervised Learning}{3}{section*.3}
-\contentsline {paragraph}{Unsupervised Learning}{3}{section*.4}
+\contentsline {subsection}{\numberline {2.4}Classification}{4}{subsection.2.4}
+\contentsline {paragraph}{Supervised Learning}{4}{section*.3}
+\contentsline {paragraph}{Unsupervised Learning}{4}{section*.4}
 \contentsline {subsection}{\numberline {2.5}Information Quality}{4}{subsection.2.5}
-\contentsline {section}{\numberline {3}Methodology}{5}{section.3}
-\contentsline {subsection}{\numberline {3.1}Training Classifier}{6}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Supervised Learning}{6}{subsection.3.2}
-\contentsline {paragraph}{Linear Regression}{7}{section*.6}
-\contentsline {paragraph}{Logistic Regression}{8}{section*.7}
-\contentsline {paragraph}{Linear Kernel}{10}{section*.9}
-\contentsline {paragraph}{Polynomial Kernel}{10}{section*.10}
-\contentsline {paragraph}{Radial Basis Function Kernel}{10}{section*.11}
-\contentsline {paragraph}{Sigmoid Kernel}{10}{section*.12}
-\contentsline {subsection}{\numberline {3.3}Unsupervised Learning}{12}{subsection.3.3}
-\contentsline {section}{\numberline {4}Application}{13}{section.4}
-\contentsline {subsection}{\numberline {4.1}Information Procurement}{13}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Building the Datasets}{16}{subsection.4.2}
-\contentsline {subsubsection}{\numberline {4.2.1}Word-Based Features}{16}{subsubsection.4.2.1}
-\contentsline {subsubsection}{\numberline {4.2.2}Descriptive Features}{16}{subsubsection.4.2.2}
-\contentsline {section}{\numberline {5}Genaral Use Cases}{18}{section.5}
+\contentsline {section}{\numberline {3}Methodology}{6}{section.3}
+\contentsline {subsection}{\numberline {3.1}Training Classifier}{7}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Supervised Learning}{8}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Regressions}{8}{subsubsection.3.2.1}
+\contentsline {paragraph}{Linear Regression}{8}{section*.6}
+\contentsline {paragraph}{Logistic Regression}{9}{section*.7}
+\contentsline {subsubsection}{\numberline {3.2.2}Support Vector Machines}{9}{subsubsection.3.2.2}
+\contentsline {paragraph}{Background}{9}{section*.8}
+\contentsline {paragraph}{Implementation}{10}{section*.9}
+\contentsline {paragraph}{Kernel Trick}{13}{section*.11}
+\contentsline {paragraph}{Linear Kernel}{14}{section*.13}
+\contentsline {paragraph}{Polynomial Kernel}{14}{section*.14}
+\contentsline {paragraph}{Gaussian Radial Basis Kernel}{15}{section*.15}
+\contentsline {paragraph}{Sigmoid Kernel}{15}{section*.16}
+\contentsline {paragraph}{Margin Rigidity or Slack}{15}{section*.18}
+\contentsline {paragraph}{Multiclass classification}{16}{section*.19}
+\contentsline {paragraph}{Strengths and Weaknesses}{17}{section*.20}
+\contentsline {subsubsection}{\numberline {3.2.3}Artificial Neural Networks}{17}{subsubsection.3.2.3}
+\contentsline {paragraph}{Intuition}{18}{section*.21}
+\contentsline {subsection}{\numberline {3.3}Unsupervised Learning}{20}{subsection.3.3}
+\contentsline {section}{\numberline {4}Application}{21}{section.4}
+\contentsline {subsection}{\numberline {4.1}Information Procurement}{21}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Building the Datasets}{25}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}Word-Based Features}{25}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}Descriptive Features}{25}{subsubsection.4.2.2}
+\contentsline {section}{\numberline {5}Genaral Use Cases}{27}{section.5}

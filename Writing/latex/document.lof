@@ -1,5 +1,9 @@
 \select@language {english}
-\contentsline {figure}{\numberline {1}{\ignorespaces Clustering of Different Classifiers}}{6}{figure.1}
-\contentsline {figure}{\numberline {2}{\ignorespaces Euclidean Imposition of data. The support vectors, marked with grey squares, define the margin of largest separation between the two classes. \textit {Source: Cortes and Vapnik (1995)} \cite {SVM_cortes1995support}}}{9}{figure.2}
-\contentsline {figure}{\numberline {3}{\ignorespaces Twitter accounts, which present themselves as actual people}}{15}{figure.3}
-\contentsline {figure}{\numberline {4}{\ignorespaces S\o rensen-Dice coefficient}}{15}{figure.4}
+\contentsline {figure}{\numberline {1}{\ignorespaces Clustering of Different Classifiers\relax }}{8}{figure.caption.5}
+\contentsline {figure}{\numberline {2}{\ignorespaces SVM in Euclidean Space}}{10}{figure.caption.10}
+\contentsline {figure}{\numberline {3}{\ignorespaces SVM Dimensionianl Extrapolation}}{13}{figure.caption.12}
+\contentsline {figure}{\numberline {4}{\ignorespaces Sigmoid Kernel}}{15}{figure.caption.17}
+\contentsline {figure}{\numberline {5}{\ignorespaces ANN Perceptron}}{18}{figure.caption.22}
+\contentsline {figure}{\numberline {6}{\ignorespaces ANN XOR Perceptron-Network}}{19}{figure.caption.23}
+\contentsline {figure}{\numberline {7}{\ignorespaces Fake Twitter Accounts}}{23}{figure.caption.36}
+\contentsline {figure}{\numberline {8}{\ignorespaces S\o rensen-Dice coefficient\relax }}{24}{figure.caption.37}

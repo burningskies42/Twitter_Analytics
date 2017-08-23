@@ -48,10 +48,19 @@
 \newblock Automatic capacity tuning of very large vc-dimension classifiers.
 \newblock 147--155.
 
+\bibitem{kimso}
+{\sc Kim, E.}
+\newblock So, what is a kernel anyway?
+
 \bibitem{klier2016datenqualitat}
 {\sc Klier, M., and Heinrich, B.}
 \newblock Datenqualit{\"a}t als erfolgsfaktor im business analytics.
 \newblock {\em Controlling 28}, 8-9 (2016), pp. 488--494.
+
+\bibitem{mcculloch1943logical}
+{\sc McCulloch, W.~S., and Pitts, W.}
+\newblock A logical calculus of the ideas immanent in nervous activity.
+\newblock {\em The bulletin of mathematical biophysics 5}, 4 (1943), 115--133.
 
 \bibitem{mitchell}
 {\sc Mitchell, T.}

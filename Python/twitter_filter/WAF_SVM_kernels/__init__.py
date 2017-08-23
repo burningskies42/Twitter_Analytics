@@ -405,7 +405,6 @@ class WordsClassifier():
       SVC_sig_classifier = SklearnClassifier(SVC(kernel=kern ,gamma=gamm,C=c_par))
       SVC_sig_classifier.train(self.training_set)
       temp_kappa = Kappa(SVC_sig_classifier, self.testing_set).output
-      temp_kappa = Kappa(SVC_classifier, self.testing_set).output
       temp_kappa['Kernel'] = kern
       temp_kappa['gamma'] = gamm
       temp_kappa['C'] = c_par

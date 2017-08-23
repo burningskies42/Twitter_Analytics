@@ -7,18 +7,26 @@ tmargin={2.5cm},bmargin = {2.5cm}]{geometry}
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{amsmath}
+\usepackage{mathtools,tikz}
 \usepackage{graphicx}
 \graphicspath{ {images/} }
 \usepackage{hyperref}
 \usepackage{footnote}
 \usepackage{parskip}
 \usepackage{multirow}
+\usepackage{caption}
+\usepackage{relsize}
+\usepackage{scalerel}
 
 \setlength{\parskip}{0.4em}
 
 \pagenumbering{roman}
 
-
 \addto\captionsenglish{
 	\renewcommand*\contentsname{Table of Contents}
 }
+
+\newcommand{\xoverbrace}[2][\vphantom{\dfrac{A}{A}}]{\overbrace{#1#2}}
+\newcommand{\xunderbrace}[2][\vphantom{\dfrac{A}{A}}]{\underbrace{#1#2}}
+
+\renewcommand{\baselinestretch}{1.3}

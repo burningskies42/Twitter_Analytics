@@ -12,6 +12,8 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.ensemble import RandomForestClassifier
 
+global_score = None
+
 def find_features(document, word_features):
    words = set(document)
    features = {}
@@ -65,13 +67,12 @@ search = {'algorithm': {'k-nn': {'n_neighbors': [1, 5]},
                                            'rbf': {'gamma': [0, 1], 'C': [0, 10]},
                                            'poly': {'degree': [2, 5], 'C': [0, 50], 'coef0': [0, 1]}
                                            }
-                                },
-                        'naive-bayes': None
-   # ,
-   #                      'random-forest': {'n_estimators': [10, 30],
-   #                                        'max_features': [5, 20]}
-                        }
+                                }
          }
+   }
+
+
+
 
 data = [list(i[0].values()) for i in featuresets]
 new_data = []
@@ -106,7 +107,14 @@ def performance(x_train, y_train, x_test, y_test,
     else:
         raise ValueError('Unknown algorithm: %s' % algorithm)
 
-    print(algorithm,model.score(X=x_test, y=y_test))
+    print(algorithm,'========')
+    print('kernel:',kernel)
+    print('gamma:',gamma)
+    print('C:',C)
+    print('coef0:', coef0)
+    print('degree:', degree)
+    print('score:',model.score(X=x_test, y=y_test),'\n')
+    global_score = model.score(X=x_test, y=y_test)
 
     # predict the test set
     if algorithm == 'SVM':
@@ -116,9 +124,11 @@ def performance(x_train, y_train, x_test, y_test,
 
     return optunity.metrics.roc_auc(y_test, predictions, positive=True)
 
+'''
+
 optimal_configuration, info, _ = optunity.maximize_structured(performance,
                                                               search_space=search,
-                                                              num_evals=100)
+                                                              num_evals=10)
 
 print('========')
 print()
@@ -129,3 +139,19 @@ print('========')
 solution = dict([(k, v) for k, v in optimal_configuration.items() if v is not None])
 print('Solution\n========')
 print("\n".join(map(lambda x: "%s \t %s" % (x[0], str(x[1])), solution.items())))
+'''
+
+df = pd.DataFrame(['coef','C','degree','score'])
+
+for coef in range(0, 1):
+   for d in range(2,5):
+      for c in range(1, 50):
+         per = performance(algorithm='SVM', kernel='poly',C=c,degree=d,coef0=coef)
+         df = df.append(pd.Series({'coef':coef,
+                                   'C':c,
+                                   'degree':d,
+                                   'score':global_score
+                                   }),ignore_index=True)
+
+
+df.to_csv('poly_kernel_analysis',sep=';')

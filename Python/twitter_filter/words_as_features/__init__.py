@@ -449,16 +449,20 @@ class WordsClassifier():
       print('======================\n','Linear Kernel')
       SVC_lin_classifier = SklearnClassifier(SVC(kernel='linear'))
       SVC_lin_classifier.train(self.training_set)
-      self.output_log = self.output_log.append(Kappa(SVC_lin_classifier, self.testing_set).output)
+      output = Kappa(SVC_lin_classifier, self.testing_set).output
+      output['Kernel'] = 'linear'
+      self.output_log = self.output_log.append(output)
 
       with open(getcwd()+"\\classifiers\\words_as_features\\SVC_lin.pickle", "wb") as classifier_f:
          pickle.dump(SVC_lin_classifier,classifier_f)
          classifier_f.close()
 
       print('======================\n', 'Polynomial Kernel')
-      SVC_poly_classifier = SklearnClassifier(SVC(kernel='poly'))
+      SVC_poly_classifier = SklearnClassifier(SVC(kernel='poly',C=25,coef0=0.12))
       SVC_poly_classifier.train(self.training_set)
-      self.output_log = self.output_log.append(Kappa(SVC_poly_classifier , self.testing_set).output)
+      output = Kappa(SVC_poly_classifier, self.testing_set).output
+      output['Kernel'] = 'poly'
+      self.output_log = self.output_log.append(output)
 
       with open(getcwd() + "\\classifiers\\words_as_features\\SVC_poly.pickle", "wb") as classifier_f:
          pickle.dump(SVC_poly_classifier , classifier_f)
@@ -466,9 +470,11 @@ class WordsClassifier():
 
       # Also default kernel
       print('======================\n', 'Radial Basis Function Kernel')
-      SVC_classifier = SklearnClassifier(SVC(kernel='rbf',gamma=10))
+      SVC_classifier = SklearnClassifier(SVC(kernel='rbf',gamma=0.1,C=1.38))
       SVC_classifier.train(self.training_set)
-      self.output_log = self.output_log.append(Kappa(SVC_classifier, self.testing_set).output)
+      output = Kappa(SVC_classifier, self.testing_set).output
+      output['Kernel'] = 'rbf'
+      self.output_log = self.output_log.append(output)
 
       with open(getcwd() + "\\classifiers\\words_as_features\\SVC_rbf.pickle", "wb") as classifier_f:
          pickle.dump(SVC_classifier, classifier_f)
@@ -477,7 +483,9 @@ class WordsClassifier():
       print('======================\n', 'Sigmoid Kernel')
       SVC_sig_classifier = SklearnClassifier(SVC(kernel='sigmoid',gamma=10))
       SVC_sig_classifier.train(self.training_set)
-      self.output_log = self.output_log.append(Kappa(SVC_sig_classifier, self.testing_set).output)
+      output = Kappa(SVC_sig_classifier, self.testing_set).output
+      output['Kernel'] = 'sigmoid'
+      self.output_log = self.output_log.append(output)
 
       with open(getcwd() + "\\classifiers\\words_as_features\\SVC_sigmoid.pickle", "wb") as classifier_f:
          pickle.dump(SVC_sig_classifier, classifier_f)
@@ -585,7 +593,7 @@ class WordsClassifier():
       # Reorder ouput log
       self.output_log = self.output_log[[
          # ID
-         'time_stamp','Name',
+         'time_stamp','Name','Kernel',
          # Sizes
          'Train_News','Train_Spam','Test_News','Test_Spam',
          'True_News','True_Spam','False_News','False_Spam',

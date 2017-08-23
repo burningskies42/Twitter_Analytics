@@ -117,7 +117,12 @@ class listener(StreamListener):
                     elif quoted:
                         twt_text = '------------- quote source: ' + twt_text
 
-                    print(str(self.count + 1) + '.', twt_text)
+                    with open('C:/Users/Leon/Documents/Masterarbeit/Python/twitter_filter/classifiers/words_as_features/voted_classifier.pickle', "rb") as classifier_f:
+                        clf = pickle.load( classifier_f)
+                        classifier_f.close()
+
+                    cls = clf.classify(twt_text)
+                    print(str(self.count + 1) + '.', twt_text,cls)
 
                     # if self.classification == 'news':
                     #     print(str(self.count+1)+'.',Fore.GREEN +self.classification+Style.RESET_ALL,twt_text)

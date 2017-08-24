@@ -34,7 +34,7 @@ from os import getcwd,get_exec_path
 import pandas as pd
 import time
 import datetime
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 from tweet_tk.fetch_tweets import fetch_tweets_by_ids
 

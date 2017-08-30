@@ -16,23 +16,33 @@
 \contentsline {subsubsection}{\numberline {3.2.1}Regressions}{8}{subsubsection.3.2.1}
 \contentsline {paragraph}{Linear Regression}{8}{section*.6}
 \contentsline {paragraph}{Logistic Regression}{9}{section*.7}
-\contentsline {subsubsection}{\numberline {3.2.2}Support Vector Machines}{9}{subsubsection.3.2.2}
-\contentsline {paragraph}{Background}{9}{section*.8}
-\contentsline {paragraph}{Implementation}{10}{section*.9}
-\contentsline {paragraph}{Kernel Trick}{13}{section*.11}
-\contentsline {paragraph}{Linear Kernel}{14}{section*.13}
-\contentsline {paragraph}{Polynomial Kernel}{14}{section*.14}
-\contentsline {paragraph}{Gaussian Radial Basis Kernel}{15}{section*.15}
-\contentsline {paragraph}{Sigmoid Kernel}{15}{section*.16}
-\contentsline {paragraph}{Margin Rigidity or Slack}{15}{section*.18}
-\contentsline {paragraph}{Multiclass classification}{16}{section*.19}
-\contentsline {paragraph}{Strengths and Weaknesses}{17}{section*.20}
-\contentsline {subsubsection}{\numberline {3.2.3}Artificial Neural Networks}{17}{subsubsection.3.2.3}
-\contentsline {paragraph}{Intuition}{18}{section*.21}
-\contentsline {subsection}{\numberline {3.3}Unsupervised Learning}{20}{subsection.3.3}
-\contentsline {section}{\numberline {4}Application}{21}{section.4}
-\contentsline {subsection}{\numberline {4.1}Information Procurement}{21}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Building the Datasets}{25}{subsection.4.2}
-\contentsline {subsubsection}{\numberline {4.2.1}Word-Based Features}{25}{subsubsection.4.2.1}
-\contentsline {subsubsection}{\numberline {4.2.2}Descriptive Features}{25}{subsubsection.4.2.2}
-\contentsline {section}{\numberline {5}Genaral Use Cases}{27}{section.5}
+\contentsline {subsubsection}{\numberline {3.2.2}Naive Bayes}{9}{subsubsection.3.2.2}
+\contentsline {paragraph}{Classification}{10}{section*.8}
+\contentsline {paragraph}{Variations of the Algorithm}{11}{section*.9}
+\contentsline {subparagraph}{Gaussian}{11}{section*.10}
+\contentsline {subparagraph}{Multinomial}{11}{section*.11}
+\contentsline {subparagraph}{Bernoulli}{12}{section*.12}
+\contentsline {subsubsection}{\numberline {3.2.3}Support Vector Machines}{12}{subsubsection.3.2.3}
+\contentsline {paragraph}{Background}{12}{section*.13}
+\contentsline {paragraph}{Implementation}{13}{section*.14}
+\contentsline {paragraph}{Kernel Trick}{16}{section*.16}
+\contentsline {paragraph}{Linear Kernel}{17}{section*.18}
+\contentsline {paragraph}{Polynomial Kernel}{17}{section*.19}
+\contentsline {paragraph}{Gaussian Radial Basis Kernel}{18}{section*.20}
+\contentsline {paragraph}{Sigmoid Kernel}{18}{section*.21}
+\contentsline {paragraph}{Margin Rigidity or Slack}{19}{section*.23}
+\contentsline {paragraph}{Multiclass classification}{20}{section*.24}
+\contentsline {paragraph}{Strengths and Weaknesses}{20}{section*.25}
+\contentsline {subsubsection}{\numberline {3.2.4}Artificial Neural Networks}{21}{subsubsection.3.2.4}
+\contentsline {paragraph}{Intuition}{21}{section*.26}
+\contentsline {paragraph}{Classification}{22}{section*.29}
+\contentsline {paragraph}{Stochastic Gradient Descent}{23}{section*.31}
+\contentsline {paragraph}{Adaptive Moment Estimation}{25}{section*.33}
+\contentsline {paragraph}{ID3 Algorithm}{26}{section*.36}
+\contentsline {section}{\numberline {4}Application}{28}{section.4}
+\contentsline {subsection}{\numberline {4.1}Information Procurement}{28}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Building the Datasets}{32}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}Word-Based Features}{32}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}Descriptive Features}{32}{subsubsection.4.2.2}
+\contentsline {section}{\numberline {5}Results}{34}{section.5}
+\contentsline {section}{\numberline {6}Genaral Use Cases}{35}{section.6}

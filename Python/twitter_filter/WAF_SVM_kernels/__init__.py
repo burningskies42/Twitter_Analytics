@@ -209,7 +209,7 @@ class WordsClassifier():
       self.output_log = pd.DataFrame()
       self.class_ratio = 1
       self.time_stamp = datetime.datetime.now().strftime("%Y_%m_%d_%H:%M:%S")
-
+      self.num_features = num_features
 
       self.training_set = None
       self.testining_set = None
@@ -425,11 +425,12 @@ class WordsClassifier():
       self.output_log['Train_Spam'] = sizes_df.loc['Training']['Not-News']
       self.output_log['Test_News']  = sizes_df.loc['Testing']['News']
       self.output_log['Test_Spam']  = sizes_df.loc['Testing']['Not-News']
+      self.output_log['feature_cnt'] = self.num_features
 
       # Reorder ouput log
       self.output_log = self.output_log[[
          # ID
-         'time_stamp','Name','Kernel','gamma','C',
+         'time_stamp','Name','Kernel','gamma','C','feature_cnt',
          # Sizes
          'Train_News','Train_Spam','Test_News','Test_Spam',
          'True_News','True_Spam','False_News','False_Spam',

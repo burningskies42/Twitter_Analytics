@@ -3,13 +3,13 @@ A level-1 auxiliary file: 1_intro.aux
 A level-1 auxiliary file: 2_basic_concepts.aux
 A level-1 auxiliary file: 3_method.aux
 A level-1 auxiliary file: 4_application.aux
-A level-1 auxiliary file: 5_general_use_cases.aux
+A level-1 auxiliary file: 5_results.aux
+A level-1 auxiliary file: 6_general_use_cases.aux
 A level-1 auxiliary file: conclussion.aux
 The style file: acm.bst
 Database file #1: bibfile.bib
 Warning--empty booktitle in aly2005survey
-Warning--empty journal in bay1998combining
 Warning--empty journal in guyon1993automatic
 Warning--empty journal in kimso
 Warning--empty journal in rish2001empirical
-(There were 5 warnings)
+(There were 4 warnings)

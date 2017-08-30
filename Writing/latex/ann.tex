@@ -1,0 +1,105 @@
+\subsubsection{Artificial Neural Networks}
+	An Artificial Neural Network (ANN) \cite{mcculloch1943logical} is a mathematical computational model, whose development was inspired by cognitional processes in the brains' nervous system. This sort of network typically consists of numerous interconnected input and output information units. The form of connectivity between these units embodies the connection strength, in a fashion similar to how neurons are linked in the brain. ANNs are predominantly used in Cognitive Sciences and related software such as Artificial Intelligence Systems. Common tasks for such systems are character recognition, facial recognition, financial markets prediction and test mining among other uses.
+	
+	\paragraph{Intuition}
+		A neural network is composed of linked processors called neurons, each capable of executing a simple mathematical operation. However, when combined said networks are capable of sophisticated problem solving. Any given neuron receives inputs $ i $ with according weights $ w $. A sum of all weighted inputs is then calculated. When this sum exceeds a threshold value $ T $ the output $ O $ is equal to one and zero otherwise as in [\ref{ann_neuron_sumprod}]. This operation resembles the operation of a biological neuron, which releases an electric signal when its agitation transcends a certain limit.
+	
+	\begin{equation}
+		\langle i,w \rangle = \sum_j i_j w_j = 
+			\begin{cases}
+				1 \ \ \text{,  } \sum_j i_j w_j \geq T \\
+				0 \ \ \text{,  } \sum_j i_j w_j < T 
+			\end{cases}
+		 = O
+		\label{ann_neuron_sumprod}
+	\end{equation}
+	
+	\begin{figure}[h]
+		\centering
+		\captionsetup{width=0.8\textwidth}
+		\includegraphics[width=0.8\textwidth]{ANN_percept.png}
+		\caption[ANN Perceptron]{
+			\footnotesize{
+				Structure of a Perceptron with $ n $ input nodes $ i $ and output $ o $. Output 1 when threshold is surpassed and zero otherwise.
+			}
+		} 
+		\label{ANN_percept}
+	\end{figure}
+	
+	The organization of neurons, also called Perceptrons, is crucial to the networks operation and the the input weights are the ones, which determine the pattern to be recognized \cite{bishop1995neural}. Therefore the prime objective when constructing an ANN is determining proper values for the weights. The neurons are then used as logical gateway, which can carry out the "AND" and "OR" operations. A major obstacle in the early days of ANNs was that it was demonstrated that a logical gate of the type "XOR" (exclusive OR) could not be achieved irregardless of the weights on the inputs. This difficulty was later overcome with the introduction of multi-layered ANN.
+	
+	Multi-layered ANNs are build from several layers of neurons, where all layers except the first(input layer) and the last (output layer) receive their inputs from the lower level of neurons and output into the higher layer of neurons, which in turn use this output as their input. It was than demonstrated that a "XOR" gateway could be constructed using a 3-layered network [\ref{ANN_XOR}].
+	
+	\begin{figure}[h]
+		\centering
+		\captionsetup{width=0.8\textwidth}
+		\includegraphics[width=0.8\textwidth]{ANN_XOR.png}
+		\caption[ANN XOR Perceptron-Network]{
+			\footnotesize{
+				A three layer Network, creating a XOR gateway.
+			}
+		} 
+		\label{ANN_XOR}
+	\end{figure}	
+	
+	
+	\paragraph{Classification}
+		The type of network used for the purpose of classification was a Multilayer Perceptron (MLP) which is classified as as feedforward ANN. A feedforward network, is such which does not allow cycles. Thus each layer only outputs information to the next layer, and not to the ones which came before. Typically a non-linear sigmoid function is used for activation rather than a binary step function as described in [\ref{ANN_percept}]. A sigmoid function [\ref{ann_sigmoid}] also often called a Soft Step or another continuous function are usually used, since ultimately the algorithm will have to calculate gradients to maximize or minimize an optimization function. Therefore this function should be continuous, differentiable and Real-valued.
+		
+		\begin{equation}
+			\phi(x) = \frac{1}{1+ e^{-x}}
+			\label{ann_sigmoid}
+		\end{equation}
+			
+		\par
+		
+		The network is than optimized through the process of \textbf{Backpropogation} of errors. During the backwards propagation the initial weights of all the axons (input nodes of a neuron) weights are determined at random. Afterwards the optimization problem is set by measuring the aggregate error terms in classification (misclassification). This error is calculated as a function of all afore mentioned weights. This function thus needs to be minimized by observing the contribution of each weight to the error. In the next step, we take the gradient (derivative in vector space) and change the weights by $ \Delta w $ accordingly as shown in [\ref{ANN_backprop}]. We repeat this process until we no longer gets improvement (lower error terms) or the improvement is lower than a predetermined threshold.
+		
+		\begin{figure}[h]
+			\centering
+			\captionsetup{width=0.8\textwidth}
+			\includegraphics[width=0.5\textwidth]{grad_desc.png}
+			\caption[ANN Gradient Descent]{
+				\footnotesize{
+					A descent down the error function, taking gradients of $ w $ to calculate the steps.
+				}
+			} 
+			\label{ANN_backprop}
+		\end{figure}
+	
+	\paragraph{Stochastic Gradient Descent}
+		In the basic variant of ANN's  we optimize an objective function by tuning the weights in a manner which reduces the error term gradually with each iteration. With each repetition the weights are adjusted by $ \Delta w $ according to the gradient for each weight over all the observations. Every repetition  requires the calculation of the function's derivatives with respect to every data point and their summation within every iteration. This base method is also referred to as Batch Gradient Descent (BGD). This means, that in order to tune a weight $ w_j $ we must go through all its derivatives in the gradient and sum them up.  Applying this technique requires us to derive the function $ m \cdot n $ times in each iteration of the algorithm, with $ m $ being the number of data points and $ n $ the set of features. The problem with this procedure is its computational costliness which increases as the data set grows larger. Therefore the standard BGD approach scales poorly. We can hence modify the algorithm using a method called Stochastic Gradient Descent(SGD) to address scalability issues.
+		
+		\par
+	
+		To carry out SGD we first shuffle the training dataset in interest of safety since we want to try and avoid any inherit order present in the dataset. Subsequently, inside the spectrum of the first data point we derive each of the weight modification and adjust after each derivation. Than we continue and repeat this process for each data point. We are now adjusting after each derivation instead for all derivations of a data point. Therefore, the descent tempo is now $ (m \cdot n) \ \frac{\text{improvements}}{\text{algorithm round}}$ as compared to the tempo $(n) \ \frac{\text{improvements}}{\text{algorithm round}}$ of BGD. Finally, the loop over all the data points can be repeated more than once for better results.
+		
+		\par
+		
+		Since in each iteration we try and fit for a single data point of the dataset it is much more likely that the adjustment is not an improvement and actually takes us further (or not nearer) from the global minimum. Nonetheless, the algorithm does converge to the extremum and faster at that, then the BGD approach. I plot a graphical illustration of the algorithm convergence in [\ref{ann_sto_grad_desc}]. SGD is clearly recognizable with its "squiggly" line. One notable problem with this algorithm is that it might continuously overshoot the local minimum because of its high variance.
+		
+		\begin{figure}[H]
+			\centering
+			\captionsetup{width=0.8\textwidth}
+			\includegraphics[width=0.5\textwidth]{sto_grad_desc.png}
+			\caption[Batch and Stochastic Gradient Descent]{
+				\footnotesize{
+					A comparison of the Batch and Stochastic Gradient Descent Approaches 
+				}
+			} 
+			\label{ann_sto_grad_desc}
+		\end{figure}
+	
+		In the example above, a SGD approach is described, in which we fit the weights for a single observation at a time. It also possible to take very small batches of observations and fitting the algorithm on them. This approach is also known as Mini-Batch Gradient Descent and combines the best of both approaches, since it both addresses the overshooting complication of SGD and is much faster than BGD. Thus, by adjusting the batch size one can control the trade-off between speed and accuracy, where a larger batch should in a more accurate step, but the computation time will also increase. 
+		
+		\par
+		
+		The mechanism of Stochastic Gradient Descent at its core is extremely inaccurate on a single step basis, since the probability of improvement is much lower when compared to Batch Gradient Descent. This is compensated for with a much faster improvement rate, making the accumulated improvement catch up and overtake that of the normal scenario. The heightened convergence speed is what makes this approach more suitable for classification with extensive training data sets.
+		
+		\paragraph{Adaptive Moment Estimation}
+			ADAM is another approach with can be used in tandem with SGD. Using ADAM we calculate the first (mean) and second (variance) moment of the gradients and modify the step size for each parameter (feature) in accordance with its frequency. Therefore, the update size is usually more significant for infrequent parameters and more fine for frequently occurring parameters.
+			
+		 
+
+				
+				

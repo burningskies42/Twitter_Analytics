@@ -25,113 +25,12 @@
 	
 	\subsection{Supervised Learning}
 	
-	\subsubsection{Regressions}
-	One approach and probably the most basic one is simply running a regression [\ref{regression}] with all the features as the independent variables and the a numeric representation of the classes as the dependent variable. Some threshold value for the classes must be determined since the estimate for the explained variable, will have a non-deterministic value. 
-	
-	\begin{equation}
-		\mathbb{E}(\hat{y} \ \vert \ \textbf{x}) \approx 
-		\begin{cases}
-			label = \text{News}, &\hat{y} \geq y^* \\
-			label = \text{Not News},\ \ &\hat{y} < y^*
-		\end{cases}
-		\label{regression}
-	\end{equation}
-	
-	\par
-	\paragraph{Linear Regression} 
-		This method builds a linear dependency system between the explained variable (the \textit{Class} in this case) and the explaining variables (\textit{features}). With the \textit{Bag-of-Words} approach, each variable \textit{x} is a dummy variable indicating whether a given word \textit{m} is present in Tweet \textit{i}. The estimations parameters, which are denoted with $\beta_j$ are derived using Ordinary Least Squares. In itself, the linear regression estimation is a weak predictor for the purpose of classification, but it allows for calculating other useful statistics such as the coefficient of determination, commonly known as $R^2$. This static demonstrates the part of the variance that is explained using the provided variables and is also sometimes called 'goodness of fit'. We therefore strive to maximize it as much as possible. The more of the variance that is covered by our variables, the better can we predict the out come of the classification. Another point of interest is the distribution of predicted classifications ($\hat{y}$). In an ideal scenario, the distribution of $\hat{y}$ would be concentrated around the numerical representations of the two classed, as follows:
-	
-	The basic premise for the use of linear regressions as classification tools, where n is the number of observations, m is the number of features [\ref{lin_reg}].
-	
-	\begin{equation}
-		y_i = \beta_1 x_{1i}+ \beta_2 x_{2i} + ... + \beta_m x_{mi} + \epsilon_i \ \ \ \ \ \ \ \ 
-		\forall \ i \in [1,n].
-		\label{lin_reg}
-	\end{equation}
-	
-	\paragraph{Logistic Regression} Despite its name, the actual regression model executed here is linear, and is used primarily for classification rather than regression analysis. This regression scheme differs from linear firstly, in the fact, that the possible outcomes of the dependent variable are discreet rather than continuous. Secondly, the probabilities which describe the different outcomes of a regression instance, are modeled using a logistic function. The discrete outcomes can in turn be converted to labels, which in allows for a much more fluent application as a classification tool and is therefore commonly employed in  Machine Learning. Logistic regression analysis is formally represented as follows in  [\ref{logit}]. The $x$ vector represents all explanatory variables, in our case, the Tweet features. The term error $\epsilon$ follows the standard logistic distribution, which also gives the regression its name. 
-	
-	\begin{equation}
-	y = 
-	\begin{cases}
-	1 \ \  \beta_0 + \beta_1 x + \epsilon > 0 \\
-	0 \ \  \text{else } 
-	\end{cases} \text{         } \forall \  x = 
-	\begin{pmatrix}x_1\\x_2\\...\\x_n \end{pmatrix}
-	\label{logit}
-	\end{equation}
-	
+	\input{regressions}
+	\input{naive_bayes}
 	\input{svm}
-	
-	\subsubsection{Artificial Neural Networks}
-		An Artificial Neural Network (ANN) \cite{mcculloch1943logical} is a mathematical computational model, whose development was inspired by cognitional processes in the brains' nervous system. This sort of network typically consists of numerous interconnected input and output information units. The form of connectivity between these units embodies the connection strength, in a fashion similar to how neurons are linked in the brain. ANNs are predominantly used in Cognitive Sciences and related software such as Artificial Intelligence Systems. Common tasks for such systems are character recognition, facial recognition, financial markets prediction and test mining among other uses.
-		
-		\paragraph{Intuition}
-		A neural network is composed of linked processors called neurons, each capable of executing a simple mathematical operation. However, when combined said networks are capable of sophisticated problem solving. Any given neuron receives inputs $ i $ with according weights $ w $. A sum of all weighted inputs is then calculated. When this sum exceeds a threshold value $ T $ the output $ O $ is equal to one and zero otherwise as in [\ref{ann_neuron_sumprod}]. This operation resembles the operation of a biological neuron, which releases an electric signal when its agitation transcends a certain limit.
-		
-		\begin{equation}
-			\langle i,w \rangle = \sum_j i_j w_j = 
-				\begin{cases}
-					1 \ \ \text{,  } \sum_j i_j w_j \geq T \\
-					0 \ \ \text{,  } \sum_j i_j w_j < T 
-				\end{cases}
-				 = O
-			\label{ann_neuron_sumprod}
-		\end{equation}
-		
-		\begin{figure}[h]
-			\centering
-			\captionsetup{width=0.8\textwidth}
-			\includegraphics[width=0.8\textwidth]{ANN_percept.png}
-			\caption[ANN Perceptron]{
-				\footnotesize{
-					Structure of a Perceptron with $ n $ input nodes $ i $ and output $ o $. Output 1 when threshold is surpassed and zero otherwise.
-				}
-			} 
-			\label{ANN_percept}
-		\end{figure}
-		
-		The organization of neurons, also called Perceptrons, is crucial to the networks operation and the the input weights are the ones, which determine the pattern to be recognized. Therefore the prime objective when constructing an ANN is determining proper values for the weights. The neurons are then used as logical gateway, which can carry out the "AND" and "OR" operations. A major obstacle in the early days of ANNs was that it was demonstrated that a logical gate of the type "XOR" (exclusive OR) could not be achieved irregardless of the weights on the inputs. This difficulty was later overcome with the introduction of multi-layered ANN.
-		
-		Multi-layered ANNs are build from several layers of neurons, where all layers except the first(input layer) and the last (output layer) receive their inputs from the lower level of neurons and output into the higher layer of neurons, which in turn use this output as their input. It was than demonstrated that a "XOR" gateway could be constructed using a 3-layered network [\ref{ANN_XOR}].
-		
-		\begin{figure}[h]
-			\centering
-			\captionsetup{width=0.8\textwidth}
-			\includegraphics[width=0.8\textwidth]{ANN_XOR.png}
-			\caption[ANN XOR Perceptron-Network]{
-				\footnotesize{
-					A three layer Network, creating a XOR gateway.
-				}
-			} 
-			\label{ANN_XOR}
-		\end{figure}
-		
-	
-	 \cite{bishop1995neural}
-	\subsection*{Stochastic Gradient Descent}
-	{\color{red} placeholder}
-	\subsection*{Nearest Neighbors}
-	{\color{red} placeholder} \cite{bay1998combining}
-	\subsection*{Naive Bayes}
-	{\color{red} placeholder} \cite{rish2001empirical}
-	\subsection*{Decision Trees and Ensemble Methods}
-	{\color{red} placeholder}
-	\cite{quinlan2014c4} \cite{breiman1984classification}
-	\subsection*{Stochastic Gradient Descent}
-	{\color{red} placeholder}
-	
-	\newpage
-	\subsection{Unsupervised Learning}
-	{\color{red} placeholder}
-	\subsubsection*{Gaussian Mixture}
-	{\color{red} placeholder}
-	\subsubsection*{Clustering}
-	{\color{red} placeholder}
-	\subsubsection*{Covariance estimation}
-	{\color{red} placeholder}
-	\subsubsection*{Neural network models (unsupervised)}
-	{\color{red} placeholder}
+	\input{ann}
+	\input{trees}
+
 	
 	
 	

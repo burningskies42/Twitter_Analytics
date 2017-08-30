@@ -5,12 +5,6 @@
 \newblock Survey on multiclass classification methods.
 \newblock vol.~19.
 
-\bibitem{bay1998combining}
-{\sc Bay, S.~D.}
-\newblock Combining nearest neighbor classifiers through multiple feature
-  subsets.
-\newblock 37--45.
-
 \bibitem{nltk_book}
 {\sc Bird, S., Klein, E., and Loper, E.}
 \newblock {\em Natural language processing with Python: analyzing text with the
@@ -74,6 +68,11 @@
   Duchesnay, E.}
 \newblock Scikit-learn: Machine learning in {P}ython.
 \newblock {\em Journal of Machine Learning Research 12\/} (2011), 2825--2830.
+
+\bibitem{quinlan1986induction}
+{\sc Quinlan, J.~R.}
+\newblock Induction of decision trees.
+\newblock {\em Machine learning 1}, 1 (1986), 81--106.
 
 \bibitem{quinlan2014c4}
 {\sc Quinlan, J.~R.}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100) (preloaded format=pdflatex 2017.3.31)  22 AUG 2017 15:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100) (preloaded format=pdflatex 2017.3.31)  30 AUG 2017 14:06
 entering extended mode
 **./document.tex
 (document.tex
@@ -690,9 +690,142 @@ Package: etoolbox 2017/01/02 v2.4 e-TeX tools for LaTeX (JAW)
 \mnxsrwidth=\skip60
 \LMex=\skip61
 \LMpt=\skip62
+)
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\latex\pgfplots\pgfplots.sty
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\pgfplots.revisio
+n.tex)
+Package: pgfplots 2017/06/05 v1.15 Data Visualization (1.15)
+
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\pgfplots.code.te
+x
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\pgfplotscore.cod
+e.tex
+\t@pgfplots@toka=\toks42
+\t@pgfplots@tokb=\toks43
+\t@pgfplots@tokc=\toks44
+\pgfplots@tmpa=\dimen191
+\c@pgfplots@coordindex=\count141
+\c@pgfplots@scanlineindex=\count142
+
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\sys\pgfplotssysg
+eneric.code.tex))
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\libs\pgfplotslib
+rary.code.tex)
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\oldpgfcompatib\p
+gfplotsoldpgfsupp_loader.code.tex
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryfpu.cod
+e.tex")
+Package pgfplots: loading complementary arithmetics for your pgf version...
+
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\oldpgfcompatib\p
+gfplotsoldpgfsupp_pgflibraryfpu.code.tex)
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\oldpgfcompatib\p
+gfplotsoldpgfsupp_pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count143
 ))
-(document.aux (1_intro.aux) (2_basic_concepts.aux) (3_method.aux)
-(4_application.aux) (5_general_use_cases.aux) (conclussion.aux))
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\util\pgfplotsuti
+l.code.tex
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\liststructure\pg
+fplotsliststructure.code.tex)
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\liststructure\pg
+fplotsliststructureext.code.tex)
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\liststructure\pg
+fplotsarray.code.tex
+\c@pgfplotsarray@tmp=\count144
+)
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\liststructure\pg
+fplotsmatrix.code.tex)
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\numtable\pgfplot
+stableshared.code.tex
+\c@pgfplotstable@counta=\count145
+\t@pgfplotstable@a=\toks45
+)
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\liststructure\pg
+fplotsdeque.code.tex)
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\util\pgfplotsbin
+ary.code.tex
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\util\pgfplotsbin
+ary.data.code.tex))
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\util\pgfplotsuti
+l.verb.code.tex)
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\libs\pgflibraryp
+gfplots.surfshading.code.tex
+\c@pgfplotslibrarysurf@no=\count146
+
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\sys\pgflibrarypg
+fplots.surfshading.pgfsys-pdftex.def)))
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\util\pgfplotscol
+ormap.code.tex
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\util\pgfplotscol
+or.code.tex))
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\pgfplotsstackedp
+lots.code.tex)
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\pgfplotsplothand
+lers.code.tex
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\pgfplotsmeshplot
+handler.code.tex
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\pgfplotsmeshplot
+image.code.tex)))
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\pgfplots.scaling
+.code.tex)
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\pgfplotscoordpro
+cessing.code.tex)
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\pgfplots.errorba
+rs.code.tex)
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\pgfplots.markers
+.code.tex)
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\pgfplotsticks.co
+de.tex)
+(C:\Users\Leon\AppData\Roaming\MiKTeX\2.9\tex\generic\pgfplots\pgfplots.paths.c
+ode.tex)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\librarie
+s\tikzlibrarydecorations.code.tex"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\modules\pgfmoduledecoration
+s.code.tex"
+\pgfdecoratedcompleteddistance=\dimen192
+\pgfdecoratedremainingdistance=\dimen193
+\pgfdecoratedinputsegmentcompleteddistance=\dimen194
+\pgfdecoratedinputsegmentremainingdistance=\dimen195
+\pgf@decorate@distancetomove=\dimen196
+\pgf@decorate@repeatstate=\count147
+\pgfdecorationsegmentamplitude=\dimen197
+\pgfdecorationsegmentlength=\dimen198
+)
+\tikz@lib@dec@box=\box40
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\librarie
+s\tikzlibrarydecorations.pathmorphing.code.tex"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\libraries\decorations\pgfli
+brarydecorations.pathmorphing.code.tex"))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\librarie
+s\tikzlibrarydecorations.pathreplacing.code.tex"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\libraries\decorations\pgfli
+brarydecorations.pathreplacing.code.tex"))
+\pgfplots@numplots=\count148
+\pgfplots@xmin@reg=\dimen199
+\pgfplots@xmax@reg=\dimen256
+\pgfplots@ymin@reg=\dimen257
+\pgfplots@ymax@reg=\dimen258
+\pgfplots@zmin@reg=\dimen259
+\pgfplots@zmax@reg=\dimen260
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\librarie
+s\tikzlibraryplotmarks.code.tex"
+File: tikzlibraryplotmarks.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryplotmar
+ks.code.tex"
+File: pgflibraryplotmarks.code.tex 2015/08/03 v3.0.1a (rcs-revision 1.14)
+))) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count149
+\float@exts=\toks46
+\float@box=\box41
+\@float@everytoks=\toks47
+\@floatcapt=\box42
+)) (document.aux (1_intro.aux) (2_basic_concepts.aux) (3_method.aux)
+(4_application.aux) (5_results.aux) (6_general_use_cases.aux) (conclussion.aux)
+)
 \openout1 = `document.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 2.
@@ -709,20 +842,19 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 2.
 LaTeX Font Info:    ... okay on input line 2.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 2.
 LaTeX Font Info:    ... okay on input line 2.
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count141
-\scratchdimen=\dimen191
-\scratchbox=\box40
-\nofMPsegments=\count142
-\nofMParguments=\count143
-\everyMPshowfont=\toks42
-\MPscratchCnt=\count144
-\MPscratchDim=\dimen192
-\MPnumerator=\count145
-\makeMPintoPDFobject=\count146
-\everyMPtoPDFconversion=\toks43
+\scratchcounter=\count150
+\scratchdimen=\dimen261
+\scratchbox=\box43
+\nofMPsegments=\count151
+\nofMParguments=\count152
+\everyMPshowfont=\toks48
+\MPscratchCnt=\count153
+\MPscratchDim=\dimen262
+\MPnumerator=\count154
+\makeMPintoPDFobject=\count155
+\everyMPtoPDFconversion=\toks49
 ) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -771,7 +903,7 @@ G,.JBIG2,.JB2,.eps]
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 ABD: EveryShipout initializing macros
-\AtBeginShipoutBox=\box41
+\AtBeginShipoutBox=\box44
 Package hyperref Info: Link coloring OFF on input line 2.
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
@@ -780,7 +912,7 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count147
+\c@section@level=\count156
 )
 LaTeX Info: Redefining \ref on input line 2.
 LaTeX Info: Redefining \pageref on input line 2.
@@ -791,11 +923,18 @@ LaTeX Info: Redefining \nameref on input line 2.
 \openout4 = `document.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
- (title.tex
-LaTeX Font Info:    Try loading font information for U+msa on input line 23.
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+
+Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
+ick labels; missing features). Consider writing \pgfplotsset{compat=1.15} into 
+your preamble.
+ on input line 2.
+
+(title.tex
+LaTeX Font Info:    Try loading font information for U+msa on input line 23.
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 23.
@@ -812,19 +951,20 @@ oc)
 \openout5 = `document.toc'.
 
 
-(document.lof)
+(document.lofpdfTeX warning (ext4): destination with the same identifier (name{
+page.i}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.9 ...c Gradient Descent}}{25}{figure.caption.32}
+                                                   [1])
 \tf@lof=\write6
 \openout6 = `document.lof'.
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.6 	\include{1_intro}
-                       [1]
+ [2]
 \openout2 = `1_intro.aux'.
 
- (1_intro.tex) [1
+ (1_intro.tex)
+[1
 
 ]
 \openout2 = `2_basic_concepts.aux'.
@@ -849,7 +989,7 @@ ine 22.
 
 
 ]
-<images/methods.png, id=193, 350.5095pt x 154.176pt>
+<images/methods.png, id=206, 350.5095pt x 154.176pt>
 File: images/methods.png Graphic file (type png)
  <use images/methods.png>
 Package pdftex.def Info: images/methods.png used on input line 21.
@@ -858,118 +998,165 @@ Package pdftex.def Info: images/methods.png used on input line 21.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[7] [8 <./images/methods.png>] (svm.tex [9]
-<images/svm.png, id=224, 463.13025pt x 334.24875pt>
+(regressions.tex [7] [8 <./images/methods.png>]) (naive_bayes.tex [9]
+Overfull \hbox (3.72084pt too wide) in paragraph at lines 28--29
+[]\OT1/cmr/m/n/12 In [[]7[]] we de-rive that the con-di-tional prob-a-bil-ity t
+erm, $\OML/cmm/m/it/12 P\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x[]\OMS/cmsy/m/n/12 j
+\OML/cmm/m/it/12 x[]; :::; x[]; C[]\OT1/cmr/m/n/12 )$
+ []
+
+[10] [11]
+Overfull \hbox (14.44058pt too wide) in paragraph at lines 82--83
+[]\OT1/cmr/m/n/12 When ex-trap-o-lated into log-space, [[]10[]] turns into [[]1
+1[]], where $\OML/cmm/m/it/12 b \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 log[]P\OT1/c
+mr/m/n/12 (\OML/cmm/m/it/12 C[]\OT1/cmr/m/n/12 )[]$
+ []
+
+) (svm.tex [12] <images/svm.png, id=282, 463.13025pt x 334.24875pt>
 File: images/svm.png Graphic file (type png)
- <use images/svm.png>
+
+<use images/svm.png>
 Package pdftex.def Info: images/svm.png used on input line 12.
 (pdftex.def)             Requested size: 295.90979pt x 213.56145pt.
 
-[10 <./images/svm.png>] [11] [12]
-<images/data_2d_to_3d.png, id=270, 1308.087pt x 448.074pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[13] [14 <./images/svm.png>] [15]
+<images/data_2d_to_3d.png, id=327, 1308.087pt x 448.074pt>
 File: images/data_2d_to_3d.png Graphic file (type png)
 
 <use images/data_2d_to_3d.png>
 Package pdftex.def Info: images/data_2d_to_3d.png used on input line 131.
 (pdftex.def)             Requested size: 295.90979pt x 101.35925pt.
- [13 <./images/data_2d_to_3d.png>] [14]
-<images/sigmoid.png, id=301, 348.1005pt x 282.45525pt>
+ [16 <./images/data_2d_to_3d.png>] [17]
+<images/sigmoid.png, id=358, 348.1005pt x 282.45525pt>
 File: images/sigmoid.png Graphic file (type png)
 
 <use images/sigmoid.png>
 Package pdftex.def Info: images/sigmoid.png used on input line 232.
 (pdftex.def)             Requested size: 184.94292pt x 150.0669pt.
- [15 <./images/sigmoid.png>] [16]) [17]
-<images/ANN_percept.png, id=335, 752.8125pt x 317.38576pt>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[18] [19 <./images/sigmoid.png>]) (ann.tex [20]
+<images/ANN_percept.png, id=390, 752.8125pt x 317.38576pt>
 File: images/ANN_percept.png Graphic file (type png)
 
 <use images/ANN_percept.png>
-Package pdftex.def Info: images/ANN_percept.png used on input line 85.
+Package pdftex.def Info: images/ANN_percept.png used on input line 20.
 (pdftex.def)             Requested size: 295.90979pt x 124.75821pt.
- [18 <./images/ANN_percept.png>]
-<images/ANN_XOR.png, id=343, 462.528pt x 214.401pt>
-File: images/ANN_XOR.png Graphic file (type png)
- <use images/ANN_XOR.png>
-Package pdftex.def Info: images/ANN_XOR.png used on input line 101.
-(pdftex.def)             Requested size: 295.90979pt x 137.17363pt.
 
-[19 <./images/ANN_XOR.png>]) [20]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[21] <images/ANN_XOR.png, id=401, 462.528pt x 214.401pt>
+File: images/ANN_XOR.png Graphic file (type png)
+
+<use images/ANN_XOR.png>
+Package pdftex.def Info: images/ANN_XOR.png used on input line 36.
+(pdftex.def)             Requested size: 295.90979pt x 137.17363pt.
+ [22 <./images/ANN_percept.png> <./images/ANN_XOR.png>] <images/grad_desc.png, 
+id=411, 339.669pt x 317.988pt>
+File: images/grad_desc.png Graphic file (type png)
+
+<use images/grad_desc.png>
+Package pdftex.def Info: images/grad_desc.png used on input line 61.
+(pdftex.def)             Requested size: 184.94292pt x 173.14232pt.
+ [23 <./images/grad_desc.png>]
+<images/sto_grad_desc.png, id=419, 384.83775pt x 302.3295pt>
+File: images/sto_grad_desc.png Graphic file (type png)
+
+<use images/sto_grad_desc.png>
+Package pdftex.def Info: images/sto_grad_desc.png used on input line 84.
+(pdftex.def)             Requested size: 184.94292pt x 145.29181pt.
+ [24]) (trees.tex [25 <./images/sto_grad_desc.png>] [26])) [27]
 \openout2 = `4_application.aux'.
 
- (4_application.tex [21
+ (4_application.tex [28
 
 
-] [22]
-<images/twitterbot.PNG, id=381, 723.9045pt x 322.806pt>
+] [29]
+<images/twitterbot.PNG, id=461, 723.9045pt x 322.806pt>
 File: images/twitterbot.PNG Graphic file (type png)
 
 <use images/twitterbot.PNG>
 Package pdftex.def Info: images/twitterbot.PNG used on input line 32.
 (pdftex.def)             Requested size: 295.90979pt x 131.95726pt.
- [23 <./images/twitterbot.PNG>] [24] [25]
+ [30 <./images/twitterbot.PNG>] [31] [32]
 Overfull \hbox (4.43333pt too wide) in paragraph at lines 70--71
 []\OT1/cmr/m/n/12 The sec-ond tier of fea-tures de-scribe any spe-cial \OT1/cmr
 /m/it/12 En-ti-ties \OT1/cmr/m/n/12 (Tweeter's nomen-
  []
 
-) [26]
-\openout2 = `5_general_use_cases.aux'.
+) [33]
+\openout2 = `5_results.aux'.
 
- (5_general_use_cases.tex) [27
+ (5_results.tex) [34
+
+
+]
+\openout2 = `6_general_use_cases.aux'.
+
+ (6_general_use_cases.tex) [35
 
 
 ]
 \openout2 = `conclussion.aux'.
 
- (conclussion.tex) (document.bbl [28
+ (conclussion.tex)
+(document.bbl [36
 
 
 
-])
-[29]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 14.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 14.
- (document.aux (1_intro.aux) (2_basic_concepts.aux) (3_method.aux)
-(4_application.aux) (5_general_use_cases.aux) (conclussion.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 14.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 14.
+]) [37]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 15.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 15.
+ (document.aux (1_intro.aux) (2_basic_concepts.aux)
+(3_method.aux) (4_application.aux) (5_results.aux) (6_general_use_cases.aux)
+(conclussion.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 15.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 15.
 Package rerunfilecheck Info: File `document.out' has not changed.
-(rerunfilecheck)             Checksum: CF8CF8F29BB2296ED67E016DC4D7AEC7;1472.
+(rerunfilecheck)             Checksum: E348C2077DB28EF82A49A7FCCF43BB7C;1516.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 14.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 15.
  ) 
 Here is how much of TeX's memory you used:
- 19140 strings out of 493333
- 350331 string characters out of 3136611
- 442009 words of memory out of 3000000
- 22123 multiletter control sequences out of 15000+200000
+ 28994 strings out of 493333
+ 681943 string characters out of 3136611
+ 922292 words of memory out of 3000000
+ 31789 multiletter control sequences out of 15000+200000
  18552 words of font info for 71 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 59i,27n,56p,1604b,639s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 66i,27n,98p,1604b,649s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><
 C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:
 /Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/P
 rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Pro
-gram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Progra
-m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program F
-iles (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program File
-s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files (
-x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
-/type1/public/amsfonts/cm/cmtt12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/symbols/msbm10.pfb>
-Output written on document.pdf (31 pages, 972734 bytes).
+gram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Progra
+m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program F
+iles (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program File
+s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (
+x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files (x86
+)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmtt12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/p
+ublic/amsfonts/symbols/msbm10.pfb>
+Output written on document.pdf (40 pages, 1087876 bytes).
 PDF statistics:
- 509 PDF objects out of 1000 (max. 8388607)
- 136 named destinations out of 1000 (max. 500000)
- 224 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 605 PDF objects out of 1000 (max. 8388607)
+ 162 named destinations out of 1000 (max. 500000)
+ 242 words of extra memory for PDF output out of 10000 (max. 10000000)
 

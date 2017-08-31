@@ -14,7 +14,7 @@ while i <=50:
 
    if i==1:
       # word_classifier = words_as_features.WordsClassifier('train', pth=pth, from_server=True,num_features=3000)
-      word_classifier = words_as_features.WordsClassifier('train', pth=pth, from_server=False,num_features=3000,with_trees = False)
+      word_classifier = words_as_features.WordsClassifier('train', pth=pth, from_server=True,num_features=3000,with_trees = False)
    else:
       word_classifier = words_as_features.WordsClassifier('train', pth=pth, from_server=False,num_features=3000,with_trees = False)
 

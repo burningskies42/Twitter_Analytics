@@ -13,6 +13,11 @@ from sklearn import model_selection,preprocessing
 from sklearn.svm import SVC, LinearSVC, SVR
 from sklearn.neural_network import MLPClassifier
 from sklearn.ensemble import RandomForestClassifier,AdaBoostClassifier
+from sklearn.metrics import roc_auc_score,roc_curve,auc
+import matplotlib.pyplot as plt
+from sklearn import tree
+
+import pydot
 # from sklearn.gaussian_process import GaussianProcessClassifier
 # from sklearn.gaussian_process.kernels import RBF
 # from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
@@ -77,9 +82,43 @@ class Kappa():
 
       self.clf_name = self.clf_name.replace('Classifier','')
 
+      y_true = [1 if line[1]=='news' else 0 for line in testing_set]
+
+      Xs = [line[0] for line in testing_set]
+      # y_prob_predictions = self.clf.prob_classify_many(Xs)
+      # y_prob_predictions = [i._prob_dict['news'] for i in y_prob_predictions]
+      y_predictions = self.clf.classify_many(Xs)
+      y_predictions = [1 if line == 'news' else 0 for line in y_predictions]
+
+      # min_news = 1
+      # max_spam = 0
+      # for pred,prob in zip(y_predictions,y_prob_predictions):
+      #    if prob._prob_dict['news'] < min_news:
+      #       min_news = prob._prob_dict['news']
+      #
+      #    if prob._prob_dict['spam'] > max_spam:
+      #       max_spam = prob._prob_dict['spam']
+      #    print(prob._prob_dict,pred)
+      #
+      # print('min_news:',min_news)
+      # print('max_spam:', max_spam)
+
+      # print(y_true)
+      # print(y_predictions)
+      # print(y_prob_predictions)
+
+      self.rauc_score = round(roc_auc_score(y_true,y_predictions) * 100, 2)
+      # self.rauc_prob_score = round(roc_auc_score(y_true, y_prob_predictions) * 100, 2)
+
+      # print(self.rauc_score)
+      # print(self.rauc_prob_score)
+      #
+      # quit()
+
       # Count False Pos/Neg and True Pos/Neg
       # Where Pos = News and Neg = Spam
       for fs in testing_set:
+
          # true classification is 'news'
          alg_class = self.clf.classify(fs[0])
 
@@ -184,7 +223,9 @@ class Kappa():
          'Spam_Recall': self.spam['recall'],
          'Spam_F1':self.spam['F1'],
          'Kappa': self.kappa_value,
-         'Accuracy': self.accuracy
+         'Accuracy': self.accuracy,
+         'rauc':self.rauc_score,
+         # 'rauc_prob': self.rauc_prob_score
       })
       self.output.name = self.clf_name
       # self.prec_recall['clf'] =
@@ -193,6 +234,7 @@ class Kappa():
       print(self.prec_recall[['True','False','TPR','FPR','Prec','Recall','F1']])
       print('Accuracy:', self.accuracy,'%')
       print('Kappa:   ', self.kappa_value,'%')
+      print('rAUC:    ', self.rauc_score , '%')
 
 class WordsClassifier():
    '''
@@ -204,7 +246,7 @@ class WordsClassifier():
    @:param(from_server) - If true, all tweets will be fetched from server. Else, tweets will be loaded
                           from last downloaded tweets file
    '''
-   def __init__(self,load_train='load',pth = '',from_server=True,num_features=5000):
+   def __init__(self,load_train='load',pth = '',from_server=True,num_features=5000,with_trees=False):
       assert load_train in ('load','train','')
 
       self.voter = None
@@ -219,6 +261,7 @@ class WordsClassifier():
       self.output_log = pd.DataFrame()
       self.class_ratio = 1
       self.time_stamp = datetime.datetime.now().strftime("%Y_%m_%d_%H:%M:%S")
+      self.with_trees = with_trees
 
 
       self.training_set = None
@@ -227,7 +270,7 @@ class WordsClassifier():
       if load_train == 'load':
          self.load_classifier()
       elif load_train == 'train':
-         self.train(self.time_stamp,num_features=num_features,pth=pth,fetch_from_server=from_server)
+         self.train(self.time_stamp,num_features=num_features,pth=pth,fetch_from_server=from_server,with_trees=self.with_trees)
 
    def build_word_list(self, sentence):
       sentence = self.clear_urls(sentence)
@@ -310,7 +353,7 @@ class WordsClassifier():
          self.documents = pickle.load(fid)
          fid.close()
 
-   def train(self,time_stamp,pth,num_features,with_print=True,fetch_from_server=True):
+   def train(self,time_stamp,pth,num_features,with_trees,with_print=True,fetch_from_server=True):
       print(pth)
 
       if fetch_from_server:
@@ -395,17 +438,28 @@ class WordsClassifier():
 
       # Logistic Regression
       print('------------------------------------------------------------------------\n','Logistic Regression:')
+      start_clf_time = time.time()
       LogisticRegression_classifier = SklearnClassifier(LogisticRegression(fit_intercept=True))
       LogisticRegression_classifier.train(self.training_set)
-      self.output_log = self.output_log.append(Kappa(LogisticRegression_classifier, self.testing_set).output)
+
+      output = Kappa(LogisticRegression_classifier, self.testing_set).output
+      output['duration'] =  round(time.time() - start_clf_time,3)
+      output['time_stamp'] = datetime.datetime.now().strftime("%Y_%m_%d_%H:%M:%S")
+      self.output_log = self.output_log.append(output)
 
       with open(getcwd()+"\\classifiers\\words_as_features\\LogisticRegression.pickle", "wb") as classifier_f:
          pickle.dump(LogisticRegression_classifier,classifier_f)
          classifier_f.close()
 
       print('------------------------------------------------------------------------\n','Naive Bayes:')
+      start_clf_time = time.time()
       Naivebayes_classifier = NaiveBayesClassifier.train(self.training_set)
-      self.output_log = self.output_log.append(Kappa(Naivebayes_classifier, self.testing_set).output)
+
+      output = Kappa(Naivebayes_classifier, self.testing_set).output
+      output['duration'] =  round(time.time() - start_clf_time,3)
+      output['time_stamp'] = datetime.datetime.now().strftime("%Y_%m_%d_%H:%M:%S")
+      self.output_log = self.output_log.append(output)
+
       Naivebayes_classifier.show_most_informative_features(15)
 
       with open(getcwd()+"\\classifiers\\words_as_features\\Naivebayes_classifier.pickle", "wb") as classifier_f:
@@ -413,23 +467,34 @@ class WordsClassifier():
          classifier_f.close()
 
       print('------------------------------------------------------------------------\n','Multinomial Naive Bayes:')
+      start_clf_time = time.time()
       MNB_classifier = SklearnClassifier(MultinomialNB())
       MNB_classifier.train(self.training_set)
-      self.output_log = self.output_log.append(Kappa(MNB_classifier, self.testing_set).output)
+
+      output = Kappa(MNB_classifier, self.testing_set).output
+      output['duration'] =  round(time.time() - start_clf_time,3)
+      output['time_stamp'] = datetime.datetime.now().strftime("%Y_%m_%d_%H:%M:%S")
+      self.output_log = self.output_log.append(output)
 
       with open(getcwd()+"\\classifiers\\words_as_features\\MNB_classifier.pickle", "wb") as classifier_f:
          pickle.dump(MNB_classifier,classifier_f)
          classifier_f.close()
 
       print('------------------------------------------------------------------------\n','Bernoulli Naive Bayes:')
+      start_clf_time = time.time()
       BernoulliNB_classifier = SklearnClassifier(BernoulliNB())
       BernoulliNB_classifier.train(self.training_set)
-      self.output_log = self.output_log.append(Kappa(BernoulliNB_classifier, self.testing_set).output)
+
+      output = Kappa(BernoulliNB_classifier, self.testing_set).output
+      output['duration'] =  round(time.time() - start_clf_time,3)
+      output['time_stamp'] = datetime.datetime.now().strftime("%Y_%m_%d_%H:%M:%S")
+      self.output_log = self.output_log.append(output)
 
       with open(getcwd()+"\\classifiers\\words_as_features\\BernoulliNB_classifier.pickle", "wb") as classifier_f:
          pickle.dump(BernoulliNB_classifier,classifier_f)
          classifier_f.close()
 
+      '''
       print('------------------------------------------------------------------------\n','Linear Support Vector Machine:')
       LinearSVC_classifier = SklearnClassifier(LinearSVC())
       LinearSVC_classifier.train(self.training_set)
@@ -438,6 +503,7 @@ class WordsClassifier():
       with open(getcwd()+"\\classifiers\\words_as_features\\LinearSVC_classifier.pickle", "wb") as classifier_f:
          pickle.dump(LinearSVC_classifier,classifier_f)
          classifier_f.close()
+      '''
 
       '''
       ================================================================================================================================================
@@ -447,10 +513,14 @@ class WordsClassifier():
 
       print('------------------------------------------------------------------------\n','C-Support Vector Machine:')
       print('======================\n','Linear Kernel')
+      start_clf_time = time.time()
       SVC_lin_classifier = SklearnClassifier(SVC(kernel='linear'))
       SVC_lin_classifier.train(self.training_set)
+
       output = Kappa(SVC_lin_classifier, self.testing_set).output
       output['Kernel'] = 'linear'
+      output['duration'] =  round(time.time() - start_clf_time,3)
+      output['time_stamp'] = datetime.datetime.now().strftime("%Y_%m_%d_%H:%M:%S")
       self.output_log = self.output_log.append(output)
 
       with open(getcwd()+"\\classifiers\\words_as_features\\SVC_lin.pickle", "wb") as classifier_f:
@@ -458,10 +528,14 @@ class WordsClassifier():
          classifier_f.close()
 
       print('======================\n', 'Polynomial Kernel')
+      start_clf_time = time.time()
       SVC_poly_classifier = SklearnClassifier(SVC(kernel='poly',C=25,coef0=0.12))
       SVC_poly_classifier.train(self.training_set)
+
       output = Kappa(SVC_poly_classifier, self.testing_set).output
       output['Kernel'] = 'poly'
+      output['duration'] =  round(time.time() - start_clf_time,3)
+      output['time_stamp'] = datetime.datetime.now().strftime("%Y_%m_%d_%H:%M:%S")
       self.output_log = self.output_log.append(output)
 
       with open(getcwd() + "\\classifiers\\words_as_features\\SVC_poly.pickle", "wb") as classifier_f:
@@ -470,10 +544,14 @@ class WordsClassifier():
 
       # Also default kernel
       print('======================\n', 'Radial Basis Function Kernel')
+      start_clf_time = time.time()
       SVC_classifier = SklearnClassifier(SVC(kernel='rbf',gamma=0.1,C=1.38))
       SVC_classifier.train(self.training_set)
+
       output = Kappa(SVC_classifier, self.testing_set).output
       output['Kernel'] = 'rbf'
+      output['duration'] =  round(time.time() - start_clf_time,3)
+      output['time_stamp'] = datetime.datetime.now().strftime("%Y_%m_%d_%H:%M:%S")
       self.output_log = self.output_log.append(output)
 
       with open(getcwd() + "\\classifiers\\words_as_features\\SVC_rbf.pickle", "wb") as classifier_f:
@@ -481,10 +559,14 @@ class WordsClassifier():
          classifier_f.close()
 
       print('======================\n', 'Sigmoid Kernel')
+      start_clf_time = time.time()
       SVC_sig_classifier = SklearnClassifier(SVC(kernel='sigmoid',gamma=10))
       SVC_sig_classifier.train(self.training_set)
+
       output = Kappa(SVC_sig_classifier, self.testing_set).output
       output['Kernel'] = 'sigmoid'
+      output['duration'] =  round(time.time() - start_clf_time,3)
+      output['time_stamp'] = datetime.datetime.now().strftime("%Y_%m_%d_%H:%M:%S")
       self.output_log = self.output_log.append(output)
 
       with open(getcwd() + "\\classifiers\\words_as_features\\SVC_sigmoid.pickle", "wb") as classifier_f:
@@ -493,8 +575,8 @@ class WordsClassifier():
 
       '''
       ================================================================================================================================================
-      '''
-
+      
+      
       print('------------------------------------------------------------------------')
       print('Epsilon-Support Vector Machine:')
       SVR_classifier = SVR()
@@ -524,54 +606,98 @@ class WordsClassifier():
 
       SVR_accuracy = round(SVR_classifier.score(X_test, y_test), 2)
 
-      with open(getcwd() + "\\classifiers\\words_as_features\\SVR_classifier.pickle", "wb") as classifier_f:
-         pickle.dump(LinearSVC_classifier, classifier_f)
-         classifier_f.close()
+      # with open(getcwd() + "\\classifiers\\words_as_features\\SVR_classifier.pickle", "wb") as classifier_f:
+      #    pickle.dump(LinearSVC_classifier, classifier_f)
+      #    classifier_f.close()
+      '''
 
       print('------------------------------------------------------------------------\n','Stochastic Gradient Descent:')
+      start_clf_time = time.time()
       SGD_classifier = SklearnClassifier(SGDClassifier())
       SGD_classifier.train(self.training_set)
-      self.output_log = self.output_log.append(Kappa(SGD_classifier, self.testing_set).output)
+
+      output = Kappa(SGD_classifier, self.testing_set).output
+      output['duration'] =  round(time.time() - start_clf_time,3)
+      output['time_stamp'] = datetime.datetime.now().strftime("%Y_%m_%d_%H:%M:%S")
+      self.output_log = self.output_log.append(output)
 
       with open(getcwd()+"\\classifiers\\words_as_features\\SGD_classifier.pickle", "wb") as classifier_f:
          pickle.dump(SGD_classifier,classifier_f)
          classifier_f.close()
 
       print('------------------------------------------------------------------------\n','Multi-layer Perceptron:')
+      start_clf_time = time.time()
       MLP_Classifier = SklearnClassifier(MLPClassifier(alpha=1))
       MLP_Classifier.train(self.training_set)
-      self.output_log = self.output_log.append(Kappa(MLP_Classifier, self.testing_set).output)
+
+      output = Kappa(MLP_Classifier, self.testing_set).output
+      output['duration'] =  round(time.time() - start_clf_time,3)
+      output['time_stamp'] = datetime.datetime.now().strftime("%Y_%m_%d_%H:%M:%S")
+      self.output_log = self.output_log.append(output)
 
       with open(getcwd()+"\\classifiers\\words_as_features\\MLP_Classifier.pickle", "wb") as classifier_f:
          pickle.dump(SGD_classifier,classifier_f)
          classifier_f.close()
 
+      '''
+      Apart from training the forest classifier, both .dot and .png files are created with visual
+      represntation of the trees
+      '''
       print('------------------------------------------------------------------------\n','Random Forest:')
-      RandomForest_Classifier = SklearnClassifier(RandomForestClassifier(n_jobs=-1, n_estimators=25, warm_start= True,max_features=7))
+      start_clf_time = time.time()
+      rnd_forest = RandomForestClassifier(n_jobs=-1, n_estimators=25, warm_start= True,max_features=7)
+      RandomForest_Classifier = SklearnClassifier(rnd_forest)
       RandomForest_Classifier.train(self.training_set)
-      self.output_log = self.output_log.append(Kappa(RandomForest_Classifier, self.testing_set).output)
+
+      if with_trees:
+         # Export trees
+         i_tree = 0
+         for tree_in_forest in rnd_forest.estimators_:
+            tree_dot_str = getcwd() +'/trees/tree_' + str(i_tree) + '.dot'
+            with open(tree_dot_str, 'w') as tree_dot_file:
+               tree_dot_file = tree.export_graphviz(tree_in_forest, out_file=tree_dot_file)
+
+            (graph,) = pydot.graph_from_dot_file(tree_dot_str)
+            graph.write_png(tree_dot_str.replace('.dot','.png'))
+
+            i_tree = i_tree + 1
+
+      output = Kappa(RandomForest_Classifier, self.testing_set).output
+      output['duration'] =  round(time.time() - start_clf_time,3)
+      output['time_stamp'] = datetime.datetime.now().strftime("%Y_%m_%d_%H:%M:%S")
+      self.output_log = self.output_log.append(output)
+
 
       with open(getcwd() + "\\classifiers\\words_as_features\\RandomForest_Classifier.pickle", "wb") as classifier_f:
          pickle.dump(SGD_classifier, classifier_f)
          classifier_f.close()
 
       print('------------------------------------------------------------------------\n','Adaptive Boosting:')
+      start_clf_time = time.time()
       AdaBoost_Classifier = SklearnClassifier(AdaBoostClassifier())
       AdaBoost_Classifier.train(np.array(self.training_set))
-      self.output_log = self.output_log.append(Kappa(AdaBoost_Classifier, self.testing_set).output)
+
+      output = Kappa(AdaBoost_Classifier, self.testing_set).output
+      output['duration'] =  round(time.time() - start_clf_time,3)
+      output['time_stamp'] = datetime.datetime.now().strftime("%Y_%m_%d_%H:%M:%S")
+      self.output_log = self.output_log.append(output)
 
       with open(getcwd() + "\\classifiers\\words_as_features\\AdaBoost_Classifier.pickle", "wb") as classifier_f:
          pickle.dump(SGD_classifier, classifier_f)
          classifier_f.close()
 
       print('------------------------------------------------------------------------\n','Voted Classifier:')
+      start_clf_time = time.time()
       voted_classifier = VoteClassifier(Naivebayes_classifier,
                                         # SVR_classifier,
                                         MLP_Classifier,
                                         RandomForest_Classifier,
                                         # QDA_Classifier,
                                         AdaBoost_Classifier,
-                                        LinearSVC_classifier,
+                                        SVC_lin_classifier,
+                                        # SVC_poly_classifier,
+                                        SVC_sig_classifier,
+                                        SVC_classifier,
                                         SGD_classifier,
                                         MNB_classifier,
                                         BernoulliNB_classifier,
@@ -581,25 +707,29 @@ class WordsClassifier():
          pickle.dump(SGD_classifier, classifier_f)
          classifier_f.close()
 
-      self.output_log = self.output_log.append(Kappa(voted_classifier, self.testing_set).output)
+      output = Kappa(voted_classifier, self.testing_set).output
+      output['duration'] =  round(time.time() - start_clf_time,3)
+      output['time_stamp'] = datetime.datetime.now().strftime("%Y_%m_%d_%H:%M:%S")
+      self.output_log = self.output_log.append(output)
 
       print('------------------------------------------------------------------------')
-      self.output_log['time_stamp']=time_stamp
+
       self.output_log['Train_News'] = sizes_df.loc['Training']['News']
       self.output_log['Train_Spam'] = sizes_df.loc['Training']['Not-News']
       self.output_log['Test_News']  = sizes_df.loc['Testing']['News']
       self.output_log['Test_Spam']  = sizes_df.loc['Testing']['Not-News']
+      self.output_log['feature_cnt'] = num_features
 
       # Reorder ouput log
       self.output_log = self.output_log[[
          # ID
-         'time_stamp','Name','Kernel',
+         'time_stamp','Name','Kernel','feature_cnt',
          # Sizes
          'Train_News','Train_Spam','Test_News','Test_Spam',
          'True_News','True_Spam','False_News','False_Spam',
 
          # Measures
-         'Accuracy','Kappa',
+         'Accuracy','Kappa','rauc','duration',
          'News_TPR','News_FPR','News_Prec','News_Recall','News_F1',
          'Spam_TPR','Spam_FPR','Spam_Prec','Spam_Recall','Spam_F1',
       ]]
@@ -620,9 +750,9 @@ class WordsClassifier():
          BernoulliNB_classifier = pickle.load(fid)
          fid.close()
 
-      with open(getcwd() + "\\classifiers\\words_as_features\\LinearSVC_classifier.pickle",'rb') as fid:
-         LinearSVC_classifier = pickle.load(fid)
-         fid.close()
+      # with open(getcwd() + "\\classifiers\\words_as_features\\LinearSVC_classifier.pickle",'rb') as fid:
+      #    LinearSVC_classifier = pickle.load(fid)
+      #    fid.close()
 
       with open(getcwd() + "\\classifiers\\words_as_features\\LogisticRegression_classifier.pickle", 'rb') as fid:
          LogisticRegression_classifier = pickle.load(fid)
@@ -640,21 +770,33 @@ class WordsClassifier():
          SGDClassifier_classifier = pickle.load(fid)
          fid.close()
 
-      with open(getcwd() + "\\classifiers\\words_as_features\\SVC_classifier.pickle", 'rb') as fid:
+      # -------------------------------- SVM ------------------------------------------------
+
+      with open(getcwd() + "\\classifiers\\words_as_features\\SVC_sigmoid.pickle", 'rb') as fid:
+         SVC_sig_classifier = pickle.load(fid)
+         fid.close()
+
+      with open(getcwd() + "\\classifiers\\words_as_features\\SVC_poly.pickle", 'rb') as fid:
+         SVC_poly_classifier = pickle.load(fid)
+         fid.close()
+
+      with open(getcwd() + "\\classifiers\\words_as_features\\SVC_lin.pickle", 'rb') as fid:
+         SVC_lin_classifier = pickle.load(fid)
+         fid.close()
+
+      with open(getcwd() + "\\classifiers\\words_as_features\\SVC_rbf.pickle", 'rb') as fid:
          SVC_classifier = pickle.load(fid)
          fid.close()
+
+      # -------------------------------------------------------------------------------------
+
 
       with open(getcwd() + "\\classifiers\\words_as_features\\words.pickle", 'rb') as fid:
          self.word_features = pickle.load(fid)
          fid.close()
 
-      self.voter = VoteClassifier(
-         BernoulliNB_classifier,
-         LinearSVC_classifier,
-         LogisticRegression_classifier,
-         MNB_classifier,
-         Naivebayes_classifier,
-         SGDClassifier_classifier,
-         SVC_classifier
-      )
+      with open(getcwd() + "\\classifiers\\words_as_features\\voted_classifier.pickle", 'rb') as fid:
+         self.voter = pickle.load(fid)
+         fid.close()
+
 

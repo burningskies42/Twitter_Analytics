@@ -1,28 +1,46 @@
-\subsection*{Decision Trees and Random Forests}
-	\subsection*{Decision Trees}
-		Another popular type of classifiers stem from the idea of decision trees [\cite{quinlan2014c4}]. That is, a flow chart consisting of decision intersections (called nodes) is flows from a starting root (the tree stem). The data is further segmented in each following junction until  a scenario is achieved, in which ideally all segments are "pure", containing observation belonging to a single class. 
+\subsubsection{Decision Trees and Random Forests}
+	Another popular type of classifiers stem from the idea of decision trees [\cite{quinlan2014c4}]. That is, a flow chart consisting of decision intersections (called nodes) is flows from a starting root (the tree stem). The data is further segmented in each following junction until  a scenario is achieved, in which ideally all segments are "pure", containing observation belonging to a single class. 
 		
-		\paragraph{ID3 Algorithm} 
-			This procedure of Decision Tree induction described intuitively above is known as the ID3 Algorithm [\cite{quinlan1986induction}]. More formally this design functions as follows. We start, as is common in classification problems, with a data training dataset. Each data point (observation) in the set has an assortment of attributes (features) and is assigned to a certain class. At each stage of the tree construction, including the inception stage, a node is created. This node receives as input a group of observations which belong to 2 or more classes. The node than selects a feature of the data and divides the data according to this feature. The feature selection consideration will be explained subsequently. For each possible value of the previously selected feature, a node is created. If the data inside a node belongs to a single class, will not be segmented any further and will be called a \textit{leaf}. If, on the other hand, the new node contains data points from different classes, we repeat the process of feature selection and segmentation accordingly. Finally, we want to reach a scenario in which, all leaves of the tree contain observations belonging to a single class each. The contents of the leaves may also referred to as \textit{pure subsets}.
-			
-			\par
-			The priorly mentioned decision rule for feature selection, upon which the data will be split in a given node, can be determined by 2 approaches. Both have at heart the same principle, and that is the amount of certainty gained upon each split. Hence the goal is the maximization of certainty, that after a given split a data point belongs to a distinct class. For example, a feature would be considered a bad feature for splitting, if at a given node it splits the data in a manner where all subsets have a relatively similar probability of belonging to the different classes. In such an example, no progress was made in the direction of segmenting the data completely. The closer the separation of the data brings us to pure subsets, the higher its ranking as decision rule at a given node will be. This means, that the lower the entropy values are, the purer the resulting subsets will be.
-			
-			\par
-			One measure which helps quantify the quality of this segmentation rule is \textbf{Entropy}. The calculation of Entropy is demonstrated in [\ref{dt_entropy}], with $ S $ being the subset passed to the node as input, $ i \in \{1:c \} $ denoting the different classes and $ p_i $ the percentage of data point corresponding to class $ i $. 
-			
+	\paragraph{ID3 Algorithm} 
+		This procedure of Decision Tree induction described intuitively above is known as the ID3 Algorithm [\cite{quinlan1986induction}]. More formally this design functions as follows. We start, as is common in classification problems, with a data training dataset. Each data point (observation) in the set has an assortment of attributes (features) and is assigned to a certain class. At each stage of the tree construction, including the inception stage, a node is created. This node receives as input a group of observations which belong to 2 or more classes. The node than selects a feature of the data and divides the data according to this feature. The feature selection consideration will be explained subsequently. For each possible value of the previously selected feature, a node is created. If the data inside a node belongs to a single class, will not be segmented any further and will be called a \textit{leaf}. If, on the other hand, the new node contains data points from different classes, we repeat the process of feature selection and segmentation accordingly. Finally, we want to reach a scenario in which, all leaves of the tree contain observations belonging to a single class each. The contents of the leaves may also referred to as \textit{pure subsets}.
+		
+		\paragraph{Entropy}
+		The priorly mentioned decision rule for feature selection, upon which the data will be split in a given node, can be determined by 2 approaches. Both have at heart the same principle, and that is the amount of certainty gained upon each split. Hence the goal is the maximization of certainty, that after a given split a data point belongs to a distinct class. For example, a feature would be considered a bad feature for splitting, if at a given node it splits the data in a manner where all subsets have a relatively similar probability of belonging to the different classes. In such an example, no progress was made in the direction of segmenting the data completely. The closer the separation of the data brings us to pure subsets, the higher its ranking as decision rule at a given node will be. This means, that the lower the entropy values are, the purer the resulting subsets will be.
+		
+		\par
+		One measure which helps quantify the quality of this segmentation rule is \textbf{Entropy}. The calculation of Entropy is demonstrated in [\ref{dt_entropy}], with $ S $ being the subset passed to the node as input, $ i \in \{1:c \} $ denoting the different classes and $ p_i $ the percentage of data point corresponding to class $ i $. 
+		
+		\begin{equation}
+			H(S) = \sum_{i=1}^c - p_i \cdot log_2 (p_i)
+			\label{dt_entropy}
+		\end{equation}
+		
+	 \paragraph
+	 	An alternative metric to entropy is the Gini Impurity coefficient. The coefficient denominates the probability of a randomly selected observation to be incorrectly labeled, if the label was set at random according to the actual distribution of labels in the dataset. We compute Gini by summing the probabilities of a given item belonging to a certain class $ i $ multiplied by the probability of misclassification. The Gini impurity is demonstrated in [\ref{dt_gini}], with $ i $ denoting a given class, out of $ c $ classes.
+	 	
+	 \begin{equation}
+	 	\begin{aligned}
+		 	I_G(p) &= \sum_{i=1}^c p_i(1-p_i) = \sum_{i=1}^c (p_i-p_i^2) \\  &=\sum_{i=1}^c p_i - \sum_{i=1}^c p_i^2 = 1 - \sum_{i=1}^c p_i^2 \\ &= \sum_{i \neq k} p_i p_k
+	 	\end{aligned}
+		\label{dt_gini}
+	 \end{equation}
+	 
+	 \paragraph{Information Gain}	
+	 	Entropy allows us to further calculate the "Information Gain" from each split. This gain is calculated in [\ref{dt_info_gain}], with $ S $ being the set of input examples, $ v $ a possible value of the attribute $ A $ and $ S_v $ the subset of $ S $ in which the $ A $ attribute of the examples is equal to $ v $. The gain is therefore a weighted average of the Entropies, with respect to the prevalence of a given value $ v $ in each subset. Thus Information Gain also assign important to the progress made from a new node. So a node which classifies purely few items might be outweighed by one which does not split into completely pure subsets, but splits correctly much more items.
+	 
 			\begin{equation}
-				H(S) = \sum_{i=1}^c - p_i \cdot log_2 (p_i)
-				\label{dt_entropy}
-			\end{equation}
-			
-			 Entropy allows us to further calculate the "Information Gain" from each split. This gain is calculated in [\ref{dt_info_gain}], with $ S $ being the set of input examples, $ v $ a possible value of the attribute $ A $ and $ S_v $ the subset of $ S $ in which the $ A $ attribute of the examples is equal to $ v $. The gain is therefore a weighted average of the Entropies, with respect to the prevalence of a given value $ v $ in each subset. Thus Information Gain also assign important to the progress made from a new node. So a node which classifies purely few items might be outweighed by one which does not split into completely pure subsets, but splits correctly much more items.
-			 
- 			\begin{equation}
-				Gain(S,A) = H(S) - \sum_{v \in values(A) } \frac{|S_v|}{S} H(S_v)
-				\label{dt_info_gain}
-			 \end{equation}
-			
-		 
-		\cite{breiman1984classification}
+			Gain(S,A) = H(S) - \sum_{v \in values(A) } \frac{|S_v|}{S} H(S_v)
+			\label{dt_info_gain}
+	 \end{equation}
+	 
+	 \paragraph{Pruning}
+		 After the tree is built, it undergoes the process of \textit{pruning}. That is branches that add very little information to the classification are removed. The algorithm is considered efficient and fast since after pruning the amount of features actually used from a dataset is small. In addition, the algorithm is proficient in filtering noise and selecting the best features. Better data attributes are bound to have higher Information Gain values are therefore more likely to be used in decision nodes.
+	
+	\paragraph{Random Forest}
+		This algorithm builds a boot-strap system on the concept of Decision Trees. The algorithm \cite{breiman1984classification} builds$ K $ different Decision Trees. Each Decision Tree $ T $ is built using a randomly picked subset $ S $ of the complete dataset. Each such tree is trained using the previously mentioned ID3 algorithm. However each tree does not use all the datasets attributes $ D $ but rather ones selected at random $ d << D $. The trees are not pruned. 
 		
+		\par
+		Thus, each of the $ K $ trees is only suitable for a random subset $ S $ of the dataset and examining only a subset $ d $ of attributes. Each tree is not pruned, therefore it classifies its training data perfectly. When classifying novel data, the observation gets classified using all $ K $ tree, and the most commonly appearing classification decides the class. The process is therefore a voting classification using a \textit{Forest} of Decision Trees.
+ 
+	
+	

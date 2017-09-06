@@ -1,6 +1,6 @@
 \subsubsection{Naive Bayes}
-	Probably the most common classification algorithm and usually the go-to classifier when handling text classification tasks [\cite{rish2001empirical}]. The Naive Bayes algorithm is popular because its tends to perform as good as much more complex classifiers, if not outperform them. This being true despite the overly simplified or "naive" assumptions being made at the core of the classifier. This algorithm is prevailing for different text classification problems such as: sentiment analysis, spam filtration and classifying text segments to user-defined classes as in my case. Te approach taken with this classifier is probabilistic, since it classifies an observation according to which class is it most likely to belong to given its features. 
-	The word "Naive" in its name come from its base assumption, which is that the occurrence of a certain feature in a data point is independent from the the occurrences of other features. Therefore the probabilistic calculus is as in [\ref{nb_calc}], where $ \textbf{X} = (x_1,...,x_n) $ is a vector of the data points features and $ C $ is the appropriate class.
+	Probably the most common classification algorithm and usually the go-to classifier when handling text classification tasks [\cite{rish2001empirical}]. The Naive Bayes algorithm is popular because its propensity to perform as good as much complexer classifiers, if not outperform them. This holds true, despite the overly simplified or "naive" assumptions being made at its core. This algorithm is prevailing for numerous classification problems ranging from sentiment analysis, spam filtration and up to classifying data to user-defined classes as is the case in this study. The attitude adopted in this scenario is probabilistic, since it classifies observations according to which class are they most likely to belong to, given their features. 
+	The word "Naive" in its name come from its base assumption, which is that the occurrence of a certain feature in a data point is independent from the occurrences of other features. As such, the probabilistic calculus is as in [\ref{nb_calc}], where $ \textbf{X} = (x_1,...,x_n) $ is a vector of the data features and $ C $ is the appropriate class.
 	
 	\begin{equation}
 		P(\textbf{X}|C) = \prod_{i=1}^n P(x_i|C)
@@ -8,14 +8,14 @@
 	\end{equation}
 	
 	\paragraph{Classification}
-		At its heart, the algorithm is based on Bayes theorem [\ref{nb_bayes}], which allows for the calculation of conditional probability. In the case of classification, it is the probability that a novel data point belong to a given class $ C_i $ given its describing properties (features) $ \textbf{X} $.
+		At its heart, the algorithm is based on Bayes theorem [\ref{nb_bayes}], which allows for the calculation of conditional probability. In the case of classification, it is the likelihood that a novel data point belong to a given class $ C_i $, given its describing properties (features) $ \textbf{X} $.
 	
 	\begin{equation}
 		P(A|B) = \frac{P(X|A) \cdot P(A)}{P(B)}
 		\label{nb_bayes}
 	\end{equation}
 	
-		The algorithm thus calculates the posterior probability of the data point to be part of each given class $ i $  out of $ k $ classes. After which these probabilities are than compared [\ref{nb_post_prob}]. The classification of the new point is determined by which class is most likely (has the highest probability). In order to calculate these likelihoods, we first calculate the numerator of [\ref{nb_post_prob}] as in [\ref{nb_prob_numerator}]
+		The algorithm thus calculates the posterior probability of the data point to be part of each given class $ i $  out of $ k $ classes. After which these probabilities are than compared [\ref{nb_post_prob}]. The classification of the new point is determined by which class is most likely (has the highest probability). In pursuance of calculating these likelihoods, we must first calculate the numerator of [\ref{nb_post_prob}] as in [\ref{nb_prob_numerator}].
 	
 	\begin{equation}
 		\begin{aligned}
@@ -42,7 +42,7 @@
 		\label{nb_prob_numerator}
 	\end{equation}
 	
-		The calculation in equation[\ref{nb_prob_numerator}] allows us to formulate the classification equation results in equation [\ref{nb_final}].
+		The calculation in equation[\ref{nb_prob_numerator}] allows us to formulate the classification results in equation [\ref{nb_final}].
 	
 	\begin{equation}
 		\begin{aligned}
@@ -61,10 +61,10 @@
 	\end{equation}
 	
 	\paragraph{Variations of the Algorithm}
-		Several algorithms, which are derivative forms of the basic Naive Bayes algorithm are also quite common. These variations usually implement different distributions on the feature probability $ P(x_j|C_i) $.
+		Several derivative forms of the basic Naive Bayes algorithm are also common. These variations usually implement different distributions on the feature probability $ P(x_j|C_i) $, thus adding a degree of sophistication to this simplistic idea.
 		
 		\subparagraph{Gaussian}
-			A natural assumption when handling continuous data is that the values associated with each class are also continuous and distributed normally. De facto, the data is first segmented by the class $ c_i $. Following, the mean and variance of each continuous variable $ x_j $ for each class  $ c_i $. Let $ \mu_i $ and $ \sigma_i^2 $ be the mean and variance of feature set $ x $ associated with class $ C_i $ accordingly. The algorithm assumes a normal (Gaussian) distribution for the features, where as the parameters $ \sigma_i $ and $ \mu_i $ are derived from a maximum likelihood estimation, i.e.,
+			A natural assumption when handling continuous data is that the values associated with each class are also continuous and distributed normally. De facto, the data is first segmented by the class $ c_i $. Following, the mean and variance of each continuous variable $ x_j $ are calculated for each class  $ c_i $. Let $ \mu_i $ and $ \sigma_i^2 $ be the mean and variance of feature set $ x $ associated with class $ C_i $ accordingly. The algorithm assumes a normal (Gaussian) distribution for the features, where as the parameters $ \sigma_i $ and $ \mu_i $ are derived from a maximum likelihood estimation, i.e.,
 	
 		\begin{equation}
 			P(x_j|C_i) = \frac{1}{\sqrt{\vphantom{\frac{1}{1}} 2 \pi \sigma^2 c_i}} \cdot 
@@ -93,7 +93,7 @@
 		Additionally, the product must be adjusted for the case when a certain event (appearance of word $ i $) does not occur. Since non-occurrence will be denoted as a frequency equal to zero, such values must be smoothed out to prevent them from nullifying the entire equation.
 	
 	\subparagraph{Bernoulli}
-		This variant assumes multivariate Bernoulli distributions for the features. Particularly, each feature can be represented with a boolean variable. Hence, the classifier requires the feature sets to passed in the form of vectors composed of binary variables each representing a feature. The classification is based on the decision rule in [\ref{nb_bernoulli}], for class $ C_k $ and feature $ x_i $. The probability of class $ C_k $ producing the feature $ x_i $ is denoted by $ p_{ki} $. We can see that the non-occurrence problem from the Multinomial variant is being explicitly addressed here by penalizing for non-occurrence of a given feature $ x_i $.
+		This variant assumes multivariate Bernoulli distributions for the features. Particularly, each feature can be represented with a boolean variable. Hence, the classifier requires the feature sets to be passed in the form of vectors composed of binary variables each representing a feature. The classification is based on the decision rule in [\ref{nb_bernoulli}], for class $ C_k $ and feature $ x_i $. The probability of class $ C_k $ producing the feature $ x_i $ is denoted by $ p_{ki} $. We can see that the non-occurrence problem from the Multinomial variant is being explicitly addressed here by penalizing for non-occurrence of a given feature $ x_i $.
 	
 	\begin{equation}
 		P \big(\textbf{x}|C_k \big) = \prod p_{ki}^{x_i}(1-p_{ki})^{(1-x_i)}

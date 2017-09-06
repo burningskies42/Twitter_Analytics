@@ -1,10 +1,10 @@
 \subsubsection{Support Vector Machines}
 	
 	\paragraph{Background}
-	The original Support Vector Machine algorithm was formulated by Vladimir N. Vapnik and Alexey Ya. Chervonenkis in 1963 while working at the institute of Control Sciences in Moscow. Despite the theory behind SVMs being far from new today, it actually remained mostly theoretical until quite recently. The state of technology at the time of its conception was far behind the theory, and it would take decades until computers would reach the computational abilities that could facilitate SVMs.
+	The original Support Vector Machine algorithm was formulated by Vladimir N. Vapnik and Alexey Ya. Chervonenkis in 1963 while working at the institute of Control Sciences in Moscow. Despite the theory behind SVMs being far from new today, it remained mostly theoretical until quite recently. The state of technology at the time of its conception was far behind the theory, and it would take decades until computers would reach the computational abilities that could facilitate SVMs.
 	
 	\paragraph{Implementation}
-	SVM aims at segmenting an input dataset to binary categories \cite{SVM_burges1998tutorial} . For example, positive and negative observations or analogously membership to a certain category or the lack thereof. A common example is whether a given Email should be classified as Spam or not. The rational behind SVM could best be visualized by imposing the training observation on two dimensional Euclidean Space. The algorithm strives to define a dividing line, which would create a separating threshold between the two groups. In two-dimensional space, the separator is demarcated using a simple line. Said line is then positioned in a manner, creating maximum separation between the two groups. This is done by drawing parallels through the the closest positioned members of both groups. The linear divider lays in the middle between the two parallels. The observations which lay on the parallels themselves, define the \textit{curbs} of the so-called \textit{dividing street}, and are called \textit{support vectors}. From them in turn, the algorithm derives its name. Any new observation presented to the trained classifier for classification, will be associated to the according group, as is defined by its position relative to the separating hyperplane. 
+	SVM aims at segmenting an input dataset to binary categories [\cite{SVM_burges1998tutorial}]. For example, positive and negative observations or analogously membership to a certain category or the lack thereof. A common example is whether a given Email should be classified as Spam or not. The rational behind SVM could best be visualized by imposing the training observation on two dimensional Euclidean Space. The algorithm strives to define a dividing line, which would create a separating threshold between the two groups. In two-dimensional space, the separator is demarcated using a simple line. Said line is then positioned in a manner, creating maximum separation between the two groups. This is done by drawing parallels through the closest positioned members of both groups. The linear divider lays in the middle between this two parallels. The observations which are positioned on the parallels themselves, define the \textit{curbs} of the so-called \textit{dividing street}, and are dubbed \textit{support vectors}. From them in turn, the algorithm derives its name. Any new observation presented to the trained classifier for classification, will be allocated to the appropriate group, as is defined by its position relative to the separating hyperplane. 
 	
 	\begin{figure}[h]
 		\centering
@@ -17,7 +17,7 @@
 		} \cite{SVM_cortes1995support}
 	\end{figure}
 
- A dataset of size $n$ as in [\ref{svm_div_line}] is to be used as a training set, in which $y_i$ stands for the actual class of the observation $i$ and can have one of either values $y_i \in [+1;-1] $. The values represent a positive and negative classification accordingly. A positive $(+1)$ classification in this case implies the sought-after class, $News$ in our case. The vector $(\vec{x}_i)$ is an array of size $p$, representing the features which compose each observation. In the 2-dimensional example, the 2 features of $(\vec{x}_i)$ could be graphically represent in euclidean space as the $(x,y)$ coordinates $\vec{x}_i = [x_i,y_i]$. 
+ A dataset of size $n$ as in [\ref{svm_div_line}] is to be used as a training set, in which $y_i$ stands for the actual class of the observation $i$ and can have one of either values $y_i \in [+1;-1] $. The values represent a positive and negative classification accordingly. A positive $(+1)$ classification in this case implies the sought-after class, $News$ in our case. The vector $(\vec{x}_i)$ is an array of size $p$, representing the features which compose each observation. In the 2-dimensional example, the 2 features of $(\vec{x}_i)$ can be graphically illustrated in euclidean space as the $(x,y)$ coordinates $\vec{x}_i = [x_i,y_i]$. 
 	\begin{equation}
 		\begin{aligned}
 			(\textbf{x}_1,y_1),& ... , (\vec{x}_n,y_n), \ \ y \in \big[-1;+1 \big] \\
@@ -26,7 +26,7 @@
 	\label{svm_div_line}
 	\end{equation}
 	
-	The optimal hyperplane segregating the two data classes, creating a maximally wide barrier between the closest observations of the opposing classes is presented in [\ref{svm_optimum}]. The vector $\vec{w}$ is the normal vector \footnote{A vector perpendicular to a given object, the diving hyperplane in our case} to the dividing hyperplane and the parameter $b$ represents the normal vector's offset along the axis. The area between the 2 hyperplanes, which pass through the closest observations is referred to as the \textit{margin} and is defined by the supporting vectors. These support vectors are illustrated in [\ref{svm_supp_vecs}].
+	The optimal hyperplane segregates the two data classes, creating a maximally wide barrier between the closest observations of the opposing classes. This hyperplane is delineated in [\ref{svm_optimum}]. The vector $\vec{w}$ is the normal vector \footnote{A vector perpendicular to a given object, the diving hyperplane in our case} to the dividing hyperplane and the parameter $b$ represents the normal vector's offset along the axis. The area between the 2 hyperplanes, which pass through the closest observations is referred to as the \textit{margin} and is defined by the supporting vectors. These support vectors are illustrated in [\ref{svm_supp_vecs}].
 	
 	\begin{equation}
 		\begin{aligned}
@@ -45,8 +45,7 @@
 		\label{svm_supp_vecs}
 	\end{equation}
 	
-	The distance between any point and the separating line [\ref{svm_optimum}] is shown in equation [\ref{svm_dist}].
-	The distance between the 2 hyperplanes is equal to twice the distance between the support vectors and the separating line, hence $ \frac{2}{||\vec{w}||} $. The optimization problem at hand is thus the maximization of this distance, in order to create a maximally distinct margin between the classes. Furthermore, no observation from the training data can be positioned inside the margin [\ref{svm_constaints}].
+	The distance between any point and the separating line [\ref{svm_optimum}] is shown in equation [\ref{svm_dist}]. The distance between the 2 hyperplanes is equal to twice the distance between the support vectors and the separating line, hence $ \frac{2}{||\vec{w}||} $. The optimization problem at hand is thus the maximization of this distance, in order to create a maximally distinct margin between the classes. Furthermore, no observation from the training data can be positioned inside the margin [\ref{svm_constaints}].
 	
 	\begin{equation}
 		\begin{aligned}

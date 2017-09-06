@@ -5,31 +5,31 @@
 \contentsline {section}{\numberline {2}Basic Concepts}{2}{section.2}
 \contentsline {subsection}{\numberline {2.1}Machine Learning}{2}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Text Mining}{2}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Unstructured data}{3}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.3}Unstructured Data}{3}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}Classification}{4}{subsection.2.4}
 \contentsline {paragraph}{Supervised Learning}{4}{section*.3}
 \contentsline {paragraph}{Unsupervised Learning}{4}{section*.4}
-\contentsline {subsection}{\numberline {2.5}Information Quality}{4}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.5}Information Quality}{5}{subsection.2.5}
 \contentsline {section}{\numberline {3}Methodology}{6}{section.3}
 \contentsline {subsection}{\numberline {3.1}Training Classifier}{7}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Supervised Learning}{8}{subsection.3.2}
 \contentsline {subsubsection}{\numberline {3.2.1}Regressions}{8}{subsubsection.3.2.1}
-\contentsline {paragraph}{Linear Regression}{8}{section*.6}
+\contentsline {paragraph}{Linear Regression}{9}{section*.6}
 \contentsline {paragraph}{Logistic Regression}{9}{section*.7}
-\contentsline {subsubsection}{\numberline {3.2.2}Naive Bayes}{9}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.2}Naive Bayes}{10}{subsubsection.3.2.2}
 \contentsline {paragraph}{Classification}{10}{section*.8}
 \contentsline {paragraph}{Variations of the Algorithm}{11}{section*.9}
-\contentsline {subparagraph}{Gaussian}{11}{section*.10}
-\contentsline {subparagraph}{Multinomial}{11}{section*.11}
-\contentsline {subparagraph}{Bernoulli}{12}{section*.12}
-\contentsline {subsubsection}{\numberline {3.2.3}Support Vector Machines}{12}{subsubsection.3.2.3}
-\contentsline {paragraph}{Background}{12}{section*.13}
+\contentsline {subparagraph}{Gaussian}{12}{section*.10}
+\contentsline {subparagraph}{Multinomial}{12}{section*.11}
+\contentsline {subparagraph}{Bernoulli}{13}{section*.12}
+\contentsline {subsubsection}{\numberline {3.2.3}Support Vector Machines}{13}{subsubsection.3.2.3}
+\contentsline {paragraph}{Background}{13}{section*.13}
 \contentsline {paragraph}{Implementation}{13}{section*.14}
 \contentsline {paragraph}{Kernel Trick}{16}{section*.16}
 \contentsline {paragraph}{Linear Kernel}{17}{section*.18}
 \contentsline {paragraph}{Polynomial Kernel}{17}{section*.19}
 \contentsline {paragraph}{Gaussian Radial Basis Kernel}{18}{section*.20}
-\contentsline {paragraph}{Sigmoid Kernel}{18}{section*.21}
+\contentsline {paragraph}{Sigmoid Kernel}{19}{section*.21}
 \contentsline {paragraph}{Margin Rigidity or Slack}{19}{section*.23}
 \contentsline {paragraph}{Multiclass classification}{20}{section*.24}
 \contentsline {paragraph}{Strengths and Weaknesses}{20}{section*.25}

@@ -44,7 +44,7 @@
 	
 	
 	\paragraph{Classification}
-		The type of network used most commonly for classification is a Multilayer Perceptron Network (MLP). This falls into the category of feedforward ANNs. A feedforward network, is such which does not allow cycles. Thus each layer only outputs information to the next layer, and not to the ones which came before. Typically a non-linear sigmoid function is used for activation rather than a binary step function as described in [\ref{ANN_percept}]. A sigmoid function [\ref{ann_sigmoid}] also often called a Soft Step or another continuous function are usually used, since ultimately the algorithm will have to calculate gradients to maximize or minimize an optimization function. Therefore this function should be continuous, differentiable and Real-valued.
+		The type of network used most commonly for classification is a Multilayer Perceptron Network (MLP). This falls into the category of feedforward ANNs. A feedforward network, is an ANN prohibiting cycles. Thus each layer only outputs information to the next layer, and not to the ones which came before. Typically, a non-linear sigmoid function is used for activation rather than a binary step function as described in [\ref{ANN_percept}]. A sigmoid function [\ref{ann_sigmoid}] often called a Soft Step or another continuous function are usually used, since ultimately the algorithm will have to calculate gradients to maximize or minimize an optimization function. Therefore this function should be continuous, differentiable and Real-valued.
 		
 		\begin{equation}
 			\phi(x) = \frac{1}{1+ e^{-x}}

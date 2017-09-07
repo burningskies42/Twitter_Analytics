@@ -41,7 +41,7 @@
 \contentsline {subsubsection}{\numberline {3.2.5}Decision Trees and Random Forests}{26}{subsubsection.3.2.5}
 \contentsline {paragraph}{ID3 Algorithm}{26}{section*.34}
 \contentsline {paragraph}{Entropy}{26}{section*.35}
-\contentsline {paragraph}{A}{27}{section*.36}
+\contentsline {paragraph}{Gini}{27}{section*.36}
 \contentsline {paragraph}{Information Gain}{27}{section*.37}
 \contentsline {paragraph}{Pruning}{28}{section*.38}
 \contentsline {paragraph}{Random Forest}{28}{section*.39}

@@ -328,7 +328,7 @@ class WordsClassifier():
          fid.close()
 
    def train(self,time_stamp,pth,num_features,with_trees,with_print=True,fetch_from_server=True):
-      print(pth)
+      # print(pth)
 
       if fetch_from_server:
          self.fetch_tweets(with_print=with_print,pth=pth)

@@ -18,6 +18,7 @@ for i in listdir(pth):
 
 for pth in files:
    for feature_cnt in [100,500,1000,3000,5000]:
+      feature_cnt = 5000
       print('Dataset', pth)
       print('with',feature_cnt,'features: \n')
       i=1
@@ -38,4 +39,4 @@ for pth in files:
 
 
 
-print('Total run-time',str(time.strftime('%H:%M:%S',time.gmtime(time.time() - total_run_time))))
+   print('Total run-time',str(time.strftime('%H:%M:%S',time.gmtime(time.time() - total_run_time))))

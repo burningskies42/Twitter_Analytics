@@ -347,9 +347,11 @@ class WordsClassifier():
             else:
                self.all_words[word.lower()] = 1*mult
 
-      # Get the 5000 most popular words
+      # Get the # most popular words
       self.word_features=sorted(self.all_words.items(), key=lambda x:x[1],reverse=True)[10:(num_features+10)]
       self.word_features = [w[0] for w in self.word_features]
+      feature_cnt = len(self.word_features)
+
 
       random.shuffle(self.documents)
       featuresets = [(self.find_features(rev,self.word_features), category) for (rev, category) in self.documents]
@@ -658,7 +660,7 @@ class WordsClassifier():
       self.output_log['Train_Spam'] = sizes_df.loc['Training']['Not-News']
       self.output_log['Test_News']  = sizes_df.loc['Testing']['News']
       self.output_log['Test_Spam']  = sizes_df.loc['Testing']['Not-News']
-      self.output_log['feature_cnt'] = num_features
+      self.output_log['feature_cnt'] = feature_cnt
       self.output_log['type'] = 'bag_of_words'
 
       # Reorder ouput log

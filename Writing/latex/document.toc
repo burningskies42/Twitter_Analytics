@@ -35,7 +35,7 @@
 \contentsline {paragraph}{Strengths and Weaknesses}{20}{section*.25}
 \contentsline {subsubsection}{\numberline {3.2.4}Artificial Neural Networks}{21}{subsubsection.3.2.4}
 \contentsline {paragraph}{Intuition}{21}{section*.26}
-\contentsline {paragraph}{Classification}{22}{section*.29}
+\contentsline {paragraph}{Classification}{23}{section*.29}
 \contentsline {paragraph}{Stochastic Gradient Descent}{23}{section*.31}
 \contentsline {paragraph}{Adaptive Moment Estimation}{25}{section*.33}
 \contentsline {subsubsection}{\numberline {3.2.5}Decision Trees and Random Forests}{26}{subsubsection.3.2.5}

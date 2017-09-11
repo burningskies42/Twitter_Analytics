@@ -22,7 +22,9 @@ import pydot
 # from sklearn.gaussian_process.kernels import RBF
 # from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 
+
 from sklearn.metrics import cohen_kappa_score,confusion_matrix
+from sklearn.feature_extraction.text import CountVectorizer
 import numpy as np
 import scipy.stats as stats
 import os
@@ -220,7 +222,7 @@ class WordsClassifier():
    @:param(from_server) - If true, all tweets will be fetched from server. Else, tweets will be loaded
                           from last downloaded tweets file
    '''
-   def __init__(self,load_train='load',pth = '',from_server=True,num_features=5000,with_trees=False):
+   def __init__(self,remove_stopwords,n_min,n_max,ngrams,load_train='load',pth = '',from_server=True,num_features=5000,with_trees=False):
       assert load_train in ('load','train','')
 
       self.voter = None
@@ -244,9 +246,9 @@ class WordsClassifier():
       if load_train == 'load':
          self.load_classifier()
       elif load_train == 'train':
-         self.train(self.time_stamp,num_features=num_features,pth=pth,fetch_from_server=from_server,with_trees=self.with_trees)
+         self.train(self.time_stamp,ngrams=ngrams,n_min=n_min,n_max=n_max,num_features=num_features,pth=pth,remove_stopwords=remove_stopwords,fetch_from_server=from_server,with_trees=self.with_trees)
 
-   def build_word_list(self, sentence):
+   def build_word_list(self, sentence,remove_stopwords):
       sentence = self.clear_urls(sentence)
       sentence = sentence.replace('\n', '')
       sentence = sentence.replace('\r', '')
@@ -254,19 +256,43 @@ class WordsClassifier():
       for c in punctuation:
          sentence = sentence.replace(c, '')
 
-      words = word_tokenize(sentence)
+      words = sentence
 
-      # print(words)
-      words = [w.lower() for w in words if w.lower() not in self.stop_words]
+      # Remove stop_words and lemmatize
+      if remove_stopwords:
+         words = word_tokenize(sentence)
+         words = [w.lower() for w in words if w.lower() not in self.stop_words]
 
-      lms_words = list(map(lambda x: self.lmtzr.lemmatize(x), words))
-      words = pos_tag(lms_words)
+         lms_words = list(map(lambda x: self.lmtzr.lemmatize(x), words))
+         words = pos_tag(lms_words)
 
-      # words = [w[0] for w in words if w[1][0] in allowed_word_types]
-      words = [w[0] for w in words if w[1][0] in self.allowed_word_types]
-      # print(words)
-      # print('~~~~~~~~~')
+         words = [w[0] for w in words if w[1][0] in self.allowed_word_types]
+
       return words
+
+   # Instead of list of words retuns a list of n-grams
+   def build_ngram_list(self, sentence,n_min,n_max):
+      sentence = self.clear_urls(sentence)
+      sentence = sentence.replace('\n', '')
+      sentence = sentence.replace('\r', '')
+
+      for c in punctuation:
+         sentence = sentence.replace(c, '')
+
+      words = ' '.join(sentence.split()).lower()
+      word_cnt = len(words.split(' '))
+
+      try:
+         ngram_vectorizer = CountVectorizer(ngram_range=(n_min,n_max))
+         ngram_vectorizer.fit_transform([words])
+         line_ngrams = ngram_vectorizer.get_feature_names()
+
+
+      except Exception as e:
+         print('no ngrams found')
+         line_ngrams= [words]
+
+      return line_ngrams
 
    def txt_lbl(self, number):
       if number == 1:
@@ -294,7 +320,7 @@ class WordsClassifier():
 
       return featureset
 
-   def fetch_tweets(self,pth,with_print=True):
+   def fetch_tweets(self,pth,remove_stopwords,ngrams,n_min,n_max,with_print=True):
 
       # List of tuples: each tuple contains a list of words(tokenized sentence) + category('pos' or 'neg')
       label_df = pd.DataFrame.from_csv(pth,sep=';')
@@ -306,7 +332,13 @@ class WordsClassifier():
       if with_print: print('------------------------------------')
       df = fetch_tweets_by_ids(ids)[['text']]
       df['text'] = df['text'].apply(self.clear_urls)
-      df['text'] = df['text'].apply(lambda x : self.build_word_list(x) )
+
+      if ngrams:
+         df['text'] = df['text'].apply(lambda x: self.build_ngram_list(x,n_min=n_min,n_max=n_max))
+
+      else:
+         df['text'] = df['text'].apply(lambda x : self.build_word_list(x,remove_stopwords=remove_stopwords))
+
 
       df = label_df.join(df)
       df.dropna(inplace=True)
@@ -327,14 +359,21 @@ class WordsClassifier():
          self.documents = pickle.load(fid)
          fid.close()
 
-   def train(self,time_stamp,pth,num_features,with_trees,with_print=True,fetch_from_server=True):
+   def train(self,time_stamp,pth,num_features,with_trees,remove_stopwords,ngrams,n_min,n_max,with_print=True,fetch_from_server=True):
       # print(pth)
 
       if fetch_from_server:
-         self.fetch_tweets(with_print=with_print,pth=pth)
+         self.fetch_tweets(with_print=with_print,pth=pth,remove_stopwords=remove_stopwords,ngrams=ngrams,n_min=n_min,n_max=n_max)
       else:
          self.load_tweets_from_file()
 
+      # for d in self.documents:
+      #    print(d)
+      #
+      # quit()
+
+
+      # else:
       for tweet in self.documents:
          if tweet[1] == 'news' :
             mult = self.class_ratio
@@ -346,6 +385,11 @@ class WordsClassifier():
                self.all_words[word.lower()] += 1*mult
             else:
                self.all_words[word.lower()] = 1*mult
+
+
+
+
+
 
       # Get the # most popular words
       self.word_features=sorted(self.all_words.items(), key=lambda x:x[1],reverse=True)[10:(num_features+10)]
@@ -661,7 +705,11 @@ class WordsClassifier():
       self.output_log['Test_News']  = sizes_df.loc['Testing']['News']
       self.output_log['Test_Spam']  = sizes_df.loc['Testing']['Not-News']
       self.output_log['feature_cnt'] = feature_cnt
-      self.output_log['type'] = 'bag_of_words'
+
+      if ngrams:
+         self.output_log['type'] = 'bag_of_ngrams_' +str(n_min) + '_'+str(n_max)
+      else:
+         self.output_log['type'] = 'bag_of_words'
 
       # Reorder ouput log
       self.output_log = self.output_log[[

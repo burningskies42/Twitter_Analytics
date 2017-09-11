@@ -19,7 +19,7 @@ for i in listdir(pth):
 
 for pth in files:
    for feature_cnt in [100,500,1000,3000,5000]:
-      feature_cnt = 5000
+      # feature_cnt = 5000
       print('Dataset', pth)
       print('with',feature_cnt,'features: \n')
       i=1
@@ -30,11 +30,13 @@ for pth in files:
 
          if i==1:
             # word_classifier = words_as_features.WordsClassifier('train', pth=pth, from_server=True,num_features=3000)
-            words_as_features.WordsClassifier(remove_stopwords=False, load_train='train', pth=pth, from_server=True,
-                                              num_features=feature_cnt, with_trees=False)
+            word_classifier = words_as_features.WordsClassifier(n_min=2, n_max=5, ngrams=True, remove_stopwords=True,
+                                                                load_train='train', pth=pth, from_server=True,
+                                                                num_features=feature_cnt, with_trees=False)
          else:
-            words_as_features.WordsClassifier(remove_stopwords=False, load_train='train', pth=pth, from_server=False,
-                                              num_features=feature_cnt, with_trees=False)
+            word_classifier = words_as_features.WordsClassifier(n_min=2, n_max=5, ngrams=True, remove_stopwords=True,
+                                                                load_train='train', pth=pth, from_server=False,
+                                                                num_features=feature_cnt, with_trees=False)
 
          dur = time.strftime('%H:%M:%S',time.gmtime(time.time() - start_time))
          print('Finished',str(i)+" rounds. Round duration:", str(dur))

@@ -7,48 +7,64 @@
 \contentsline {subsection}{\numberline {2.2}Text Mining}{2}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Unstructured Data}{3}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}Classification}{4}{subsection.2.4}
-\contentsline {paragraph}{Supervised Learning}{4}{section*.3}
-\contentsline {paragraph}{Unsupervised Learning}{4}{section*.4}
+\contentsline {paragraph}{Supervised Learning}{4}{section*.4}
+\contentsline {paragraph}{Unsupervised Learning}{4}{section*.5}
 \contentsline {subsection}{\numberline {2.5}Information Quality}{5}{subsection.2.5}
 \contentsline {section}{\numberline {3}Methodology}{6}{section.3}
 \contentsline {subsection}{\numberline {3.1}Training Classifier}{7}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Supervised Learning}{8}{subsection.3.2}
 \contentsline {subsubsection}{\numberline {3.2.1}Regressions}{8}{subsubsection.3.2.1}
-\contentsline {paragraph}{Linear Regression}{9}{section*.6}
-\contentsline {paragraph}{Logistic Regression}{9}{section*.7}
+\contentsline {paragraph}{Linear Regression}{9}{section*.7}
+\contentsline {paragraph}{Logistic Regression}{9}{section*.8}
 \contentsline {subsubsection}{\numberline {3.2.2}Naive Bayes}{10}{subsubsection.3.2.2}
-\contentsline {paragraph}{Classification}{10}{section*.8}
-\contentsline {paragraph}{Variations of the Algorithm}{11}{section*.9}
-\contentsline {subparagraph}{Gaussian}{12}{section*.10}
-\contentsline {subparagraph}{Multinomial}{12}{section*.11}
-\contentsline {subparagraph}{Bernoulli}{13}{section*.12}
+\contentsline {paragraph}{Classification}{10}{section*.9}
+\contentsline {paragraph}{Variations of the Algorithm}{11}{section*.10}
+\contentsline {subparagraph}{Gaussian}{12}{section*.11}
+\contentsline {subparagraph}{Multinomial}{12}{section*.12}
+\contentsline {subparagraph}{Bernoulli}{13}{section*.13}
 \contentsline {subsubsection}{\numberline {3.2.3}Support Vector Machines}{13}{subsubsection.3.2.3}
-\contentsline {paragraph}{Background}{13}{section*.13}
-\contentsline {paragraph}{Implementation}{13}{section*.14}
-\contentsline {paragraph}{Kernel Trick}{16}{section*.16}
-\contentsline {paragraph}{Linear Kernel}{17}{section*.18}
-\contentsline {paragraph}{Polynomial Kernel}{17}{section*.19}
-\contentsline {paragraph}{Gaussian Radial Basis Kernel}{18}{section*.20}
-\contentsline {paragraph}{Sigmoid Kernel}{19}{section*.21}
-\contentsline {paragraph}{Margin Rigidity or Slack}{19}{section*.23}
-\contentsline {paragraph}{Multiclass classification}{20}{section*.24}
-\contentsline {paragraph}{Strengths and Weaknesses}{20}{section*.25}
+\contentsline {paragraph}{Background}{13}{section*.14}
+\contentsline {paragraph}{Implementation}{13}{section*.15}
+\contentsline {paragraph}{Kernel Trick}{16}{section*.17}
+\contentsline {paragraph}{Linear Kernel}{17}{section*.19}
+\contentsline {paragraph}{Polynomial Kernel}{17}{section*.20}
+\contentsline {paragraph}{Gaussian Radial Basis Kernel}{18}{section*.21}
+\contentsline {paragraph}{Sigmoid Kernel}{19}{section*.22}
+\contentsline {paragraph}{Margin Rigidity or Slack}{19}{section*.24}
+\contentsline {paragraph}{Multiclass classification}{20}{section*.25}
+\contentsline {paragraph}{Strengths and Weaknesses}{20}{section*.26}
 \contentsline {subsubsection}{\numberline {3.2.4}Artificial Neural Networks}{21}{subsubsection.3.2.4}
-\contentsline {paragraph}{Intuition}{21}{section*.26}
-\contentsline {paragraph}{Classification}{23}{section*.29}
-\contentsline {paragraph}{Stochastic Gradient Descent}{23}{section*.31}
-\contentsline {paragraph}{Adaptive Moment Estimation}{25}{section*.33}
+\contentsline {paragraph}{Intuition}{21}{section*.27}
+\contentsline {paragraph}{Classification}{23}{section*.30}
+\contentsline {paragraph}{Stochastic Gradient Descent}{23}{section*.32}
+\contentsline {paragraph}{Adaptive Moment Estimation}{25}{section*.34}
 \contentsline {subsubsection}{\numberline {3.2.5}Decision Trees and Random Forests}{26}{subsubsection.3.2.5}
-\contentsline {paragraph}{ID3 Algorithm}{26}{section*.34}
-\contentsline {paragraph}{Entropy}{26}{section*.35}
-\contentsline {paragraph}{Gini}{27}{section*.36}
-\contentsline {paragraph}{Information Gain}{27}{section*.37}
-\contentsline {paragraph}{Pruning}{28}{section*.38}
-\contentsline {paragraph}{Random Forest}{28}{section*.39}
+\contentsline {paragraph}{ID3 Algorithm}{26}{section*.35}
+\contentsline {paragraph}{Entropy}{26}{section*.36}
+\contentsline {paragraph}{Gini}{27}{section*.37}
+\contentsline {paragraph}{Information Gain}{27}{section*.38}
+\contentsline {paragraph}{Pruning}{28}{section*.39}
+\contentsline {paragraph}{Random Forest}{28}{section*.40}
 \contentsline {section}{\numberline {4}Application}{29}{section.4}
 \contentsline {subsection}{\numberline {4.1}Information Procurement}{29}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Building the Datasets}{33}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.2}Building Feature-Sets}{33}{subsection.4.2}
 \contentsline {subsubsection}{\numberline {4.2.1}Word-Based Features}{33}{subsubsection.4.2.1}
-\contentsline {subsubsection}{\numberline {4.2.2}Descriptive Features}{33}{subsubsection.4.2.2}
-\contentsline {section}{\numberline {5}Results}{35}{section.5}
-\contentsline {section}{\numberline {6}Genaral Use Cases}{36}{section.6}
+\contentsline {subsubsection}{\numberline {4.2.2}N-Grams Features}{33}{subsubsection.4.2.2}
+\contentsline {subsubsection}{\numberline {4.2.3}Descriptive Features}{34}{subsubsection.4.2.3}
+\contentsline {subsection}{\numberline {4.3}Training Classifiers}{35}{subsection.4.3}
+\contentsline {section}{\numberline {5}Results}{36}{section.5}
+\contentsline {subsection}{\numberline {5.1}Grouping of Classifiers}{36}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Descriptive Statistics}{36}{subsection.5.2}
+\contentsline {subsubsection}{\numberline {5.2.1}Data Size and Labels}{37}{subsubsection.5.2.1}
+\contentsline {paragraph}{Overfitting}{37}{section*.48}
+\contentsline {subsubsection}{\numberline {5.2.2}Number of Features}{38}{subsubsection.5.2.2}
+\contentsline {subsection}{\numberline {5.3}Success Measures}{39}{subsection.5.3}
+\contentsline {subsubsection}{\numberline {5.3.1}Accuracy}{39}{subsubsection.5.3.1}
+\contentsline {subsubsection}{\numberline {5.3.2}Cohens Kappa}{39}{subsubsection.5.3.2}
+\contentsline {subsubsection}{\numberline {5.3.3}Confusion Matrix}{39}{subsubsection.5.3.3}
+\contentsline {subsubsection}{\numberline {5.3.4}Receiver operating characteristic}{39}{subsubsection.5.3.4}
+\contentsline {subsection}{\numberline {5.4}Approaches}{39}{subsection.5.4}
+\contentsline {subsubsection}{\numberline {5.4.1}Descriptive Features}{39}{subsubsection.5.4.1}
+\contentsline {subsubsection}{\numberline {5.4.2}Bag of Words}{39}{subsubsection.5.4.2}
+\contentsline {subsubsection}{\numberline {5.4.3}N-Grams}{39}{subsubsection.5.4.3}
+\contentsline {section}{\numberline {6}Genaral Use Cases}{40}{section.6}

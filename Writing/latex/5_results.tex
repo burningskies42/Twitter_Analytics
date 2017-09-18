@@ -2,7 +2,7 @@
 	In the section the classification that took place will be analyzed. The classification were conducted in different configurations of  dataset size and number of features. For optimization purposes other characteristics will be discussed such as robustness of the results as well as training and classification time.
 	
 	\subsection{Grouping of Classifiers}
-		The classifiers were grouped into 5 general groups as well as the Vote Classifier. The groupings were done according to the base algorithm of each classifier. These groupings are demonstrated in table \ref{table:class_grps}. Stochastic Gradient Descent refers to Neural Networks which make use of SGD to minimiye their cost function, by gradually reducing the error terms.
+		The classifiers were grouped into 5 general groups. Additionally, a Vote Classifier, tallying the voted classifications was observed. The groupings were done according to the base algorithm of each classifier. This organization schema is demonstrated in table \ref{table:class_grps}.
 		
 		\begin{table}[h]	
 			\begin{center}
@@ -11,8 +11,8 @@
 					\hline
 					\multicolumn{1}{c|}{\multirow{2}{*}{Group Name}} & \multicolumn{1}{|c}{\multirow{2}{*}{Classifiers}}\\ 
 					 &   \\ 
-					\hline\hline
-					Regressions 	  & Logistic Regression  \\
+					\hline
+					Regressions 	  & Logistic Regression*  \\
 					\hline
 					Naive Bayes       & Simple NB, Bernoulli NB, Multinomial NB \\
 					\hline
@@ -22,16 +22,19 @@
 					\hline
 					\vspace*{-1mm} 
 					Artificial Neural & Multi-Layer Percpetron,  \\
-					Networks		  & Stochastic Gradient Descent \\
+					Networks		  & Stochastic Gradient Descent** \\
 					\hline
 					Ensemble Methods  & Random Forest, Adaptive Boosting \\
-					\hline
-					\hline
-				\end{tabular}
+					\hline\hline
+					\multicolumn{2}{p{1\textwidth}}{ \footnotesize * Note that Logistic Regression refers to a classification schema using logistic distribution for possible values of the fore-casted class, rather then an actual regression. Furthermore, Logistic Regression is a simplistic classifier and is demonstrated as a benchmark measure, rather then an actual classifier.} \\
+					\multicolumn{2}{p{1\textwidth}}{ \footnotesize ** Refers to Neural Networks which make use of SGD to minimize their cost function by gradually reducing the error terms} \\
+				\end{tabular}	
 			\end{center}
 			\caption[Classifier Groupings]{Classifier Groupings}
 			\label{table:class_grps}
 		\end{table}
+	
+		In the upcoming results analysis the name scheme used in table \ref{table:class_grps} will refer to average values inside each such named group. 
 	
 	\subsection{Descriptive Statistics}
 		I conducted the labeling in the process of several weeks. The labeling process was very subjective. Apart from holding up to a few rules of thumb, it is hard to formally model the labeling pattern. This in fact, makes this an ideal task for Machine Learning, since the logic behind it is intuitive rather than strict.
@@ -77,11 +80,11 @@
 						\hline
 						\hline
 					\end{tabular}
-				\caption[Classifier Groupings]{Classifier Groupings}
+				\caption[Classifier Duration]{Classifier Training Duration}
 				\label{table:class_duration}
 			\end{table}
 		
-		Table \ref{table:class_duration} demonstrates the average duration in seconds to train a classifier using a data set size of a size, denoted on the horizontal axis. For example, an average classifier with 3000 features and 
+		Table \ref{table:class_duration} demonstrates the average duration in seconds to train a classifier, with the training dataset size denoted on the horizontal axis and the number of identifying features on the vertical axis. Notice the large standard errors, indicated by the numbers in brackets. This strong variation is due to the differences in training time . For example, an average classifier with 3000 features and 
 				
 			
 			

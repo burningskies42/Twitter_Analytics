@@ -54,7 +54,7 @@
 \contentsline {subsection}{\numberline {4.3}Training Classifiers}{35}{subsection.4.3}
 \contentsline {section}{\numberline {5}Results}{36}{section.5}
 \contentsline {subsection}{\numberline {5.1}Grouping of Classifiers}{36}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}Descriptive Statistics}{36}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.2}Descriptive Statistics}{37}{subsection.5.2}
 \contentsline {subsubsection}{\numberline {5.2.1}Data Size and Labels}{37}{subsubsection.5.2.1}
 \contentsline {paragraph}{Overfitting}{37}{section*.48}
 \contentsline {subsubsection}{\numberline {5.2.2}Number of Features}{38}{subsubsection.5.2.2}

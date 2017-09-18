@@ -22,10 +22,13 @@ import pydot
 # from sklearn.gaussian_process.kernels import RBF
 # from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 
+
 from sklearn.metrics import cohen_kappa_score,confusion_matrix
+from sklearn.feature_extraction.text import CountVectorizer
 import numpy as np
 import scipy.stats as stats
 import os
+import math
 
 
 
@@ -237,16 +240,15 @@ class WordsClassifier():
       self.time_stamp = datetime.datetime.now().strftime("%Y_%m_%d_%H:%M:%S")
       self.with_trees = with_trees
 
-
       self.training_set = None
       self.testining_set = None
 
-      if load_train == 'load':
-         self.load_classifier()
-      elif load_train == 'train':
-         self.train(self.time_stamp,num_features=num_features,pth=pth,fetch_from_server=from_server,with_trees=self.with_trees)
+      # if load_train == 'load':
+      #    self.load_classifier()
+      # elif load_train == 'train':
+      #    self.train(self.time_stamp,ngrams=ngrams,n_min=n_min,n_max=n_max,num_features=num_features,pth=pth,remove_stopwords=remove_stopwords,fetch_from_server=from_server,with_trees=self.with_trees)
 
-   def build_word_list(self, sentence):
+   def build_word_list(self, sentence,remove_stopwords):
       sentence = self.clear_urls(sentence)
       sentence = sentence.replace('\n', '')
       sentence = sentence.replace('\r', '')
@@ -254,19 +256,43 @@ class WordsClassifier():
       for c in punctuation:
          sentence = sentence.replace(c, '')
 
-      words = word_tokenize(sentence)
+      words = sentence
 
-      # print(words)
-      words = [w.lower() for w in words if w.lower() not in self.stop_words]
+      # Remove stop_words and lemmatize
+      if remove_stopwords:
+         words = word_tokenize(sentence)
+         words = [w.lower() for w in words if w.lower() not in self.stop_words]
 
-      lms_words = list(map(lambda x: self.lmtzr.lemmatize(x), words))
-      words = pos_tag(lms_words)
+         lms_words = list(map(lambda x: self.lmtzr.lemmatize(x), words))
+         words = pos_tag(lms_words)
 
-      # words = [w[0] for w in words if w[1][0] in allowed_word_types]
-      words = [w[0] for w in words if w[1][0] in self.allowed_word_types]
-      # print(words)
-      # print('~~~~~~~~~')
+         words = [w[0] for w in words if w[1][0] in self.allowed_word_types]
+
       return words
+
+   # Instead of list of words retuns a list of n-grams
+   def build_ngram_list(self, sentence,n_min,n_max):
+      sentence = self.clear_urls(sentence)
+      sentence = sentence.replace('\n', '')
+      sentence = sentence.replace('\r', '')
+
+      for c in punctuation:
+         sentence = sentence.replace(c, '')
+
+      words = ' '.join(sentence.split()).lower()
+      word_cnt = len(words.split(' '))
+
+      try:
+         ngram_vectorizer = CountVectorizer(ngram_range=(n_min,n_max))
+         ngram_vectorizer.fit_transform([words])
+         line_ngrams = ngram_vectorizer.get_feature_names()
+
+
+      except Exception as e:
+         print('no ngrams found:',words)
+         line_ngrams= [words]
+
+      return line_ngrams
 
    def txt_lbl(self, number):
       if number == 1:
@@ -294,7 +320,7 @@ class WordsClassifier():
 
       return featureset
 
-   def fetch_tweets(self,pth,with_print=True):
+   def fetch_tweets(self,pth,remove_stopwords,ngrams,n_min,n_max,with_print):
 
       # List of tuples: each tuple contains a list of words(tokenized sentence) + category('pos' or 'neg')
       label_df = pd.DataFrame.from_csv(pth,sep=';')
@@ -306,7 +332,13 @@ class WordsClassifier():
       if with_print: print('------------------------------------')
       df = fetch_tweets_by_ids(ids)[['text']]
       df['text'] = df['text'].apply(self.clear_urls)
-      df['text'] = df['text'].apply(lambda x : self.build_word_list(x) )
+
+      if ngrams:
+         df['text'] = df['text'].apply(lambda x: self.build_ngram_list(x,n_min=n_min,n_max=n_max))
+
+      else:
+         df['text'] = df['text'].apply(lambda x : self.build_word_list(x,remove_stopwords=remove_stopwords))
+
 
       df = label_df.join(df)
       df.dropna(inplace=True)
@@ -327,90 +359,131 @@ class WordsClassifier():
          self.documents = pickle.load(fid)
          fid.close()
 
-   def train(self,time_stamp,pth,num_features,with_trees,with_print=True,fetch_from_server=True):
-      # print(pth)
+   def build_features(self,num_features,feature_selection="tf"):
+      self.load_tweets_from_file()
 
-      if fetch_from_server:
-         self.fetch_tweets(with_print=with_print,pth=pth)
+      if feature_selection == "tfidf":
+         self.all_words_tf_idf = {}
+
+         num_of_docs = len(self.documents)
+
+         # else:
+         for tweet in self.documents:
+
+            for word in set(tweet[0]):
+
+               # Count the frequency of all words
+               cnt = [1 if w == word else 0 for w in tweet[0]]
+               if word.lower() in self.all_words.keys():
+                  self.all_words[word.lower()] += sum(cnt)
+               else:
+                  self.all_words[word.lower()] = sum(cnt)
+
+               # Count in how many docs a word appears
+               # more than one appearance of word in sigle doc, counts as 1
+               if word.lower() in self.all_words_tf_idf.keys():
+                  self.all_words_tf_idf[word.lower()] += 1
+               else:
+                  self.all_words_tf_idf[word.lower()] = 1
+
+
+         self.all_words_tf_idf = {w: round(tf * math.log(num_of_docs / self.all_words_tf_idf[w]),2) for (w, tf) in
+                                  self.all_words.items()}
+         self.word_features = sorted(self.all_words_tf_idf.items(), key=lambda x: x[1], reverse=True)[10:(num_features + 10)]
+
       else:
-         self.load_tweets_from_file()
+         for tweet in self.documents:
 
-      for tweet in self.documents:
-         if tweet[1] == 'news' :
-            mult = self.class_ratio
-         else:
-            mult = 1
+            for word in set(tweet[0]):
 
-         for word in tweet[0]:
-            if word.lower() in self.all_words.keys():
-               self.all_words[word.lower()] += 1*mult
-            else:
-               self.all_words[word.lower()] = 1*mult
+               # Count the frequency of all words
+               cnt = [1 if w == word else 0 for w in tweet[0]]
+               if word.lower() in self.all_words.keys():
+                  self.all_words[word.lower()] += sum(cnt)
+               else:
+                  self.all_words[word.lower()] = sum(cnt)
 
-      # Get the # most popular words
-      self.word_features=sorted(self.all_words.items(), key=lambda x:x[1],reverse=True)[10:(num_features+10)]
+         self.word_features = sorted(self.all_words.items(), key=lambda x: x[1], reverse=True)[10:(num_features + 10)]
+
+
       self.word_features = [w[0] for w in self.word_features]
-      feature_cnt = len(self.word_features)
-
+      self.feature_cnt = len(self.word_features)
 
       random.shuffle(self.documents)
-      featuresets = [(self.find_features(rev,self.word_features), category) for (rev, category) in self.documents]
+      self.featuresets = [(self.find_features(rev, self.word_features), category) for (rev, category) in self.documents]
 
-      with open(getcwd()+"\\classifiers\\words_as_features\\Words.pickle", "wb") as fid:
+
+
+      with open(getcwd() + "\\classifiers\\words_as_features\\Words.pickle", "wb") as fid:
          pickle.dump(self.word_features, fid)
          fid.close()
 
+   def train_test_split(self,with_print):
       # Sizes
-      training_set_size = int(len(featuresets)*0.7)
-      self.training_set = featuresets[:training_set_size]
-      self.testing_set = featuresets[training_set_size:]
-      train_news = sum([1 for obs in self.training_set if obs[1]=='news'])
-      train_spam = training_set_size - train_news
-      test_news = sum([1 for obs in self.testing_set if obs[1] == 'news'])
-      test_spam = len(self.testing_set) - test_news
+      training_set_size = int(len(self.featuresets) * 0.7)
+      self.training_set = self.featuresets[:training_set_size]
+      self.testing_set = self.featuresets[training_set_size:]
+
+      self.sizes_df = pd.DataFrame()
+      se = pd.Series({'News': 0, 'Not-News': 0})
+      se.name='Training'
+      self.sizes_df = self.sizes_df.append(se)
+      se.name='Testing'
+      self.sizes_df = self.sizes_df.append(se)
 
 
-      if with_print:
-         sizes_df = pd.DataFrame(columns=['News','Not-News','Total'])
-         sizes_df.loc['Training'] = pd.Series({'News':train_news,'Not-News':train_spam, 'Total':len(self.training_set)})
-         sizes_df.loc['Testing'] = pd.Series({'News': test_news, 'Not-News': test_spam, 'Total': len(self.testing_set)})
-         sizes_df.loc['Total'] = pd.Series({'News': train_news+test_news,
-                                            'Not-News': train_spam+test_spam,
-                                            'Total': len(self.training_set)+len(self.testing_set)})
-         print(sizes_df.astype(int))
+      self.sizes_df.loc['Training']['News']     = sum([1 for obs in self.training_set if obs[1] == 'news'])
+      self.sizes_df.loc['Training']['Not-News'] = training_set_size - self.sizes_df.loc['Training']['News']
+      self.sizes_df.loc['Testing']['News']      = sum([1 for obs in self.testing_set if obs[1] == 'news'])
+      self.sizes_df.loc['Testing']['Not-News']  = len(self.testing_set) - self.sizes_df.loc['Testing']['News']
 
-      print('------------------------------------------------------------------------\n', 'Logistic Regression:')
+      print(self.sizes_df)
+
+      print('------------------------------------------------------------------------\n', 'Linear Regression:')
       # This split datasets are only used in linear regression
-      X_train, y_train = zip(*self.training_set)
-      X_train = np.array(pd.DataFrame.from_records(X_train))
+
+      self.X_train, self.y_train = zip(*self.training_set)
+      self.X_train = np.array(pd.DataFrame.from_records(self.X_train))
 
       # Covert labels to numbers: 1=News, 2=NotNews
-      y_train = np.array([(i=='spam')+1 for i in y_train])
+      self.y_train = np.array([(i == 'spam') + 1 for i in self.y_train])
 
-      X_test, y_test = zip(*self.testing_set)
-      X_test = np.array(pd.DataFrame.from_records(X_test))
+      self.X_test, self.y_test = zip(*self.testing_set)
+      self.X_test = np.array(pd.DataFrame.from_records(self.X_test))
 
-      y_test = np.array([(i == 'spam') + 1 for i in y_test])
+      self.y_test = np.array([(i == 'spam') + 1 for i in self.y_test])
 
       LinearRegression_classifier = LinearRegression()
-      LinearRegression_classifier.fit(X_train,y_train)
-      R2 = round(LinearRegression_classifier.score(X_test,y_test),2)
+      LinearRegression_classifier.fit(self.X_train, self.y_train)
+      R2 = round(LinearRegression_classifier.score(self.X_test, self.y_test), 2)
 
       news_ys = []
       spam_ys = []
-      for x,y in zip(X_test,y_test):
+
+
+      for x, y in zip(self.X_test, self.y_test):
          y_hat = LinearRegression_classifier.predict(x.reshape(1, -1))[0]
          if y == 1:
             news_ys.append(y_hat)
          else:
             spam_ys.append(y_hat)
 
+      self.test_stats = pd.DataFrame(columns=['News', 'Not-News'])
+      self.test_stats.loc['mean'] = pd.Series(
+         {'News': round(np.mean(news_ys), 2), 'Not-News': round(np.mean(spam_ys), 2)})
+      self.test_stats.loc['median'] = pd.Series(
+         {'News': round(np.median(news_ys), 2), 'Not-News': round(np.median(spam_ys), 2)})
+
       if with_print:
-         gen_stats_df = pd.DataFrame(columns=['News','Not-News'])
-         gen_stats_df.loc['mean'] = pd.Series({'News':round(np.mean(news_ys),2),'Not-News':round(np.mean(spam_ys),2)})
-         gen_stats_df.loc['median'] = pd.Series({'News': round(np.median(news_ys), 2), 'Not-News': round(np.median(spam_ys), 2)})
-         print(gen_stats_df)
+         print(self.test_stats)
          print('Coeffiecient of Determination (R^2):', R2)
+
+   def train(self,with_trees,ngrams,n_min,n_max,with_print):
+      # if fetch_from_server:
+      #    self.fetch_tweets(with_print=with_print,pth=pth,remove_stopwords=remove_stopwords,ngrams=ngrams,n_min=n_min,n_max=n_max)
+      # else:
+
+      # self.train_test_split(with_print)
 
       # Logistic Regression
       print('------------------------------------------------------------------------\n','Logistic Regression:')
@@ -469,17 +542,6 @@ class WordsClassifier():
       with open(getcwd()+"\\classifiers\\words_as_features\\BernoulliNB_classifier.pickle", "wb") as classifier_f:
          pickle.dump(BernoulliNB_classifier,classifier_f)
          classifier_f.close()
-
-      '''
-      print('------------------------------------------------------------------------\n','Linear Support Vector Machine:')
-      LinearSVC_classifier = SklearnClassifier(LinearSVC())
-      LinearSVC_classifier.train(self.training_set)
-      self.output_log = self.output_log.append(Kappa(LinearSVC_classifier, self.testing_set).output)
-
-      with open(getcwd()+"\\classifiers\\words_as_features\\LinearSVC_classifier.pickle", "wb") as classifier_f:
-         pickle.dump(LinearSVC_classifier,classifier_f)
-         classifier_f.close()
-      '''
 
       '''
       ================================================================================================================================================
@@ -656,12 +718,16 @@ class WordsClassifier():
 
       print('------------------------------------------------------------------------')
 
-      self.output_log['Train_News'] = sizes_df.loc['Training']['News']
-      self.output_log['Train_Spam'] = sizes_df.loc['Training']['Not-News']
-      self.output_log['Test_News']  = sizes_df.loc['Testing']['News']
-      self.output_log['Test_Spam']  = sizes_df.loc['Testing']['Not-News']
-      self.output_log['feature_cnt'] = feature_cnt
-      self.output_log['type'] = 'bag_of_words'
+      self.output_log['Train_News'] =  self.sizes_df.loc['Training']['News']
+      self.output_log['Train_Spam'] =  self.sizes_df.loc['Training']['Not-News']
+      self.output_log['Test_News']  =  self.sizes_df.loc['Testing']['News']
+      self.output_log['Test_Spam']  =  self.sizes_df.loc['Testing']['Not-News']
+      self.output_log['feature_cnt'] = self.feature_cnt
+
+      if ngrams:
+         self.output_log['type'] = 'bag_of_ngrams_' +str(n_min) + '_'+str(n_max)
+      else:
+         self.output_log['type'] = 'bag_of_words'
 
       # Reorder ouput log
       self.output_log = self.output_log[[
@@ -678,15 +744,34 @@ class WordsClassifier():
       ]]
 
       # Saving results to file
-
+      df = pd.DataFrame()
       if os.path.isfile(getcwd() + "\\classifiers\\words_as_features\\weighted_confs.csv"):
-         df = pd.DataFrame().from_csv(getcwd() + "\\classifiers\\words_as_features\\weighted_confs.csv",sep=";")
+         retry = 5
+         while retry > 0:
+            try:
+               df = pd.DataFrame().from_csv(getcwd() + "\\classifiers\\words_as_features\\weighted_confs.csv", sep=";")
+            except Exception as e:
+               retry -= 1
+               time.sleep(60)
+               print('Error reading file.', retry, 'attempts remainig ...')
+               continue
+            break
+
          df = self.output_log.append(df,ignore_index=True)
       else:
          df = self.output_log
 
-      df.to_csv(getcwd() + "\\classifiers\\words_as_features\\weighted_confs.csv",sep=";")
-
+      retry = 5
+      while retry > 0:
+         try:
+            df.to_csv(getcwd() + "\\classifiers\\words_as_features\\weighted_confs.csv", sep=";")
+            print('saved to', getcwd() + "\\classifiers\\words_as_features\\weighted_confs.csv")
+         except Exception as e:
+            retry -= 1
+            time.sleep(60)
+            print('Error writing to file.',retry,'attempts remainig ...')
+            continue
+         break
 
    def load_classifier(self):
       with open(getcwd() + "\\classifiers\\words_as_features\\BernoulliNB_classifier.pickle",'rb') as fid:
@@ -741,5 +826,33 @@ class WordsClassifier():
       with open(getcwd() + "\\classifiers\\words_as_features\\voted_classifier.pickle", 'rb') as fid:
          self.voter = pickle.load(fid)
          fid.close()
+
+
+# def classification_simulation(pth,feature_cnt):
+#    #            0    1    2    3    4    5    6    7    8    9
+#    num_suff = ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th']
+#
+#    print('Dataset', pth)
+#    print('with',feature_cnt,'features: \n')
+#    i=1
+#    while i <=10:
+#       start_time = time.time()
+#       print(str(i)+num_suff[(i%9)],'Itterance')
+#
+#       if i==1:
+#          # word_classifier = words_as_features.WordsClassifier('train', pth=pth, from_server=True,num_features=3000)
+#          word_classifier = WordsClassifier(n_min=2, n_max=5, ngrams=True, remove_stopwords=True,
+#                                                              load_train='train', pth=pth, from_server=True,
+#                                                              num_features=feature_cnt, with_trees=False)
+#       else:
+#          word_classifier = WordsClassifier(n_min=2, n_max=5, ngrams=True, remove_stopwords=True,
+#                                                              load_train='train', pth=pth, from_server=False,
+#                                                              num_features=feature_cnt, with_trees=False)
+#
+#       dur = time.strftime('%H:%M:%S',time.gmtime(time.time() - start_time))
+#       print('Finished',str(i)+" rounds. Round duration:", str(dur),'\n')
+#       i += 1
+
+
 
 

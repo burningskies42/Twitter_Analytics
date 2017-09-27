@@ -403,20 +403,26 @@ class WordsClassifier():
                else:
                   self.all_words[word.lower()] = sum(cnt)
 
+         with open(getcwd() + "\\classifiers\\words_as_features\\all_Words.pickle", "wb") as fid:
+            pickle.dump(self.all_words, fid)
+            fid.close()
+
          self.word_features = sorted(self.all_words.items(), key=lambda x: x[1], reverse=True)[10:(num_features + 10)]
 
 
       self.word_features = [w[0] for w in self.word_features]
       self.feature_cnt = len(self.word_features)
 
+      print(self.word_features)
+
       random.shuffle(self.documents)
       self.featuresets = [(self.find_features(rev, self.word_features), category) for (rev, category) in self.documents]
 
 
-
       with open(getcwd() + "\\classifiers\\words_as_features\\Words.pickle", "wb") as fid:
          pickle.dump(self.word_features, fid)
-         fid.close()
+         # fid.close()
+         # quit()
 
    def train_test_split(self,with_print):
       # Sizes

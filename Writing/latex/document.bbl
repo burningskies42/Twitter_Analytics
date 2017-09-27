@@ -26,6 +26,12 @@
 \newblock A tutorial on support vector machines for pattern recognition.
 \newblock {\em Data mining and knowledge discovery 2}, 2 (1998), 121--167.
 
+\bibitem{castillo2011information}
+{\sc Castillo, C., Mendoza, M., and Poblete, B.}
+\newblock Information credibility on twitter.
+\newblock In {\em Proceedings of the 20th international conference on World
+  wide web\/} (2011), ACM, pp.~675--684.
+
 \bibitem{SVM_cortes1995support}
 {\sc Cortes, C., and Vapnik, V.}
 \newblock Support-vector networks.
@@ -51,6 +57,11 @@
 {\sc Klier, M., and Heinrich, B.}
 \newblock Datenqualit{\"a}t als erfolgsfaktor im business analytics.
 \newblock {\em Controlling 28}, 8-9 (2016), pp. 488--494.
+
+\bibitem{Kralj2015emojis}
+{\sc {Kralj Novak}, P., Smailovi{\'c}, J., Sluban, B., and Mozeti\v{c}, I.}
+\newblock Sentiment of emojis.
+\newblock {\em PLoS ONE 10}, 12 (2015), e0144296.
 
 \bibitem{mcculloch1943logical}
 {\sc McCulloch, W.~S., and Pitts, W.}

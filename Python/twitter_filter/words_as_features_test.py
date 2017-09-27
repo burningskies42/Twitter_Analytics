@@ -8,31 +8,37 @@ import multiprocessing
 # Check False for normal bag-of-words and True for N-Grams
 is_ngrams = False
 
-# pth = easygui.fileopenbox()
 
-pth = getcwd() + '/labels'
+# pth = getcwd() + '/labels'
 files = []
+#
+pth = easygui.fileopenbox()
+# pth = pth.replace('\\', '/' )
 
-for i in listdir(pth):
-   if i.find('weighted_dataset') > -1 :
-      files.append(pth+'/'+i)
+files.append(pth)
+#
+# for i in listdir(pth):
+#    if i.find('weighted_dataset') > -1 :
+#       files.append(pth+'/'+i)
 
-files = sorted(files,key = len)
+# files = sorted(files,key = len)
 # files.reverse()
 
-for i in files:
-   print(i)
+# for i in files:
+#    print(i)
 
 # A matrix to show the classification configs completed:
-progress_matrix = pd.DataFrame(columns=[100, 500, 1000, 3000, 5000])
+# progress_matrix = pd.DataFrame(columns=[100, 500, 1000, 3000, 5000])
+progress_matrix = pd.DataFrame(columns=[5000])
 for file in files:
    file = file.split('/')[len(file.split('/')) - 1].split('.')[0]
-   se = pd.Series({100: 0, 500: 0, 1000: 0, 3000: 0, 5000: 0})
+   # se = pd.Series({100: 0, 500: 0, 1000: 0, 3000: 0, 5000: 0})
+   se = pd.Series({ 5000: 0})
    se.name = file
    se = se.astype(int)
    progress_matrix = progress_matrix.append(se)
 
-# print(progress_matrix, '\n')
+print(progress_matrix, '\n')
 total_run_time = time.time()
 
 if __name__ == '__main__':
@@ -44,8 +50,8 @@ if __name__ == '__main__':
                                   , ngrams=is_ngrams, n_min=2, n_max=5
                                   , with_print=False)
 
-      for feature_cnt in [5000,3000,1000,500,100]:
-      # for feature_cnt in [100]:
+      # for feature_cnt in [5000,3000,1000,500,100]:
+      for feature_cnt in [5000]:
 
          new_simulation.build_features(num_features=feature_cnt,feature_selection="idf")
          new_simulation.train_test_split(with_print=True)

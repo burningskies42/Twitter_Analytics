@@ -232,8 +232,12 @@ def remove_punctuation_list(lst):
    return ret_list
 
 def flatten_users(df):
+
    users_df = df['user'].apply(Series)
-   users_df.columns = 'user_' + users_df.columns
+   if 0 in users_df.columns:
+      users_df.drop([0],axis=1,inplace=True)
+
+   users_df.columns = ['user_'+c for c in users_df.columns]
    df = pd.concat([df.drop(['user'], axis=1), users_df], axis=1)
    return df
 
@@ -248,7 +252,12 @@ def msg_feature_df(df, with_sentiment=True, with_timing=True,with_most_pop_words
    stop_words = set(stopwords.words('english'))
 
    start = time()
-   df_msg['words'] = df['text'].apply(lambda x : clear_punctuation(x))
+   try:
+      df_msg['words'] = df['text'].apply(lambda x : clear_punctuation(x))
+   except Exception as e:
+      print(df['text'])
+      quit()
+
    df_msg['words'] = df_msg['words'].apply(lambda x: word_tokenize(x))
    df_msg['words'] = df_msg['words'].apply(lambda x: remove_punctuation_list(x))
    df_msg['num_stop_words'] = df_msg['words'].apply(lambda x: len(x))
@@ -266,7 +275,7 @@ def msg_feature_df(df, with_sentiment=True, with_timing=True,with_most_pop_words
                else:
                   all_words[word] = 1
 
-      df_msg.drop('label',axis=1,inplace=True)
+      # df_msg.drop('label',axis=1,inplace=True)
 
       # get the 5000 most common words in all the tweets
       all_words = sorted(all_words.items(), key=lambda x: x[1], reverse=True)
@@ -346,6 +355,8 @@ def msg_feature_df(df, with_sentiment=True, with_timing=True,with_most_pop_words
 
    start = time()
    df_msg['emotji_sent_score'] = df['text'].apply(lambda x: emoticons_score(x))
+   df_msg['emotji_sent'] = df_msg['emotji_sent_score'].apply(lambda x: (not x<0))
+   df_msg['emotji_sent_score'] = df_msg['emotji_sent_score'].apply(lambda x: abs(x))
    dur = time() - start
    if with_timing: print('emotji_sent_score:', dur)
 
@@ -380,7 +391,7 @@ def msg_feature_df(df, with_sentiment=True, with_timing=True,with_most_pop_words
       sentm = df['text'].apply(lambda x: sentiment(x))
       sentm = sentm.apply(pd.Series)
       sentm.columns = ['class', 'conf']
-      df_msg['senitment'] = sentm['class']
+      df_msg['senitment'] = [0 if c<0 else c for c in sentm['class']]
       df_msg['senitment_conf'] = sentm['conf']
       dur = time() - start
       if with_timing: print('senitment:', dur)
@@ -461,38 +472,6 @@ def tweets_to_featureset(df, with_sentiment=True, with_timing=True,with_most_pop
 
    df = pd.concat([msg_feat_df, usr_feat_df], axis=1)
 
-   # start_time = time()
-   # with open('C:/Users/Leon/Documents/Masterarbeit/Python/twitter_filter/classifiers/words_as_features/Words.pickle','rb') as fid:
-   #    loaded_words = pickle.load(fid)
-   #    fid.close()
-   #
-   # print('loaded_words',len(loaded_words))
-   #
-   # df_words = pd.DataFrame(columns=loaded_words, index=df.index)
-   #
-   # cnt = 0
-   # for i, row in df.iterrows():
-   #    for w in df_words.columns.values:
-   #       df_words.loc[i][w] = (w in row['words'])
-   #
-   #    cnt+=1
-   #    if (cnt % 10) == 0:
-   #       ecum_time = (time()-start_time)
-   #       perc_completed = round(cnt*100/len(df),2)
-   #       speed = perc_completed/ecum_time
-   #       #
-   #       rem_time = int((100-perc_completed)/speed)
-   #       rem_time = strftime('%H:%M:%S', gmtime(rem_time))
-   #       print(str(perc_completed)+'%','time remainig',rem_time)
-   #
-   # df = pd.concat([df, df_words], axis=1)
-   # df.to_csv('foobar.csv',sep = ';')
-   #
-   # print('building word features',round(time()-start_time,2))
-
-   # Obsolete, since retweets are counted from captured df
-   # df = pd.concat([df, retweets], axis=1)
-   # df.set_index('id_str')
    return df      #,all_words
 
 

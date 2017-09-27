@@ -1,5 +1,13 @@
 \subsubsection{Decision Trees and Random Forests}
-	Another popular type of classifiers stems from the idea of decision trees [\cite{quinlan2014c4}]. That is, a flow chart consisting of decision intersections (called nodes) flows from a starting root (the tree stem). The data is further segmented in each following junction until a state is achieved, in which ideally all segments are "pure", containing observation belonging to a single class. 
+	Another popular type of classifiers stems from the idea of decision trees [\cite{quinlan2014c4}]. That is, a flow chart consisting of decision intersections (called nodes) flows from a starting root (the tree stem). The data is further segmented in each following junction until a state is achieved, in which ideally all segments are "pure", containing observation belonging to a single class. Note that Decision Trees and other Ensemble Methods are not well suited for classification of \hyperref[data_sparsity]{sparse data}, due to the large number of features. This means the information gain from each note is very minor. A segment of a Decision Tree implemented in sparse data is graphically illustrated in figure \ref{fig:rand_forest_sparse}.
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=1\textwidth]{decision_tree_sparse_data}
+		\captionsetup{width=0.8\textwidth}
+		\caption[Decision Tree with Sparse Data]{Decision Tree derived from sparse (Left) and non-sparse (Right) data}
+		\label{fig:rand_forest_sparse}
+	\end{figure}
 		
 	\paragraph{ID3 Algorithm} 
 		This procedure of Decision Tree induction is known as the ID3 Algorithm [\cite{quinlan1986induction}]. More formally, the design functions as follows. We start, as is common in classification problems, with a data training dataset. Each data point (observation) in the set has an assortment of attributes (features) and is assigned to a certain class. At each stage of the tree construction, including the inception stage, a node is created. This node receives as input a group of observations which belong to 2 or more classes. The node than selects a feature of the data and divides the data according to this feature. The feature selection consideration will be explained subsequently. For each possible value of the previously selected feature, a node is created. If the data inside a node belongs to a single class, it will not be segmented any further and the node will be denoted as a \textit{leaf}. If, on the other hand, the new node contains data points from different classes, we repeat the process of feature selection and segmentation accordingly. Finally, we want to reach a scenario in which, all leaves of the tree contain observations belonging to a single class each. The contents of such leaves may also referred to as \textit{pure subsets}.

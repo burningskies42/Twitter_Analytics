@@ -16,17 +16,9 @@
 			
 			\par
 			
-			The data units incoming from the Twitter servers are sent as JavaScript Object Notation (JSON) strings. JSONs are structured hierarchically, which allows for embedding other JSON objects in them recursively. This makes JSON beneficial for Tweets, since it allows multi-level storage of Tweet properties and objects. For example, one of the JSON objects integrated in each Tweet JSON is the USER object for the Tweet-poster. A USER object, a JSON by itself, contains all relevant data for a Tweeter account. The USER object in turn contains all data publicly available in Twitter about a Twitter account such as, location, date of registration, homepage etc. An additional object of interest is the ENTITIES JSON object, which contains all outside references from the Tweet's text such as, URLs, Multimedia, References to other Tweets or other users. 
+			The data units incoming from the Twitter servers are sent as JavaScript Object Notation (JSON) strings. JSONs are structured hierarchically, which allows for embedding other JSON objects in them recursively. This makes JSON beneficial for Tweets, since it allows multi-level storage of Tweet propertries and objects. For example, one of the JSON objects integrated in each Tweet JSON is the USER object for the Tweet-poster. A USER object, a JSON by itself, contains all relevant data for a Tweeter account. The USER object in turn contains all data publicly available in Twitter about a Twitter account such as, location, date of registration, homepage etc. An additional object of interest is the ENTITIES JSON object, which contains all outside references from the Tweet's text such as, URLs, Multimedia, References to other Tweets or other users. 
 			This structure greatly eases the analysis of a Tweet and its features, since most of the necessary data is available from the Tweet itself and no further queries about the Tweets and its posting-user are necessary.
 			\par
-		{\LARGE \color{red}
-			elaborate about stages of data collection:
-		} \\ 
-		{\color{red}
-			1. Initial data: full of duplicates\\
-			2. Filtered data - fewer duplicates and Spam, but still rather very one-subject-centered. Leads to overfitting when classifying \\
-			3. still untried - collect up to x (~400) Tweets per day, for a duration of ~ 2 weeks
-		}
 		
 		\subsubsection*{Data cleansing}
 			It was observed that numerous Tweets were being posted more than once and in several occurrences even hundreds of times. These duplicates were being primarily posted by bots, as was evident from a short observation of user profiles belonging the Tweets original posters. Evidently, additional effort was being made by the programmers of the bots to try and mask them by slightly altering the content of the Tweets, or the user account. This was usually done by changing or adding characters to the text, which carry no lingual significance in themselves. Moreover, in furtherance of increasing the bots' credibility as an actual people, often times entire nets of such bot could be observed, wherein the bots would maintain friendship and following connections among themselves. An example is shown in figure \ref{fig:twitterbot}. This in turn, increases the amount of \textit{friends} and \textit{followers}, further contributing to their guise of real human users of Tweeter. Upon closer observation, such accounts reveal their true essence, since most of the content propagated by them is commercial in nature and is repeated verbatim time and again across many of the related accounts \textit{followers} and \textit{friends}. For this reason, it is safe to assume that no actual people are behind these accounts. 
@@ -40,10 +32,8 @@
 			\label{fig:twitterbot}	
 		\end{figure}
 		
-		\newpage
 		\noindent
-		Several precautions were undertaken to try and filter out such bots. A passive precaution which was implemented, was blacklisting users, which had priorly been observed posting Tweets, which were verbatim copies of other Tweets within the same query. The suspected users were added to a suspect database and content originating from them was ignored in future queries. Another action undertaken with the same purpose in mind was a retrospective cleanup of the collected Tweets, based on their content similarity. After closing a collection query, a maximum similarity measure for each Tweet in relation to all other recorded Tweets was calculated using a simple rule. Following, Tweets which were found to have a maximal similarity score to other previously captured Tweets  higher than a predetermined threshold were classified as non-unique copies and were disregarded. As a measure of similarity, the S\o rensen-Dice coefficient \cite{sorensen1948method} was implemented  using the \textit{SequenceMatcher.ratio()} function from the difflib Python module. The coefficient is demonstrated in figure \ref{fig:sorenson_dice} where $|X|$ and $|Y|$ are the numbers of elements in given Tweets X and Y accordingly. A higher $ QS_{XY} $ value indicates larger conformity between the $ X $ and $ Y $ groups, and ranges from 0 (completely different) to 1 (identical).
-		A round of cleanup using this procedure would usually reduce a data set by from one quarter and up to one half of its original size.
+		Several precautions were undertaken to try and filter out such bots. A passive precaution which was implemented, was blacklisting users, which had priorly been observed posting Tweets, which were verbatim copies of other Tweets within the same query. The suspected users were added to a suspect database and content originating from them was ignored in future queries. Another action undertaken with the same purpose in mind was a retrospective cleanup of the collected Tweets, based on their content similarity. After closing a collection query, a maximum similarity measure for each Tweet in relation to all other recorded Tweets was calculated using a simple rule. Following, Tweets which were found to have a maximal similarity score to other previously captured Tweets  higher than a predetermined threshold were classified as non-unique copies and were disregarded. As a measure of similarity, the S\o rensen-Dice coefficient \cite{sorensen1948method} was implemented  using the \textit{SequenceMatcher.ratio()} function from the difflib Python module. The coefficient is demonstrated in figure \ref{fig:sorenson_dice} where $|X|$ and $|Y|$ are the numbers of elements in given Tweets X and Y accordingly. A higher $ QS_{XY} $ value indicates larger conformity between the $ X $ and $ Y $ groups, and ranges from 0 (completely different) to 1 (identical). A round of cleanup using this procedure would usually reduce a data set by from one quarter and up to one half of its original size.
 		
 		\begin{figure}[h]
 			\begin{center}
@@ -53,8 +43,6 @@
 			\label{fig:sorenson_dice}
 		\end{figure}
 		
-		\newpage
-		
 	\subsection{Building Feature-Sets}
 	\label{build_features}
 	Once a list of labeled Tweets is obtained, the next stage is constructing a feature-set to be later passed on as input for training an ML Classifier. The features contained if the feature sets describe certain aspects and characteristics of a Tweet and its owner. Two main approaches to feature sets are \textit{Word-Based} also often called \textit{Bag-of-Words} and \textit{Descriptive}. A further modification on \textit{Bag-of-Words} is \textit{N-Grams}.
@@ -63,22 +51,19 @@
 			The former approach simply converts the entire text corpus to a frequency charts of all the words contained within. Words are then selected to act as features in incoming data, which is to be classified. The features are hence a variable list (usually of several thousands in length), where each variable is a boolean representation, indicating the presence or absence of a certain word. Usually the words undergo preprocessing as is common in Natural Language Processing prior to being used as features. The corpora are segmented to lists of words, often omitting articles, proposition and punctuation. Such grammatical structures are critical in human speech and written form in order to convey ones meaning clearly and explicitly, however for the purposes of more ambiguous classification as in our case, such nuances are avoided for the sake of simplicity. Words are then \textit{stemmed} or \textit{lemmatized}, meaning their are reverted to their grammatical stem - dropping all prefixes and suffixes. This eases the enumeration of words, since it is preferable that the same words in different inclinations would be counted as the same. For example, the word pair \textit{eating} and \textit{ate} would be reverted to their stem \textit{eat}, as well as \textit{apple} and \textit{apples} would be considered as one and the same. Finally, words would be assigned their part of speech (noun, verb, adjective ..) and could be either ignored or incorporated into the feature set, according to the conceived importance of a given part of speech.
 		
 		\subsubsection{N-Grams Features}
-			A development on the Bag-of-Words concept. Using this approach, sequences of $ n $ words are extracted instead of single words and used as features. Such an approach has the added benefit of preserving some of contextual meaning of the text as well as discovering reoccurring phrases. This would prove even more beneficial is scenarios, in which the classification would be between positive and negative intonation, such as opinions and reviews. A down side to this method, is that much more feature are created therefore increasing the computational complexity. For example, using standard Bag-of-Words approach on the sentence "the movie was not great" results in 5 features \{the; movie; was; not; great\}. When applying N-Grams of sizes 2 to 5 on the same sentence, results in 10 features as seen in table \ref{table:ngrams}.
+			A development on the Bag-of-Words concept. Using this approach, sequences of $ n $ words are extracted instead of single words and used as features. Such an approach has the added benefit of preserving some of contextual meaning of the text as well as discovering reoccurring phrases. This would prove even more beneficial is scenarios, in which the classification would be between positive and negative intonation, such as opinions and reviews. A down side to this method, is that much more feature are created therefore increasing the computational complexity. For example, using standard Bag-of-Words approach on the sentence "the movie was not great" results in 5 features \{the ; movie ; was ; not ; great\}. When applying \textit{N-Grams} of sizes 2 to 5 on the same sentence, results in 10 features as seen in table \ref{table:ngrams}.
 			
 		\begin{table}[h]	
 			\begin{center}
-				\begin{tabular}{||c l||} 
-					\hline
-					N &   possible N-Grams  \\ 
+				\begin{tabular}{c l} 
 					\hline\hline
-					2 & the movie; movie was; was not; not great  \\
+					N &  \multicolumn{1}{c}{Possible N-Grams }  \\ 
 					\hline
-					3 & the movie was; movie was not; was not great \\
-					\hline
-					4 & the movie was not; movie was not great \\
-					\hline
-					5 & the movie was not great \\ [1ex] 
-					\hline
+					2 & the movie ; movie was ; was not ; not great  \\
+					3 & the movie was ; movie was not ; was not great \\
+					4 & the movie was not ; movie was not great \\
+					5 & the movie was not great \\ 
+					\hline\hline
 				\end{tabular}
 			\end{center}
 			\caption[N-Gram Example]{Possible N-grams of size 2 to 5 }
@@ -87,6 +72,7 @@
 		
 		
 		\subsubsection{Descriptive Features}
+			\label{section:Descriptive_Features}
 			The latter approach mentioned is based on a more generalized view of the Tweet. Instead of concentrating on the actual textual content, other non direct properties are observed. Descriptive features are aimed at describing the Tweets implicit properties, such as attitude, sentiment, seriousness and trustworthiness. These features detect the presence of different symbols, their frequency and consecutiveness. Additionally, unlike the Word-Based approach, non-textual objects such as multimedia, links and mentions of other users and Tweets are also taken into account. Furthermore, features of a Tweets' owner are also included in the input. Since Tweeter's API provides a complete user profile incorporated inside the Tweet data object itself, constructing features describing the user is done simultaneously to features describing the content of the Tweet itself. This approach might be viewed as an \textit{indirect} one, since less obvious properties of the Tweet are used to characterize it.
 			\par
 			Descriptive features could be segregated into two distinctive groups. The first tier is text-based features. As the name suggests, these features will mostly denote the presence or lack of specific characters such as emoticons and signs in the Tweets text. Whether a Tweet contains combinations or sequences of certain symbols as well as ratios defining the text also befit this category.

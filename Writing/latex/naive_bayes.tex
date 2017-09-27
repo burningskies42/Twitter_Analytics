@@ -72,7 +72,7 @@
 		\end{equation}
 	
 		\subparagraph{Multinomial}
-			Here the features represent the frequencies of word occurrences which are distributed in a multinomial fashion such that $ p_i $ is the probability that an event $ i $ occurs in the multinomial $ (p_1,p_2, ...,p_n) $. The feature set $ \textbf{x} = (x_1,x_2m ...,x_n) $ can than be visualized as a histogram, in which the frequency of event $ i $ (appearance of word $ i $ in a given data point) is represented by the hight of the appropriate column. This method is especially common when undertaking the Bag of Words approach. This will be further demonstrated in the Application part. Therefore, the likelihood of generating a histogram \textbf{x} is represented in [\ref{nb_multinom}].
+			Here the features represent the frequencies of word occurrences which are distributed in a multinomial fashion such that $ p_i $ is the probability that an event $ i $ occurs in the multinomial $ (p_1,p_2, ...,p_n) $. The feature set $ \textbf{x} = (x_1,x_2m ...,x_n) $ can than be visualized as a histogram, in which the frequency of event $ i $ (appearance of word $ i $ in a given data point) is represented by the hight of the appropriate column. This method is especially common when undertaking the \textit{Bag-of-Words} approach. This will be further demonstrated in the Application part. Therefore, the likelihood of generating a histogram \textbf{x} is represented in [\ref{nb_multinom}].
 	
 	\begin{equation}
 		P(X|C_k) = \frac{(\sum_i)!}{\prod_i x_i !} \cdot \prod_i p_{ki}^{x_i}

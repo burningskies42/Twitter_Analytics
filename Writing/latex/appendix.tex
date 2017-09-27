@@ -1,0 +1,159 @@
+\begin{appendices}
+	\section{Training Duration per Algorithm}
+		 
+		 	\begin{table}[htbp]
+		 	\centering
+		 	\begin{tabular}{c|cc}
+		 		\hline\hline
+		 		\textbf{Naive Bayes :} & N-Grams & Bag of Words \\
+		 		\cline{1-1}
+		 		\vspace*{-2mm}
+		 		 \multirow{2}[0]{*}{Bernoulli} 	& 19,52  & 21,72 \\
+		 		       							& (2,11) & (4,94) \\	
+		 		\vspace*{-2mm}
+		 		 \multirow{2}[0]{*}{Multinomial} & 18,55 & 21,44 \\
+											     & (1,35) & (5,6) \\
+		 		\vspace*{-2mm}
+		 		 \multirow{2}[0]{*}{Regular}	 & 67,86 & 79,03 \\
+		 								       & (5,03) & (20,13) \\
+		 		\cline{1-1}
+		 		\textbf{Support Vector Machines :} &&\\
+		 		\cline{1-1}
+		 		\vspace*{-2mm}
+				\multirow{2}{*}{Linear Kernel}& 32,08 & 36,37 \\
+				     & (3,3) & (4,98) \\
+		 		\vspace*{-2mm}
+ 				\multirow{2}{*}{Polynomial Kernel} & 32,89 & 43,27 \\
+						      					  & (5,62) & (5,76) \\
+		 		\vspace*{-2mm}
+		 		 Radial Basis & 42,48 & 46,83 \\
+		 		Function Kernel      & (4,03) & (5,73) \\
+		 		\vspace*{-2mm}
+		 		\multirow{2}{*}{Sigmoid Kernel} & 29,40 & 31,30 \\
+		 		     & (4,65) & (3,37) \\
+		 		\cline{1-1}
+		 		\textbf{Artificial Neural Networks :}&&\\
+		 		\cline{1-1}
+		 		\vspace*{-2mm}
+		 		\multirow{2}[0]{*}{MLP} & 44,64 & 50,71 \\
+		 		       					& (6,52) & (5,38) \\
+		 		\vspace*{-2mm}
+		 		\multirow{2}[0]{*}{SGD} & 20,48 & 21,93 \\
+			 					       & (4,04) & (3,63) \\
+			 	\cline{1-1}
+			 	\textbf{Ensemble Methods :}&&\\
+			 	\cline{1-1}				       
+		 		\vspace*{-2mm}
+ 				\multirow{2}[0]{*}{Adaptive Boosting}& 26,42 & 25,71 \\
+		 		       & (5,95) & (2,55) \\
+		 		\vspace*{-2mm}
+		 		\multirow{2}[0]{*}{Random Forest} & 105,85 & 106,52 \\
+		 		       & (2,68) & (3,04) \\
+		 		\hline\vspace*{-2mm}
+		 		\multirow{2}[0]{*}{\textbf{Logistic Regression}}& 18,60 & 21,62 \\
+		 		     & (1,5) & (4,71) \\
+		 		\hline\vspace*{-2mm}
+		 		\multirow{2}[0]{*}{\textbf{Vote Classifier}} & 732,14 & 675,82 \\
+		 		      & (751,18) & (531,47) \\
+		 		\hline\hline
+		 		\multicolumn{3}{l}{*Number in brackets is standard deviation}
+		 		
+		 	\end{tabular}%
+		 	\label{tab:dur_by_type}%
+		 \end{table}%
+	 	\newpage
+	 	
+	\section{Stop Words}
+		The following word list is built into the Natural Language Toolkit (NLTK) Corpora. It represents the list of Stop-Words for the English language as of the 25th of September, 2017. The list can be directly downloaded from the following URL:  \url{https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/corpora/stopwords.zip}.
+	
+		\label{appn:stop_words}%
+		\begin{table}[htbp]
+			\centering
+			\begin{tabular}{|c|c|c|c|c|c|c|}
+				\hline\hline
+				a	&	between	&	hadn	&	its	&	once	&	that	&	we	\\
+				about	&	both	&	has	&	itself	&	only	&	the	&	were	\\
+				above	&	but	&	hasn	&	just	&	or	&	their	&	weren	\\
+				after	&	by	&	have	&	ll	&	other	&	theirs	&	what	\\
+				again	&	can	&	haven	&	m	&	our	&	them	&	when	\\
+				against	&	couldn	&	having	&	ma	&	ours	&	themselves	&	where	\\
+				ain	&	d	&	he	&	me	&	ourselves	&	then	&	which	\\
+				all	&	did	&	her	&	mightn	&	out	&	there	&	while	\\
+				am	&	didn	&	here	&	more	&	over	&	these	&	who	\\
+				an	&	do	&	hers	&	most	&	own	&	they	&	whom	\\
+				and	&	does	&	herself	&	mustn	&	re	&	this	&	why	\\
+				any	&	doesn	&	him	&	my	&	s	&	those	&	will	\\
+				are	&	doing	&	himself	&	myself	&	same	&	through	&	with	\\
+				aren	&	don	&	his	&	needn	&	shan	&	to	&	won	\\
+				as	&	down	&	how	&	no	&	she	&	too	&	wouldn	\\
+				at	&	during	&	i	&	nor	&	should	&	under	&	y	\\
+				be	&	each	&	if	&	not	&	shouldn	&	until	&	you	\\
+				because	&	few	&	in	&	now	&	so	&	up	&	your	\\
+				been	&	for	&	into	&	o	&	some	&	ve	&	yours	\\
+				before	&	from	&	is	&	of	&	such	&	very	&	yourself	\\
+				being	&	further	&	isn	&	off	&	t	&	was	&	yourselves	\\
+				below	&	had	&	it	&	on	&	than	&	wasn	&		\\
+				\hline\hline
+			\end{tabular}%
+		\end{table}%
+	
+	\section{Descriptive Features General Statistics}
+		\label{appn:desc_features_stats}
+		\begin{table}[H]	
+			\begin{center}
+				\resizebox{1 \textwidth}{!}{
+					\begin{tabular}{l| lcccccc} 
+						\hline
+						\hline
+						\multicolumn{1}{c|}{\multirow{2}{*}{Feature}} 
+						& \multicolumn{1}{c}{Value}
+						& \multicolumn{1}{c}{Mean}
+						& \multicolumn{1}{c}{Standard}
+						& \multicolumn{1}{c}{Minimal}
+						& \multicolumn{1}{c}{\multirow{2}{*}{Median}}
+						& \multicolumn{1}{c}{Maximal}
+						\\
+						& \multicolumn{1}{c}{Type}
+						& \multicolumn{1}{c}{(Mode)}
+						& \multicolumn{1}{c}{Deviation}
+						& \multicolumn{1}{c}{Value}
+						& 
+						& \multicolumn{1}{c}{Value}
+						\\ 
+						\hline
+						NUM\_STOP\_WORDS 			& Integer & 5 		  & 2.9 		 & 0 	 & 5	   & 20			\\
+						DUPLICATE					& Boolean & FALSE 	  & 			 &   	 & 		   & 			\\
+						LEN\_CHARACTERS				& Integer & 116 	  & 26,2		 & 6 	 & 125 	   & 160 		\\
+						NUM\_WORDS					& Integer & 9 		  & 3,1			 & 0 	 & 9 	   & 21 		\\
+						HAS\_QUESTION\_MARK			& Boolean & FALSE 	  & 			 & 		 & 		   & 			\\
+						HAS\_EXCLAMATION\_MARK		& Boolean & FALSE 	  & 			 & 		 & 		   & 			\\
+						HAS\_MULTI\_QUEST\_EXCLAM 	& Boolean & FALSE 	  & 			 & 		 & 		   & 			\\
+						EMOJI\_SENT					& Boolean & TRUE  	  & 			 &   	 &   	   & 			\\
+						EMOJI\_SENT\_SCORE			& Float   & 0,007 	  & 0,1		 	 & 0 	 & 0,1	   & 0,7		\\
+						HAS\_PRONOUN				& Boolean & FALSE 	  & 			 & 		 & 		   & 			\\
+						COUNT\_UPPER				& Float   & 0,12 	  & 0,1		 	 & 0 	 & 0 	   & 0,9 		\\
+						HAS\_HASHTAG				& Boolean & TRUE 	  & 			 & 		 & 		   & 			\\
+						RETWEET\_COUNT				& Integer & 77 	 	  & 1013,5 	 	 & 0	 & 0 	   & 48.601		\\
+						URLS\_WIKI					& Boolean & TRUE 	  & 			 & 		 & 		   & 			\\
+						URLS\_MOZ					& Boolean & FALSE 	  & 			 & 		 & 		   & 			\\
+						SENTIMENT					& Boolean & 0,4 	  & 0,5 		 & 0 	 & 1 	   & 1			\\
+						SENTIMENT\_CONF				& Float   & 0,92 	  & 0,1 		 & 0,6 	 & 1 	   & 1 			\\
+						\hline
+						REG\_AGE 					& Integer & 1.762,3   & 1.013,5 	 & 80 	 & 1.732   & 4.091		\\
+						STATUS\_CNT 				& Integer & 127.956,6 & 315.018,9    & 1 	 & 21.970  & 2.871.995	\\ 
+						FOLLOWERS\_CNT 				& Integer & 111.084,7 & 1.562.658,6  & 0 	 & 1.888,5 & 101.849.293\\ 
+						FRIENDS\_CNT				& Integer & 8.473.8   & 26.517,1 	 & 0 	 & 1.104   & 521.442	\\
+						VERIFIED					& Boolean & FALSE 	  & 			 & 		 & 		   & 			\\ 
+						HAS\_DESC 					& Boolean & TRUE 	  & 			 & 		 & 		   & 			\\ 
+						HAS\_URL					& Boolean & TRUE 	  & 			 & 		 & 		   & 			\\ 
+						MSG\_P\_DAY 				& Float   & 88,2	  & 226,8 	 	 & 0,001 & 14,7	   & 2172,1		\\ 
+						\hline\hline
+						\multicolumn{6}{l}{* Variable Types: Integer $ \in \mathbb{Z} $, Float $ \in \mathbb{R} $, Boolean $ \in  $ \{TRUE; FALSE\} }
+					\end{tabular}
+				}	
+			\end{center}
+			\caption[Classifier Groupings]{Classifier Groupings}
+		\end{table}
+
+	
+\end{appendices}

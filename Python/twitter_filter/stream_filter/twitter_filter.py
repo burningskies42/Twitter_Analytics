@@ -8,11 +8,8 @@ import json
 import sys
 import pickle
 from colorama import init,Fore, Back, Style
+
 init()
-
-import words_as_features
-
-
 
 # ----------------------------------------------------------
 #
@@ -40,6 +37,16 @@ class listener(StreamListener):
         self.ignore_terms = ignore_terms
         self.tweet_cnt_limit = tweet_cnt_limit
         self.recorded_ids = set()
+        self.word_features = None
+
+        with open(getcwd() + "\\classifiers\\words_as_features\\Words.pickle", "rb") as fid:
+            self.word_features = pickle.load(fid)
+            fid.close()
+
+        classifier_pth = str(getcwd()) + '/classifiers/words_as_features/voted_classifier.pickle'
+        with open(classifier_pth, "rb") as classifier_f:
+            self.clf = pickle.load(classifier_f)
+            classifier_f.close()
 
         # Live classification
         # self.word_classifier = words_as_features.WordsClassifier('load')
@@ -49,6 +56,14 @@ class listener(StreamListener):
         else:
             self.count_cap = True
 
+    def find_features(self, document):
+        words = document.split(' ')
+        words = set([words[w] for w in range(len(words)) if len(words[w]) > 1])
+        features = {}
+        for w in self.word_features:
+            features[w] = (w in words)
+
+        return features
 
     def on_connect(self):
         print('Connected to server ...\n')
@@ -117,12 +132,20 @@ class listener(StreamListener):
                     elif quoted:
                         twt_text = '------------- quote source: ' + twt_text
 
-                    with open('C:/Users/Leon/Documents/Masterarbeit/Python/twitter_filter/classifiers/words_as_features/voted_classifier.pickle', "rb") as classifier_f:
-                        clf = pickle.load( classifier_f)
-                        classifier_f.close()
 
-                    cls = clf.classify(twt_text)
-                    print(str(self.count + 1) + '.', twt_text,cls)
+                    featureset = self.find_features(twt_text)
+                    lst = []
+                    for key,val in featureset.items():
+                        if val:
+                            lst.append(key)
+
+                    ln = sum([1 if val == True else 0 for val in featureset.values()])
+
+                    cls = self.clf.classify(featureset)
+                    if cls == 'spam':
+                        print(str(self.count + 1) + '.',ln, Fore.RED+cls + Fore.RESET,twt_text)
+                    else:
+                        print(str(self.count + 1) + '.',ln, Fore.GREEN + cls + Fore.RESET, twt_text)
 
                     # if self.classification == 'news':
                     #     print(str(self.count+1)+'.',Fore.GREEN +self.classification+Style.RESET_ALL,twt_text)

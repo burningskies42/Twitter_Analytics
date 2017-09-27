@@ -223,7 +223,7 @@ class WordsClassifier():
    @:param(from_server) - If true, all tweets will be fetched from server. Else, tweets will be loaded
                           from last downloaded tweets file
    '''
-   def __init__(self,load_train='load',pth = '',from_server=True,num_features=5000,with_trees=False):
+   def __init__(self,load_train='load',with_trees=False):
       assert load_train in ('load','train','')
 
       self.voter = None
@@ -242,11 +242,6 @@ class WordsClassifier():
 
       self.training_set = None
       self.testining_set = None
-
-      # if load_train == 'load':
-      #    self.load_classifier()
-      # elif load_train == 'train':
-      #    self.train(self.time_stamp,ngrams=ngrams,n_min=n_min,n_max=n_max,num_features=num_features,pth=pth,remove_stopwords=remove_stopwords,fetch_from_server=from_server,with_trees=self.with_trees)
 
    def build_word_list(self, sentence,remove_stopwords):
       sentence = self.clear_urls(sentence)
@@ -393,27 +388,26 @@ class WordsClassifier():
 
       else:
          for tweet in self.documents:
-
             for word in set(tweet[0]):
-
-               # Count the frequency of all words
-               cnt = [1 if w == word else 0 for w in tweet[0]]
-               if word.lower() in self.all_words.keys():
-                  self.all_words[word.lower()] += sum(cnt)
-               else:
-                  self.all_words[word.lower()] = sum(cnt)
+               if len(word) > 1:
+                  # Count the frequency of all words
+                  cnt = [1 if w == word else 0 for w in tweet[0]]
+                  if word.lower() in self.all_words.keys():
+                     self.all_words[word.lower()] += sum(cnt)
+                  else:
+                     self.all_words[word.lower()] = sum(cnt)
 
          with open(getcwd() + "\\classifiers\\words_as_features\\all_Words.pickle", "wb") as fid:
             pickle.dump(self.all_words, fid)
             fid.close()
+         # quit()
 
-         self.word_features = sorted(self.all_words.items(), key=lambda x: x[1], reverse=True)[10:(num_features + 10)]
-
+         # self.word_features = sorted(self.all_words.items(), key=lambda x: x[1], reverse=True)[10:(num_features + 10)]
+         self.word_features = sorted(self.all_words.items(), key=lambda x: x[1], reverse=True)[:num_features]
 
       self.word_features = [w[0] for w in self.word_features]
       self.feature_cnt = len(self.word_features)
 
-      print(self.word_features)
 
       random.shuffle(self.documents)
       self.featuresets = [(self.find_features(rev, self.word_features), category) for (rev, category) in self.documents]
@@ -495,6 +489,10 @@ class WordsClassifier():
       print('------------------------------------------------------------------------\n','Logistic Regression:')
       start_clf_time = time.time()
       LogisticRegression_classifier = SklearnClassifier(LogisticRegression(fit_intercept=True))
+
+      # for each in self.training_set:
+      #    print(each)
+      # quit()
       LogisticRegression_classifier.train(self.training_set)
 
       output = Kappa(LogisticRegression_classifier, self.testing_set).output

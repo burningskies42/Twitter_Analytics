@@ -4,82 +4,79 @@
 \contentsline {subsection}{\numberline {1.2}Current State of Research}{1}{subsection.1.2}
 \contentsline {section}{\numberline {2}Basic Concepts}{2}{section.2}
 \contentsline {subsection}{\numberline {2.1}Machine Learning}{2}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Text Mining}{2}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.2}Text Mining}{3}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Unstructured Data}{3}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}Classification}{4}{subsection.2.4}
 \contentsline {paragraph}{Supervised Learning}{4}{section*.4}
-\contentsline {paragraph}{Unsupervised Learning}{4}{section*.5}
+\contentsline {paragraph}{Unsupervised Learning}{5}{section*.5}
 \contentsline {subsection}{\numberline {2.5}Information Quality}{5}{subsection.2.5}
-\contentsline {section}{\numberline {3}Methodology}{6}{section.3}
-\contentsline {subsection}{\numberline {3.1}Training Classifier}{7}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Supervised Learning}{8}{subsection.3.2}
-\contentsline {subsubsection}{\numberline {3.2.1}Regressions}{8}{subsubsection.3.2.1}
-\contentsline {paragraph}{Linear Regression}{9}{section*.7}
-\contentsline {paragraph}{Logistic Regression}{9}{section*.8}
-\contentsline {subsubsection}{\numberline {3.2.2}Naive Bayes}{10}{subsubsection.3.2.2}
-\contentsline {paragraph}{Classification}{10}{section*.9}
-\contentsline {paragraph}{Variations of the Algorithm}{11}{section*.10}
-\contentsline {subparagraph}{Gaussian}{12}{section*.11}
-\contentsline {subparagraph}{Multinomial}{12}{section*.12}
-\contentsline {subparagraph}{Bernoulli}{13}{section*.13}
-\contentsline {subsubsection}{\numberline {3.2.3}Support Vector Machines}{13}{subsubsection.3.2.3}
-\contentsline {paragraph}{Background}{13}{section*.14}
-\contentsline {paragraph}{Implementation}{13}{section*.15}
-\contentsline {paragraph}{Kernel Trick}{16}{section*.17}
-\contentsline {paragraph}{Linear Kernel}{17}{section*.19}
-\contentsline {paragraph}{Polynomial Kernel}{17}{section*.20}
-\contentsline {paragraph}{Gaussian Radial Basis Kernel}{18}{section*.21}
-\contentsline {paragraph}{Sigmoid Kernel}{19}{section*.22}
-\contentsline {paragraph}{Margin Rigidity or Slack}{19}{section*.24}
-\contentsline {paragraph}{Multiclass classification}{20}{section*.25}
-\contentsline {paragraph}{Strengths and Weaknesses}{20}{section*.26}
-\contentsline {subsubsection}{\numberline {3.2.4}Artificial Neural Networks}{21}{subsubsection.3.2.4}
-\contentsline {paragraph}{Intuition}{21}{section*.27}
-\contentsline {paragraph}{Classification}{23}{section*.30}
-\contentsline {paragraph}{Stochastic Gradient Descent}{23}{section*.32}
-\contentsline {paragraph}{Adaptive Moment Estimation}{25}{section*.34}
-\contentsline {subsubsection}{\numberline {3.2.5}Decision Trees and Random Forests}{26}{subsubsection.3.2.5}
-\contentsline {paragraph}{ID3 Algorithm}{26}{section*.36}
-\contentsline {paragraph}{Entropy}{27}{section*.37}
-\contentsline {paragraph}{Gini}{27}{section*.38}
-\contentsline {paragraph}{Information Gain}{28}{section*.39}
-\contentsline {paragraph}{Pruning}{28}{section*.40}
-\contentsline {paragraph}{Random Forest}{28}{section*.41}
-\contentsline {section}{\numberline {4}Application}{30}{section.4}
-\contentsline {subsection}{\numberline {4.1}Information Procurement}{30}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Building Feature-Sets}{33}{subsection.4.2}
-\contentsline {subsubsection}{\numberline {4.2.1}Word-Based Features}{33}{subsubsection.4.2.1}
-\contentsline {subsubsection}{\numberline {4.2.2}N-Grams Features}{34}{subsubsection.4.2.2}
-\contentsline {subsubsection}{\numberline {4.2.3}Descriptive Features}{34}{subsubsection.4.2.3}
+\contentsline {section}{\numberline {3}Methodology}{7}{section.3}
+\contentsline {subsection}{\numberline {3.1}Training Classifier}{8}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Supervised Learning}{10}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Regressions}{10}{subsubsection.3.2.1}
+\contentsline {paragraph}{Linear Regression}{10}{section*.7}
+\contentsline {paragraph}{Logistic Regression}{11}{section*.8}
+\contentsline {subsubsection}{\numberline {3.2.2}Naive Bayes}{11}{subsubsection.3.2.2}
+\contentsline {paragraph}{Classification}{12}{section*.9}
+\contentsline {paragraph}{Variations of the Algorithm}{13}{section*.10}
+\contentsline {subparagraph}{Gaussian}{13}{section*.11}
+\contentsline {subparagraph}{Multinomial}{13}{section*.12}
+\contentsline {subparagraph}{Bernoulli}{14}{section*.13}
+\contentsline {subsubsection}{\numberline {3.2.3}Support Vector Machines}{15}{subsubsection.3.2.3}
+\contentsline {paragraph}{Background}{15}{section*.14}
+\contentsline {paragraph}{Implementation}{15}{section*.15}
+\contentsline {paragraph}{Kernel Trick}{18}{section*.17}
+\contentsline {paragraph}{Linear Kernel}{19}{section*.19}
+\contentsline {paragraph}{Polynomial Kernel}{19}{section*.20}
+\contentsline {paragraph}{Gaussian Radial Basis Kernel}{20}{section*.21}
+\contentsline {paragraph}{Sigmoid Kernel}{21}{section*.22}
+\contentsline {paragraph}{Margin Rigidity or Slack}{21}{section*.24}
+\contentsline {paragraph}{Multiclass classification}{22}{section*.25}
+\contentsline {paragraph}{Strengths and Weaknesses}{22}{section*.26}
+\contentsline {subsubsection}{\numberline {3.2.4}Artificial Neural Networks}{23}{subsubsection.3.2.4}
+\contentsline {paragraph}{Intuition}{23}{section*.27}
+\contentsline {paragraph}{Classification}{25}{section*.30}
+\contentsline {paragraph}{Stochastic Gradient Descent}{26}{section*.32}
+\contentsline {paragraph}{Adaptive Moment Estimation}{28}{section*.34}
+\contentsline {subsubsection}{\numberline {3.2.5}Decision Trees and Random Forests}{28}{subsubsection.3.2.5}
+\contentsline {paragraph}{ID3 Algorithm}{28}{section*.36}
+\contentsline {paragraph}{Entropy}{29}{section*.37}
+\contentsline {paragraph}{Gini}{30}{section*.38}
+\contentsline {paragraph}{Information Gain}{30}{section*.39}
+\contentsline {paragraph}{Pruning}{31}{section*.40}
+\contentsline {paragraph}{Random Forest}{31}{section*.41}
+\contentsline {section}{\numberline {4}Application}{32}{section.4}
+\contentsline {subsection}{\numberline {4.1}Information Procurement}{32}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Building Feature-Sets}{35}{subsection.4.2}
 \contentsline {subsection}{\numberline {4.3}Training Classifiers}{36}{subsection.4.3}
 \contentsline {section}{\numberline {5}Results}{37}{section.5}
 \contentsline {subsection}{\numberline {5.1}Grouping of Classifiers}{37}{subsection.5.1}
 \contentsline {subsection}{\numberline {5.2}Approaches}{38}{subsection.5.2}
 \contentsline {subsubsection}{\numberline {5.2.1}Descriptive Features}{38}{subsubsection.5.2.1}
-\contentsline {paragraph}{Number of Stop-Words}{39}{section*.50}
-\contentsline {paragraph}{Duplicate}{39}{section*.51}
-\contentsline {paragraph}{Emoji Sentiment}{39}{section*.52}
-\contentsline {paragraph}{Retweet Count}{39}{section*.53}
-\contentsline {paragraph}{Popular Domains}{39}{section*.54}
-\contentsline {paragraph}{Tweet Sentiment}{40}{section*.55}
-\contentsline {paragraph}{Status Count}{40}{section*.56}
-\contentsline {paragraph}{Verified}{40}{section*.57}
-\contentsline {paragraph}{Followers Count}{40}{section*.59}
-\contentsline {paragraph}{Friends Count}{40}{section*.60}
-\contentsline {subsubsection}{\numberline {5.2.2}Bag-of-Words}{41}{subsubsection.5.2.2}
-\contentsline {subsubsection}{\numberline {5.2.3}N-Grams}{42}{subsubsection.5.2.3}
-\contentsline {subsection}{\numberline {5.3}Descriptive Statistics}{42}{subsection.5.3}
-\contentsline {subsubsection}{\numberline {5.3.1}Data Size and Labels}{42}{subsubsection.5.3.1}
-\contentsline {paragraph}{Overfitting}{42}{section*.62}
-\contentsline {subsubsection}{\numberline {5.3.2}Data Sparsity}{43}{subsubsection.5.3.2}
-\contentsline {subsubsection}{\numberline {5.3.3}Number of Features}{43}{subsubsection.5.3.3}
-\contentsline {subsection}{\numberline {5.4}Success Measures}{46}{subsection.5.4}
-\contentsline {subsubsection}{\numberline {5.4.1}Accuracy}{46}{subsubsection.5.4.1}
-\contentsline {subsubsection}{\numberline {5.4.2}Cohens Kappa}{47}{subsubsection.5.4.2}
-\contentsline {subsubsection}{\numberline {5.4.3}Confusion Matrix}{47}{subsubsection.5.4.3}
-\contentsline {subsubsection}{\numberline {5.4.4}Receiver operating characteristic}{47}{subsubsection.5.4.4}
-\contentsline {section}{\numberline {6}Genaral Use Cases}{48}{section.6}
-\contentsline {section}{Appendices}{51}{section*.67}
-\contentsline {section}{\numberline {A}Training Duration per Algorithm}{51}{Appendix.1.A}
-\contentsline {section}{\numberline {B}Stop Words}{52}{Appendix.1.B}
-\contentsline {section}{\numberline {C}Descriptive Features General Statistics}{53}{Appendix.1.C}
+\contentsline {paragraph}{Number of Stop-Words}{39}{section*.49}
+\contentsline {paragraph}{Duplicate}{39}{section*.50}
+\contentsline {paragraph}{Emoji Sentiment}{39}{section*.51}
+\contentsline {paragraph}{Retweet Count}{40}{section*.52}
+\contentsline {paragraph}{Popular Domains}{40}{section*.53}
+\contentsline {paragraph}{Tweet Sentiment}{40}{section*.54}
+\contentsline {paragraph}{Status Count}{41}{section*.55}
+\contentsline {paragraph}{Verified}{41}{section*.56}
+\contentsline {paragraph}{Followers Count}{41}{section*.58}
+\contentsline {paragraph}{Friends Count}{41}{section*.59}
+\contentsline {subsubsection}{\numberline {5.2.2}Bag-of-Words}{42}{subsubsection.5.2.2}
+\contentsline {subsubsection}{\numberline {5.2.3}N-Grams}{43}{subsubsection.5.2.3}
+\contentsline {subsection}{\numberline {5.3}Descriptive Statistics}{44}{subsection.5.3}
+\contentsline {subsubsection}{\numberline {5.3.1}Data Size and Labels}{45}{subsubsection.5.3.1}
+\contentsline {paragraph}{Overfitting}{46}{section*.63}
+\contentsline {subsubsection}{\numberline {5.3.2}Data Sparsity}{47}{subsubsection.5.3.2}
+\contentsline {subsubsection}{\numberline {5.3.3}Number of Features}{47}{subsubsection.5.3.3}
+\contentsline {subsection}{\numberline {5.4}Success Measures}{50}{subsection.5.4}
+\contentsline {subsubsection}{\numberline {5.4.1}Accuracy}{50}{subsubsection.5.4.1}
+\contentsline {subsubsection}{\numberline {5.4.2}Confusion Matrix}{52}{subsubsection.5.4.2}
+\contentsline {subsubsection}{\numberline {5.4.3}Cohens Kappa}{52}{subsubsection.5.4.3}
+\contentsline {subsubsection}{\numberline {5.4.4}Receiver operating characteristic}{52}{subsubsection.5.4.4}
+\contentsline {section}{\numberline {6}Genaral Use Cases}{53}{section.6}
+\contentsline {section}{Appendices}{56}{section*.68}
+\contentsline {section}{\numberline {A}Training Duration per Algorithm}{56}{Appendix.1.A}
+\contentsline {section}{\numberline {B}Stop Words}{58}{Appendix.1.B}
+\contentsline {section}{\numberline {C}Descriptive Features General Statistics}{59}{Appendix.1.C}

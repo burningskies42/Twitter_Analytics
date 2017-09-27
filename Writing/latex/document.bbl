@@ -32,6 +32,11 @@
 \newblock In {\em Proceedings of the 20th international conference on World
   wide web\/} (2011), ACM, pp.~675--684.
 
+\bibitem{cohen1960coefficient}
+{\sc Cohen, J.}
+\newblock A coefficient of agreement for nominal scales.
+\newblock {\em Educational and psychological measurement 20}, 1 (1960), 37--46.
+
 \bibitem{SVM_cortes1995support}
 {\sc Cortes, C., and Vapnik, V.}
 \newblock Support-vector networks.

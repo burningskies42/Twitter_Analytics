@@ -8,26 +8,30 @@ import multiprocessing
 # Check False for normal bag-of-words and True for N-Grams
 is_ngrams = True
 
-# pth = easygui.fileopenbox()
+pth = easygui.fileopenbox()
 
-pth = getcwd() + '/labels'
+# pth = getcwd() + '/labels'
 files = []
+#
+files.append(pth)
+# for i in listdir(pth):
+#    if i.find('weighted_dataset') > -1 :
+#       files.append(pth+'/'+i)
 
-for i in listdir(pth):
-   if i.find('weighted_dataset') > -1 :
-      files.append(pth+'/'+i)
-
-files = sorted(files,key = len)
+# files = sorted(files,key = len)
 # files.reverse()
 
-for i in files:
-   print(i)
+# for i in files:
+#    print(i)
 
 # A matrix to show the classification configs completed:
-progress_matrix = pd.DataFrame(columns=[100, 500, 1000, 3000, 5000])
+# progress_matrix = pd.DataFrame(columns=[100, 500, 1000, 3000, 5000])
+progress_matrix = pd.DataFrame(columns=[3000])
+
 for file in files:
    file = file.split('/')[len(file.split('/')) - 1].split('.')[0]
-   se = pd.Series({100: 0, 500: 0, 1000: 0, 3000: 0, 5000: 0})
+   # se = pd.Series({100: 0, 500: 0, 1000: 0, 3000: 0, 5000: 0})
+   se = pd.Series({3000: 0})
    se.name = file
    se = se.astype(int)
    progress_matrix = progress_matrix.append(se)
@@ -44,8 +48,8 @@ if __name__ == '__main__':
                                   , ngrams=is_ngrams, n_min=2, n_max=5
                                   , with_print=False)
 
-      for feature_cnt in [5000,3000,1000,500,100]:
-      # for feature_cnt in [100]:
+      # for feature_cnt in [5000,3000,1000,500,100]:
+      for feature_cnt in [3000]:
 
          new_simulation.build_features(num_features=feature_cnt)
          new_simulation.train_test_split(with_print=True)
@@ -54,7 +58,7 @@ if __name__ == '__main__':
 
          processes = []
          i = 1
-         while i <= 10:
+         while i <= 1:
             # Args: feature_cnt,with_trees,ngrams,n_min,n_max,with_print
             # p = multiprocessing.Process(target=new_simulation.train,args=[False,is_ngrams, 2, 5,True])
             new_simulation.train(False,is_ngrams, 2, 5,True)

@@ -45,39 +45,8 @@
 		
 	\subsection{Building Feature-Sets}
 	\label{build_features}
-	Once a list of labeled Tweets is obtained, the next stage is constructing a feature-set to be later passed on as input for training an ML Classifier. The features contained if the feature sets describe certain aspects and characteristics of a Tweet and its owner. Two main approaches to feature sets are \textit{Word-Based} also often called \textit{Bag-of-Words} and \textit{Descriptive}. A further modification on \textit{Bag-of-Words} is \textit{N-Grams}.
+	Once a list of labeled Tweets is obtained, the next stage is constructing a feature-set to be later passed on as input for training an ML Classifier. The features contained if the feature sets describe certain aspects and characteristics of a Tweet and its owner. Two main approaches to feature sets are \textit{Word-Based} also often called \textit{Bag-of-Words} and \textit{Descriptive}. A further modification on \textit{Bag-of-Words} is \textit{N-Grams}. The different approaches to feature extraction are discussed in detail in section \ref{section:feature_types}.
 	
-		\subsubsection{Word-Based Features}
-			The former approach simply converts the entire text corpus to a frequency charts of all the words contained within. Words are then selected to act as features in incoming data, which is to be classified. The features are hence a variable list (usually of several thousands in length), where each variable is a boolean representation, indicating the presence or absence of a certain word. Usually the words undergo preprocessing as is common in Natural Language Processing prior to being used as features. The corpora are segmented to lists of words, often omitting articles, proposition and punctuation. Such grammatical structures are critical in human speech and written form in order to convey ones meaning clearly and explicitly, however for the purposes of more ambiguous classification as in our case, such nuances are avoided for the sake of simplicity. Words are then \textit{stemmed} or \textit{lemmatized}, meaning their are reverted to their grammatical stem - dropping all prefixes and suffixes. This eases the enumeration of words, since it is preferable that the same words in different inclinations would be counted as the same. For example, the word pair \textit{eating} and \textit{ate} would be reverted to their stem \textit{eat}, as well as \textit{apple} and \textit{apples} would be considered as one and the same. Finally, words would be assigned their part of speech (noun, verb, adjective ..) and could be either ignored or incorporated into the feature set, according to the conceived importance of a given part of speech.
-		
-		\subsubsection{N-Grams Features}
-			A development on the Bag-of-Words concept. Using this approach, sequences of $ n $ words are extracted instead of single words and used as features. Such an approach has the added benefit of preserving some of contextual meaning of the text as well as discovering reoccurring phrases. This would prove even more beneficial is scenarios, in which the classification would be between positive and negative intonation, such as opinions and reviews. A down side to this method, is that much more feature are created therefore increasing the computational complexity. For example, using standard Bag-of-Words approach on the sentence "the movie was not great" results in 5 features \{the ; movie ; was ; not ; great\}. When applying \textit{N-Grams} of sizes 2 to 5 on the same sentence, results in 10 features as seen in table \ref{table:ngrams}.
-			
-		\begin{table}[h]	
-			\begin{center}
-				\begin{tabular}{c l} 
-					\hline\hline
-					N &  \multicolumn{1}{c}{Possible N-Grams }  \\ 
-					\hline
-					2 & the movie ; movie was ; was not ; not great  \\
-					3 & the movie was ; movie was not ; was not great \\
-					4 & the movie was not ; movie was not great \\
-					5 & the movie was not great \\ 
-					\hline\hline
-				\end{tabular}
-			\end{center}
-			\caption[N-Gram Example]{Possible N-grams of size 2 to 5 }
-			\label{table:ngrams}
-		\end{table}
-		
-		
-		\subsubsection{Descriptive Features}
-			\label{section:Descriptive_Features}
-			The latter approach mentioned is based on a more generalized view of the Tweet. Instead of concentrating on the actual textual content, other non direct properties are observed. Descriptive features are aimed at describing the Tweets implicit properties, such as attitude, sentiment, seriousness and trustworthiness. These features detect the presence of different symbols, their frequency and consecutiveness. Additionally, unlike the Word-Based approach, non-textual objects such as multimedia, links and mentions of other users and Tweets are also taken into account. Furthermore, features of a Tweets' owner are also included in the input. Since Tweeter's API provides a complete user profile incorporated inside the Tweet data object itself, constructing features describing the user is done simultaneously to features describing the content of the Tweet itself. This approach might be viewed as an \textit{indirect} one, since less obvious properties of the Tweet are used to characterize it.
-			\par
-			Descriptive features could be segregated into two distinctive groups. The first tier is text-based features. As the name suggests, these features will mostly denote the presence or lack of specific characters such as emoticons and signs in the Tweets text. Whether a Tweet contains combinations or sequences of certain symbols as well as ratios defining the text also befit this category.
-			\par
-			The second tier of features describe any special \textit{Entities} (Tweeter's nomenclature) contained within a Tweet. \textit{Entities} refer to non-textual contents of a Tweet, such as media (in form of pictures, audio or video), URL's linking to external websites, mentions or Retweets (referring to other Tweets or to Tweeter user profiles) and finally Hashtags. A word or phrase preceded by the Hashtag symbol \textbf{\#} indicates an association of web content (such as a Tweet or other micro-blogging post) to a specific theme. These could be an event, news, gossip or any other tidbit \cite{dict_Tweet}. Hashtags are used primarily to simplify looking up Tweets or other social media content by technically associating them with the \textit{hashtagged} topic.
 			
 	\subsection{Training Classifiers}
 		Several configuration are to be applied when training the different classifiers, in the interest of quantifying and measuring the quality of classification. Hence, the size of the datasets used for training will vary, to observe the relation between set size and classifier accuracy. Additionally, different amounts of features should be tested, to determine whether accuracy grows linearly as the number of features increase or rather converges after some threshold. Furthermore, the training duration is to be measured to determine effectiveness of training as a time function.

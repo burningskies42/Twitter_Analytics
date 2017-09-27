@@ -60,7 +60,7 @@ if __name__ == '__main__':
 
          processes = []
          i = 1
-         while i <= 10:
+         while i <= 1:
             # Args: feature_cnt,with_trees,ngrams,n_min,n_max,with_print
             # p = multiprocessing.Process(target=new_simulation.train,args=[False,is_ngrams, 2, 5,True])
             new_simulation.train(False,is_ngrams, 2, 5,True)

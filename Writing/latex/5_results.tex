@@ -40,8 +40,9 @@
 		In the upcoming results analysis the name scheme used in table \ref{table:class_grps} will refer to average values inside each such named group. 
 	
 	\subsection{Approaches}
-	
+		\label{section:feature_types}
 		\subsubsection{Descriptive Features}
+			\label{section:Descriptive_Features}
 			Similar approaches were used to classify Information Credibility on Tweeter \cite{castillo2011information}. In some sense, the mission of this study is also to quantify the quality of social media content, however, in a very subjective manner.
 			\par	
 		
@@ -135,7 +136,9 @@
 				This features is the mirror image of the Followers Count. It specifies the number of User accounts the current User is following.
 					
 		\subsubsection{Bag-of-Words}
-			A common approach to text-mining is simply drawing meaning from the verbal content of a lock of text. From another perspective, one might say that each word carries certain information towards distinguishing different text samples along some trait. We strive to draw correlations between frequencies of certain words and classes to which, we wish to label the samples. Table \ref{table:BOW_top_words} shows most frequent words to be encountered in the corpus. 
+			This approach simply converts the entire text corpus to a frequency charts of all the words contained within. Words are then selected to act as features in incoming data, which is to be classified. The features are hence a variable list (usually of several thousands in length), where each variable is a boolean representation, indicating the presence or absence of a certain word. Usually the words undergo preprocessing as is common in Natural Language Processing prior to being used as features. The corpora are segmented to lists of words, often omitting articles, proposition and punctuation. Such grammatical structures are critical in human speech and written form in order to convey one's meaning clearly and explicitly, however for the purposes of more ambiguous classification as in our case, such nuances are avoided for the sake of simplicity. Words are then \textit{stemmed} or \textit{lemmatized}, meaning their are reverted to their grammatical stem - dropping all prefixes and suffixes. This eases the enumeration of words, since it is preferable that the same words in different inclinations would be counted as the same. For example, the word pair \textit{eating} and \textit{ate} would be reverted to their stem \textit{eat}, as well as \textit{apple} and \textit{apples} would be considered as one and the same. Finally, words would be assigned their part of speech (noun, verb, adjective ..) and could be either ignored or incorporated into the feature set, according to the conceived importance of a given part of speech.
+		
+			Therefore, this technique draws meaning from the verbal content of a corpus. From another perspective, one might say that each word carries certain information towards distinguishing different text samples along some trait. We strive to draw correlations between frequencies of certain words and classes to which, we wish to label the samples. Table \ref{table:BOW_top_words} shows most frequent words to be encountered in the corpus. 
 			
 			\begin{table}[H]
 				\centering
@@ -177,9 +180,76 @@
 			\end{table}%
 		
 		\subsubsection{N-Grams}
+			A development on the Bag-of-Words concept. Using this approach, sequences of $ n $ words are extracted instead of single words and used as features. Such an approach has the added benefit of preserving some of contextual meaning of the text as well as discovering reoccurring phrases. This would prove even more beneficial is scenarios, in which the classification would be between positive and negative intonation, such as opinions and reviews. A down side to this method, is that much more feature are created therefore increasing the computational complexity. 
+			
+			\begin{table}[h]	
+				\begin{center}
+					\begin{tabular}{c l} 
+						\hline\hline
+						N &  \multicolumn{1}{c}{Possible N-Grams }  \\ 
+						\hline
+						2 & the movie ; movie was ; was not ; not great  \\
+						3 & the movie was ; movie was not ; was not great \\
+						4 & the movie was not ; movie was not great \\
+						5 & the movie was not great \\ 
+						\hline\hline
+					\end{tabular}
+				\end{center}
+				\caption[N-Gram Example]{Possible N-grams of size 2 to 5 }
+				\label{table:ngrams}
+			\end{table}
+			
+			For example, using standard Bag-of-Words approach on the sentence "the movie was not great" results in 5 features \{the ; movie ; was ; not ; great\}. When applying \textit{N-Grams} of sizes 2 to 5 on the same sentence, results in 10 features as seen in table \ref{table:ngrams}.
+			
+			\begin{table}[H]
+				\centering
+				\footnotesize
+				\resizebox{1 \textwidth}{!}{
+				\begin{tabular}{c| lc | lc }
+					\hline\hline
+						&  \multicolumn{1}{c}{2-Grams}	& Frequency & \multicolumn{1}{c}{3-Grams} & Frequency\\
+					\hline
+					1	&	on amazon 	& 938 		& have just listed 		& 260 		\\
+					2	&	via amazon 	& 842 		& available on amazon	& 96 		\\	
+					3	&	whole foods & 366  		& 399 via amazon		& 81 		\\ 
+					4	&	of the		& 333 		& for 399 via			& 81 		\\
+					5	&	in the		& 300  		& panini for 399		& 70 		\\
+					6	&	just listed	& 282 		& buying whole foods 	& 65 		\\
+					7	&	have just 	& 265 		& on sale for			& 60 		\\
+					8	&	check out 	& 223  		& whole foods for 		& 59 		\\
+					9	&	amazon prime& 218		& tune in buy			& 55 		\\
+					10	&	amazon echo & 163  		& buypayoff amazon amazonproducts	& 55 		\\
+					\hline\hline
+					 	& \multicolumn{1}{c}{4-Grams} & Frequency & \multicolumn{1}{c}{5-Grams}	& Frequency \\
+					\hline
+					1	&for 399 via amazon  	& 81 & 2004 panini for 399 via 			   & 50	\\
+					2	& panini for 399 via 	& 70 & is now on sale for 				   & 49	\\	
+					3	& tune in buy it	 	& 55 &	germany euro 2004 panini for 	   & 47	\\ 
+					4	& buypayoff amazon products bestbuy	& 55 &	might like pumpkinfarmer iartg novel & 46\\
+					5	& 2004 panini for 399	& 50 & amazon is buying whole foods 	   & 43	\\
+					6	& euro 2004 panini for 	& 50 & amazon to buy whole foods 		   & 31	\\
+					7	& is now on sale	 	& 50 & pbscale ai big data cloud 		   & 23	\\
+					8	& now on sale for		& 49 & check out this amazon deal		   & 22	\\
+					9	& ai big data cloud		& 46 & ai big data cloud boot 			   & 21	\\
+					10	& now available on amazon& 39& looking for professional book cover & 17	\\	
+					\hline	
+				\end{tabular}
+				}
+				\caption{Top 10 Most and Least Frequent Words Captured}
+				\label{table:top_ngrams}%
+			\end{table}% 
+		
+		Table \ref{table:top_ngrams} exemplifies the most and least often occurring N-Grams of sizes 2 - 5 words each. The 4-word phrase "is now on sale" appeared 50 times in the large Tweet corpus.
 	
 	\subsection{Descriptive Statistics}
-		I conducted the labeling in the process of several weeks. The labeling process was very subjective. Apart from holding up to a few rules of thumb, it is hard to formally model the labeling pattern. This in fact, makes this an ideal task for Machine Learning, since the logic behind it is intuitive rather than strict.
+		\label{section:Descriptive_Features}
+		This method offers an alternative approach to features, differing from the other two, by being based on a more generalized view of the Tweet. Instead of concentrating on the actual textual content, other non direct properties are observed. Descriptive features are aimed at describing the Tweets implicit properties, such as attitude, sentiment, seriousness and trustworthiness. These features detect the presence of different symbols, their frequency and consecutiveness. Additionally, unlike the Word-Based approach, non-textual objects such as multimedia, links and mentions of other users and Tweets are also taken into account. Furthermore, features of a Tweets' owner are also included in the input. Since Tweeter's API provides a complete user profile incorporated inside the Tweet data object itself, constructing features describing the user is done simultaneously to features describing the content of the Tweet itself. This approach might be viewed as an \textit{indirect} one, since less obvious properties of the Tweet are used to characterize it.
+		\par
+		Descriptive features could be segregated into two distinctive groups. The first tier is text-based features. As the name suggests, these features will mostly denote the presence or lack of specific characters such as emoticons and signs in the Tweets text. Whether a Tweet contains combinations or sequences of certain symbols as well as ratios defining the text also befit this category.
+		\par
+		The second tier of features describe any special \textit{Entities} (Tweeter's nomenclature) contained within a Tweet. \textit{Entities} refer to non-textual contents of a Tweet, such as media (in form of pictures, audio or video), URL's linking to external websites, mentions or Retweets (referring to other Tweets or to Tweeter user profiles) and finally Hashtags. A word or phrase preceded by the Hashtag symbol \textbf{\#} indicates an association of web content (such as a Tweet or other micro-blogging post) to a specific theme. These could be an event, news, gossip or any other tidbit \cite{dict_Tweet}. Hashtags are used primarily to simplify looking up Tweets or other social media content by technically associating them with the \textit{hashtagged} topic.
+		
+		The labeling of training examples was conducted by me personally in the process of several weeks. The labeling process was very subjective. Apart from holding up to a few rules of thumb, it is hard to formally model the labeling pattern. This in fact, makes this an ideal task for Machine Learning, since the logic behind it is intuitive rather than strict.
 		
 		\subsubsection{Data Size and Labels}
 			The initial data set consisted of about 12 thousand labeled Tweets captured during a period of several days. The software would launch a listener, which would intercept all Tweets containing the word \textit{Amazon}. The listener was also programmed to ignore all Tweets which contain one of the following words and Expressions: \textit{gift}, \textit{giftcard}, \textit{giveaway}. These phrases were usually found in spam Tweets or Tweets posted by Bots and contained mostly advertising content. The captured Tweets were than labeled manually using custom made software. Out of the 12 thousand Tweets, about 1400 were labeled as "News" and the rest as "Not-News". These ratio between interesting and not-interesting content make practical sense as well, since we strive to boil the data down to only the most subjectively essential information. 
@@ -200,57 +270,6 @@
 			
 			\par
 			Table \ref{table:class_duration} demonstrates the average duration in seconds to train a classifier. The training dataset size is denoted on the horizontal axis and the number of identifying features on the vertical axis. Moreover, the table is split to two parts, each representing another approach to feature construction, \textit{Bag-of-Words} and \textit{N-Grams} are positioned above and below accordingly. Notice the large standard errors, indicated by the numbers in brackets. This strong variation is due to the differences in the training time of the different algorithms. Furthermore, some algorithms (such as SVMs) entail quadratic complexity which makes them scale in a non-linear fashion, causing much longer training times. For example, training a classifier with 3000 features and a training dataset size of 2000 takes an average of 17,63 seconds with a standard error of 16,65 seconds.
-			
-			\vspace{2cm}
-			
-			\begin{figure}[H]
-				\begin{center}
-					\begin{tikzpicture}[scale=0.8]
-					\begin{axis}[
-					/pgf/number format/.cd,
-					use comma, 1000 sep={},
-					xlabel={Dataset Size },
-					ylabel={Duration in Seconds},
-					xmin=0, xmax=3000,
-					ymin=0, ymax=40,
-					xtick={0,500,1000,1500,2000,2500,3000},
-					ytick={5,10,15,20,25,30,35,40},
-					legend pos=outer north east,
-					ymajorgrids=true,
-					grid style=dashed,
-					]
-					\addplot[color=blue,mark=no,]
-					coordinates {
-						(97,0.35)(195,0.62)(293,0.93)(478,1.45)(969,2.86)(1458,4.28)(1943,5.67)(2737,8.30)
-					};
-					\addplot[color=red,mark=no,]
-					coordinates {
-						(97,0.42)(195,0.76)(293,1.12)(478,1.79)(969,3.54)(1458,5.27)(1943,7.14)(2737,9.93)
-					};
-					\addplot[color=green,mark=no,]
-					coordinates {
-						(97,0.52)(195,0.93)(293,1.43)(478,2.23)(969,4.38)(1458,6.50)(1943,9.32)(2737,12.43)
-					};
-					\addplot[color=pink,mark=no,]
-					coordinates {
-						(97,1.06)(195,2.20)(293,2.56)(478,4.39)(969,8.48)(1458,12.25)(1943,17.62)(2737,24.05)	
-					};
-					\addplot[color=yellow,mark=square,]
-					coordinates {
-						(97,1.36)
-					};
-					\addplot[color=black,mark=no,]
-					coordinates {
-						(195,3.22)(293,3.62)(478,6.42)(969,12.72)(1458,18.56)(1943,25.94)(2737,38.23)
-					};	
-					\legend{100,200,500,1000,3000,5000}					
-					\end{axis}
-					\end{tikzpicture}
-					\captionsetup{width=0.8\textwidth}
-					\caption[Training Duration]{Training Duration as Function of Set Size and Number of Features with the Bag-of-Words Approach}
-					\label{fig:duration_growth}
-				\end{center}
-			\end{figure} 
 			
 			\vspace{2cm}
 			\begin{table}[H]
@@ -326,8 +345,58 @@
 		
 		\par
 		The question of how training duration scales cannot be adequately answered within the scope of this work due to the dataset size limitation. However, the duration seems to grow in a geometric fashion as the dataset size or number of features increase. This growth is illustrated in figure \ref{fig:duration_growth}. Nonetheless, the overall duration time seems manageable and would scale even better still when conducted on a more powerful computer. This holds especially true when implementing the mathematically simpler models (not SVMs). A more detailed view of training duration for each classifier is available in \hyperref[tab:dur_by_type]{appendix A}.
+		
+		\begin{figure}[H]
+			\begin{center}
+				\begin{tikzpicture}[scale=0.8]
+				\begin{axis}[
+				/pgf/number format/.cd,
+				use comma, 1000 sep={},
+				xlabel={Dataset Size },
+				ylabel={Duration in Seconds},
+				xmin=0, xmax=3000,
+				ymin=0, ymax=40,
+				xtick={0,500,1000,1500,2000,2500,3000},
+				ytick={5,10,15,20,25,30,35,40},
+				legend pos=outer north east,
+				ymajorgrids=true,
+				grid style=dashed,
+				]
+				\addplot[color=blue,mark=no,]
+				coordinates {
+					(97,0.35)(195,0.62)(293,0.93)(478,1.45)(969,2.86)(1458,4.28)(1943,5.67)(2737,8.30)
+				};
+				\addplot[color=red,mark=no,]
+				coordinates {
+					(97,0.42)(195,0.76)(293,1.12)(478,1.79)(969,3.54)(1458,5.27)(1943,7.14)(2737,9.93)
+				};
+				\addplot[color=green,mark=no,]
+				coordinates {
+					(97,0.52)(195,0.93)(293,1.43)(478,2.23)(969,4.38)(1458,6.50)(1943,9.32)(2737,12.43)
+				};
+				\addplot[color=pink,mark=no,]
+				coordinates {
+					(97,1.06)(195,2.20)(293,2.56)(478,4.39)(969,8.48)(1458,12.25)(1943,17.62)(2737,24.05)	
+				};
+				\addplot[color=yellow,mark=square,]
+				coordinates {
+					(97,1.36)
+				};
+				\addplot[color=black,mark=no,]
+				coordinates {
+					(195,3.22)(293,3.62)(478,6.42)(969,12.72)(1458,18.56)(1943,25.94)(2737,38.23)
+				};	
+				\legend{100,200,500,1000,3000,5000}					
+				\end{axis}
+				\end{tikzpicture}
+				\captionsetup{width=0.8\textwidth}
+				\caption[Training Duration]{Training Duration as Function of Set Size and Number of Features with the Bag-of-Words Approach}
+				\label{fig:duration_growth}
+			\end{center}
+		\end{figure} 
 			
 	\subsection{Success Measures}
+		\label{accuracy}
 		During the training simulation numerous classifier types were trained using differently sized training sets and using different amounts of features. Additionally, various approaches to feature construction were tested. Furthermore, the simulations were repeated at least 10 times with each possible constellation of sizes and approaches. This was done to achieve statistically significant measures. In each such simulation round the bootstrap technique was implemented to split the dataset into training and testing segments with a ratio of 30\% : 70\% in favor of training. This precaution should assure the results robustness. In order to quantify the qualitative strength of a trained classifier several statistics were observed.
 		
 		\par
@@ -363,8 +432,25 @@
 		
 		Table \ref{tab:accuracy} illustrates that the Bag of Words approach to feature construction outperforms both N-Grams and Descriptive Features when measuring accuracy. Note however that N-Grams has sparser features. Having a more sparse feature system means, that each feature is less likely to appear in numerous samples. When using a relatively compact training set, as in my case, N-Grams might be lacking the sheer volume of data which it requires to achieve robust results.
 		
-		\subsubsection{Cohens Kappa}
-		
 		\subsubsection{Confusion Matrix}
+		
+		\subsubsection{Cohens Kappa}
+			The Kappa coefficient was introduces as \cite{cohen1960coefficient} a measure the accordance between numerical sets. In the context of classification, kappa is used for estimating agreement between different labelers, specifically how well the labels given by separate people correspond to one another. Additionally, the kappa may be interpreted as an improved success rating for a classifier compared to the true labels \cite{castillo2011information}. This measure more informative than accuracy, since it also accounts for the probability of coincidental true classifications. In the case of this study, the Kappa measure can be views as the accord of classification between the human labeler (myself) and the labels assigned by the classification algorithms. The calculation of Cohen's Kappa for two raters classifying $ N $ samples into $ C $ classes is demonstrates in equation \ref{cohen_kappa}, with $ p_o $ being the relative agreements of the rates same as \hyperref[accuracy]{accuracy} and $ p_e $ the estimated coincidental agreement between the raters, as in equation \ref{cohen_kappa_coincidental_agreement}. 
+			
+			\begin{equation}
+				\begin{aligned}
+					\kappa \equiv \frac{p_0-p_e}{1-p_e} = 1 - \frac{1-p_o}{1-p_e}
+				\end{aligned}
+				\label{cohen_kappa}
+			\end{equation}
+		
+		The calculation of the likelihood of an coincidental agreement between 2 labeling schemes, with $ k $ classes, $ N $ samples and $ n_{ki} $ denoting the amount of labels $ k $ by labeler $ i $.
+			\begin{equation}
+				\begin{aligned}
+					p_e = \frac{1}{N^2}\sum_k n_{k1}n_{k2}
+				\end{aligned}
+				\label{cohen_kappa_coincidental_agreement}
+			\end{equation}
+		
 		
 		\subsubsection{Receiver operating characteristic}

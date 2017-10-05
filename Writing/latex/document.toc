@@ -14,7 +14,7 @@
 \contentsline {subsection}{\numberline {3.1}Training Classifier}{9}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Supervised Learning}{10}{subsection.3.2}
 \contentsline {subsubsection}{\numberline {3.2.1}Regressions}{10}{subsubsection.3.2.1}
-\contentsline {paragraph}{Linear Regression}{11}{section*.7}
+\contentsline {paragraph}{Linear Regression}{10}{section*.7}
 \contentsline {paragraph}{Logistic Regression}{11}{section*.8}
 \contentsline {subsubsection}{\numberline {3.2.2}Naive Bayes}{12}{subsubsection.3.2.2}
 \contentsline {paragraph}{Classification}{12}{section*.9}
@@ -30,7 +30,7 @@
 \contentsline {paragraph}{Polynomial Kernel}{19}{section*.20}
 \contentsline {paragraph}{Gaussian Radial Basis Kernel}{20}{section*.21}
 \contentsline {paragraph}{Sigmoid Kernel}{20}{section*.22}
-\contentsline {paragraph}{Margin Rigidity or Slack}{21}{section*.24}
+\contentsline {paragraph}{Margin Rigidity or Slack}{20}{section*.24}
 \contentsline {paragraph}{Multiclass classification}{21}{section*.25}
 \contentsline {paragraph}{Strengths and Weaknesses}{22}{section*.26}
 \contentsline {subsubsection}{\numberline {3.2.4}Artificial Neural Networks}{23}{subsubsection.3.2.4}
@@ -39,7 +39,7 @@
 \contentsline {paragraph}{Stochastic Gradient Descent}{25}{section*.32}
 \contentsline {paragraph}{Adaptive Moment Estimation}{27}{section*.34}
 \contentsline {subsubsection}{\numberline {3.2.5}Decision Trees and Random Forests}{27}{subsubsection.3.2.5}
-\contentsline {paragraph}{ID3 Algorithm}{28}{section*.36}
+\contentsline {paragraph}{ID3 Algorithm}{27}{section*.36}
 \contentsline {paragraph}{Entropy}{28}{section*.37}
 \contentsline {paragraph}{Gini}{29}{section*.38}
 \contentsline {paragraph}{Information Gain}{29}{section*.39}
@@ -79,9 +79,10 @@
 \contentsline {paragraph}{Precision}{50}{section*.71}
 \contentsline {subsubsection}{\numberline {5.4.4}Receiver Operating Characteristic}{51}{subsubsection.5.4.4}
 \contentsline {section}{\numberline {6}Conclusion}{54}{section.6}
-\contentsline {subsection}{\numberline {6.1}Genaral Use Cases}{54}{subsection.6.1}
-\contentsline {section}{Appendices}{57}{section*.75}
-\contentsline {section}{\numberline {A}Training Duration per Algorithm}{57}{Appendix.1.A}
-\contentsline {section}{\numberline {B}Stop Words}{58}{Appendix.1.B}
-\contentsline {section}{\numberline {C}Descriptive Features General Statistics}{59}{Appendix.1.C}
-\contentsline {section}{\numberline {D}Confusion Matrix Measures}{60}{Appendix.1.D}
+\contentsline {subsection}{\numberline {6.1}Genaral Use Cases}{55}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}SWOT}{55}{subsection.6.2}
+\contentsline {section}{Appendices}{59}{section*.75}
+\contentsline {section}{\numberline {A}Training Duration per Algorithm}{59}{Appendix.1.A}
+\contentsline {section}{\numberline {B}Stop Words}{60}{Appendix.1.B}
+\contentsline {section}{\numberline {C}Descriptive Features General Statistics}{61}{Appendix.1.C}
+\contentsline {section}{\numberline {D}Confusion Matrix Measures}{62}{Appendix.1.D}

@@ -76,6 +76,11 @@
 \newblock {\em The International Journal of Press/Politics 17}, 2 (2012),
   190--213.
 
+\bibitem{go2009twitter}
+{\sc Go, A., Bhayani, R., and Huang, L.}
+\newblock Twitter sentiment classification using distant supervision.
+\newblock {\em CS224N Project Report, Stanford 1}, 2009 (2009), 12.
+
 \bibitem{guyon1993automatic}
 {\sc Guyon, I., Boser, B., and Vapnik, V.}
 \newblock Automatic capacity tuning of very large vc-dimension classifiers.

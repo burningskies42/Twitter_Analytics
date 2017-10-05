@@ -1,4 +1,4 @@
-import decriptive_features
+from feature_tk import decriptive_features
 import time
 import easygui
 from os import getcwd,listdir

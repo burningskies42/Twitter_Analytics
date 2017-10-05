@@ -16,6 +16,11 @@
 \newblock {\em Neural networks for pattern recognition}.
 \newblock Oxford university press, 1995.
 
+\bibitem{bishop2006logistic}
+{\sc Bishop, C.~M.}
+\newblock {\em Pattern recognition and machine learning}.
+\newblock springer, 2006.
+
 \bibitem{breiman1984classification}
 {\sc Breiman, L., Friedman, J., Stone, C.~J., and Olshen, R.~A.}
 \newblock {\em Classification and regression trees}.
@@ -25,6 +30,12 @@
 {\sc Burges, C.~J.}
 \newblock A tutorial on support vector machines for pattern recognition.
 \newblock {\em Data mining and knowledge discovery 2}, 2 (1998), 121--167.
+
+\bibitem{carrington2014new}
+{\sc Carrington, A.~M., Fieguth, P.~W., and Chen, H.~H.}
+\newblock A new mercer sigmoid kernel for clinical data classification.
+\newblock In {\em Engineering in Medicine and Biology Society (EMBC), 2014 36th
+  Annual International Conference of the IEEE\/} (2014), IEEE, pp.~6397--6401.
 
 \bibitem{castillo2011information}
 {\sc Castillo, C., Mendoza, M., and Poblete, B.}
@@ -42,11 +53,28 @@
 \newblock Support-vector networks.
 \newblock {\em Machine learning 20}, 3 (1995), 273--297.
 
+\bibitem{covington2016deep}
+{\sc Covington, P., Adams, J., and Sargin, E.}
+\newblock Deep neural networks for youtube recommendations.
+\newblock In {\em Proceedings of the 10th ACM Conference on Recommender
+  Systems\/} (2016), ACM, pp.~191--198.
+
 \bibitem{bigdata}
 {\sc Demchenko, Y., Grosso, P., De~Laat, C., and Membrey, P.}
 \newblock Addressing big data issues in scientific data infrastructure.
 \newblock In {\em Collaboration Technologies and Systems (CTS), 2013
   International Conference on\/} (2013), IEEE, pp.~pp. 48--55.
+
+\bibitem{fawcett2006roc}
+{\sc Fawcett, T.}
+\newblock An introduction to roc analysis.
+\newblock {\em Pattern recognition letters 27}, 8 (2006), 861--874.
+
+\bibitem{gaskins2012internet}
+{\sc Gaskins, B., and Jerit, J.}
+\newblock Internet news: Is it a replacement for traditional media outlets?
+\newblock {\em The International Journal of Press/Politics 17}, 2 (2012),
+  190--213.
 
 \bibitem{guyon1993automatic}
 {\sc Guyon, I., Boser, B., and Vapnik, V.}

@@ -8,7 +8,11 @@ A level-1 auxiliary file: 6_general_use_cases.aux
 A level-1 auxiliary file: conclussion.aux
 The style file: acm.bst
 Database file #1: bibfile.bib
+Warning--I didn't find a database entry for "castillo"
+Warning--I didn't find a database entry for "go"
+Warning--I didn't find a database entry for "hack"
+Warning--I didn't find a database entry for "bibid"
 Warning--empty booktitle in aly2005survey
 Warning--empty journal in guyon1993automatic
 Warning--empty journal in rish2001empirical
-(There were 3 warnings)
+(There were 7 warnings)

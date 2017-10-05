@@ -1,4 +1,4 @@
-import words_as_features
+from feature_tk import words_as_features
 import time
 import easygui
 from os import getcwd,listdir

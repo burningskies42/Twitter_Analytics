@@ -31,11 +31,13 @@
 \BOOKMARK [3][-]{subsubsection.5.3.3}{Number of Features}{subsection.5.3}% 31
 \BOOKMARK [2][-]{subsection.5.4}{Success Measures}{section.5}% 32
 \BOOKMARK [3][-]{subsubsection.5.4.1}{Accuracy}{subsection.5.4}% 33
-\BOOKMARK [3][-]{subsubsection.5.4.2}{Confusion Matrix}{subsection.5.4}% 34
-\BOOKMARK [3][-]{subsubsection.5.4.3}{Cohens Kappa}{subsection.5.4}% 35
-\BOOKMARK [3][-]{subsubsection.5.4.4}{Receiver operating characteristic}{subsection.5.4}% 36
-\BOOKMARK [1][-]{section.6}{Genaral Use Cases}{}% 37
-\BOOKMARK [1][-]{section*.68}{Appendices}{}% 38
-\BOOKMARK [1][-]{Appendix.1.A}{Training Duration per Algorithm}{}% 39
-\BOOKMARK [1][-]{Appendix.1.B}{Stop Words}{}% 40
-\BOOKMARK [1][-]{Appendix.1.C}{Descriptive Features General Statistics}{}% 41
+\BOOKMARK [3][-]{subsubsection.5.4.2}{Cohens Kappa}{subsection.5.4}% 34
+\BOOKMARK [3][-]{subsubsection.5.4.3}{Confusion Matrix}{subsection.5.4}% 35
+\BOOKMARK [3][-]{subsubsection.5.4.4}{Receiver Operating Characteristic}{subsection.5.4}% 36
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 37
+\BOOKMARK [2][-]{subsection.6.1}{Genaral Use Cases}{section.6}% 38
+\BOOKMARK [1][-]{section*.75}{Appendices}{}% 39
+\BOOKMARK [1][-]{Appendix.1.A}{Training Duration per Algorithm}{}% 40
+\BOOKMARK [1][-]{Appendix.1.B}{Stop Words}{}% 41
+\BOOKMARK [1][-]{Appendix.1.C}{Descriptive Features General Statistics}{}% 42
+\BOOKMARK [1][-]{Appendix.1.D}{Confusion Matrix Measures}{}% 43

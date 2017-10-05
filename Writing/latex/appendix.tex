@@ -1,63 +1,69 @@
 \begin{appendices}
 	\section{Training Duration per Algorithm}
 		 
-		 	\begin{table}[htbp]
+		 	\begin{table}[H]
 		 	\centering
-		 	\begin{tabular}{c|cc}
+		 	\begin{tabular}{c|ccc}
 		 		\hline\hline
-		 		\textbf{Naive Bayes :} & N-Grams & Bag of Words \\
+		 		\textbf{Naive Bayes :} & N-Grams & Bag of Words  & Descriptive \\
 		 		\cline{1-1}
 		 		\vspace*{-2mm}
-		 		 \multirow{2}[0]{*}{Bernoulli} 	& 19,52  & 21,72 \\
-		 		       							& (2,11) & (4,94) \\	
+		 		 \multirow{2}[0]{*}{Bernoulli} 	& 19,52  & 21,72 & 0,28  \\
+		 		       							& (2,11) & (4,94) & (0,19) \\	
 		 		\vspace*{-2mm}
-		 		 \multirow{2}[0]{*}{Multinomial} & 18,55 & 21,44 \\
-											     & (1,35) & (5,6) \\
+		 		 \multirow{2}[0]{*}{Multinomial} & 18,55 & 21,44 & 0,15 \\
+											     & (1,35) & (5,6) & (0,10) \\
 		 		\vspace*{-2mm}
-		 		 \multirow{2}[0]{*}{Regular}	 & 67,86 & 79,03 \\
-		 								       & (5,03) & (20,13) \\
+		 		 \multirow{2}[0]{*}{Regular}	 & 67,86 & 79,03 & 0,33 \\
+		 								       & (5,03) & (20,13) & (0,25) \\
 		 		\cline{1-1}
 		 		\textbf{Support Vector Machines :} &&\\
 		 		\cline{1-1}
 		 		\vspace*{-2mm}
-				\multirow{2}{*}{Linear Kernel}& 32,08 & 36,37 \\
-				     & (3,3) & (4,98) \\
+				\multirow{2}{*}{Linear Kernel}& 32,08 & 36,37 & 12,79\\
+				     & (3,3) & (4,98) & (12,89) \\
 		 		\vspace*{-2mm}
- 				\multirow{2}{*}{Polynomial Kernel} & 32,89 & 43,27 \\
-						      					  & (5,62) & (5,76) \\
+ 				\multirow{2}{*}{Polynomial Kernel} & 32,89 & 43,27 & 265,61 \\
+						      					  & (5,62) & (5,76) & (262,56) \\
 		 		\vspace*{-2mm}
-		 		 Radial Basis & 42,48 & 46,83 \\
-		 		Function Kernel      & (4,03) & (5,73) \\
+		 		 Radial Basis & 42,48 & 46,83& 1,90 \\
+		 		Function Kernel      & (4,03) & (5,73) & (1,62)\\
 		 		\vspace*{-2mm}
-		 		\multirow{2}{*}{Sigmoid Kernel} & 29,40 & 31,30 \\
-		 		     & (4,65) & (3,37) \\
+		 		\multirow{2}{*}{Sigmoid Kernel} & 29,40 & 31,30 & 1,42\\
+		 		     & (4,65) & (3,37) & (1,20) \\
 		 		\cline{1-1}
 		 		\textbf{Artificial Neural Networks :}&&\\
 		 		\cline{1-1}
 		 		\vspace*{-2mm}
-		 		\multirow{2}[0]{*}{MLP} & 44,64 & 50,71 \\
-		 		       					& (6,52) & (5,38) \\
+		 		\multirow{2}[0]{*}{MLP} & 44,64 & 50,71 & 0,51\\
+		 		       					& (6,52) & (5,38) & (0,36)\\
 		 		\vspace*{-2mm}
-		 		\multirow{2}[0]{*}{SGD} & 20,48 & 21,93 \\
-			 					       & (4,04) & (3,63) \\
+		 		\multirow{2}[0]{*}{SGD} & 20,48 & 21,93 & 0,15 \\
+			 					       & (4,04) & (3,63) & (0,10) \\
 			 	\cline{1-1}
 			 	\textbf{Ensemble Methods :}&&\\
 			 	\cline{1-1}				       
 		 		\vspace*{-2mm}
- 				\multirow{2}[0]{*}{Adaptive Boosting}& 26,42 & 25,71 \\
-		 		       & (5,95) & (2,55) \\
+ 				\multirow{2}[0]{*}{Adaptive Boosting}& 26,42 & 25,71 & 7,14 \\
+		 		       & (5,95) & (2,55) & (4,69) \\
 		 		\vspace*{-2mm}
-		 		\multirow{2}[0]{*}{Random Forest} & 105,85 & 106,52 \\
-		 		       & (2,68) & (3,04) \\
-		 		\hline\vspace*{-2mm}
-		 		\multirow{2}[0]{*}{\textbf{Logistic Regression}}& 18,60 & 21,62 \\
-		 		     & (1,5) & (4,71) \\
-		 		\hline\vspace*{-2mm}
-		 		\multirow{2}[0]{*}{\textbf{Vote Classifier}} & 732,14 & 675,82 \\
-		 		      & (751,18) & (531,47) \\
+		 		\multirow{2}[0]{*}{Random Forest} & 105,85 & 106,52 & 253,91 \\
+		 		       & (2,68) & (3,04) & (159,40)\\
+		 		\cline{1-1}\vspace*{-2mm}
+		 		\multirow{2}[0]{*}{\textbf{Logistic Regression}}& 18,60 & 21,62 & 0,35 \\
+		 		     & (1,5) & (4,71) & (0,28) \\
+		 		\cline{1-1}\vspace*{-2mm}
+		 		\multirow{2}[0]{*}{\textbf{Vote Classifier}} & 732,14 & 675,82 & 310,82\\
+		 		      & (751,18) & (531,47) & (600,11) \\
 		 		\hline\hline
-		 		\multicolumn{3}{l}{*Number in brackets is standard deviation}
-		 		
+		 		\multicolumn{4}{l}{ 
+		 			\begin{tabular}{l}
+		 				\vspace*{-2mm}
+		 				* Durations with largest weighted dataset ({\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}2800 training samples)\\
+	 					and 5k features, where applicable  \\
+	 					** Number in brackets is standard deviation
+		 			\end{tabular}
+	 			}	
 		 	\end{tabular}%
 		 	\label{tab:dur_by_type}%
 		 \end{table}%
@@ -152,8 +158,68 @@
 					\end{tabular}
 				}	
 			\end{center}
-			\caption[Classifier Groupings]{Classifier Groupings}
 		\end{table}
+	
+	\section{Confusion Matrix Measures}
+	\label{appn:pre_rec_f1}%
+	\begin{table}[H]
+		\centering
+		\resizebox{1\textwidth}{!}{
+			\begin{tabular}{cc|ccccc | ccccc | c}
+				\hline\hline\vspace*{-2mm}
+				&& \multicolumn{5}{c|}{\multirow{2}{*}{N-Grams 2:5}} 
+				& \multicolumn{5}{c|}{\multirow{2}{*}{Bag of Words}} 
+				& \multirow{3}{*}{
+					\begin{tabular}{c}
+						\vspace*{-2mm}
+						Descriptive \\
+						Features
+					\end{tabular}	
+				}  \\
+				& &  &  &  &  &  &  &  &  &  &  &  \\
+				\multicolumn{2}{c|}{Number of Features:} & 100 & 500 & 1000 & 3000 & 5000 & 100 & 500 & 1000 & 3000 & 5000 &  \\
+				\hline
+				& & & & & & & & & & & & \\
+				\multirow{3}{*}{\begin{tabular}{c}\vspace*{-2mm}Logistic \\Regression\end{tabular}
+				}& Prec.&  0,82 & 0,86 & 0,86 & 0,91 & 0,89 & 0,81 & 0,83 & 0,85 & 0,84 & 0,86 & 0,64 \\
+				& Recall&  0,45 & 0,65 & 0,73 & 0,67 & 0,68 & 0,68 & 0,82 & 0,80 & 0,84 & 0,85 & 0,34 \\
+				& $ \text{F}_1 $ & 0,58 & 0,74 & 0,79 & 0,77 & 0,77 & 0,74 & 0,82 & 0,82 & 0,84 & 0,85 & 0,34\\
+				%\hline
+				& & & & & & & & & & & & \\
+				\multirow{3}{*}{\begin{tabular}{c}\vspace*{-2mm}Naive \\Bayes\end{tabular}
+				}& Prec.& 0,93 & 0,81 & 0,86 & 0,95 & 0,88 & 0,75 & 0,80 & 0,85 & 0,83 & 0,84 & 0,56 \\
+				& Recall& 0,37 & 0,58 & 0,57 & 0,55 & 0,55 & 0,75 & 0,85 & 0,84 & 0,90 & 0,91 & 0,25 \\
+				& $ \text{F}_1 $ &  0,53 & 0,64 & 0,66 & 0,69 & 0,65 & 0,74 & 0,82 & 0,84 & 0,86 & 0,87 & 0,31 \\
+				%\hline
+				& & & & & & & & & & & & \\
+				\multirow{3}{*}{\begin{tabular}{c}\vspace*{-2mm}Support \\\vspace*{-2mm}Vector \\Machines\end{tabular}
+				}& Prec.& 0,85 & 0,86 & 0,86 & 0,88 & 0,85 & 0,81 & 0,81 & 0,84 & 0,84 & 0,85 & 0,57 \\
+				& Recall& 0,42 & 0,57 & 0,66 & 0,63 & 0,59 & 0,65 & 0,75 & 0,71 & 0,72 & 0,74 & 0,45 \\
+				& $ \text{F}_1 $ & 0,56 & 0,69 & 0,74 & 0,73 & 0,69 & 0,72 & 0,78 & 0,76 & 0,76 & 0,77 & 0,45\\
+				%\hline
+				& & & & & & & & & & & & \\
+				\multirow{3}{*}{\begin{tabular}{c}\vspace*{-2mm}Artificial \\\vspace*{-2mm}Neural \\Networks\end{tabular}
+				}& Prec.& 0,83 & 0,85 & 0,84 & 0,89 & 0,85 & 0,81 & 0,81 & 0,84 & 0,83 & 0,84 & 0,40 \\
+				& Recall& 0,42 & 0,64 & 0,72 & 0,68 & 0,67 & 0,66 & 0,81 & 0,79 & 0,83 & 0,82 & 0,46 \\
+				& $ \text{F}_1 $ & 0,56 & 0,73 & 0,77 & 0,77 & 0,75 & 0,73 & 0,81 & 0,81 & 0,83 & 0,83 & 0,39\\
+				%\hline
+				& & & & & & & & & & & & \\
+				\multirow{3}{*}{\begin{tabular}{c}\vspace*{-2mm}Ensemble \\Methods\end{tabular}
+				}& Prec.& 0,84 & 0,88 & 0,89 & 0,90 & 0,90 & 0,82 & 0,83 & 0,84 & 0,88 & 0,87 & 0,68 \\
+				& Recall& 0,43 & 0,54 & 0,56 & 0,54 & 0,50 & 0,65 & 0,72 & 0,71 & 0,68 & 0,73 & 0,50 \\
+				& $ \text{F}_1 $ & 0,57 & 0,66 & 0,67 & 0,66 & 0,63 & 0,72 & 0,76 & 0,76 & 0,76 & 0,79 & 0,54 \\
+				%\hline
+				& & & & & & & & & & & & \\
+				\multirow{3}{*}{\begin{tabular}{c}\vspace*{-2mm}Vote\end{tabular}
+				}& Prec.& 0,87 & 0,89 & 0,89 & 0,92 & 0,90 & 0,81 & 0,83 & 0,86 & 0,85 & 0,86 & 0,75 \\
+				& Recall& 0,42 & 0,60 & 0,68 & 0,66 & 0,63 & 0,68 & 0,82 & 0,80 & 0,85 & 0,86 & 0,31 \\
+				& $ \text{F}_1 $ & 0,56 & 0,72 & 0,77 & 0,77 & 0,74 & 0,74 & 0,82 & 0,83 & 0,85 & 0,86 & 0,40 \\
+				%\hline
+				& & & & & & & & & & & & \\
+				\hline\hline		
+			\end{tabular}
+		}
+	\end{table}%
 
 	
 \end{appendices}

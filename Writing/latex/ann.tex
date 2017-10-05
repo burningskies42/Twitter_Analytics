@@ -32,9 +32,26 @@
 	Multi-layered ANNs consist of several layers of Perceptrons. All layers except the first (input layer) and the last (output layer) receive their inputs from the lower level of Perceptrons and output into the higher layer, which in turn uses this output as its input. It was demonstrated that a "XOR" gateway could be constructed using a 3-layered network [\ref{ANN_XOR}].
 	
 	\begin{figure}[h]
-		\centering
+		\resizebox{0.9 \textwidth}{!}{
+		\begin{minipage}[b]{0.4\linewidth}
+			\begin{tabular}{cc|c}
+				 \\ \\ \\
+				\hline\hline
+				Input$_1 $ & Input$_2 $ & Output \\
+				\hline
+				0 & 0 & 0\\
+				1 & 0 & 1\\
+				0 & 1 & 1\\
+				1 & 1 & 0\\
+				\hline\hline
+			\end{tabular}
+		\end{minipage}	
+		\begin{minipage}[c]{0.56\linewidth}
+			\centering
+			\input{images/perceptron.eps_tex}
+		\end{minipage}
+		}
 		\captionsetup{width=0.8\textwidth}
-		\includegraphics[width=0.6\textwidth]{ANN_XOR.png}
 		\caption[ANN XOR Perceptron-Network]{
 			\footnotesize{
 				A three layer Network, creating a XOR gateway.
@@ -55,7 +72,7 @@
 			
 		\par
 		
-		The network is than optimized through the process of \textbf{Backpropogation} of errors. During the backwards propagation the initial weights of all the axons (input nodes of a neuron) weights are determined at random. Subsequently, the optimization problem is set by measuring the aggregate error terms in classification (misclassification). This error is calculated as a function of all afore mentioned weights. Next, the aggregate error function must to be minimized by observing the contribution of each weight to the error and reducing it. Finally, the gradient (derivative in vector space) is derived and the weights are adjusted by $ \Delta w $ respectively as shown in [\ref{ANN_backprop}]. This process is repeated, pending we no longer get improvement (lower error terms) or the error reduction is lower than a predetermined threshold.
+		The network is than optimized through the process of \textbf{Backpropogation} of errors. During the backwards propagation the initial weights of all the axons (input nodes of a neuron) weights are determined at random. Subsequently, the optimization problem is set by measuring the aggregate error terms in classification (misclassification). This error is calculated as a function of all afore mentioned weights. Next, the aggregate error function must to be minimized by observing the contribution of each weight to the error and reducing it. Finally, the gradient (derivative in vector space) is derived and the weights are adjusted by $ \Delta w $ respectively as shown in  figure \ref{ANN_backprop}. This process is repeated, pending we no longer get improvement (lower error terms) or the error reduction is lower than a predetermined threshold.
 		
 		\begin{figure}[h]
 			\centering
@@ -66,7 +83,7 @@
 					A descent down the error function, taking gradients of $ w $ to calculate the steps.
 				}
 			} 
-			\label{ANN_backprop1}
+			\label{ANN_backprop}
 		\end{figure}
 	
 	\paragraph{Stochastic Gradient Descent}
@@ -83,7 +100,7 @@
 		\begin{figure}[H]
 			\centering
 			\captionsetup{width=0.8\textwidth}
-			\includegraphics[width=0.5\textwidth]{sto_grad_desc.png}
+			\includegraphics[width=0.4\textwidth]{sto_grad_desc.png}
 			\caption[Batch and Stochastic Gradient Descent]{
 				\footnotesize{
 					A comparison of the Batch and Stochastic Gradient Descent Approaches 

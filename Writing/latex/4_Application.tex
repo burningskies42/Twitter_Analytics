@@ -28,7 +28,7 @@
 			\centering
 			\includegraphics[width=0.8\textwidth]{twitterbot.PNG}
 			\captionsetup{width=0.8\textwidth}
-			\caption[Fake Twitter Accounts]{Twitter accounts, which present themselves as actual people}
+			\caption[Fake Twitter Accounts]{Twitter accounts, which present themselves as actual people. \textit{Source: Twitter}}
 			\label{fig:twitterbot}	
 		\end{figure}
 		
@@ -45,7 +45,7 @@
 		
 	\subsection{Building Feature-Sets}
 	\label{build_features}
-	Once a list of labeled Tweets is obtained, the next stage is constructing a feature-set to be later passed on as input for training an ML Classifier. The features contained if the feature sets describe certain aspects and characteristics of a Tweet and its owner. Two main approaches to feature sets are \textit{Word-Based} also often called \textit{Bag-of-Words} and \textit{Descriptive}. A further modification on \textit{Bag-of-Words} is \textit{N-Grams}. The different approaches to feature extraction are discussed in detail in section \ref{section:feature_types}.
+	Once a list of labeled Tweets is obtained, the next stage is constructing a feature-set to be later passed on as input for training an ML Classifier. The features contained if the feature sets describe certain aspects and characteristics of a Tweet and its owner. Two main approaches to feature sets are \textit{Word-Based} also often called \textit{Bag-of-Words} and \textit{Descriptive}. A further modification on \textit{Bag-of-Words} is \textit{N-Grams}. The different approaches to feature extraction are discussed in detail in Section \ref{section:feature_types}.
 	
 			
 	\subsection{Training Classifiers}
@@ -53,6 +53,6 @@
 		
 		\par
 		
-		The different classifiers are grouped according to their designation and type as discussed in \hyperref[classifer_types]{section 3.2}. Additionally, another classifier type is one, which incorporates all previous classifiers and classifies with a majority vote. This classifier will be referred to as Vote Classifier. An apparent drawback of the Vote Classifier, is the classification duration which will be as long as the sum of classification durations of all its components.
+		The different classifiers are grouped according to their designation and type as discussed in \hyperref[classifer_types]{Section 3.2}. Additionally, another classifier type is one, which incorporates all previous classifiers and classifies with a majority vote. This classifier will be referred to as Vote Classifier. An apparent drawback of the Vote Classifier, is the classification duration which will be as long as the sum of classification durations of all its components.
 		
 		

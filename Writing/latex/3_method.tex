@@ -14,13 +14,14 @@
 	\par
 	The data used for the purpose of this study consolidates 12.520 unique Tweets. Different approaches vary in the percentage of the data used from this corpus. In order to insure robust results, the \textit{Hold-out Method} is used across the board. For each instance of \textit{training} the data is split into two parts - a \textit{training} set and testing set. The \textit{training set} would usually be allocated the larger portion of the data (between 60\% and 90\%) and would be used, as the name suggests for training the Classifiers. The remaining corpus chunk (between 10\% and 40\%) would be used for testing the Classifiers success. During each such training-testing session, the data corpus is shuffled. This in turn means, that the training and testing sets constantly differ. This process of splitting, training and testing using different data in each iteration should produce statistically significant results. This method of constantly splitting the data randomly ensures the results robustness.
 	\par
-	The following paragraphs expand on the different Machine Learning schemes. Figure 3 illustrates these schemes with relation to computational complexity and their interoperability.
+	The following paragraphs expand on the different Machine Learning schemes. Figure \ref{fig:classifier_matrix} illustrates these schemes with relation to computational complexity and their interoperability.
 	
 	\begin{figure}[h]
 		\centering
 		\includegraphics[width=0.8\textwidth]{methods}
 		\captionsetup{width=0.8\textwidth}
 		\caption{Clustering of Different Classifiers}
+		\label{fig:classifier_matrix}
 	\end{figure}
 	
 	\subsection{Supervised Learning}

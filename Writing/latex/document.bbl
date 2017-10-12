@@ -1,155 +1,189 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{30}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem{aly2005survey}
-{\sc Aly, M.}
+\bibitem[Aly(2005)]{aly2005survey}
+Mohamed Aly.
 \newblock Survey on multiclass classification methods.
-\newblock vol.~19.
+\newblock volume~19, 2005.
 
-\bibitem{nltk_book}
-{\sc Bird, S., Klein, E., and Loper, E.}
-\newblock {\em Natural language processing with Python: analyzing text with the
-  natural language toolkit}.
+\bibitem[Bird et~al.(2009)Bird, Klein, and Loper]{nltk_book}
+Steven Bird, Ewan Klein, and Edward Loper.
+\newblock \emph{Natural language processing with Python: analyzing text with
+  the natural language toolkit}.
 \newblock O'Reilly Media, Inc., 2009.
 
-\bibitem{bishop1995neural}
-{\sc Bishop, C.~M.}
-\newblock {\em Neural networks for pattern recognition}.
+\bibitem[Bishop(1995)]{bishop1995neural}
+Christopher~M Bishop.
+\newblock \emph{Neural networks for pattern recognition}.
 \newblock Oxford university press, 1995.
 
-\bibitem{bishop2006logistic}
-{\sc Bishop, C.~M.}
-\newblock {\em Pattern recognition and machine learning}.
+\bibitem[Bishop(2006)]{bishop2006logistic}
+Christopher~M Bishop.
+\newblock \emph{Pattern recognition and machine learning}.
 \newblock springer, 2006.
 
-\bibitem{breiman1984classification}
-{\sc Breiman, L., Friedman, J., Stone, C.~J., and Olshen, R.~A.}
-\newblock {\em Classification and regression trees}.
+\bibitem[Breiman et~al.(1984)Breiman, Friedman, Stone, and
+  Olshen]{breiman1984classification}
+Leo Breiman, Jerome Friedman, Charles~J Stone, and Richard~A Olshen.
+\newblock \emph{Classification and regression trees}.
 \newblock CRC press, 1984.
 
-\bibitem{SVM_burges1998tutorial}
-{\sc Burges, C.~J.}
+\bibitem[Burges(1998)]{SVM_burges1998tutorial}
+Christopher~JC Burges.
 \newblock A tutorial on support vector machines for pattern recognition.
-\newblock {\em Data mining and knowledge discovery 2}, 2 (1998), 121--167.
+\newblock \emph{Data mining and knowledge discovery}, 2\penalty0 (2):\penalty0
+  121--167, 1998.
 
-\bibitem{carrington2014new}
-{\sc Carrington, A.~M., Fieguth, P.~W., and Chen, H.~H.}
+\bibitem[Carrington et~al.(2014)Carrington, Fieguth, and
+  Chen]{carrington2014new}
+Andr{\'e}~M Carrington, Paul~W Fieguth, and Helen~H Chen.
 \newblock A new mercer sigmoid kernel for clinical data classification.
-\newblock In {\em Engineering in Medicine and Biology Society (EMBC), 2014 36th
-  Annual International Conference of the IEEE\/} (2014), IEEE, pp.~6397--6401.
+\newblock In \emph{Engineering in Medicine and Biology Society (EMBC), 2014
+  36th Annual International Conference of the IEEE}, pages 6397--6401. IEEE,
+  2014.
 
-\bibitem{castillo2011information}
-{\sc Castillo, C., Mendoza, M., and Poblete, B.}
+\bibitem[Castillo et~al.(2011)Castillo, Mendoza, and
+  Poblete]{castillo2011information}
+Carlos Castillo, Marcelo Mendoza, and Barbara Poblete.
 \newblock Information credibility on twitter.
-\newblock In {\em Proceedings of the 20th international conference on World
-  wide web\/} (2011), ACM, pp.~675--684.
+\newblock In \emph{Proceedings of the 20th international conference on World
+  wide web}, pages 675--684. ACM, 2011.
 
-\bibitem{cohen1960coefficient}
-{\sc Cohen, J.}
+\bibitem[Cohen(1960)]{cohen1960coefficient}
+Jacob Cohen.
 \newblock A coefficient of agreement for nominal scales.
-\newblock {\em Educational and psychological measurement 20}, 1 (1960), 37--46.
+\newblock \emph{Educational and psychological measurement}, 20\penalty0
+  (1):\penalty0 37--46, 1960.
 
-\bibitem{SVM_cortes1995support}
-{\sc Cortes, C., and Vapnik, V.}
+\bibitem[Cortes and Vapnik(1995)]{SVM_cortes1995support}
+Corinna Cortes and Vladimir Vapnik.
 \newblock Support-vector networks.
-\newblock {\em Machine learning 20}, 3 (1995), 273--297.
+\newblock \emph{Machine learning}, 20\penalty0 (3):\penalty0 273--297, 1995.
 
-\bibitem{covington2016deep}
-{\sc Covington, P., Adams, J., and Sargin, E.}
+\bibitem[Covington et~al.(2016)Covington, Adams, and Sargin]{covington2016deep}
+Paul Covington, Jay Adams, and Emre Sargin.
 \newblock Deep neural networks for youtube recommendations.
-\newblock In {\em Proceedings of the 10th ACM Conference on Recommender
-  Systems\/} (2016), ACM, pp.~191--198.
+\newblock In \emph{Proceedings of the 10th ACM Conference on Recommender
+  Systems}, pages 191--198. ACM, 2016.
 
-\bibitem{bigdata}
-{\sc Demchenko, Y., Grosso, P., De~Laat, C., and Membrey, P.}
+\bibitem[Demchenko et~al.(2013)Demchenko, Grosso, De~Laat, and
+  Membrey]{bigdata}
+Yuri Demchenko, Paola Grosso, Cees De~Laat, and Peter Membrey.
 \newblock Addressing big data issues in scientific data infrastructure.
-\newblock In {\em Collaboration Technologies and Systems (CTS), 2013
-  International Conference on\/} (2013), IEEE, pp.~pp. 48--55.
+\newblock In \emph{Collaboration Technologies and Systems (CTS), 2013
+  International Conference on}, pages pp. 48--55. IEEE, 2013.
 
-\bibitem{fawcett2006roc}
-{\sc Fawcett, T.}
+\bibitem[Fawcett(2006)]{fawcett2006roc}
+Tom Fawcett.
 \newblock An introduction to roc analysis.
-\newblock {\em Pattern recognition letters 27}, 8 (2006), 861--874.
+\newblock \emph{Pattern recognition letters}, 27\penalty0 (8):\penalty0
+  861--874, 2006.
 
-\bibitem{gaskins2012internet}
-{\sc Gaskins, B., and Jerit, J.}
+\bibitem[Gaskins and Jerit(2012)]{gaskins2012internet}
+Benjamin Gaskins and Jennifer Jerit.
 \newblock Internet news: Is it a replacement for traditional media outlets?
-\newblock {\em The International Journal of Press/Politics 17}, 2 (2012),
-  190--213.
+\newblock \emph{The International Journal of Press/Politics}, 17\penalty0
+  (2):\penalty0 190--213, 2012.
 
-\bibitem{go2009twitter}
-{\sc Go, A., Bhayani, R., and Huang, L.}
+\bibitem[Go et~al.(2009)Go, Bhayani, and Huang]{go2009twitter}
+Alec Go, Richa Bhayani, and Lei Huang.
 \newblock Twitter sentiment classification using distant supervision.
-\newblock {\em CS224N Project Report, Stanford 1}, 2009 (2009), 12.
+\newblock \emph{CS224N Project Report, Stanford}, 1\penalty0 (2009):\penalty0
+  12, 2009.
 
-\bibitem{guyon1993automatic}
-{\sc Guyon, I., Boser, B., and Vapnik, V.}
+\bibitem[Guyon et~al.(1993)Guyon, Boser, and Vapnik]{guyon1993automatic}
+Isabelle Guyon, B~Boser, and Vladimir Vapnik.
 \newblock Automatic capacity tuning of very large vc-dimension classifiers.
-\newblock 147--155.
+\newblock pages 147--155, 1993.
 
-\bibitem{kimso}
-{\sc Kim, E.}
+\bibitem[Hill(2014)]{facebook_experiment}
+Kashmir Hill.
+\newblock Facebook manipulated 689,003 users' emotions for science, June 2014.
+\newblock URL
+  \url{https://www.forbes.com/sites/kashmirhill/2014/06/28/facebook-manipulated-689003-users-emotions-for-science/#466fecb7197c}.
+\newblock [Online; posted 28-June-2014].
+
+\bibitem[Kim(2013)]{kimso}
+Eric Kim.
 \newblock So, what is a kernel anyway?
-\newblock \url{http://www.eric-kim.net/eric-kim-net/posts/1/kernel_trick.html}.
+\newblock \url{http://www.eric-kim.net/eric-kim-net/posts/1/kernel_trick.html},
+  2013.
 
-\bibitem{klier2016datenqualitat}
-{\sc Klier, M., and Heinrich, B.}
+\bibitem[Klier and Heinrich(2016)]{klier2016datenqualitat}
+Mathias Klier and Bernd Heinrich.
 \newblock Datenqualit{\"a}t als erfolgsfaktor im business analytics.
-\newblock {\em Controlling 28}, 8-9 (2016), pp. 488--494.
+\newblock \emph{Controlling}, 28\penalty0 (8-9):\penalty0 pp. 488--494, 2016.
 
-\bibitem{Kralj2015emojis}
-{\sc {Kralj Novak}, P., Smailovi{\'c}, J., Sluban, B., and Mozeti\v{c}, I.}
+\bibitem[{Kralj Novak} et~al.(2015){Kralj Novak}, Smailovi{\'c}, Sluban, and
+  Mozeti\v{c}]{Kralj2015emojis}
+Petra {Kralj Novak}, Jasmina Smailovi{\'c}, Borut Sluban, and Igor Mozeti\v{c}.
 \newblock Sentiment of emojis.
-\newblock {\em PLoS ONE 10}, 12 (2015), e0144296.
+\newblock \emph{PLoS ONE}, 10\penalty0 (12):\penalty0 e0144296, 2015.
+\newblock URL \url{http://dx.doi.org/10.1371/journal.pone.0144296}.
 
-\bibitem{mcculloch1943logical}
-{\sc McCulloch, W.~S., and Pitts, W.}
+\bibitem[McCulloch and Pitts(1943)]{mcculloch1943logical}
+Warren~S McCulloch and Walter Pitts.
 \newblock A logical calculus of the ideas immanent in nervous activity.
-\newblock {\em The bulletin of mathematical biophysics 5}, 4 (1943), 115--133.
+\newblock \emph{The bulletin of mathematical biophysics}, 5\penalty0
+  (4):\penalty0 115--133, 1943.
 
-\bibitem{mitchell}
-{\sc Mitchell, T.}
-\newblock {\em Machine Learning}.
-\newblock McGraw-Hill, 1997.
+\bibitem[Mitchell()]{mitchell}
+T.~Mitchell.
+\newblock \emph{Machine Learning}.
+\newblock McGraw-Hill.
 
-\bibitem{scikit-learn}
-{\sc Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B.,
-  Grisel, O., Blondel, M., Prettenhofer, P., Weiss, R., Dubourg, V.,
-  Vanderplas, J., Passos, A., Cournapeau, D., Brucher, M., Perrot, M., and
-  Duchesnay, E.}
+\bibitem[Pedregosa et~al.(2011)Pedregosa, Varoquaux, Gramfort, Michel, Thirion,
+  Grisel, Blondel, Prettenhofer, Weiss, Dubourg, Vanderplas, Passos,
+  Cournapeau, Brucher, Perrot, and Duchesnay]{scikit-learn}
+F.~Pedregosa, G.~Varoquaux, A.~Gramfort, V.~Michel, B.~Thirion, O.~Grisel,
+  M.~Blondel, P.~Prettenhofer, R.~Weiss, V.~Dubourg, J.~Vanderplas, A.~Passos,
+  D.~Cournapeau, M.~Brucher, M.~Perrot, and E.~Duchesnay.
 \newblock Scikit-learn: Machine learning in {P}ython.
-\newblock {\em Journal of Machine Learning Research 12\/} (2011), 2825--2830.
+\newblock \emph{Journal of Machine Learning Research}, 12:\penalty0 2825--2830,
+  2011.
 
-\bibitem{quinlan1986induction}
-{\sc Quinlan, J.~R.}
+\bibitem[Quinlan(1986)]{quinlan1986induction}
+J.~Ross Quinlan.
 \newblock Induction of decision trees.
-\newblock {\em Machine learning 1}, 1 (1986), 81--106.
+\newblock \emph{Machine learning}, 1\penalty0 (1):\penalty0 81--106, 1986.
 
-\bibitem{quinlan2014c4}
-{\sc Quinlan, J.~R.}
-\newblock {\em C4. 5: programs for machine learning}.
+\bibitem[Quinlan(2014)]{quinlan2014c4}
+J~Ross Quinlan.
+\newblock \emph{C4. 5: programs for machine learning}.
 \newblock Elsevier, 2014.
 
-\bibitem{rish2001empirical}
-{\sc Rish, I.}
+\bibitem[Rish(2001)]{rish2001empirical}
+Irina Rish.
 \newblock An empirical study of the naive bayes classifier.
-\newblock 41--46.
+\newblock 3\penalty0 (22):\penalty0 41--46, 2001.
 
-\bibitem{sorensen1948method}
-{\sc S{\o}rensen, T.}
+\bibitem[S{\o}rensen(1948)]{sorensen1948method}
+Thorvald S{\o}rensen.
 \newblock A method of establishing groups of equal amplitude in plant sociology
   based on similarity of species and its application to analyses of the
   vegetation on danish commons.
-\newblock {\em Biol. Skr. 5\/} (1948), pp. 1--34.
+\newblock \emph{Biol. Skr.}, 5:\penalty0 pp. 1--34, 1948.
 
-\bibitem{stream_api}
-{\sc {S}treaming {API}s}.
+\bibitem[{S}treaming {API}s()]{stream_api}
+{S}treaming {API}s.
 \newblock {T}witter {D}eveloper {D}ocumentation.
 \newblock \url{https://dev.twitter.com/streaming/overview}.
-\newblock Accessed: July 13. 2017.
+\newblock 2017.
 
-\bibitem{dict_Tweet}
-{\sc "tweet"}.
-\newblock {\em https://www.merriam-webster.com}.
-\newblock Merriam-Webster, Accessed: June 20. 2017.
+\bibitem["tweet"(2017)]{dict_Tweet}
+"tweet".
+\newblock \emph{https://www.merriam-webster.com}.
+\newblock Merriam-Webster, 2017.
+
+\bibitem[Wang et~al.(2013)Wang, Kisling, and Lam]{fake_post}
+Lu~Wang, Whitney Kisling, and Eric Lam.
+\newblock Fake post erasing 136 billion shows markets need humans, April 2013.
+\newblock URL
+  \url{https://www.bloomberg.com/news/articles/2013-04-23/fake-report-erasing-136-billion-shows-market-s-fragility/}.
+\newblock [Online; posted 23-April-2013].
 
 \end{thebibliography}

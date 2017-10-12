@@ -1,6 +1,6 @@
 %% Creator: Inkscape inkscape 0.92.2, www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'methods.eps' (pdf, eps, ps)
+%% Accompanies image file 'red_dist.eps' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -26,9 +26,9 @@
 %%
 \begingroup%
   \makeatletter%
-  \providecommand\color[0][]{%
+  \providecommand\color[2][]{%
     \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
-    \renewcommand\color[0][]{}%
+    \renewcommand\color[2][]{}%
   }%
   \providecommand\transparent[1]{%
     \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
@@ -36,7 +36,7 @@
   }%
   \providecommand\rotatebox[2]{#2}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{278.17188401bp}%
+    \setlength{\unitlength}{444.71103796bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -48,20 +48,13 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.54165025)%
-    \put(0,0){\includegraphics[width=\unitlength]{methods.eps}}%
-    \put(0.21324275,0.19802868){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Deep}}}%
-    \put(0.18628098,0.16028219){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Learning}}}%
-    \put(0.4670833,0.21420574){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Support}}}%
-    \put(0.47247557,0.17645926){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Vector}}}%
-    \put(0.45629874,0.13871278){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Machines}}}%
-    \put(0.41275925,0.42989991){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Decision Trees}}}%
-    \put(0.41275925,0.39215344){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{and Ensembles}}}%
-    \put(0.75786785,0.42450757){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Naive}}}%
-    \put(0.75247557,0.38676109){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Bayes}}}%
-    \put(0.43432859,0.2896987){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Regressions}}}%
-    \put(0.81718289,0.06861217){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Scalability}}}%
-    \put(0.03268055,0.49368427){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Interpretibility}}}%
-    \put(0.83335973,0.03625804){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{(comp.)}}}%
+  \begin{picture}(1,0.42659393)%
+    \put(0,0){\includegraphics[width=\unitlength]{red_dist.eps}}%
+    \put(0.32629155,0.02609673){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$0$}}}%
+    \put(0.56577275,0.02609673){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$1$}}}%
+    \put(0.53204304,0.34652984){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textit{news}}}}%
+    \put(0.26895075,0.34652984){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textit{not-news}}}}%
+    \put(0.86596378,0.03284269){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\hat{y}$}}}%
+    \put(0.04492168,0.15907053){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[lb]{\smash{Frequency}}}}%
   \end{picture}%
 \endgroup%

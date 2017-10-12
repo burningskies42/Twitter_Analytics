@@ -1,4 +1,4 @@
-\section{Results}
+\section{Results and Discussion}
 	In the section the classification that took place will be analyzed. The classification were conducted in different configurations of  dataset size and number of features. For optimization purposes other characteristics will be discussed such as robustness of the results as well as training and classification time.
 	
 	\subsection{Grouping of Classifiers}
@@ -37,13 +37,13 @@
 			\label{table:class_grps}
 		\end{table}
 	
-		In the upcoming results analysis the name scheme used in table \ref{table:class_grps} will refer to average values inside each such named group. 
+		In the upcoming results analysis the name scheme used in Table \ref{table:class_grps} will refer to average values inside each such named group. 
 	
 	\subsection{Approaches}
 		\label{section:feature_types}
 		\subsubsection{Descriptive Features}
 			\label{section:Descriptive_Features}
-			Similar approaches were used to classify Information Credibility on Tweeter \cite{castillo2011information}. In some sense, the mission of this study is also to quantify the quality of social media content, however, in a very subjective manner.
+			Similar approaches were used to classify Information Credibility on Tweeter (\cite{castillo2011information}). In some sense, the mission of this study is also to quantify the quality of social media content, however, in a very subjective manner.
 			\par	
 		
 			Every Tweet object originating from the Twitter database is a complex multi-layered structure, which  simultaneously describes the posted Tweet itself along with the user profile of its author and any additional media objects related to the Tweet. This approach to feature extraction focuses on deriving the implicit meaning or sense of the tweet, rather than analyzing the verbatim textual content. As previously noted in Section \ref{section:Descriptive_Features}, two tiers of features are extracted. The former type describes the Tweet object, whereas the latter draws information about the author himself. These features are described in Table \ref{table:desc_features} and are explained in the following paragraphs. Appendix \ref{appn:desc_features_stats} describes the general statistics of these features. 
@@ -99,7 +99,7 @@
 				Tweets are queried from the servers using a search term. This feature will receive the value \textit{TRUE}, if another Tweet was found, which has a similarity score exceeding a predetermined threshold. The similarity of each pair of Tweets was calculated using the S\o rensen-Dice coefficient as in Figure \ref{fig:sorenson_dice}.
 			
 			\paragraph{Emoji Sentiment}
-				All Emoji symbols are extracted from the Tweet and are scored according to the chart in the following URL: \url{http://kt.ijs.si/data/Emoji_sentiment_ranking/}. The ranking is based on a study by Novak, Smailovic et al (2015) \cite{Kralj2015emojis}. In this paper, Emojis were labeled to have a positive, negative or neutral connotation. The feature EMOJI\_SENT denotes the sign of sentiment (positive or negative), whereas the feature EMOJI\_SENT\_SCORE denotes the strength of the sentiment. When several Emojis are found, their appropriate values are averaged out. 
+				All Emoji symbols are extracted from the Tweet and are scored according to the chart in the following URL: \url{http://kt.ijs.si/data/Emoji_sentiment_ranking/}. The ranking is based on a study by \cite{Kralj2015emojis}. In this paper, Emojis were labeled to have a positive, negative or neutral connotation. The feature EMOJI\_SENT denotes the sign of sentiment (positive or negative), whereas the feature EMOJI\_SENT\_SCORE denotes the strength of the sentiment. When several Emojis are found, their appropriate values are averaged out. 
 				
 			\paragraph{Retweet Count}
 				Twitter content can be reposted as part of a new Tweet. This operation is named \textit{retweeting} in the Tweeter nomenclature. When a Twitter user wishes to reference another Tweet in its entirety, the enclosed (Retweet) Tweet will be framed inside the new Tweet and called a Retweet. Additionally, the original post keeps track tracks of the number of times it was reposted by other users. This acts as a measure of the Tweet's diffusion.
@@ -247,7 +247,7 @@
 		\par
 		Descriptive features could be segregated into two distinctive groups. The first tier is text-based features. As the name suggests, these features will mostly denote the presence or lack of specific characters such as emoticons and signs in the Tweets text. Whether a Tweet contains combinations or sequences of certain symbols as well as ratios defining the text also befit this category.
 		\par
-		The second tier of features describe any special \textit{Entities} (Tweeter's nomenclature) contained within a Tweet. \textit{Entities} refer to non-textual contents of a Tweet, such as media (in form of pictures, audio or video), URL's linking to external websites, mentions or Retweets (referring to other Tweets or to Tweeter user profiles) and finally Hashtags. A word or phrase preceded by the Hashtag symbol \textbf{\#} indicates an association of web content (such as a Tweet or other micro-blogging post) to a specific theme. These could be an event, news, gossip or any other tidbit \cite{dict_Tweet}. Hashtags are used primarily to simplify looking up Tweets or other social media content by technically associating them with the \textit{hashtagged} topic.
+		The second tier of features describe any special \textit{Entities} (Tweeter's nomenclature) contained within a Tweet. \textit{Entities} refer to non-textual contents of a Tweet, such as media (in form of pictures, audio or video), URL's linking to external websites, mentions or Retweets (referring to other Tweets or to Tweeter user profiles) and finally Hashtags. A word or phrase preceded by the Hashtag symbol \textbf{\#} indicates an association of web content (such as a Tweet or other micro-blogging post) to a specific theme. These could be an event, news, gossip or any other tidbit (\cite{dict_Tweet}). Hashtags are used primarily to simplify looking up Tweets or other social media content by technically associating them with the \textit{hashtagged} topic.
 		
 		The labeling of training examples was conducted by me personally in the process of several weeks. The labeling process was very subjective. Apart from holding up to a few rules of thumb, it is hard to formally model the labeling pattern. This in fact, makes this an ideal task for Machine Learning, since the logic behind it is intuitive rather than strict.
 		
@@ -275,7 +275,7 @@
 			
 			\begin{figure}[H]
 				\begin{center}
-					\begin{tikzpicture}[scale=0.65]
+					\begin{tikzpicture}[scale=1.3]
 					\begin{axis}[
 					/pgf/number format/.cd,
 					use comma, 1000 sep={},
@@ -435,7 +435,7 @@
 		Table \ref{tab:accuracy} illustrates that the Bag of Words approach to feature construction outperforms both N-Grams and Descriptive Features when measuring accuracy. Note however that N-Grams has sparser features. Having a more sparse feature system means, that each feature is less likely to appear in numerous samples. When using a relatively compact training set, as in my case, N-Grams might be lacking the sheer volume of data which it requires to achieve robust results.
 		
 		\subsubsection{Cohens Kappa}
-			The Kappa coefficient was introduces as \cite{cohen1960coefficient} a measure the accordance between numerical sets. In the context of classification, kappa is used for estimating agreement between different labelers, specifically how well the labels given by separate people correspond to one another. Additionally, the kappa may be interpreted as an improved success rating for a classifier compared to the true labels \cite{castillo2011information}. This measure more informative than accuracy, since it also accounts for the probability of coincidental true classifications. In the case of this study, the Kappa measure can be views as the accord of classification between the human labeler (myself) and the labels assigned by the classification algorithms. The calculation of Cohen's Kappa for two raters classifying $ N $ samples into $ C $ classes is demonstrates in equation \ref{cohen_kappa}, with $ p_o $ being the relative agreements of the rates same as \hyperref[accuracy]{accuracy} and $ p_e $ the estimated coincidental agreement between the raters, as in equation \ref{cohen_kappa_coincidental_agreement}. 
+			The Kappa coefficient was first introduces by \cite{cohen1960coefficient} a measure the accordance between numerical sets. In the context of classification, kappa is used for estimating agreement between different labelers, specifically how well the labels given by separate people correspond to one another. Additionally, the kappa may be interpreted as an improved success rating for a classifier compared to the true labels (\cite{castillo2011information}). This measure more informative than accuracy, since it also accounts for the probability of coincidental true classifications. In the case of this study, the Kappa measure can be views as the accord of classification between the human labeler (myself) and the labels assigned by the classification algorithms. The calculation of Cohen's Kappa for two raters classifying $ N $ samples into $ C $ classes is demonstrates in equation \ref{cohen_kappa}, with $ p_o $ being the relative agreements of the rates same as \hyperref[accuracy]{accuracy} and $ p_e $ the estimated coincidental agreement between the raters, as in equation \ref{cohen_kappa_coincidental_agreement}. 
 			
 			\begin{equation}
 				\begin{aligned}
@@ -512,7 +512,7 @@
 		\end{table}%
 		
 		\subsubsection{Confusion Matrix}		
-		Sometimes also referred to as \textit{contingency table} \cite{fawcett2006roc}. This table presents a more in-depth analysis for a classification quality. Typically, the confusion matrix shows several calculated measures. \textit{True-Positive rate} (\textit{recall}), \textit{False-Positive rate}, \textit{precision} and the F$ _1 $ measure. Whereas, the partition of classes to positive and negative categories is relative to the target of the classification. For example, in this study I wish to extract news-worthy content out of the whole data-stream. Therefore, the Positive notation refers to the class \textit{news} and Negative to \textit{not-news}. 
+		Sometimes also referred to as \textit{contingency table} (\cite{fawcett2006roc}). This table presents a more in-depth analysis for a classification quality. Typically, the confusion matrix shows several calculated measures. \textit{True-Positive rate} (\textit{recall}), \textit{False-Positive rate}, \textit{precision} and the F$ _1 $ measure. Whereas, the partition of classes to positive and negative categories is relative to the target of the classification. For example, in this study I wish to extract news-worthy content out of the whole data-stream. Therefore, the Positive notation refers to the class \textit{news} and Negative to \textit{not-news}. 
 		
 		\begin{table}[H]
 			\centering
@@ -549,7 +549,7 @@
 			\label{tpr_fpr}
 		\end{equation}
 		
-		Additionally, the confusion matrix is instrumental for the construction of the derived effectiveness, denoted by F (or $ \text{F}_1 $). The value is a weighted average of precision and recall, ranging from 0 (worst) to best (1). The following values are presented in Appendix \ref{appn:pre_rec_f1}. From these results, we can note that both precision, recall and F$_1$ values increase as the number of features increases, thought with a diminishing effect. The Descriptive features approach lags far behind both Bag-of-Words and N-grams, out of which Bag-of-Words seems to achieve more prominent results. All classification algorithms produce very comparable results with the Bag-of-Words approach, around 80\% for all 3 measures. These values infer us, that the classifier are significantly better than an arbitrary classifier (coin-toss).
+		Additionally, the confusion matrix is instrumental for the construction of the derived effectiveness, denoted by F (or $ \text{F}_1 $). The value is a weighted average of precision and recall, ranging from 0 (worst) to best (1). The following values are presented in Table \ref{tab:pre_rec_f1}. From these results, we can note that both precision, recall and F$_1$ values increase as the number of features increases, thought with a diminishing effect. The Descriptive features approach lags far behind both Bag-of-Words and N-grams, out of which Bag-of-Words seems to achieve more prominent results. All classification algorithms produce very comparable results with the Bag-of-Words approach, around 80\% for all 3 measures. These values infer us, that the classifier are significantly better than an arbitrary classifier (coin-toss).
 		
 		\begin{equation}
 			\footnotesize
@@ -558,6 +558,67 @@
 				\text{F}_1 = \frac{2 \cdot \text{precision} \cdot \text{recall}}{\text{precision} + \text{recall}}
 		\label{precision}
 		\end{equation}
+		
+		\begin{table}[H]
+			\centering
+			\resizebox{1\textwidth}{!}{
+				\begin{tabular}{cc|ccccc | ccccc | c}
+					\hline\hline\vspace*{-2mm}
+					&& \multicolumn{5}{c|}{\multirow{2}{*}{N-Grams 2:5}} 
+					& \multicolumn{5}{c|}{\multirow{2}{*}{Bag of Words}} 
+					& \multirow{3}{*}{
+						\begin{tabular}{c}
+							\vspace*{-2mm}
+							Descriptive \\
+							Features
+						\end{tabular}	
+					}  \\
+					& &  &  &  &  &  &  &  &  &  &  &  \\
+					\multicolumn{2}{c|}{Number of Features:} & 100 & 500 & 1000 & 3000 & 5000 & 100 & 500 & 1000 & 3000 & 5000 &  \\
+					\hline
+					& & & & & & & & & & & & \\
+					\multirow{3}{*}{\begin{tabular}{c}\vspace*{-2mm}Logistic \\Regression\end{tabular}
+					}& Prec.&  0,82 & 0,86 & 0,86 & 0,91 & 0,89 & 0,81 & 0,83 & 0,85 & 0,84 & 0,86 & 0,64 \\
+					& Recall&  0,45 & 0,65 & 0,73 & 0,67 & 0,68 & 0,68 & 0,82 & 0,80 & 0,84 & 0,85 & 0,34 \\
+					& $ \text{F}_1 $ & 0,58 & 0,74 & 0,79 & 0,77 & 0,77 & 0,74 & 0,82 & 0,82 & 0,84 & 0,85 & 0,34\\
+					%\hline
+					& & & & & & & & & & & & \\
+					\multirow{3}{*}{\begin{tabular}{c}\vspace*{-2mm}Naive \\Bayes\end{tabular}
+					}& Prec.& 0,93 & 0,81 & 0,86 & 0,95 & 0,88 & 0,75 & 0,80 & 0,85 & 0,83 & 0,84 & 0,56 \\
+					& Recall& 0,37 & 0,58 & 0,57 & 0,55 & 0,55 & 0,75 & 0,85 & 0,84 & 0,90 & 0,91 & 0,25 \\
+					& $ \text{F}_1 $ &  0,53 & 0,64 & 0,66 & 0,69 & 0,65 & 0,74 & 0,82 & 0,84 & 0,86 & 0,87 & 0,31 \\
+					%\hline
+					& & & & & & & & & & & & \\
+					\multirow{3}{*}{\begin{tabular}{c}\vspace*{-2mm}Support \\\vspace*{-2mm}Vector \\Machines\end{tabular}
+					}& Prec.& 0,85 & 0,86 & 0,86 & 0,88 & 0,85 & 0,81 & 0,81 & 0,84 & 0,84 & 0,85 & 0,57 \\
+					& Recall& 0,42 & 0,57 & 0,66 & 0,63 & 0,59 & 0,65 & 0,75 & 0,71 & 0,72 & 0,74 & 0,45 \\
+					& $ \text{F}_1 $ & 0,56 & 0,69 & 0,74 & 0,73 & 0,69 & 0,72 & 0,78 & 0,76 & 0,76 & 0,77 & 0,45\\
+					%\hline
+					& & & & & & & & & & & & \\
+					\multirow{3}{*}{\begin{tabular}{c}\vspace*{-2mm}Artificial \\\vspace*{-2mm}Neural \\Networks\end{tabular}
+					}& Prec.& 0,83 & 0,85 & 0,84 & 0,89 & 0,85 & 0,81 & 0,81 & 0,84 & 0,83 & 0,84 & 0,40 \\
+					& Recall& 0,42 & 0,64 & 0,72 & 0,68 & 0,67 & 0,66 & 0,81 & 0,79 & 0,83 & 0,82 & 0,46 \\
+					& $ \text{F}_1 $ & 0,56 & 0,73 & 0,77 & 0,77 & 0,75 & 0,73 & 0,81 & 0,81 & 0,83 & 0,83 & 0,39\\
+					%\hline
+					& & & & & & & & & & & & \\
+					\multirow{3}{*}{\begin{tabular}{c}\vspace*{-2mm}Ensemble \\Methods\end{tabular}
+					}& Prec.& 0,84 & 0,88 & 0,89 & 0,90 & 0,90 & 0,82 & 0,83 & 0,84 & 0,88 & 0,87 & 0,68 \\
+					& Recall& 0,43 & 0,54 & 0,56 & 0,54 & 0,50 & 0,65 & 0,72 & 0,71 & 0,68 & 0,73 & 0,50 \\
+					& $ \text{F}_1 $ & 0,57 & 0,66 & 0,67 & 0,66 & 0,63 & 0,72 & 0,76 & 0,76 & 0,76 & 0,79 & 0,54 \\
+					%\hline
+					& & & & & & & & & & & & \\
+					\multirow{3}{*}{\begin{tabular}{c}\vspace*{-2mm}Vote\end{tabular}
+					}& Prec.& 0,87 & 0,89 & 0,89 & 0,92 & 0,90 & 0,81 & 0,83 & 0,86 & 0,85 & 0,86 & 0,75 \\
+					& Recall& 0,42 & 0,60 & 0,68 & 0,66 & 0,63 & 0,68 & 0,82 & 0,80 & 0,85 & 0,86 & 0,31 \\
+					& $ \text{F}_1 $ & 0,56 & 0,72 & 0,77 & 0,77 & 0,74 & 0,74 & 0,82 & 0,83 & 0,85 & 0,86 & 0,40 \\
+					%\hline
+					& & & & & & & & & & & & \\
+					\hline\hline		
+				\end{tabular}
+			}
+			\caption{Confusion Matrix Measures}
+			\label{tab:pre_rec_f1}%
+		\end{table}%
 		
 		
 		\subsubsection{Receiver Operating Characteristic}
@@ -584,13 +645,7 @@
 		
 		One half of the unitary square, as in Figure \ref{fig:roc}, will always be under the diagonal, which is equivalent to a random classifier. As follows, all trained classifiers must be to some degree better than a completely random classifier. Therefore, a RAUC score higher than 0.5 is a requirement for a classier. The RAUC represents the goodness of a classifier, by measuring the probability that the classifier will label a random Positive sample higher than a randomly chosen Negative sample. 
 		
-		\par
-		
-		The values in table \ref{tab:rauc_by_type} demonstrate the RAUC values across the different feature approaches and algorithms. The strongest performer yet again is the Bag-of-Words approach. N-Grams presents slightly weaker results, but as mentioned before, with a larger dataset it could have proven to be as strong as Bag-of-Words. Descriptive features seems to be a weak approach along all measurements with RAUC being no exception.
-		
-		\par
-		
-		An additional point of interest is that Naive-Bayes, Polynomial and RBF SVM kernels seem to perform best according to the RAUC. This comes as no surprise, since the other measuring metrics hinted at an identical conclusion. Naive Bayes, despite having very simplistic assumptions at its core, performs at least as well, if not better, then the more complex models.
+		\vspace{1cm}
 		
 		\begin{table}[H]
 			\centering
@@ -659,9 +714,14 @@
 			\caption{RAUC values}
 			\label{tab:rauc_by_type}%
 		\end{table}%
+	
+		\newpage
 		
+		The values in Table \ref{tab:rauc_by_type} demonstrate the RAUC values across the different feature approaches and algorithms. The strongest performer yet again is the Bag-of-Words approach. N-Grams presents slightly weaker results, but as mentioned before, with a larger dataset it could have proven to be as strong as Bag-of-Words. Descriptive features seems to be a weak approach along all measurements with RAUC being no exception.
 		
 		\par
+		
+		An additional point of interest is that Naive-Bayes, Polynomial and RBF SVM kernels seem to perform best according to the RAUC. This comes as no surprise, since the other measuring metrics hinted at an identical conclusion. Naive Bayes, despite having very simplistic assumptions at its core, performs at least as well, if not better, then the more complex models.
 		
 		
 

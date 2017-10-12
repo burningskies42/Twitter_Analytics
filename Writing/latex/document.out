@@ -1,44 +1,46 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
 \BOOKMARK [2][-]{subsection.1.1}{Motivation}{section.1}% 2
 \BOOKMARK [2][-]{subsection.1.2}{Current State of Research}{section.1}% 3
-\BOOKMARK [1][-]{section.2}{Basic Concepts}{}% 4
-\BOOKMARK [2][-]{subsection.2.1}{Machine Learning}{section.2}% 5
-\BOOKMARK [2][-]{subsection.2.2}{Text Mining}{section.2}% 6
-\BOOKMARK [2][-]{subsection.2.3}{Unstructured Data}{section.2}% 7
-\BOOKMARK [2][-]{subsection.2.4}{Classification}{section.2}% 8
-\BOOKMARK [2][-]{subsection.2.5}{Information Quality}{section.2}% 9
-\BOOKMARK [1][-]{section.3}{Methodology}{}% 10
-\BOOKMARK [2][-]{subsection.3.1}{Training Classifier}{section.3}% 11
-\BOOKMARK [2][-]{subsection.3.2}{Supervised Learning}{section.3}% 12
-\BOOKMARK [3][-]{subsubsection.3.2.1}{Regressions}{subsection.3.2}% 13
-\BOOKMARK [3][-]{subsubsection.3.2.2}{Naive Bayes}{subsection.3.2}% 14
-\BOOKMARK [3][-]{subsubsection.3.2.3}{Support Vector Machines}{subsection.3.2}% 15
-\BOOKMARK [3][-]{subsubsection.3.2.4}{Artificial Neural Networks}{subsection.3.2}% 16
-\BOOKMARK [3][-]{subsubsection.3.2.5}{Decision Trees and Random Forests}{subsection.3.2}% 17
-\BOOKMARK [1][-]{section.4}{Application}{}% 18
-\BOOKMARK [2][-]{subsection.4.1}{Information Procurement}{section.4}% 19
-\BOOKMARK [2][-]{subsection.4.2}{Building Feature-Sets}{section.4}% 20
-\BOOKMARK [2][-]{subsection.4.3}{Training Classifiers}{section.4}% 21
-\BOOKMARK [1][-]{section.5}{Results}{}% 22
-\BOOKMARK [2][-]{subsection.5.1}{Grouping of Classifiers}{section.5}% 23
-\BOOKMARK [2][-]{subsection.5.2}{Approaches}{section.5}% 24
-\BOOKMARK [3][-]{subsubsection.5.2.1}{Descriptive Features}{subsection.5.2}% 25
-\BOOKMARK [3][-]{subsubsection.5.2.2}{Bag-of-Words}{subsection.5.2}% 26
-\BOOKMARK [3][-]{subsubsection.5.2.3}{N-Grams}{subsection.5.2}% 27
-\BOOKMARK [2][-]{subsection.5.3}{Descriptive Statistics}{section.5}% 28
-\BOOKMARK [3][-]{subsubsection.5.3.1}{Data Size and Labels}{subsection.5.3}% 29
-\BOOKMARK [3][-]{subsubsection.5.3.2}{Data Sparsity}{subsection.5.3}% 30
-\BOOKMARK [3][-]{subsubsection.5.3.3}{Number of Features}{subsection.5.3}% 31
-\BOOKMARK [2][-]{subsection.5.4}{Success Measures}{section.5}% 32
-\BOOKMARK [3][-]{subsubsection.5.4.1}{Accuracy}{subsection.5.4}% 33
-\BOOKMARK [3][-]{subsubsection.5.4.2}{Cohens Kappa}{subsection.5.4}% 34
-\BOOKMARK [3][-]{subsubsection.5.4.3}{Confusion Matrix}{subsection.5.4}% 35
-\BOOKMARK [3][-]{subsubsection.5.4.4}{Receiver Operating Characteristic}{subsection.5.4}% 36
-\BOOKMARK [1][-]{section.6}{Conclusion}{}% 37
-\BOOKMARK [2][-]{subsection.6.1}{Genaral Use Cases}{section.6}% 38
-\BOOKMARK [2][-]{subsection.6.2}{SWOT}{section.6}% 39
-\BOOKMARK [1][-]{section*.75}{Appendices}{}% 40
-\BOOKMARK [1][-]{Appendix.1.A}{Training Duration per Algorithm}{}% 41
-\BOOKMARK [1][-]{Appendix.1.B}{Stop Words}{}% 42
-\BOOKMARK [1][-]{Appendix.1.C}{Descriptive Features General Statistics}{}% 43
-\BOOKMARK [1][-]{Appendix.1.D}{Confusion Matrix Measures}{}% 44
+\BOOKMARK [2][-]{subsection.1.3}{Possible Difficulties}{section.1}% 4
+\BOOKMARK [2][-]{subsection.1.4}{Research Question}{section.1}% 5
+\BOOKMARK [1][-]{section.2}{Basic Concepts}{}% 6
+\BOOKMARK [2][-]{subsection.2.1}{Machine Learning}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.2}{Text Mining}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.3}{Unstructured Data}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.4}{Classification}{section.2}% 10
+\BOOKMARK [2][-]{subsection.2.5}{Information Quality}{section.2}% 11
+\BOOKMARK [1][-]{section.3}{Methodology}{}% 12
+\BOOKMARK [2][-]{subsection.3.1}{Training Classifier}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.2}{Supervised Learning}{section.3}% 14
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Regressions}{subsection.3.2}% 15
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Naive Bayes}{subsection.3.2}% 16
+\BOOKMARK [3][-]{subsubsection.3.2.3}{Support Vector Machines}{subsection.3.2}% 17
+\BOOKMARK [3][-]{subsubsection.3.2.4}{Artificial Neural Networks}{subsection.3.2}% 18
+\BOOKMARK [3][-]{subsubsection.3.2.5}{Decision Trees and Random Forests}{subsection.3.2}% 19
+\BOOKMARK [1][-]{section.4}{Application}{}% 20
+\BOOKMARK [2][-]{subsection.4.1}{Information Procurement}{section.4}% 21
+\BOOKMARK [2][-]{subsection.4.2}{Building Feature-Sets}{section.4}% 22
+\BOOKMARK [2][-]{subsection.4.3}{Training Classifiers}{section.4}% 23
+\BOOKMARK [1][-]{section.5}{Results and Discussion}{}% 24
+\BOOKMARK [2][-]{subsection.5.1}{Grouping of Classifiers}{section.5}% 25
+\BOOKMARK [2][-]{subsection.5.2}{Approaches}{section.5}% 26
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Descriptive Features}{subsection.5.2}% 27
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Bag-of-Words}{subsection.5.2}% 28
+\BOOKMARK [3][-]{subsubsection.5.2.3}{N-Grams}{subsection.5.2}% 29
+\BOOKMARK [2][-]{subsection.5.3}{Descriptive Statistics}{section.5}% 30
+\BOOKMARK [3][-]{subsubsection.5.3.1}{Data Size and Labels}{subsection.5.3}% 31
+\BOOKMARK [3][-]{subsubsection.5.3.2}{Data Sparsity}{subsection.5.3}% 32
+\BOOKMARK [3][-]{subsubsection.5.3.3}{Number of Features}{subsection.5.3}% 33
+\BOOKMARK [2][-]{subsection.5.4}{Success Measures}{section.5}% 34
+\BOOKMARK [3][-]{subsubsection.5.4.1}{Accuracy}{subsection.5.4}% 35
+\BOOKMARK [3][-]{subsubsection.5.4.2}{Cohens Kappa}{subsection.5.4}% 36
+\BOOKMARK [3][-]{subsubsection.5.4.3}{Confusion Matrix}{subsection.5.4}% 37
+\BOOKMARK [3][-]{subsubsection.5.4.4}{Receiver Operating Characteristic}{subsection.5.4}% 38
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 39
+\BOOKMARK [2][-]{subsection.6.1}{Theory and Practice}{section.6}% 40
+\BOOKMARK [2][-]{subsection.6.2}{Strengths and Weaknesses}{section.6}% 41
+\BOOKMARK [2][-]{subsection.6.3}{Future Research}{section.6}% 42
+\BOOKMARK [1][-]{section*.77}{Appendices}{}% 43
+\BOOKMARK [1][-]{Appendix.1.A}{Training Duration per Algorithm}{}% 44
+\BOOKMARK [1][-]{Appendix.1.B}{Stop Words}{}% 45
+\BOOKMARK [1][-]{Appendix.1.C}{Descriptive Features General Statistics}{}% 46

@@ -1,15 +1,16 @@
 \select@language {english}
-\contentsline {figure}{\numberline {1}{\ignorespaces Clustering of Different Classifiers\relax }}{10}{figure.caption.6}
-\contentsline {figure}{\numberline {2}{\ignorespaces SVM in Euclidean Space}}{16}{figure.caption.16}
-\contentsline {figure}{\numberline {3}{\ignorespaces SVM Dimensionianl Extrapolation}}{18}{figure.caption.18}
-\contentsline {figure}{\numberline {4}{\ignorespaces Sigmoid Kernel}}{21}{figure.caption.23}
-\contentsline {figure}{\numberline {5}{\ignorespaces ANN Perceptron}}{24}{figure.caption.28}
-\contentsline {figure}{\numberline {6}{\ignorespaces ANN XOR Perceptron-Network}}{24}{figure.caption.29}
-\contentsline {figure}{\numberline {7}{\ignorespaces ANN Gradient Descent}}{25}{figure.caption.31}
-\contentsline {figure}{\numberline {8}{\ignorespaces Batch and Stochastic Gradient Descent}}{26}{figure.caption.33}
-\contentsline {figure}{\numberline {9}{\ignorespaces Decision Tree with Sparse Data}}{28}{figure.caption.35}
-\contentsline {figure}{\numberline {10}{\ignorespaces Fake Twitter Accounts}}{33}{figure.caption.45}
-\contentsline {figure}{\numberline {11}{\ignorespaces S\o rensen-Dice coefficient\relax }}{34}{figure.caption.46}
-\contentsline {figure}{\numberline {12}{\ignorespaces Tweeter Verified Accounts}}{39}{figure.caption.57}
-\contentsline {figure}{\numberline {13}{\ignorespaces Training Duration}}{45}{figure.caption.64}
-\contentsline {figure}{\numberline {14}{\ignorespaces ROC Graph\relax }}{52}{figure.caption.72}
+\contentsline {figure}{\numberline {1}{\ignorespaces Clustering of Different Classifiers\relax }}{12}{figure.caption.6}
+\contentsline {figure}{\numberline {2}{\ignorespaces Distribution of predicted $ \mathaccentV {hat}05E{y} $ around the labels\relax }}{13}{figure.caption.8}
+\contentsline {figure}{\numberline {3}{\ignorespaces SVM in Euclidean Space}}{18}{figure.caption.17}
+\contentsline {figure}{\numberline {4}{\ignorespaces SVM Dimensionianl Extrapolation}}{21}{figure.caption.19}
+\contentsline {figure}{\numberline {5}{\ignorespaces Sigmoid Kernel}}{23}{figure.caption.24}
+\contentsline {figure}{\numberline {6}{\ignorespaces ANN Perceptron}}{26}{figure.caption.29}
+\contentsline {figure}{\numberline {7}{\ignorespaces ANN XOR Perceptron-Network}}{27}{figure.caption.30}
+\contentsline {figure}{\numberline {8}{\ignorespaces ANN Gradient Descent}}{28}{figure.caption.32}
+\contentsline {figure}{\numberline {9}{\ignorespaces Batch and Stochastic Gradient Descent}}{29}{figure.caption.34}
+\contentsline {figure}{\numberline {10}{\ignorespaces Decision Tree with Sparse Data}}{30}{figure.caption.36}
+\contentsline {figure}{\numberline {11}{\ignorespaces Fake Twitter Accounts}}{37}{figure.caption.46}
+\contentsline {figure}{\numberline {12}{\ignorespaces S\o rensen-Dice coefficient\relax }}{37}{figure.caption.47}
+\contentsline {figure}{\numberline {13}{\ignorespaces Tweeter Verified Accounts}}{42}{figure.caption.58}
+\contentsline {figure}{\numberline {14}{\ignorespaces Training Duration}}{49}{figure.caption.65}
+\contentsline {figure}{\numberline {15}{\ignorespaces ROC Graph\relax }}{56}{figure.caption.74}

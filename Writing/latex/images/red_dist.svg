@@ -19,15 +19,15 @@
   <sodipodi:namedview
      inkscape:window-maximized="1"
      inkscape:window-y="-9"
-     inkscape:window-x="-9"
+     inkscape:window-x="1671"
      inkscape:window-height="1001"
      inkscape:window-width="1920"
      showgrid="true"
      inkscape:current-layer="layer1"
      inkscape:document-units="mm"
-     inkscape:cy="804.70912"
-     inkscape:cx="445.20522"
-     inkscape:zoom="1.4"
+     inkscape:cy="1017.4347"
+     inkscape:cx="82.029544"
+     inkscape:zoom="1"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
      borderopacity="1.0"
@@ -224,19 +224,6 @@
          d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
          transform="scale(-0.6)" />
     </marker>
-    <filter
-       inkscape:collect="always"
-       style="color-interpolation-filters:sRGB"
-       id="filter6576"
-       x="-0.76042105"
-       width="2.5208421"
-       y="-1.6053333"
-       height="4.2106667">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="47.78375"
-         id="feGaussianBlur6578" />
-    </filter>
   </defs>
   <metadata
      id="metadata5">
@@ -283,44 +270,41 @@
        style="fill:none;stroke:#000000;stroke-width:0.93444902;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.86889788, 1.86889788;stroke-dashoffset:0;stroke-opacity:1" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="87.841644"
-       y="81.099991"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="87.312477"
+       y="82.158325"
        id="text5170"><tspan
          sodipodi:role="line"
-         id="tspan5168"
-         x="87.841644"
-         y="81.099991"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332">$0$</tspan></text>
+         id="tspan9473">\Large  0</tspan></text>
     <text
        id="text5174"
-       y="81.099991"
-       x="125.41245"
+       y="82.158325"
+       x="124.35413"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        xml:space="preserve"><tspan
          sodipodi:role="line"
-         id="tspan5176"
-         x="125.41245"
-         y="81.099991">$1$</tspan></text>
+         id="tspan9471"
+         x="124.35413"
+         y="82.158325">\Large  1</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="120.1208"
+       x="121.7083"
        y="30.829109"
        id="text5190"><tspan
          sodipodi:role="line"
          id="tspan5196"
-         x="120.1208"
+         x="121.7083"
          y="30.829109">\textit{news}</tspan></text>
     <text
        id="text5194"
        y="30.829109"
-       x="78.845779"
+       x="80.433281"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        xml:space="preserve"><tspan
          sodipodi:role="line"
          id="tspan6582"
-         x="78.845779"
+         x="80.433281"
          y="30.829109">\textit{not-news}</tspan></text>
     <path
        inkscape:connector-curvature="0"
@@ -329,15 +313,15 @@
        style="fill:none;stroke:#000000;stroke-width:0.77999997;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker6381)" />
     <text
        id="text6423"
-       y="80.041656"
-       x="172.50768"
+       y="81.629158"
+       x="173.03683"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        xml:space="preserve"
        inkscape:label="text6423"><tspan
          sodipodi:role="line"
-         id="tspan6425"
-         x="172.50768"
-         y="80.041656">$\hat{y}$</tspan></text>
+         id="tspan9469"
+         x="173.03683"
+         y="81.629158">\text{\Large $ \hat{y}$}</tspan></text>
     <text
        id="text6423-6"
        y="43.699165"
@@ -350,13 +334,11 @@
          id="tspan6464"
          x="-60.238506"
          y="43.699165">Frequency</tspan></text>
-    <rect
+    <path
        style="opacity:0.01000001;fill:#000000;fill-opacity:0.00392157;stroke:#000000;stroke-width:0.77999997;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 37.041669,17.070834 V 83.216669 H 193.14583 V 17.070834 Z"
        id="rect6584"
-       width="156.10417"
-       height="66.145836"
-       x="37.041664"
-       y="18.658319" />
+       inkscape:connector-curvature="0" />
   </g>
   <g
      inkscape:groupmode="layer"

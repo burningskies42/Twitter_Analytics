@@ -1,11 +1,11 @@
 \select@language {english}
-\contentsline {table}{\numberline {1}{\ignorespaces Classifier Groupings}}{39}{table.caption.48}
-\contentsline {table}{\numberline {2}{\ignorespaces Descriptive Features\relax }}{40}{table.caption.49}
-\contentsline {table}{\numberline {3}{\ignorespaces Top 10 Most and Least Frequent Words Captured\relax }}{44}{table.caption.61}
-\contentsline {table}{\numberline {4}{\ignorespaces N-Gram Example}}{44}{table.caption.62}
-\contentsline {table}{\numberline {5}{\ignorespaces Top 10 Most and Least Frequent N-Grams Captured\relax }}{45}{table.caption.63}
+\contentsline {table}{\numberline {1}{\ignorespaces Descriptive Features\relax }}{40}{table.caption.50}
+\contentsline {table}{\numberline {2}{\ignorespaces Top 10 Most and Least Frequent Words Captured\relax }}{44}{table.caption.62}
+\contentsline {table}{\numberline {3}{\ignorespaces N-Gram Example}}{45}{table.caption.63}
+\contentsline {table}{\numberline {4}{\ignorespaces Top 10 Most and Least Frequent N-Grams Captured\relax }}{45}{table.caption.64}
+\contentsline {table}{\numberline {5}{\ignorespaces Classifier Groupings}}{47}{table.caption.65}
 \contentsline {table}{\numberline {6}{\ignorespaces Classifier Duration}}{50}{table.caption.66}
-\contentsline {table}{\numberline {7}{\ignorespaces Classifier Type Average Accuracy in \%\relax }}{52}{table.caption.67}
-\contentsline {table}{\numberline {8}{\ignorespaces Average Kappa Values}}{53}{table.caption.68}
-\contentsline {table}{\numberline {9}{\ignorespaces Confusion Matrix Measures\relax }}{55}{table.caption.73}
-\contentsline {table}{\numberline {10}{\ignorespaces RAUC values\relax }}{57}{table.caption.75}
+\contentsline {table}{\numberline {7}{\ignorespaces Classifier Type Average Accuracy in \%\relax }}{53}{table.caption.68}
+\contentsline {table}{\numberline {8}{\ignorespaces Average Kappa Values}}{54}{table.caption.69}
+\contentsline {table}{\numberline {9}{\ignorespaces Confusion Matrix Measures\relax }}{56}{table.caption.74}
+\contentsline {table}{\numberline {10}{\ignorespaces RAUC values\relax }}{58}{table.caption.76}

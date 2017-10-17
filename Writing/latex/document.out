@@ -19,28 +19,31 @@
 \BOOKMARK [3][-]{subsubsection.3.2.5}{Decision Trees and Random Forests}{subsection.3.2}% 19
 \BOOKMARK [1][-]{section.4}{Application}{}% 20
 \BOOKMARK [2][-]{subsection.4.1}{Information Procurement}{section.4}% 21
-\BOOKMARK [2][-]{subsection.4.2}{Building Feature-Sets}{section.4}% 22
-\BOOKMARK [2][-]{subsection.4.3}{Training Classifiers}{section.4}% 23
-\BOOKMARK [1][-]{section.5}{Results and Discussion}{}% 24
-\BOOKMARK [2][-]{subsection.5.1}{Grouping of Classifiers}{section.5}% 25
-\BOOKMARK [2][-]{subsection.5.2}{Approaches}{section.5}% 26
-\BOOKMARK [3][-]{subsubsection.5.2.1}{Descriptive Features}{subsection.5.2}% 27
-\BOOKMARK [3][-]{subsubsection.5.2.2}{Bag-of-Words}{subsection.5.2}% 28
-\BOOKMARK [3][-]{subsubsection.5.2.3}{N-Grams}{subsection.5.2}% 29
-\BOOKMARK [2][-]{subsection.5.3}{Descriptive Statistics}{section.5}% 30
-\BOOKMARK [3][-]{subsubsection.5.3.1}{Data Size and Labels}{subsection.5.3}% 31
-\BOOKMARK [3][-]{subsubsection.5.3.2}{Data Sparsity}{subsection.5.3}% 32
-\BOOKMARK [3][-]{subsubsection.5.3.3}{Number of Features}{subsection.5.3}% 33
-\BOOKMARK [2][-]{subsection.5.4}{Success Measures}{section.5}% 34
-\BOOKMARK [3][-]{subsubsection.5.4.1}{Accuracy}{subsection.5.4}% 35
-\BOOKMARK [3][-]{subsubsection.5.4.2}{Cohens Kappa}{subsection.5.4}% 36
-\BOOKMARK [3][-]{subsubsection.5.4.3}{Confusion Matrix}{subsection.5.4}% 37
-\BOOKMARK [3][-]{subsubsection.5.4.4}{Receiver Operating Characteristic}{subsection.5.4}% 38
-\BOOKMARK [1][-]{section.6}{Conclusion}{}% 39
-\BOOKMARK [2][-]{subsection.6.1}{Theory and Practice}{section.6}% 40
-\BOOKMARK [2][-]{subsection.6.2}{Strengths and Weaknesses}{section.6}% 41
-\BOOKMARK [2][-]{subsection.6.3}{Future Research}{section.6}% 42
-\BOOKMARK [1][-]{section*.77}{Appendices}{}% 43
-\BOOKMARK [1][-]{Appendix.1.A}{Training Duration per Algorithm}{}% 44
-\BOOKMARK [1][-]{Appendix.1.B}{Stop Words}{}% 45
-\BOOKMARK [1][-]{Appendix.1.C}{Descriptive Features General Statistics}{}% 46
+\BOOKMARK [2][-]{subsection.4.2}{Data cleansing}{section.4}% 22
+\BOOKMARK [2][-]{subsection.4.3}{Building Feature-Sets}{section.4}% 23
+\BOOKMARK [3][-]{subsubsection.4.3.1}{Descriptive Features}{subsection.4.3}% 24
+\BOOKMARK [3][-]{subsubsection.4.3.2}{Bag-of-Words}{subsection.4.3}% 25
+\BOOKMARK [3][-]{subsubsection.4.3.3}{N-Grams}{subsection.4.3}% 26
+\BOOKMARK [2][-]{subsection.4.4}{Labeling the Training Data}{section.4}% 27
+\BOOKMARK [2][-]{subsection.4.5}{Training Classifiers}{section.4}% 28
+\BOOKMARK [1][-]{section.5}{Results and Discussion}{}% 29
+\BOOKMARK [2][-]{subsection.5.1}{Grouping of Classifiers}{section.5}% 30
+\BOOKMARK [2][-]{subsection.5.2}{Descriptive Statistics}{section.5}% 31
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Data Size and Labels}{subsection.5.2}% 32
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Weighted Dataset}{subsection.5.2}% 33
+\BOOKMARK [3][-]{subsubsection.5.2.3}{Overfitting}{subsection.5.2}% 34
+\BOOKMARK [3][-]{subsubsection.5.2.4}{Data Sparsity}{subsection.5.2}% 35
+\BOOKMARK [3][-]{subsubsection.5.2.5}{Number of Features}{subsection.5.2}% 36
+\BOOKMARK [2][-]{subsection.5.3}{Success Measures}{section.5}% 37
+\BOOKMARK [3][-]{subsubsection.5.3.1}{Accuracy}{subsection.5.3}% 38
+\BOOKMARK [3][-]{subsubsection.5.3.2}{Cohens Kappa}{subsection.5.3}% 39
+\BOOKMARK [3][-]{subsubsection.5.3.3}{Confusion Matrix}{subsection.5.3}% 40
+\BOOKMARK [3][-]{subsubsection.5.3.4}{Receiver Operating Characteristic}{subsection.5.3}% 41
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 42
+\BOOKMARK [2][-]{subsection.6.1}{Theory and Practice}{section.6}% 43
+\BOOKMARK [2][-]{subsection.6.2}{Strengths and Weaknesses}{section.6}% 44
+\BOOKMARK [2][-]{subsection.6.3}{Future Research}{section.6}% 45
+\BOOKMARK [1][-]{section*.78}{Appendices}{}% 46
+\BOOKMARK [2][-]{subsection.1..1}{Training Duration per Algorithm}{section*.78}% 47
+\BOOKMARK [2][-]{subsection.1..2}{Stop Words}{section*.78}% 48
+\BOOKMARK [2][-]{subsection.1..3}{Descriptive Features General Statistics}{section*.78}% 49

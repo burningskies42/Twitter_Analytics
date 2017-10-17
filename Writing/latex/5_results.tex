@@ -1,5 +1,5 @@
 \section{Results and Discussion}
-	In the section the classification that took place will be analyzed. The classification were conducted in different configurations of  dataset size and number of features. For optimization purposes other characteristics will be discussed such as robustness of the results as well as training and classification time.
+	In this section, the classification described in previously will be analyzed. For the purpose of comparative analysis, the classification were conducted in different configurations of dataset size and number of features. For optimization purposes, additional characteristics such as robustness of the results as well as training and classification time will be discussed.
 	
 	\subsection{Grouping of Classifiers}
 		The classifiers were grouped into 5 general groups. Additionally, a Vote Classifier, tallying the voted classifications was observed. The groupings were done according to the base algorithm of each classifier. This organization schema is demonstrated in Table \ref{table:class_grps}.
@@ -39,237 +39,102 @@
 	
 		In the upcoming results analysis the name scheme used in Table \ref{table:class_grps} will refer to average values inside each such named group. 
 	
-	\subsection{Approaches}
-		\label{section:feature_types}
-		\subsubsection{Descriptive Features}
-			\label{section:Descriptive_Features}
-			Similar approaches were used to classify Information Credibility on Tweeter (\cite{castillo2011information}). In some sense, the mission of this study is also to quantify the quality of social media content, however, in a very subjective manner.
-			\par	
-		
-			Every Tweet object originating from the Twitter database is a complex multi-layered structure, which  simultaneously describes the posted Tweet itself along with the user profile of its author and any additional media objects related to the Tweet. This approach to feature extraction focuses on deriving the implicit meaning or sense of the tweet, rather than analyzing the verbatim textual content. As previously noted in Section \ref{section:Descriptive_Features}, two tiers of features are extracted. The former type describes the Tweet object, whereas the latter draws information about the author himself. These features are described in Table \ref{table:desc_features} and are explained in the following paragraphs. Appendix \ref{appn:desc_features_stats} describes the general statistics of these features. 
-			
-			\begin{table}[h]	
-			\begin{center}
-				\resizebox{1 \textwidth}{!}{
-				\begin{tabular}{c |l| l} 
-					\hline
-					\hline
-					\multicolumn{1}{c|}{\multirow{2}{*}{Scope}} & \multicolumn{1}{|c}{\multirow{2}{*}{Feature}} & \multicolumn{1}{|c}{\multirow{2}{*}{Description}}\\ 
-					&&   \\ 
-					\hline
-					\multirow{17}{*}{Message}& NUM\_STOP\_WORDS & Number of Stop-Words in the Tweet  \\
-							& DUPLICATE					& An almost identical tweet was captured in same query  \\
-							& LEN\_CHARACTERS			& Number of characters in Tweet text  \\
-							& NUM\_WORDS				& Number of words in Tweet Text \\
-							& HAS\_QUESTION\_MARK		& Tweet contains question mark  \\
-							& HAS\_EXCLAMATION\_MARK	& Tweet contains exclamation mark  \\
-							& HAS\_MULTI\_QUEST\_EXCLAM & Tweet contains either multiple question marks or exclamation marks \\
-							& EMOJI\_SENT				& Sentiment of emoji symbols. TRUE for positive \\
-							& EMOJI\_SENT\_SCORE		& Sentiment score magnitude of emoji symbols. Always non-negative  \\
-							& HAS\_PRONOUN				& Tweet contains pronouns \\
-							& COUNT\_UPPER				& Percent of upper case letters out of Tweet text \\
-							& HAS\_HASHTAG				& Tweet contains Hashtags\\
-							& RETWEET\_COUNT			& The number of times the Tweet was reposted\\
-							& URLS\_WIKI				& The Tweet contains a URL, belonging to Wikipedia's top 100\\
-							& URLS\_MOZ					& The Tweet contains a URL, belonging to Moz's top 500\\
-							& SENTIMENT					& Tweet's sentiment score\\
-							& SENTIMENT\_CONF			& Tweet's sentiment score confidence level\\
-					\hline
-					\multirow{8}{*}{User}	& REG\_AGE 	& Number of days since user registered on Twitter\\
-							& STATUS\_CNT 				& Number of Status changes			\\
-							& FOLLOWERS\_CNT 			& Number of Followers the user has	\\
-							& FRIENDS\_CNT				& Number of Friends the user has	\\
-							& VERIFIED					& Whether User account is verified by Twitter\\
-							& HAS\_DESC 				& Whether User account contains a description\\
-							& HAS\_URL					& Whether User account has a homepage URL	\\
-							& MSG\_P\_DAY 				& Average number of messages posted per day	\\
-					\hline\hline
-				\end{tabular}
-				}	
-				\end{center}
-				\caption{Descriptive Features}
-				\label{table:desc_features}
-			\end{table}
-		
-		
-			\paragraph{Number of Stop-Words}
-				The total number of Stop-Words in the tweets' text. Stop-Words are words, which carry grammatical meaning but usually little to no contextual weight. These words are also usually the most common words in the corpus. The full list of Stop-Words is available in Appendix \ref{appn:stop_words}.
-				
-			\paragraph{Duplicate}	
-				Tweets are queried from the servers using a search term. This feature will receive the value \textit{TRUE}, if another Tweet was found, which has a similarity score exceeding a predetermined threshold. The similarity of each pair of Tweets was calculated using the S\o rensen-Dice coefficient as in Figure \ref{fig:sorenson_dice}.
-			
-			\paragraph{Emoji Sentiment}
-				All Emoji symbols are extracted from the Tweet and are scored according to the chart in the following URL: \url{http://kt.ijs.si/data/Emoji_sentiment_ranking/}. The ranking is based on a study by \cite{Kralj2015emojis}. In this paper, Emojis were labeled to have a positive, negative or neutral connotation. The feature EMOJI\_SENT denotes the sign of sentiment (positive or negative), whereas the feature EMOJI\_SENT\_SCORE denotes the strength of the sentiment. When several Emojis are found, their appropriate values are averaged out. 
-				
-			\paragraph{Retweet Count}
-				Twitter content can be reposted as part of a new Tweet. This operation is named \textit{retweeting} in the Tweeter nomenclature. When a Twitter user wishes to reference another Tweet in its entirety, the enclosed (Retweet) Tweet will be framed inside the new Tweet and called a Retweet. Additionally, the original post keeps track tracks of the number of times it was reposted by other users. This acts as a measure of the Tweet's diffusion.
-				
-			\paragraph{Popular Domains}
-				Tweets often contain links to objects both inside and outside the Tweeter realm. External items are usually sourced using a Uniform Resource Locators (URL). These URLs, in turn, belong to domains. The features URLS\_WIKI and URLS\_MOZ denote whether an enclosed URL belongs to one of the top 100 or top 500 most visited domains accordingly. The list of domains are publicly available and are regularly updated. Top 100 most popular domains by Alexa are available on Wikipedia: \url{https://en.wikipedia.org/wiki/List_of_most_popular_websites} and the top 500 most popular domains are provided by MOZ on \url{https://moz.com/top500}.
-			
-			\paragraph{Tweet Sentiment}
-				The NLTK corpora contains a set of 10,000 Tweets labeled per hand to have either a positive or negative sentimental connotation. A Machine-Learning algorithm was trained using this set, to classify Tweets their sentiment. The classification in done using a Vote classifier. The feature SENTIMENT denotes the Tweet's sentiment (TRUE for positive or FALSE for negative) and SENTIMENT\_CONF denotes the number of underling classifiers of the Vote classifier, which voted for the aforementioned label.
-				
-			\paragraph{Status Count}
-				On the Tweeter platform every post by submitted is regarded as a new \textit{Status} or a \textit{Status Change}. The feature indicated the number of such Statuses since the inception of the Tweeter account. This number includes both Tweets and Retweets.
-			
-			\paragraph{Verified}	
-				User accounts are usually not limited when choosing a moniker to go by publicly on Tweeter. This leads to a plethora of accounts impersonating figures or organizations of public interest. Tweeter tries to verify the authenticity of accounts, which it is determines to be of public interest (see: \url{https://support.twitter.com/articles/119135}). Figure \ref{fig:verified_accounts} demonstrates a verified and a unverified Tweeter account of U.S. president Donald J. Trump. \textit{Source: Twitter}
-
-				
-				\begin{figure}[h]
-					\centering
-					\captionsetup{width=0.8\textwidth}
-					\includegraphics[width=0.8\textwidth]{verified_account.png}
-					\caption[Tweeter Verified Accounts]{
-						\footnotesize{
-							Tweeter verified (left) and unverified (right) accounts of U.S. president Donald J. Trump. Notice the blue badge denoting a verified account next to the profile name.
-						}
-					} 
-					\label{fig:verified_accounts}
-				\end{figure}
-			
-			\paragraph{Followers Count}
-				The number of Tweeter users actively following this user. A high number of followers suggests, that the person may be views as an Opinion Leader or a person whose carries substantial influence on social media.
-				
-			\paragraph{Friends Count}
-				This features is the mirror image of the Followers Count. It specifies the number of User accounts the current User is following.
-					
-		\subsubsection{Bag-of-Words}
-			This approach simply converts the entire text corpus to a frequency charts of all the words contained within. Words are then selected to act as features in incoming data, which is to be classified. The features are hence a variable list (usually of several thousands in length), where each variable is a boolean representation, indicating the presence or absence of a certain word. Usually the words undergo preprocessing as is common in Natural Language Processing prior to being used as features. The corpora are segmented to lists of words, often omitting articles, proposition and punctuation. Such grammatical structures are critical in human speech and written form in order to convey one's meaning clearly and explicitly, however for the purposes of more ambiguous classification as in our case, such nuances are avoided for the sake of simplicity. Words are then \textit{stemmed} or \textit{lemmatized}, meaning their are reverted to their grammatical stem - dropping all prefixes and suffixes. This eases the enumeration of words, since it is preferable that the same words in different inclinations would be counted as the same. For example, the word pair \textit{eating} and \textit{ate} would be reverted to their stem \textit{eat}, as well as \textit{apple} and \textit{apples} would be considered as one and the same. Finally, words would be assigned their part of speech (noun, verb, adjective ..) and could be either ignored or incorporated into the feature set, according to the conceived importance of a given part of speech.
-		
-			Therefore, this technique draws meaning from the verbal content of a corpus. From another perspective, one might say that each word carries certain information towards distinguishing different text samples along some trait. We strive to draw correlations between frequencies of certain words and classes to which, we wish to label the samples. Table \ref{table:BOW_top_words} shows most frequent words to be encountered in the corpus. 
-			
-			\begin{table}[H]
-				\centering
-				\begin{tabular}{ccc}
-					\hline\hline
-						&	Word 	& Frequency \\
-					\hline
-					1	&	amazon 	& 1857	\\
-					2	&	food	& 248	\\	
-					3	&	whole 	& 212	\\
-					4	&	new		& 199	\\
-					5	&	book	& 183	\\
-					6	&	amp		& 161	\\
-					7	&	echo 	& 155	\\
-					8	&	free 	& 130	\\
-					9	&	buy 	& 124	\\
-					10	&	prime 	& 113	\\
-					\hline\hline				
-				\end{tabular}
-				\qquad 
-				\begin{tabular}{ccc}
-					\hline\hline
-					&	Word 	& Frequency \\
-					\hline
-					7889	&	medieval 		& 1	\\
-					7890	&	npr				& 1	\\	
-					7891	&	katerichards09 	& 1	\\
-					7892	&	champ			& 1	\\
-					7893	&	prosecutor		& 1	\\
-					7894	&	khalids			& 1	\\
-					7895	&	explains 		& 1	\\
-					7896	&	commenting 		& 1	\\
-					7897	&	george 			& 1	\\
-					7898	&	lowcost 		& 1	\\
-					\hline\hline				
-				\end{tabular}
-				\caption{Top 10 Most and Least Frequent Words Captured}
-				\label{table:BOW_top_words}%
-			\end{table}%
-		
-		\subsubsection{N-Grams}
-			A development on the Bag-of-Words concept. Using this approach, sequences of $ n $ words are extracted instead of single words and used as features. Such an approach has the added benefit of preserving some of contextual meaning of the text as well as discovering reoccurring phrases. This would prove even more beneficial is scenarios, in which the classification would be between positive and negative intonation, such as opinions and reviews. A down side to this method, is that much more feature are created therefore increasing the computational complexity. 
-			
-			\begin{table}[h]	
-				\begin{center}
-					\begin{tabular}{c l} 
-						\hline\hline
-						N &  \multicolumn{1}{c}{Possible N-Grams }  \\ 
-						\hline
-						2 & the movie ; movie was ; was not ; not great  \\
-						3 & the movie was ; movie was not ; was not great \\
-						4 & the movie was not ; movie was not great \\
-						5 & the movie was not great \\ 
-						\hline\hline
-					\end{tabular}
-				\end{center}
-				\caption[N-Gram Example]{Possible N-grams of size 2 to 5 }
-				\label{table:ngrams}
-			\end{table}
-			
-			For example, using standard Bag-of-Words approach on the sentence "the movie was not great" results in 5 features \{the ; movie ; was ; not ; great\}. When applying \textit{N-Grams} of sizes 2 to 5 on the same sentence, results in 10 features as seen in Table \ref{table:ngrams}.
-			
-			\begin{table}[H]
-				\centering
-				\footnotesize
-				\resizebox{1 \textwidth}{!}{
-				\begin{tabular}{c| lc | lc }
-					\hline\hline
-						&  \multicolumn{1}{c}{2-Grams}	& Frequency & \multicolumn{1}{c}{3-Grams} & Frequency\\
-					\hline
-					1	&	on amazon 	& 938 		& have just listed 		& 260 		\\
-					2	&	via amazon 	& 842 		& available on amazon	& 96 		\\	
-					3	&	whole foods & 366  		& 399 via amazon		& 81 		\\ 
-					4	&	of the		& 333 		& for 399 via			& 81 		\\
-					5	&	in the		& 300  		& panini for 399		& 70 		\\
-					6	&	just listed	& 282 		& buying whole foods 	& 65 		\\
-					7	&	have just 	& 265 		& on sale for			& 60 		\\
-					8	&	check out 	& 223  		& whole foods for 		& 59 		\\
-					9	&	amazon prime& 218		& tune in buy			& 55 		\\
-					10	&	amazon echo & 163  		& buypayoff amazon amazonproducts	& 55 		\\
-					\hline\hline
-					 	& \multicolumn{1}{c}{4-Grams} & Frequency & \multicolumn{1}{c}{5-Grams}	& Frequency \\
-					\hline
-					1	&for 399 via amazon  	& 81 & 2004 panini for 399 via 			   & 50	\\
-					2	& panini for 399 via 	& 70 & is now on sale for 				   & 49	\\	
-					3	& tune in buy it	 	& 55 &	germany euro 2004 panini for 	   & 47	\\ 
-					4	& buypayoff amazon products bestbuy	& 55 &	might like pumpkinfarmer iartg novel & 46\\
-					5	& 2004 panini for 399	& 50 & amazon is buying whole foods 	   & 43	\\
-					6	& euro 2004 panini for 	& 50 & amazon to buy whole foods 		   & 31	\\
-					7	& is now on sale	 	& 50 & pbscale ai big data cloud 		   & 23	\\
-					8	& now on sale for		& 49 & check out this amazon deal		   & 22	\\
-					9	& ai big data cloud		& 46 & ai big data cloud boot 			   & 21	\\
-					10	& now available on amazon& 39& looking for professional book cover & 17	\\	
-					\hline	
-				\end{tabular}
-				}
-				\caption{Top 10 Most and Least Frequent N-Grams Captured}
-				\label{table:top_ngrams}%
-			\end{table}% 
-		
-		Table \ref{table:top_ngrams} exemplifies the most and least often occurring N-Grams of sizes 2 - 5 words each. The 4-word phrase "is now on sale" appeared 50 times in the large Tweet corpus.
-	
 	\subsection{Descriptive Statistics}
-		\label{section:Descriptive_Features}
-		This method offers an alternative approach to features, differing from the other two, by being based on a more generalized view of the Tweet. Instead of concentrating on the actual textual content, other non direct properties are observed. Descriptive features are aimed at describing the Tweets implicit properties, such as attitude, sentiment, seriousness and trustworthiness. These features detect the presence of different symbols, their frequency and consecutiveness. Additionally, unlike the Word-Based approach, non-textual objects such as multimedia, links and mentions of other users and Tweets are also taken into account. Furthermore, features of a Tweets' owner are also included in the input. Since Tweeter's API provides a complete user profile incorporated inside the Tweet data object itself, constructing features describing the user is done simultaneously to features describing the content of the Tweet itself. This approach might be viewed as an \textit{indirect} one, since less obvious properties of the Tweet are used to characterize it.
-		\par
-		Descriptive features could be segregated into two distinctive groups. The first tier is text-based features. As the name suggests, these features will mostly denote the presence or lack of specific characters such as emoticons and signs in the Tweets text. Whether a Tweet contains combinations or sequences of certain symbols as well as ratios defining the text also befit this category.
-		\par
-		The second tier of features describe any special \textit{Entities} (Tweeter's nomenclature) contained within a Tweet. \textit{Entities} refer to non-textual contents of a Tweet, such as media (in form of pictures, audio or video), URL's linking to external websites, mentions or Retweets (referring to other Tweets or to Tweeter user profiles) and finally Hashtags. A word or phrase preceded by the Hashtag symbol \textbf{\#} indicates an association of web content (such as a Tweet or other micro-blogging post) to a specific theme. These could be an event, news, gossip or any other tidbit (\cite{dict_Tweet}). Hashtags are used primarily to simplify looking up Tweets or other social media content by technically associating them with the \textit{hashtagged} topic.
-		
-		The labeling of training examples was conducted by me personally in the process of several weeks. The labeling process was very subjective. Apart from holding up to a few rules of thumb, it is hard to formally model the labeling pattern. This in fact, makes this an ideal task for Machine Learning, since the logic behind it is intuitive rather than strict.
 		
 		\subsubsection{Data Size and Labels}
-			The initial data set consisted of about 12 thousand labeled Tweets captured during a period of several days. The software would launch a listener, which would intercept all Tweets containing the word \textit{Amazon}. The listener was also programmed to ignore all Tweets which contain one of the following words and Expressions: \textit{gift}, \textit{giftcard}, \textit{giveaway}. These phrases were usually found in spam Tweets or Tweets posted by Bots and contained mostly advertising content. The captured Tweets were than labeled manually using custom made software. Out of the 12 thousand Tweets, about 1400 were labeled as "News" and the rest as "Not-News". These ratio between interesting and not-interesting content make practical sense as well, since we strive to boil the data down to only the most subjectively essential information. 
+			The initial data set consisted of about 12 thousand labeled Tweets captured during a period of several days. The software would launch a listener\footnote{\vspace{0.01cm} An event handler subroutine in computer programming, which handles inputs intercepted by the program}, which would intercept all Tweets containing the word \textit{Amazon}. The listener was also programmed to ignore all Tweets which containing one of the following words and Expressions: \textit{gift}, \textit{giftcard}, \textit{giveaway}. These phrases were predominantly found in spam Tweets or Tweets posted by Bots and contained mostly advertising content. The captured Tweets were than labeled manually using custom made software. Out of the 12 thousand Tweets, about 1400 were labeled as "News" and the rest as "Not-News". These ratio between interesting and not-interesting content makes practical sense as well, since we strive to boil the data down to only the most subjectively essential information. 
 			
 			\par
 			
 			Another issue with the data was trending topics. It was common for an announcement to be made about a new product or service, which would result in a major percentage of all Amazon related traffic to concentrate around the topic. For example, this was the case with the Amazon Echo device. For unclear purposes, some bots would take such an announcement Tweet, which originated from a certified publisher, and retweet it numerous times with minor adjustments to the text. This is turn, escalates the problem of the data being prone to concentrate heavily on some topics and much less on others. A classifier trained on such data is prone to overfitting.
 			
-			\paragraph{Overfitting}
-				Overfitting is a very common issue in the classification field. this means that a classifier is trained in a matter fitting the data very specifically. Therefore, any slight deviation in the new data from the rigid constraints of the trained classifier results in misclassifications. Overfitting could also be viewed as the inability of the algorithm to generalize the rules learned from the data onto new information, which in essence is the purpose of Machine Learning Classification. To prevent this phenomena, the data should he heterogeneous in its content and properties and present as many different learning scenarios for the algorithm to learn from. Overall, overfitting is accepted to some degree in classification, since it is impossible to completely eliminate it. The alternative to overfitting is \textit{underfitting}, which means an algorithm which over simplifies and generalizes to an extent which makes classifications useless.
+		\subsubsection{Weighted Dataset}
+			\label{sec:Weighted}
+			Initially, the dataset was used in its entirety for training classifiers. However, the results accomplished with the complete dataset proved to be poor. The dataset was hence reconstructed by eliminating sample of the \textit{not-news} class until the remaining dataset was made up of equal parts of both classes. The new dataset was denoted as a \textit{weighted Dataset}. The new weighted dataset yielded more accurate and robust classifiers. This will be further demonstrated, when discussing the different accuracy measures.
+			
+		\subsubsection{Overfitting}
+			Overfitting is a very common issue in the classification field. this means that a classifier is trained in a matter fitting the data very specifically. Therefore, any slight deviation in the new data from the rigid constraints of the trained classifier results in misclassifications. Overfitting could also be viewed as the inability of the algorithm to generalize the rules learned from the data onto new information, which in essence is the purpose of Machine Learning Classification. To diminish the effect of this phenomena, the data should be heterogeneous in its content and properties and present as many different learning scenarios for the algorithm to learn from. Overall, overfitting is accepted to some degree in classification, since it is impossible to completely eliminate it. The alternative to overfitting is \textit{underfitting}, which means an over-simplifying algorithm that generalizes to an extreme extent making classifications meritless.
 		
 		\subsubsection{Data Sparsity}
 			\label{data_sparsity}
-			A property which is often encountered when researching Big Data. From a purely technical perspective, Data Sparsity (or Density) describes the amount of zeros in the data, when addressing binary attributes. Stated more simply, when data is immensely heterogeneous an often repeating feature is less likely to occur. In other words, the probability of a feature to be unique is higher. If we compare both approaches to textual features used in this work, \textit{Bag-of-Words} and \textit{N-Grams}, applying the former approach results in features indicating the presence of a single word, whereas with the latter every feature indicates the presence of a string of words. Intuitively, the appearance of a specific single word is much more likely than the appearance of several words in a specific order. For example, the single word "buy" is likely to appear in more samples than the phrase "people often buy", which is a \textit{3-Gram}. Thereupon, we one may deduce, that data is sparser for \textit{N-Grams} in comparison to \textit{Bag-of-Words}.
+			A property which is often encountered when researching Big Data. From a purely technical perspective, Data Sparsity (or Density) describes the amount of zeros in the data, when addressing binary attributes. Intuitively speaking, when data is immensely heterogeneous a frequently reoccurring feature is less likely. In other words, the probability of a feature to be unique is higher. If we compare both approaches to textual features used in this work, \textit{Bag-of-Words} and \textit{N-Grams}, applying the former approach results in features indicating the presence of a single word, whereas with the latter every feature indicates the presence of a string of words. Intuitively, the appearance of a specific single word is much more likely than the appearance of several words in a specific order. For example, the single word "buy" is likely to appear in more samples than the phrase "people often buy", which is a \textit{3-Gram}. Thereupon, we one may deduce, that data is sparser for \textit{N-Grams} in comparison to \textit{Bag-of-Words}.
 		
 		\subsubsection{Number of Features}
-			Initially, the classification simulation were conducted with the goal of reaching the most precise classifier irregardless of cost and duration. Thereby, the largest possible data set was used with 5000 features, when implementing the \textit{Bag-of-Words} or \textit{N-Grams} approach. The number of features, thus indicates the amount of sought-after words of expressions. Naturally, having more features results in more precise classifiers but at the same time incurs higher computational costs. Furthermore, the greater the training data set is, the more words must be scanned and tabulated by the algorithm, which also has an increasing effect on the computational time. An additional not obvious disadvantage to training classifiers with a large number of features is the risk of overfitting the classifier, as discussed previously. 
+			Initially, the classification simulation were conducted with the goal of reaching the most precise classifier irregardless of cost and duration. Thereby, the largest possible data set was used with 5000 features, when implementing the \textit{Bag-of-Words} or \textit{N-Grams} approach. Thus, the number of features indicates the amount of sought-after words or expressions. Naturally, having more features results in more precise classifiers but at the same time incurs higher computational costs. Furthermore, the greater the training data set is, the more words must be scanned and tabulated by the algorithm, which also has an increasing effect on the computational time. An additional not obvious disadvantage to training classifiers with a large number of features is the risk of overfitting the classifier, as discussed previously. 
+			
+			\begin{table}[H]
+				\hskip-0.4cm
+				\footnotesize	
+				\begin{tabular}{c| c c c c c c c c} 
+					\hline \hline
+					Number & \multicolumn{8}{c}{Dataset Size} \\
+					of Features & 100 &  200 &  300  & 500  & 1000 & 1500 & 2000 & 2800\\ 
+					\hline
+					& \multicolumn{8}{c}{Bag-of-Words} \\
+					\cline{2-9}
+					\vspace*{-2mm} 
+					\multirow{2}{*}{100} & 0,37	& 0,64 & 0,90 & 1,49 & 2,89 & 4,25 & 5,65 & 8,07 \\
+					&(0,94)&(1,76)&(2,58)&(4,17)&(8,33)&(12,47)&(16,61)&(23,30) \\
+					\vspace*{-2mm} 
+					\multirow{2}{*}{500} & 0,44 & 0,76 & 1,14 & 1,83 & 3,61 &5,24	& 7,02  & 10,34\\
+					&(0,94)&(1,76)&(2,57)&(4,14)&(8,27)&(12,41)&(16,50)&(23,12)\\				  	 
+					\vspace*{-2mm} 
+					\multirow{2}{*}{630*}  & 0,48	&		&		&		&		&		&		&	 \\
+					& (0,94)	&		&		&		&		&		&		&	 \\
+					\vspace*{-2mm} 
+					\multirow{2}{*}{1000} &	& 0,93 & 1,43 & 2,31 & 4,65 & 6,54 & 8,78 &	12,70 \\
+					& & (1,75)	& (2,56) & (4,12)& (8,24)&(12,33)&(16,39)&(23,06)\\
+					\vspace*{-2mm} 
+					\multirow{2}{*}{1149*} & 	&	0,98	&		&		&		&		&		&\\
+					&	&	(1,75)	&		&		&		&		&		&\\
+					\vspace*{-2mm} 
+					\multirow{2}{*}{1597*} & 	&		&	1,80	&		&		&		&		&	
+					\\
+					& 	&		&	(2,56)	&		&		&		&		&	\\
+					\vspace*{-2mm} 
+					\multirow{2}{*}{2319*} &	&		&		&	3,91	&		&		&		&	
+					\\
+					& 	&		&		&	(4,34)	&		&		&		& \\
+					\vspace*{-2mm} 
+					\multirow{2}{*}{3000} &	&	&	&	&	9,48 &	12,48	&	17,04	&	24,42\\
+					& 	&	&	&	&	(8,65)	&	(12,37)	&	(16,37)	&(22,83)\\
+					\vspace*{-2mm} 
+					\multirow{2}{*}{3872*} & 	&	&	&	&	10,29	&	&	&	\\
+					& 	&	&	&	&	(8,79)	&	&	&  \\		     			  
+					\vspace*{-2mm} 
+					\multirow{2}{*}{5000} &	&	&	&	&	&	18,71	& 26,26	& 42,21 \\
+					&	&	&	&	&	&	(13,23)	& (17,75) &	(26,37) \\
+					\hline
+					& \multicolumn{8}{c}{N-Grams [2:5]} \\
+					
+					\cline{2-9}
+					\vspace*{-2mm} 
+					\multirow{2}{*}{100} & 0,35 & 0,62 & 0,93 &	1,45 & 2,86 & 4,28 & 5,67 & 8,30  \\
+					&(0,94) & (1,76) & (2,58) & (4,17) & (8,33) & (12,49) & (16,60) & (23,37)\\
+					\vspace*{-2mm} 
+					\multirow{2}{*}{500} & 0,42 & 0,76 & 1,12 & 1,79 & 3,54 & 5,27 & 7,14 & 9,93 \\
+					& (0,94) & (1,76) & (2,58) & (4,15) & (8,29) & (12,44) & (16,51) & (23,24)\\
+					\vspace*{-2mm} 
+					\multirow{2}{*}{1000}& 0,52 & 0,93 & 1,43 & 2,23 & 4,38 & 6,50 & 9,32 & 12,43\\
+					& (0,94) & (1,76) & (2,57) & (4,13) & (8,24) & (12,40) & (16,41) & (23,13)\\
+					\vspace*{-2mm} 
+					\multirow{2}{*}{3000}& 1,07 & 2,20 & 2,56 & 4,40 & 8,49 & 12,25 & 17,63 & 24,06 \\
+					&(1,29) & (2,14) & (2,66) & (4,50) & (8,45) & (12,41) & (16,65) & (23,05)\\
+					\vspace*{-2mm} 
+					\multirow{2}{*}{4185*}&1,36 & & & & & & & \\
+					& (1,53)& & & & & & & \\
+					\vspace*{-2mm} 
+					\multirow{2}{*}{5000}& & 3,23 & 3,62 & 6,43 & 12,73 & 18,57 & 25,94 & 38,23 \\
+					& &(2,80) & (2,84) & (5,20) & (9,39) & (13,23) & (17,70) & (24,98) \\
+					\hline\hline
+					\multicolumn{9}{p{1\textwidth}}{\footnotesize{*The dataset size was too small to extract the denoted number of features, so the maximal number of features was extracted}} \\
+				\end{tabular}
+				\caption[Classifier Duration]{Classifier Training Duration}
+				\label{table:class_duration}
+			\end{table}
 			
 			\par
-			Table \ref{table:class_duration} demonstrates the average duration in seconds to train a classifier. The training dataset size is denoted on the horizontal axis and the number of identifying features on the vertical axis. Moreover, the table is split to two parts, each representing another approach to feature construction, \textit{Bag-of-Words} and \textit{N-Grams} are positioned above and below accordingly. Notice the large standard errors, indicated by the numbers in brackets. This strong variation is due to the differences in the training time of the different algorithms. Furthermore, some algorithms (such as SVMs) entail quadratic complexity which makes them scale in a non-linear fashion, causing much longer training times. For example, training a classifier with 3000 features and a training dataset size of 2000 takes an average of 17,63 seconds with a standard error of 16,65 seconds.
+			Table \ref{table:class_duration} demonstrates the average duration in seconds to train a classifier. The training dataset size is denoted on the horizontal axis and the number of identifying features on the vertical axis. Moreover, the table is split to two parts, each representing another approach to feature construction, \textit{Bag-of-Words} and \textit{N-Grams} are positioned above and below accordingly. Notice the large standard deviations, indicated by the numbers in brackets. This strong variation is due to the differences in the training time of the different algorithms. Furthermore, some algorithms (such as SVMs) entail quadratic complexity which makes them scale in a non-linear fashion, causing much longer training times. For example, training a classifier with 3000 features and a training set with 2000 samples using the Bag-of-Words approach takes an average of 17,63 seconds with a standard deviation of 16,65 seconds.
 			
 			\par
 			
@@ -322,88 +187,19 @@
 				\end{center}
 			\end{figure} 
 		
-			The question of how training duration scales cannot be adequately answered within the scope of this work due to the dataset size limitation. However, the duration seems to grow in a geometric fashion as the dataset size or number of features increase. This growth is illustrated in Figure \ref{fig:duration_growth}. Nonetheless, the overall duration time seems manageable and would scale even better still when conducted on a more powerful computer. This holds especially true when implementing the mathematically simpler models (not SVMs). A more detailed view of training duration for each classifier is available in \hyperref[tab:dur_by_type]{Appendix A}.
+			The question of how training duration scales cannot be adequately answered within the scope of this work due to the dataset size limitation. However, the duration seems to grow in a linear fashion as the dataset size or number of features increase. This growth is illustrated in Figure \ref{fig:duration_growth}. Nonetheless, the overall duration time seems manageable and would scale even better still when conducted on a more powerful computer. This holds especially true when implementing the mathematically simpler models (not SVMs). A more detailed view of training duration for each classifier is available in \hyperref[tab:dur_by_type]{Appendix A}.
 			
-			\begin{table}[H]
-				\hskip-0.4cm
-				\footnotesize	
-					\begin{tabular}{c| c c c c c c c c} 
-						\hline \hline
-						 Number & \multicolumn{8}{c}{Dataset Size} \\
-						 of Features & 100 &  200 &  300  & 500  & 1000 & 1500 & 2000 & 2800\\ 
-						\hline
-						& \multicolumn{8}{c}{Bag-of-Words} \\
-						\cline{2-9}
-						\vspace*{-2mm} 
-						\multirow{2}{*}{100} & 0,37	& 0,64 & 0,90 & 1,49 & 2,89 & 4,25 & 5,65 & 8,07 \\
-										  	 &(0,94)&(1,76)&(2,58)&(4,17)&(8,33)&(12,47)&(16,61)&(23,30) \\
-						\vspace*{-2mm} 
-						\multirow{2}{*}{500} & 0,44 & 0,76 & 1,14 & 1,83 & 3,61 &5,24	& 7,02  & 10,34\\
-											 &(0,94)&(1,76)&(2,57)&(4,14)&(8,27)&(12,41)&(16,50)&(23,12)\\				  	 
-						\vspace*{-2mm} 
-						\multirow{2}{*}{630*}  & 0,48	&		&		&		&		&		&		&	 \\
-						 	      			  & (0,94)	&		&		&		&		&		&		&	 \\
-						\vspace*{-2mm} 
-						\multirow{2}{*}{1000} &	& 0,93 & 1,43 & 2,31 & 4,65 & 6,54 & 8,78 &	12,70 \\
-							   			 & & (1,75)	& (2,56) & (4,12)& (8,24)&(12,33)&(16,39)&(23,06)\\
-						\vspace*{-2mm} 
-						\multirow{2}{*}{1149*} & 	&	0,98	&		&		&		&		&		&\\
-											 &	&	(1,75)	&		&		&		&		&		&\\
-						\vspace*{-2mm} 
-						\multirow{2}{*}{1597*} & 	&		&	1,80	&		&		&		&		&	
-						 \\
-												& 	&		&	(2,56)	&		&		&		&		&	\\
-						\vspace*{-2mm} 
-						\multirow{2}{*}{2319*} &	&		&		&	3,91	&		&		&		&	
-						\\
-							   			 & 	&		&		&	(4,34)	&		&		&		& \\
-						\vspace*{-2mm} 
-						\multirow{2}{*}{3000} &	&	&	&	&	9,48 &	12,48	&	17,04	&	24,42\\
-												& 	&	&	&	&	(8,65)	&	(12,37)	&	(16,37)	&(22,83)\\
-						\vspace*{-2mm} 
-						\multirow{2}{*}{3872*} & 	&	&	&	&	10,29	&	&	&	\\
-											  & 	&	&	&	&	(8,79)	&	&	&  \\		     			  
-						\vspace*{-2mm} 
-						\multirow{2}{*}{5000} &	&	&	&	&	&	18,71	& 26,26	& 42,21 \\
-							      			  &	&	&	&	&	&	(13,23)	& (17,75) &	(26,37) \\
-						\hline
-						& \multicolumn{8}{c}{N-Grams [2:5]} \\
-						
-						\cline{2-9}
-						\vspace*{-2mm} 
-						\multirow{2}{*}{100} & 0,35 & 0,62 & 0,93 &	1,45 & 2,86 & 4,28 & 5,67 & 8,30  \\
-											 &(0,94) & (1,76) & (2,58) & (4,17) & (8,33) & (12,49) & (16,60) & (23,37)\\
-						\vspace*{-2mm} 
-						\multirow{2}{*}{500} & 0,42 & 0,76 & 1,12 & 1,79 & 3,54 & 5,27 & 7,14 & 9,93 \\
-							& (0,94) & (1,76) & (2,58) & (4,15) & (8,29) & (12,44) & (16,51) & (23,24)\\
-						\vspace*{-2mm} 
-						\multirow{2}{*}{1000}& 0,52 & 0,93 & 1,43 & 2,23 & 4,38 & 6,50 & 9,32 & 12,43\\
-							& (0,94) & (1,76) & (2,57) & (4,13) & (8,24) & (12,40) & (16,41) & (23,13)\\
-						\vspace*{-2mm} 
-						\multirow{2}{*}{3000}& 1,07 & 2,20 & 2,56 & 4,40 & 8,49 & 12,25 & 17,63 & 24,06 \\
-							&(1,29) & (2,14) & (2,66) & (4,50) & (8,45) & (12,41) & (16,65) & (23,05)\\
-						\vspace*{-2mm} 
-						\multirow{2}{*}{4185*}&1,36 & & & & & & & \\
-										     & (1,53)& & & & & & & \\
-						\vspace*{-2mm} 
-						\multirow{2}{*}{5000}& & 3,23 & 3,62 & 6,43 & 12,73 & 18,57 & 25,94 & 38,23 \\
-											& &(2,80) & (2,84) & (5,20) & (9,39) & (13,23) & (17,70) & (24,98) \\
-						\hline\hline
-						\multicolumn{9}{p{1\textwidth}}{\footnotesize{*The dataset size was too small to extract the denoted number of features, so the maximal number of features was extracted}} \\
-					\end{tabular}
-				\caption[Classifier Duration]{Classifier Training Duration}
-				\label{table:class_duration}
-			\end{table}
+			
 		
 			
 	\subsection{Success Measures}
 		\label{accuracy}
-		During the training simulation numerous classifier types were trained using differently sized training sets and using different amounts of features. Additionally, various approaches to feature construction were tested. Furthermore, the simulations were repeated at least 10 times with each possible constellation of sizes and approaches. This was done to achieve statistically significant measures. In each such simulation round the bootstrap technique was implemented to split the dataset into training and testing segments with a ratio of 30\% : 70\% in favor of training. This precaution should assure the results robustness. In order to quantify the qualitative strength of a trained classifier several statistics were observed.
+		During the training simulation, numerous classifier types were trained using differently sized training sets and using different amounts of features. Additionally, various approaches to feature construction were tested. Furthermore, the simulations were repeated at least 10 times with each possible constellation of sizes and approaches, whereby the dataset was shuffled each time to introduce randomness into the process. This procedure could be viewed as a mini Monte-Carlo simulation, which should provide statistically significant measures. In each such simulation cycle the bootstrap technique was implemented to split the dataset into training and testing segments with a ratio of 30\% : 70\% in favor of training. This precaution should assure the results robustness. In order to quantify the qualitative strength of a trained classifier several statistics were observed.
 		
 		\par
 	
 		\subsubsection{Accuracy}
-			Probably the most fundamental criterion to measure a classifier's quality. As mentioned before the testing segment of the data is passed to the classifier to be classified by it. Following, the algorithm identifies which percent of all classifications were accomplished correctly, thereby corresponding to the actual labels. Thus, this metric denotes simply the part of correct classifications out of all classifications. An accuracy measure of around 50\% would mean the classifier does not posses prediction power greater than a random guess or coin toss, making such a classifier practically useless. Measures of less than 50\% would mean that a classifier is actually performing worse than a random guess. However, in such cases the algorithm simply reverses the classifiers decision to the complimentary label (opposite) of the classifiers prediction, since obviously the classifier does posses some knowledge about differentiating the classes, but labels them incorrectly. In such cases, the classifier is inverted (in the case of binary classes) and its accuracy is recalculated as $ (1-A_c) $ with $ A_c $ denoting the accuracy of the original classifier. 
+			Probably the most fundamental criterion to measure a classifier's quality. As mentioned before, the testing segment of the data is passed to the classifier to be classified by it. Following, the algorithm identifies which percent of all classifications were accomplished correctly, thereby corresponding to the actual labels. Thus, this metric denotes simply the part of correct classifications out of all classifications. An accuracy measure of around 50\% would mean the classifier does not posses prediction power greater than a random guess or coin toss, making such a classifier practically useless. Measures of less than 50\% would mean that a classifier is actually performing worse than a random guess. However, in such cases the algorithm simply reverses the classifiers decision to the complimentary label (opposite) of the classifiers prediction, since obviously the classifier does posses some knowledge about differentiating the classes, but labels them incorrectly. In such cases, the classifier is inverted (in the case of binary classes) and its accuracy is recalculated as $ (1-A_c) $ with $ A_c $ denoting the accuracy of the original classifier. 
 			
 			\par
 			When measuring accuracy, the possibility of accidental correct classifications is not taken into account. To boot, no weight is given to the percentage of False Positives or False Negatives. These measures could be crucial, when it is compelling to capture all positive classifications despite the cost of also classifying more false positives as a byproduct or vice versa. Since accuracy is too rudimentary a measure, it alone is inadequate to measure quality. Table \ref{tab:accuracy} demonstrates the accuracy rating in percent, averaged over the general algorithm groups. For instance, using Support Vector Machines yields an average accuracy of about 79,4\% with a standard deviation of 5,48\% when applying the \textit{Bag-of-Words} approach to feature construction.
@@ -435,7 +231,7 @@
 		Table \ref{tab:accuracy} illustrates that the Bag of Words approach to feature construction outperforms both N-Grams and Descriptive Features when measuring accuracy. Note however that N-Grams has sparser features. Having a more sparse feature system means, that each feature is less likely to appear in numerous samples. When using a relatively compact training set, as in my case, N-Grams might be lacking the sheer volume of data which it requires to achieve robust results.
 		
 		\subsubsection{Cohens Kappa}
-			The Kappa coefficient was first introduces by \cite{cohen1960coefficient} a measure the accordance between numerical sets. In the context of classification, kappa is used for estimating agreement between different labelers, specifically how well the labels given by separate people correspond to one another. Additionally, the kappa may be interpreted as an improved success rating for a classifier compared to the true labels (\cite{castillo2011information}). This measure more informative than accuracy, since it also accounts for the probability of coincidental true classifications. In the case of this study, the Kappa measure can be views as the accord of classification between the human labeler (myself) and the labels assigned by the classification algorithms. The calculation of Cohen's Kappa for two raters classifying $ N $ samples into $ C $ classes is demonstrates in equation \ref{cohen_kappa}, with $ p_o $ being the relative agreements of the rates same as \hyperref[accuracy]{accuracy} and $ p_e $ the estimated coincidental agreement between the raters, as in equation \ref{cohen_kappa_coincidental_agreement}. 
+			The Kappa coefficient was first introduces by \cite{cohen1960coefficient} to measure the accordance between numerical sets. In the context of classification, kappa is used for estimating agreement between different labelers, specifically how well the labels given by separate people correspond to one another. Additionally, the kappa may be interpreted as an improved success rating for a classifier compared to the true labels (\cite{castillo2011information}). The Kappa measure proves to be more informative than accuracy, since it also accounts for the probability of coincidental true classifications. In the case of this study, the Kappa measure can be viewed as the accord of classification between the human labeler (myself) and the labels assigned by the classification algorithms. The calculation of Cohen's Kappa for two raters classifying $ N $ samples into $ C $ classes is demonstrated in Equation \ref{cohen_kappa}, with $ p_o $ being the relative part of agreements between the raters (same as \hyperref[accuracy]{accuracy}) and $ p_e $ the estimated coincidental agreement between the raters, as in equation \ref{cohen_kappa_coincidental_agreement}. 
 			
 			\begin{equation}
 				\begin{aligned}
@@ -444,7 +240,7 @@
 				\label{cohen_kappa}
 			\end{equation}
 		
-		The calculation of the likelihood of an coincidental agreement between 2 labeling schemes, with $ k $ classes, $ N $ samples and $ n_{ki} $ denoting the amount of labels $ k $ by labeler $ i $.
+		Equation \ref{cohen_kappa_coincidental_agreement} denotes the likelihood of an coincidental agreement between 2 labeling schemes, with $ k $ classes, $ N $ samples and $ n_{ki} $ denoting the amount of labels $ k $ by labeler $ i $.
 			\begin{equation}
 				\begin{aligned}
 					p_e = \frac{1}{N^2}\sum_k n_{k1}n_{k2}
@@ -452,7 +248,7 @@
 				\label{cohen_kappa_coincidental_agreement}
 			\end{equation}
 			
-		The Kappa values of commonsense between the actual labels and the machine classifications are presented in Table \ref{tab:kappa}. For this table the largest \textbf{weighted} training set was used. The descriptive as well as N-Grams approaches seem to perform poorly when measuring Kappa values. Note however, that the N-Grams approach improves as the number of features increases. This growth alludes to the fact, that N-Grams as features might prove to perform still better, if a larger dataset was available and a larger number of features could be extracted. Note that when using 5000 features, the data in the last 2000 features becomes sparser as compared to the classifiers using 3000 features.
+		The Kappa values measure the conformity between the actual labels and the machine classifications are presented in Table \ref{tab:kappa}. The values in Table \ref{tab:kappa} were calculated by training the algorithms on the largest \hyperref[sec:Weighted]{weighted training set}. Both the Descriptive as well as N-Grams approaches seem to perform poorly when measuring Kappa values. Note however, that the N-Grams approach improves as the number of features increases. This growth alludes to the fact, that N-Grams as features might prove to perform still better, if a larger dataset was available and a larger number of features could be extracted. Note that when using 5000 features, the data in the last 2000 features becomes sparser as compared to the classifiers using 3000 features.
 		
 		\begin{table}[H]
 			\centering
@@ -539,7 +335,7 @@
 		accordingly refers to the relative part of \textit{not-news} labels, which were mistakenly classified as \textit{news} out of all \textit{not-news} items. 
 		
 		\paragraph{Precision}
-		 indicates the relative part of actual \textit{news} out of all items, which were classified as \textit{news}. Precision shows how accurately the \textit{positive} class is assigned. These calculations are shown in equations \ref{tpr_fpr} and \ref{precision}.
+		 indicates the relative part of actual \textit{news} out of all items, which were classified as \textit{news}. Precision shows how accurately the \textit{positive} label is assigned. These calculations are shown in equations \ref{tpr_fpr} and \ref{precision}.
 
 		\begin{equation}
 			\small
@@ -549,7 +345,7 @@
 			\label{tpr_fpr}
 		\end{equation}
 		
-		Additionally, the confusion matrix is instrumental for the construction of the derived effectiveness, denoted by F (or $ \text{F}_1 $). The value is a weighted average of precision and recall, ranging from 0 (worst) to best (1). The following values are presented in Table \ref{tab:pre_rec_f1}. From these results, we can note that both precision, recall and F$_1$ values increase as the number of features increases, thought with a diminishing effect. The Descriptive features approach lags far behind both Bag-of-Words and N-grams, out of which Bag-of-Words seems to achieve more prominent results. All classification algorithms produce very comparable results with the Bag-of-Words approach, around 80\% for all 3 measures. These values infer us, that the classifier are significantly better than an arbitrary classifier (coin-toss).
+		Additionally, the confusion matrix is instrumental for the construction of the derived effectiveness, denoted by the F measure. The value is a weighted average of precision and recall, ranging from 0 (worst) to best (1). The $ \text{F}_1 $ measure assigns equal weights to both. The following values are presented in Table \ref{tab:pre_rec_f1}. From these results, we can note that both precision, recall and F$_1$ values increase as the number of features increases, thought with a diminishing effect. The Descriptive features approach lags far behind both Bag-of-Words and N-grams, out of which Bag-of-Words seems to achieve more prominent results. All classification algorithms produce very comparable results with the Bag-of-Words approach, around 80\% for all 3 measures. These values infer us, that the classifier are significantly better than an arbitrary classifier (coin-toss).
 		
 		\begin{equation}
 			\footnotesize
@@ -622,31 +418,19 @@
 		
 		
 		\subsubsection{Receiver Operating Characteristic}
-		Receiver operating characteristic (ROC) provides a graphic visualization and a static measure, which is derived from it, and both incorporate most of the elements of the Confusion Matrix into a single value. ROC has seen increasing use in the fields of machine learning and data mining in recent years and often serves as an unequivocal measure for a classifier's effectiveness.
-		
-		\par
-	
-		ROC graphs present the true-positive and false-positive rates on the y-axis and x-axis accordingly. Every point plotted on the graph depicts the trade-off between the 2 rates of detection. Points A through D in Figure \ref{fig:roc} represent 4 different classifiers in ROC space. Classifier A, for example, is superior to both B and C, since it has a higher TP-rate and at lower or equal FP-rate. The dotted line represents classifiers, with equal FP and TP rates. Such classifiers practically assign equal probabilities to classifying correctly and incorrectly, making them no better then a random guess. Therefore, all points below the dotted line are classifiers worse than a random guess. However, when a classifier (point D) does in fact consistently misclassifies samples, it can be inferred that the classifier has some knowledge to differentiate between the different classes, but applies it erroneously. Such a classifier can be inverted (simply, in a binary classification scenario). For example, the classifier A is an invert of classifier D. In order for a classifier to rise above the diagonal, it must make use of the information gained from the data.
-		
-		\par
-		
-		Some classifiers assign binary deterministic labels to sample (Positive or Negative), as is the case with Ensemble methods for the example. Such algorithms produce a single classifier, which can be mapped to ROC space and presented in a single confusion matrix. Whereas, other classifiers assign probabilistic labels, which assigns probabilities for each label.With uch probabilistic classifiers, we can manipulate the threshold between a positive and negative classification and plot the the classifiers TP and FP rates in ROC space. The threshold varies between zero (classify all as negative) and one (classify all as positive). Subsequently, a function curve will be plotted on the graph. The area under this plotted graph will be called Receiver operating characteristic - Area Under Curve or RAUC. This value will always represent the relative part of the unitary square, which is below the curve and as such will range between zero and one. Calculating this measure allows us to condense the quality measure of a classifier to a single metric.
+		Receiver operating characteristic (ROC) provides a graphic visualization and a static measure, which is derived from it, and both incorporate most of the elements of the Confusion Matrix into a single value. ROC has seen increasing use in the fields of Machine Learning and Data Mining in recent years and often serves as an unequivocal measure for a classifier's effectiveness.
 		
 		\begin{figure}[H]
 			\centering
 			\footnotesize
-			\scalebox{.8}{\input{images/roc.eps_tex}}
+			\scalebox{1}{\input{images/roc.eps_tex}}
 			\captionsetup{width=0.8\textwidth}
 			\caption{ROC Graph}
 			\label{fig:roc}
 		\end{figure}
-		
-		\par
-		
-		One half of the unitary square, as in Figure \ref{fig:roc}, will always be under the diagonal, which is equivalent to a random classifier. As follows, all trained classifiers must be to some degree better than a completely random classifier. Therefore, a RAUC score higher than 0.5 is a requirement for a classier. The RAUC represents the goodness of a classifier, by measuring the probability that the classifier will label a random Positive sample higher than a randomly chosen Negative sample. 
-		
-		\vspace{1cm}
-		
+	
+		ROC graphs present the true-positive and false-positive rates on the y-axis and x-axis accordingly. Every point plotted on the graph depicts the trade-off between the 2 rates of detection. Points A through D in Figure \ref{fig:roc} represent 4 different classifiers in ROC space. Classifier A, for example, is superior to both B and C, since it has a higher TP-rate and a lower or equal FP-rate. The dotted line represents classifiers, with equal FP and TP rates. Such classifiers practically assign equal probabilities to classifying correctly and incorrectly, making them no better then a random guess. Therefore, all points below the dotted line are classifiers worse than a random guess. However, when a classifier (point D) does in fact consistently misclassifies samples, it can be inferred that the classifier posses some knowledge about differentiating between the different classes, but applies it erroneously. Such a classifier can be inverted (simply, in a binary classification scenario). For example, the classifier A is an invert of classifier D. In order for a classifier to rise above the diagonal, it must make use of the information gained from the data.
+			
 		\begin{table}[H]
 			\centering
 			\begin{tabular}{c|ccc}
@@ -715,7 +499,16 @@
 			\label{tab:rauc_by_type}%
 		\end{table}%
 	
-		\newpage
+		\par
+		
+		Some classifiers assign binary deterministic labels to samples (Positive or Negative), as is the case with Ensemble methods for the example. Such algorithms produce a single classifier, which can be mapped to ROC space and presented in a single confusion matrix. Whereas, other classifiers assign probabilistic labels, allocating probabilities for each label. With such probabilistic classifiers, we can manipulate the threshold between a positive and negative classification and plot the the classifiers TP and FP rates in ROC space. The threshold varies between zero (classify all as negative) and one (classify all as positive). Subsequently, a function curve will be plotted on the graph. The area under this plotted graph will be called Receiver Operating Characteristic - Area Under Curve or RAUC. This value will always represent the relative part of the unitary square, which is below the curve and as such will range between zero and one. Calculating this measure allows us to condense the quality measure of a classifier to a single metric.
+	
+		\par
+		
+		One half of the unitary square, as in Figure \ref{fig:roc}, will always be under the diagonal, which is equivalent to a random classifier. As follows, all trained classifiers must be to some degree better than a completely random classifier. Therefore, a RAUC score higher than 0,5 is a requirement for a classier. The RAUC represents the goodness of a classifier, by measuring the probability that the classifier will label a random Positive sample higher than a randomly chosen Negative sample. 
+		
+	
+		\par
 		
 		The values in Table \ref{tab:rauc_by_type} demonstrate the RAUC values across the different feature approaches and algorithms. The strongest performer yet again is the Bag-of-Words approach. N-Grams presents slightly weaker results, but as mentioned before, with a larger dataset it could have proven to be as strong as Bag-of-Words. Descriptive features seems to be a weak approach along all measurements with RAUC being no exception.
 		

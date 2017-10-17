@@ -1,6 +1,6 @@
 \subsubsection{Naive Bayes}
-	Probably the most common classification algorithm and usually the go-to classifier when handling text classification tasks (\cite{rish2001empirical}). The Naive Bayes algorithm is popular because its propensity to perform as good as much complexer classifiers, if not outperform them. This holds true, despite the overly simplified or "naive" assumptions being made at its core. This algorithm is prevailing for numerous classification problems ranging from sentiment analysis, spam filtration and up to classifying data to user-defined classes as is the case in this study. The attitude adopted in this scenario is probabilistic, since it classifies observations according to which class are they most likely to belong to, given their features. 
-	The word "Naive" in its name come from its base assumption, which is that the occurrence of a certain feature in a data point is independent from the occurrences of other features. As such, the probabilistic calculus is as in [\ref{nb_calc}], where $ \textbf{X} = (x_1,...,x_n) $ is a vector of the data features and $ C $ is the appropriate class.
+	Probably the most common classification algorithm and usually the go-to classifier when handling text classification tasks (\cite{rish2001empirical}). The Naive Bayes algorithm is popular because of its propensity to perform as well as other much complexer classifiers, if not outperform them. This holds true, despite the overly simplified or "naive" assumptions being made at its core. This algorithm is prevailing for numerous classification problems ranging from sentiment analysis, spam filtration and up to classifying data to user-defined classes as is the case of this study. The attitude adopted in this scenario is probabilistic, since the algorithm assigns labels to observations according to which class  they are most likely to belong to, given their features. The designation of the algorithm as "Naive" stems from the base assumption, which is that the occurrence of a certain feature in a sample is independent from the occurrences of other features in the same sample. As such, the probabilistic calculus is as in \ref{nb_calc}, where $ \textbf{X} = (x_1,...,x_n) $ is a vector of the data features and $ C $ is the appropriate class. The probability of occurrence of vector $ X $ given a certain class $ C $ is solely dependent on the geometric sum of probabilities for the $ x_i$   $\forall i \in [1:n] $.
+	
 	
 	\begin{equation}
 		P(\textbf{X}|C) = \prod_{i=1}^n P(x_i|C)
@@ -8,7 +8,7 @@
 	\end{equation}
 	
 	\paragraph{Classification}
-		At its heart, the algorithm is based on Bayes theorem [\ref{nb_bayes}], which allows for the calculation of conditional probability. In the case of classification, it is the likelihood that a novel data point belong to a given class $ C_i $, given its describing properties (features) $ \textbf{X} $.
+		At its heart, the algorithm is based on Bayes theorem (Equation \ref{nb_bayes}), which allows for the calculation of conditional probability. In the case of classification, it is the likelihood that a novel data point belong to a given class $ C_i $, given its describing properties (features) $ \textbf{X} $.
 	
 	\begin{equation}
 		P(A|B) = \frac{P(X|A) \cdot P(A)}{P(B)}
@@ -25,7 +25,7 @@
 		\label{nb_post_prob}
 	\end{equation}
 	
-		In [\ref{nb_prob_numerator}] we derive that the conditional probability term, $ P(x_j|x_{j+1}, ...,x_n,C_i) $ is equal to $ P(x_j|C_i) $ based on the assumption that the occurrence of certain features $ j $ is independent of the occurrences of all other features $ (x_1,x_2,..., x_{j-1},x_{j+1}, ...,x_n) $ [\ref{nb_calc}].
+		In [\ref{nb_prob_numerator}] we derive that the conditional probability term, $ P(x_j|x_{j+1}, ...,x_n,C_i) $ is equal to $ P(x_j|C_i) $ based on the \textit{naive} assumption that the occurrence of certain features $ x_j $ is independent of the occurrences of all other features $ (x_1,x_2,..., x_{j-1},x_{j+1}, ...,x_n) $ (see Equation \ref{nb_calc}).
 	
 	\begin{equation}
 		\begingroup\makeatletter\def\f@size{8}\check@mathfonts
@@ -64,22 +64,23 @@
 		Several derivative forms of the basic Naive Bayes algorithm are also common. These variations usually implement different distributions on the feature probability $ P(x_j|C_i) $, thus adding a degree of sophistication to this simplistic idea.
 		
 		\subparagraph{Gaussian}
-			A natural assumption when handling continuous data is that the values associated with each class are also continuous and distributed normally. De facto, the data is first segmented by the class $ c_i $. Following, the mean and variance of each continuous variable $ x_j $ are calculated for each class  $ c_i $. Let $ \mu_i $ and $ \sigma_i^2 $ be the mean and variance of feature set $ x $ associated with class $ C_i $ accordingly. The algorithm assumes a normal (Gaussian) distribution for the features, where as the parameters $ \sigma_i $ and $ \mu_i $ are derived from a maximum likelihood estimation, i.e.,
+			A natural assumption when handling continuous data is that the values associated with each class are also continuous and distributed normally. De facto, the training data is first segmented according to the sample labels $ c_i$   $\forall  i \in [1:m] $, with $ m $ classes. Following, the mean and variance of each continuous variable (\textit{feature}) $ x_j $ $\forall  j \in [1:n] $ are calculated for each class  $ c_i $, with $ n $ \textit{features}. Let $ \mu_i = (\mu_{i1},\mu_{i2}, ... ,\mu_{in}) $ and $ \sigma_i^2 = (\sigma_{i1}^2,\sigma_{i1}^2 ,..., \sigma_{in}^2) $ be the vectors of means and variances of the feature set $ x_i $ associated with class $ C_i $ accordingly. The algorithm assumes a normal (Gaussian) distribution for the features, where as the parameters $ \sigma_{ij} $ and $ \mu_{ij} $ are derived from a maximum likelihood estimation for class $ C_i $ and \textit{feature} $ x_j $, i.e. Equation \ref{nb_gauss}.
 	
 		\begin{equation}
-			P(x_j|C_i) = \frac{1}{\sqrt{\vphantom{\frac{1}{1}} 2 \pi \sigma^2 c_i}} \cdot 
-			\scaleobj{2}{e}^{ \displaystyle - \frac{(x_j-\mu c_i)^2}{2 \sigma^2 c_i} }
+			P(x_{ij}|C_i) = \frac{1}{\sqrt{\vphantom{\frac{1}{1}} 2 \pi \sigma^2_{ij} c_i}} \cdot 
+			\scaleobj{2}{e}^{ \displaystyle - \frac{(x_{ij}-\mu_{ij} c_i)^2}{2 \sigma^2_{ij} c_i} }
+			\label{nb_gauss}
 		\end{equation}
 	
 		\subparagraph{Multinomial}
-			Here the features represent the frequencies of word occurrences which are distributed in a multinomial fashion such that $ p_i $ is the probability that an event $ i $ occurs in the multinomial $ (p_1,p_2, ...,p_n) $. The feature set $ \textbf{x} = (x_1,x_2m ...,x_n) $ can than be visualized as a histogram, in which the frequency of event $ i $ (appearance of word $ i $ in a given data point) is represented by the hight of the appropriate column. This method is especially common when undertaking the \textit{Bag-of-Words} approach. This will be further demonstrated in the Application part. Therefore, the likelihood of generating a histogram \textbf{x} is represented in [\ref{nb_multinom}].
+			In a multinomial setting, the features represent the frequencies of word occurrences which are distributed according to a multinomial distribution. Hence, $ p_i $ is the probability that an event $ i $ occurs in the multinomial $ (p_1,p_2, ...,p_n) $. The feature set $ \textbf{x} = (x_1,x_2, ...,x_n) $ can than be visualized as a histogram, in which the frequency of event $ i $ (appearance of word $ i $ in a given data point) is represented by the height of the appropriate column. This method is especially common when undertaking the \textit{Bag-of-Words} approach. This will be further demonstrated in the Application part. Therefore, the likelihood of generating a histogram \textbf{x} is represented in Equation \ref{nb_multinom}.
 	
 	\begin{equation}
 		P(X|C_k) = \frac{(\sum_i)!}{\prod_i x_i !} \cdot \prod_i p_{ki}^{x_i}
 		\label{nb_multinom}
 	\end{equation}
 	
-		When extrapolated into log-space, [\ref{nb_multinom}] turns into [\ref{nb_multinom_log}], where $ b = log \big( P(C_k)\big) $ and $ \textbf{w}_{ki} = log \big( p_{ki} \big) $. It is now evident that the classifier becomes linear in logarithmic-space.
+		Extrapolating Equation \ref{nb_multinom} into log-space, we get Equation \ref{nb_multinom_log}, where $ b = log \big( P(C_k)\big) $ and $ \textbf{w}_{ki} = log \big( p_{ki} \big) $. It is now evident that the classifier becomes linear in logarithmic-space.
 	
 	\begin{equation}
 		\begin{aligned}
@@ -93,9 +94,11 @@
 		Additionally, the product must be adjusted for the case when a certain event (appearance of word $ i $) does not occur. Since non-occurrence will be denoted as a frequency equal to zero, such values must be smoothed out to prevent them from nullifying the entire equation.
 	
 	\subparagraph{Bernoulli}
-		This variant assumes multivariate Bernoulli distributions for the features. Particularly, each feature can be represented with a boolean variable. Hence, the classifier requires the feature sets to be passed in the form of vectors composed of binary variables each representing a feature. The classification is based on the decision rule in [\ref{nb_bernoulli}], for class $ C_k $ and feature $ x_i $. The probability of class $ C_k $ producing the feature $ x_i $ is denoted by $ p_{ki} $. We can see that the non-occurrence problem from the Multinomial variant is being explicitly addressed here by penalizing for non-occurrence of a given feature $ x_i $.
+		This variant assumes multivariate Bernoulli distributions for the features. Particularly, each feature can be represented with a boolean variable. Hence, the classifier requires the feature sets to be passed in the form of vectors composed of binary variables each representing a feature. The classification is based on the decision rule in Equation \ref{nb_bernoulli}, for class $ C_k $ and feature $ x_i $. The probability of class $ C_k $ producing the feature $ x_i $ is denoted by $ p_{ki} $. We can see that the non-occurrence problem from the Multinomial variant is being explicitly addressed here by penalizing for non-occurrence of a given feature $ x_i $.
 	
 	\begin{equation}
 		P \big(\textbf{x}|C_k \big) = \prod p_{ki}^{x_i}(1-p_{ki})^{(1-x_i)}
 		\label{nb_bernoulli}
 	\end{equation}
+	
+	\newpage

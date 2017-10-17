@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100) (preloaded format=pdflatex 2017.3.31)  11 OCT 2017 16:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100) (preloaded format=pdflatex 2017.3.31)  17 OCT 2017 14:56
 entering extended mode
 **./document.tex
 (document.tex
@@ -958,11 +958,7 @@ Package footmisc Info: Declaring symbol style lamport*-robust on input line 924
 .
 ))
 (document.aux (1_intro.aux) (2_basic_concepts.aux) (3_method.aux)
-(4_application.aux) (5_results.aux
-
-LaTeX Warning: Label `section:Descriptive_Features' multiply defined.
-
-) (6_conclusion.aux))
+(4_application.aux) (5_results.aux) (6_conclusion.aux))
 \openout1 = `document.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 2.
@@ -1090,26 +1086,40 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 
-{C:/Users/Leon/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]) (document.t
-ocpdfTeX warning (ext4): destination with the same identifier (name{page.i}) ha
-s been already used, duplicate ignored
+{C:/Users/Leon/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}])pdfTeX warni
+ng (ext4): destination with the same identifier (name{page.i}) has been already
+ used, duplicate ignored
 <to be read again> 
                    \relax 
-l.77 ...4.2}Cohens Kappa}{52}{subsubsection.5.4.2}
-                                                   [1])
+l.4 	\newpage\null\thispagestyle{empty}\newpage
+                                                [1] (statutory.texpdfTeX warnin
+g (ext4): destination with the same identifier (name{page.i}) has been already 
+used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.25 \newpage
+              [1]
+<C:/Users/Leon/Dropbox/CV/sig.png, id=217, 84.753pt x 39.7485pt>
+File: C:/Users/Leon/Dropbox/CV/sig.png Graphic file (type png)
+
+<use C:/Users/Leon/Dropbox/CV/sig.png>
+Package pdftex.def Info: C:/Users/Leon/Dropbox/CV/sig.png used on input line 34
+.
+(pdftex.def)             Requested size: 73.97603pt x 34.69493pt.
+ [2 <C:/Users/Leon/Dropbox/CV/sig.png>])
+(document.toc [3])
 \tf@toc=\write5
 \openout5 = `document.toc'.
 
- [2] (document.lof)
+ [4] (document.lof)
 \tf@lof=\write6
 \openout6 = `document.lof'.
 
-
-(document.lot)
+ (document.lot)
 \tf@lot=\write7
 \openout7 = `document.lot'.
 
- [3]
+ [5] [6]
 \openout2 = `1_intro.aux'.
 
  (1_intro.tex
@@ -1146,14 +1156,14 @@ Package epstopdf Info: Source file: <images/methods.eps>
 (epstopdf)                    date: 2017-10-06 11:26:19
 (epstopdf)                    size: 11188 bytes
 (epstopdf)             Output file: <images/methods-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-10-06 11:26:19
+(epstopdf)                    date: 2017-10-12 15:34:27
 (epstopdf)                    size: 8937 bytes
 (epstopdf)             Command: <epstopdf --outfile=images/methods-eps-converte
 d-to.pdf images/methods.eps>
 (epstopdf)             \includegraphics on input line 52.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/methods-eps-converted-to.pdf, id=422, 280.04625pt x 151.56625pt>
+<images/methods-eps-converted-to.pdf, id=458, 280.04625pt x 151.56625pt>
 File: images/methods-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/methods-eps-converted-to.pdf>
@@ -1163,118 +1173,153 @@ Package pdftex.def Info: images/methods-eps-converted-to.pdf used on input line
 ) (regressions.tex [12 <./images/methods-eps-converted-to.pdf>] (images/red_dis
 t.eps_tex
 Package epstopdf Info: Source file: <images/red_dist.eps>
-(epstopdf)                    date: 2017-10-11 16:15:37
-(epstopdf)                    size: 63959 bytes
+(epstopdf)                    date: 2017-10-12 13:10:22
+(epstopdf)                    size: 67429 bytes
 (epstopdf)             Output file: <images/red_dist-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-10-11 16:15:41
-(epstopdf)                    size: 41601 bytes
+(epstopdf)                    date: 2017-10-12 13:10:25
+(epstopdf)                    size: 44298 bytes
 (epstopdf)             Command: <epstopdf --outfile=images/red_dist-eps-convert
 ed-to.pdf images/red_dist.eps>
 (epstopdf)             \includegraphics on input line 52.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/red_dist-eps-converted-to.pdf, id=432, 446.66875pt x 190.7125pt>
+<images/red_dist-eps-converted-to.pdf, id=469, 516.93124pt x 190.7125pt>
 File: images/red_dist-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/red_dist-eps-converted-to.pdf>
 Package pdftex.def Info: images/red_dist-eps-converted-to.pdf used on input lin
 e 52.
-(pdftex.def)             Requested size: 446.37871pt x 190.5927pt.
-) [13 <./images/red_dist-eps-converted-to.pdf>]) (naive_bayes.tex [14]
+(pdftex.def)             Requested size: 516.5167pt x 190.57816pt.
+)
+Overfull \hbox (49.59572pt too wide) in paragraph at lines 22--24
+ [][] 
+ []
+
+[13 <./images/red_dist-eps-converted-to.pdf>]) (naive_bayes.tex [14]
 Overfull \hbox (3.72084pt too wide) in paragraph at lines 28--29
 []\OT1/cmr/m/n/12 In [[]7[]] we de-rive that the con-di-tional prob-a-bil-ity t
 erm, $\OML/cmm/m/it/12 P\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x[]\OMS/cmsy/m/n/12 j
 \OML/cmm/m/it/12 x[]; :::; x[]; C[]\OT1/cmr/m/n/12 )$
  []
 
-[15] [16]
-Overfull \hbox (14.44058pt too wide) in paragraph at lines 82--83
-[]\OT1/cmr/m/n/12 When ex-trap-o-lated into log-space, [[]10[]] turns into [[]1
-1[]], where $\OML/cmm/m/it/12 b \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 log[]P\OT1/c
-mr/m/n/12 (\OML/cmm/m/it/12 C[]\OT1/cmr/m/n/12 )[]$
- []
+[15] [16] [17]) (svm.tex (images/svm_euclidean_space.eps_tex
+Package epstopdf Info: Source file: <images/svm_euclidean_space.eps>
+(epstopdf)                    date: 2017-10-12 13:05:51
+(epstopdf)                    size: 119137 bytes
+(epstopdf)             Output file: <images/svm_euclidean_space-eps-converted-t
+o.pdf>
+(epstopdf)                    date: 2017-10-12 13:05:58
+(epstopdf)                    size: 112445 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/svm_euclidean_space-
+eps-converted-to.pdf images/svm_euclidean_space.eps>
+(epstopdf)             \includegraphics on input line 52.
+Package epstopdf Info: Output file is already uptodate.
 
-) (svm.tex [17] <images/svm.png, id=505, 578.91281pt x 417.81094pt>
-File: images/svm.png Graphic file (type png)
-
-<use images/svm.png>
-Package pdftex.def Info: images/svm.png used on input line 13.
-(pdftex.def)             Requested size: 295.90979pt x 213.5589pt.
- [18 <./images/svm.png>] [19] [20]
-<images/data_2d_to_3d.png, id=555, 1308.087pt x 448.074pt>
+<images/svm_euclidean_space-eps-converted-to.pdf, id=542, 428.60126pt x 316.181
+24pt>
+File: images/svm_euclidean_space-eps-converted-to.pdf Graphic file (type pdf)
+ <use images/svm_euclidean_space-eps-converted-to.pdf>
+Package pdftex.def Info: images/svm_euclidean_space-eps-converted-to.pdf used o
+n input line 52.
+(pdftex.def)             Requested size: 428.27832pt x 315.94406pt.
+) [18 <./images/svm_euclidean_space-eps-converted-to.pdf>] [19] [20]
+<images/data_2d_to_3d.png, id=594, 1308.087pt x 448.074pt>
 File: images/data_2d_to_3d.png Graphic file (type png)
 
 <use images/data_2d_to_3d.png>
-Package pdftex.def Info: images/data_2d_to_3d.png used on input line 131.
+Package pdftex.def Info: images/data_2d_to_3d.png used on input line 138.
 (pdftex.def)             Requested size: 295.90979pt x 101.35925pt.
- [21 <./images/data_2d_to_3d.png>] [22]
-<images/sigmoid.png, id=588, 348.1005pt x 282.45525pt>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[21] [22 <./images/data_2d_to_3d.png>]
+<images/sigmoid.png, id=627, 348.1005pt x 282.45525pt>
 File: images/sigmoid.png Graphic file (type png)
 
 <use images/sigmoid.png>
-Package pdftex.def Info: images/sigmoid.png used on input line 232.
+Package pdftex.def Info: images/sigmoid.png used on input line 240.
 (pdftex.def)             Requested size: 184.94292pt x 150.0669pt.
- [23 <./images/sigmoid.png>] [24]) (ann.tex [25]
-(ANN_Percept.tex) [26] (images/perceptron.eps_tex
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[23] [24 <./images/sigmoid.png>]) (ann.tex [25] (ANN_Percept.tex)
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[26] (images/perceptron.eps_tex
 Package epstopdf Info: Source file: <images/perceptron.eps>
-(epstopdf)                    date: 2017-10-02 19:03:57
-(epstopdf)                    size: 33143 bytes
+(epstopdf)                    date: 2017-10-12 16:18:00
+(epstopdf)                    size: 35499 bytes
 (epstopdf)             Output file: <images/perceptron-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-10-02 19:04:03
-(epstopdf)                    size: 27711 bytes
+(epstopdf)                    date: 2017-10-12 16:18:04
+(epstopdf)                    size: 35288 bytes
 (epstopdf)             Command: <epstopdf --outfile=images/perceptron-eps-conve
 rted-to.pdf images/perceptron.eps>
 (epstopdf)             \includegraphics on input line 52.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/perceptron-eps-converted-to.pdf, id=642, 271.0125pt x 176.66pt>
+<images/perceptron-eps-converted-to.pdf, id=686, 408.52625pt x 218.8175pt>
 File: images/perceptron-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/perceptron-eps-converted-to.pdf>
 Package pdftex.def Info: images/perceptron-eps-converted-to.pdf used on input l
 ine 52.
-(pdftex.def)             Requested size: 270.5694pt x 176.37651pt.
+(pdftex.def)             Requested size: 407.81044pt x 218.44633pt.
 )
-Overfull \hbox (63.43423pt too wide) in paragraph at lines 69--54
+Overfull \hbox (83.81415pt too wide) in paragraph at lines 61--61
  [][] 
  []
 
-[27 <./images/perceptron-eps-converted-to.pdf>]
-<images/grad_desc.png, id=656, 339.669pt x 317.988pt>
-File: images/grad_desc.png Graphic file (type png)
+[27 <./images/perceptron-eps-converted-to.pdf>] (images/grad_desc.eps_tex
+Package epstopdf Info: Source file: <images/grad_desc.eps>
+(epstopdf)                    date: 2017-10-12 17:53:50
+(epstopdf)                    size: 36011 bytes
+(epstopdf)             Output file: <images/grad_desc-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-10-12 17:54:02
+(epstopdf)                    size: 9388 bytes
+(epstopdf)             Command: <epstopdf --outfile=images/grad_desc-eps-conver
+ted-to.pdf images/grad_desc.eps>
+(epstopdf)             \includegraphics on input line 52.
+Package epstopdf Info: Output file is already uptodate.
 
-<use images/grad_desc.png>
-Package pdftex.def Info: images/grad_desc.png used on input line 81.
-(pdftex.def)             Requested size: 184.94292pt x 173.14232pt.
- [28 <./images/grad_desc.png>]
-<images/sto_grad_desc.png, id=663, 384.83775pt x 302.3295pt>
+<images/grad_desc-eps-converted-to.pdf, id=698, 207.77625pt x 139.52126pt>
+File: images/grad_desc-eps-converted-to.pdf Graphic file (type pdf)
+
+<use images/grad_desc-eps-converted-to.pdf>
+Package pdftex.def Info: images/grad_desc-eps-converted-to.pdf used on input li
+ne 52.
+(pdftex.def)             Requested size: 461.54813pt x 309.96649pt.
+) [28 <./images/grad_desc-eps-converted-to.pdf>] <images/sto_grad_desc.png, id=
+711, 384.83775pt x 302.3295pt>
 File: images/sto_grad_desc.png Graphic file (type png)
 
 <use images/sto_grad_desc.png>
-Package pdftex.def Info: images/sto_grad_desc.png used on input line 104.
-(pdftex.def)             Requested size: 147.95207pt x 116.23344pt.
- [29 <./images/sto_grad_desc.png>]) (trees.tex
-<images/decision_tree_sparse_data.png, id=672, 2253.6195pt x 760.0395pt>
+Package pdftex.def Info: images/sto_grad_desc.png used on input line 116.
+(pdftex.def)             Requested size: 221.93375pt x 174.35478pt.
+ [29]) (trees.tex [30 <./images/sto_grad_desc.png>] <images/decision_tree_spars
+e_data.png, id=727, 2253.6195pt x 760.0395pt>
 File: images/decision_tree_sparse_data.png Graphic file (type png)
 
 <use images/decision_tree_sparse_data.png>
 Package pdftex.def Info: images/decision_tree_sparse_data.png used on input lin
 e 6.
 (pdftex.def)             Requested size: 369.88583pt x 124.74007pt.
- [30 <./images/decision_tree_sparse_data.png>]
-Overfull \hbox (1.0511pt too wide) in paragraph at lines 16--17
+ [31 <./images/decision_tree_sparse_data.png>]
+Overfull \hbox (1.0511pt too wide) in paragraph at lines 17--18
  []\OT1/cmr/bx/n/12 Entropy[] \OT1/cmr/m/n/12 The pri-orly men-tioned de-ci-sio
 n rule for fea-ture se-lec-tion, upon
  []
 
-[31] [32])) [33]
+[32] [33])) [34]
 \openout2 = `4_application.aux'.
 
- (4_application.tex [34
+ (4_application.tex [35
 
 
-] [35]
-<images/twitterbot.PNG, id=729, 723.9045pt x 322.806pt>
+] [36]
+<images/twitterbot.PNG, id=789, 723.9045pt x 322.806pt>
 File: images/twitterbot.PNG Graphic file (type png)
 
 <use images/twitterbot.PNG>
@@ -1284,7 +1329,36 @@ Package pdftex.def Info: images/twitterbot.PNG used on input line 31.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[36] [37 <./images/twitterbot.PNG>]) [38]
+[37] [38 <./images/twitterbot.PNG>]
+Overfull \hbox (9.30467pt too wide) in paragraph at lines 54--55
+\OT1/cmr/m/n/12 Similar ap-proaches were used to clas-sify In-for-ma-tion Cred-
+i-bil-ity on Tweeter
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[39] [40] [41]
+Overfull \hbox (0.77745pt too wide) in paragraph at lines 136--137
+ []\OT1/cmr/bx/n/12 Verified[] \OT1/cmr/m/n/12 User ac-counts are usu-ally not 
+lim-ited when choos-ing a moniker
+ []
+
+<images/verified_account.png, id=846, 661.2705pt x 389.65575pt>
+File: images/verified_account.png Graphic file (type png)
+
+<use images/verified_account.png>
+Package pdftex.def Info: images/verified_account.png used on input line 142.
+(pdftex.def)             Requested size: 295.90979pt x 174.36836pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[42] [43 <./images/verified_account.png>]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[44] [45]) [46]
 \openout2 = `5_results.aux'.
 
  (5_results.tex
@@ -1292,136 +1366,112 @@ Overfull \hbox (12.32312pt too wide) in paragraph at lines 9--35
  [] 
  []
 
-
-Overfull \hbox (9.30467pt too wide) in paragraph at lines 46--47
-\OT1/cmr/m/n/12 Similar ap-proaches were used to clas-sify In-for-ma-tion Cred-
-i-bil-ity on Tweeter
- []
-
-[39
+[47
 
 
-] [40] [41]
-Overfull \hbox (0.77745pt too wide) in paragraph at lines 117--118
- []\OT1/cmr/bx/n/12 Verified[] \OT1/cmr/m/n/12 User ac-counts are usu-ally not 
-lim-ited when choos-ing a moniker
- []
-
-<images/verified_account.png, id=787, 661.2705pt x 389.65575pt>
-File: images/verified_account.png Graphic file (type png)
-
-<use images/verified_account.png>
-Package pdftex.def Info: images/verified_account.png used on input line 123.
-(pdftex.def)             Requested size: 295.90979pt x 174.36836pt.
- [42 <./images/verified_account.png>] [43]
-[44] [45]
-Overfull \hbox (4.43333pt too wide) in paragraph at lines 250--251
-[]\OT1/cmr/m/n/12 The sec-ond tier of fea-tures de-scribe any spe-cial \OT1/cmr
-/m/it/12 En-ti-ties \OT1/cmr/m/n/12 (Tweeter's nomen-
- []
-
-[46] [47]
-Overfull \hbox (14.00803pt too wide) in paragraph at lines 318--320
- [] 
- []
-
-[48]
-Overfull \hbox (0.61908pt too wide) in paragraph at lines 328--394
+] [48] [49]
+Overfull \hbox (0.61908pt too wide) in paragraph at lines 66--132
 [] [] 
  []
 
-[49] [50]
-Overfull \hbox (11.34721pt too wide) in paragraph at lines 415--431
- [][] 
+[50]
+Overfull \hbox (14.00803pt too wide) in paragraph at lines 183--185
+ [] 
  []
 
 [51] [52]
-Overfull \hbox (20.6662pt too wide) in paragraph at lines 526--526
+Overfull \hbox (11.34721pt too wide) in paragraph at lines 211--227
+ [][] 
+ []
+
+[53] [54]
+Overfull \hbox (20.6662pt too wide) in paragraph at lines 322--322
  []\OT1/cmr/m/n/12 Predicted 
  []
 
-[53]
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 545.
+LaTeX Font Warning: Command \small invalid in math mode on input line 341.
 
-LaTeX Font Info:    Calculating math sizes for size <> on input line 550.
+LaTeX Font Info:    Calculating math sizes for size <> on input line 346.
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <> not available
-(Font)              size <5> substituted on input line 550.
+(Font)              size <5> substituted on input line 346.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 550.
+(Font)              size <5> substituted on input line 346.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 550.
+(Font)              size <5> substituted on input line 346.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <> not available
-(Font)              size <5> substituted on input line 550.
+(Font)              size <5> substituted on input line 346.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <0.7> not available
-(Font)              size <5> substituted on input line 550.
+(Font)              size <5> substituted on input line 346.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <0.5> not available
-(Font)              size <5> substituted on input line 550.
+(Font)              size <5> substituted on input line 346.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <> not available
-(Font)              size <5> substituted on input line 550.
+(Font)              size <5> substituted on input line 346.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 550.
+(Font)              size <5> substituted on input line 346.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 550.
+(Font)              size <5> substituted on input line 346.
 
+[55]
 
-LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 55
-5.
+LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 35
+1.
 
-[54] [55] (images/roc.eps_tex
+(images/roc.eps_tex
 Package epstopdf Info: Source file: <images/roc.eps>
 (epstopdf)                    date: 2017-10-02 15:37:57
 (epstopdf)                    size: 15511 bytes
 (epstopdf)             Output file: <images/roc-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-10-02 15:38:03
+(epstopdf)                    date: 2017-10-12 17:14:59
 (epstopdf)                    size: 14786 bytes
 (epstopdf)             Command: <epstopdf --outfile=images/roc-eps-converted-to
 .pdf images/roc.eps>
 (epstopdf)             \includegraphics on input line 52.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/roc-eps-converted-to.pdf, id=890, 335.2525pt x 259.97125pt>
+<images/roc-eps-converted-to.pdf, id=953, 335.2525pt x 259.97125pt>
 File: images/roc-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/roc-eps-converted-to.pdf>
 Package pdftex.def Info: images/roc-eps-converted-to.pdf used on input line 52.
 
 (pdftex.def)             Requested size: 335.00351pt x 259.77623pt.
-) [56 <./images/roc-eps-converted-to.pdf>]
-Overfull \hbox (17.58328pt too wide) in paragraph at lines 652--714
+) [56]
+Overfull \hbox (17.58328pt too wide) in paragraph at lines 436--498
  [][] 
  []
 
-[57]) [58]
+[57 <./images/roc-eps-converted-to.pdf>] [58]) [59]
 \openout2 = `6_conclusion.aux'.
 
- (6_conclusion.tex [59
+ (6_conclusion.tex [60
 
 
 ]
-Overfull \hbox (0.95337pt too wide) in paragraph at lines 23--24
+[61]
+Overfull \hbox (0.95337pt too wide) in paragraph at lines 24--25
 \OT1/cmr/m/n/12 The al-go-rithm presents sig-nif-i-cant clas-si-fi-ca-tion powe
 r but an ini-tial phase
  []
 
-[60]) [61] [62] (document.bbl [63
+[62]) [63] [64] (document.bbl [65
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 104--109
@@ -1446,7 +1496,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 104--109
 ence /
  []
 
-[64]
+[66]
 Underfull \hbox (badness 1496) in paragraph at lines 183--188
 []\OT1/cmr/m/n/12 Lu Wang, Whit-ney Kisling, and Eric Lam.  Fake post eras-ing
  []
@@ -1468,51 +1518,72 @@ Overfull \hbox (1.10307pt too wide) in paragraph at lines 183--188
 ]fragility/$[]\OT1/cmr/m/n/12 .
  []
 
-) [65] (appendix.tex
-Overfull \hbox (17.58328pt too wide) in paragraph at lines 6--69
+) [67] (appendix.tex
+Overfull \hbox (17.58328pt too wide) in paragraph at lines 8--71
  [][][] 
  []
 
-[66]
-Overfull \hbox (1.32838pt too wide) in paragraph at lines 73--74
+[68]
+Overfull \hbox (1.32838pt too wide) in paragraph at lines 75--76
 \OT1/cmr/m/n/12 The fol-low-ing word list is built into the Nat-u-ral Lan-guage
  Toolkit (NLTK)
  []
 
 
-Overfull \hbox (20.13321pt too wide) in paragraph at lines 78--104
+Overfull \hbox (20.13321pt too wide) in paragraph at lines 80--106
  [][] 
  []
 
-[67]) [68]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 22.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 22.
+[69]) [70]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 24.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 24.
  (document.aux (1_intro.aux) (2_basic_concepts.aux) (3_method.aux)
 (4_application.aux) (5_results.aux) (6_conclusion.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 22.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 22.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 24.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 24.
 Package rerunfilecheck Info: File `document.out' has not changed.
-(rerunfilecheck)             Checksum: 80DB70BF03D0641F5856F476F0FE42ED;3172.
+(rerunfilecheck)             Checksum: 51960E8BB2E3F9761C5D8DB40C688C15;3444.
 
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 4.5pt have occurred.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 22.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 24.
  ) 
 Here is how much of TeX's memory you used:
- 31501 strings out of 493333
- 734991 string characters out of 3136611
- 962322 words of memory out of 3000000
- 34125 multiletter control sequences out of 15000+200000
+ 31541 strings out of 493333
+ 735904 string characters out of 3136611
+ 956322 words of memory out of 3000000
+ 34138 multiletter control sequences out of 15000+200000
  24127 words of font info for 95 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 66i,27n,98p,1600b,2288s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{Hfootnote.5} has been referenced but does not exi
-st, replaced by a fixed one
+ 66i,27n,98p,2020b,2288s stack positions out of 5000i,500n,10000p,200000b,50000s
+pdfTeX warning (dest): name{Hfootnote.13} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.12} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.11} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.10} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.9} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.8} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.7} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.6} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.5} has been referenced but does not exist
+, replaced by a fixed one
 
 pdfTeX warning (dest): name{Hfootnote.4} has been referenced but does not exist
 , replaced by a fixed one
@@ -1548,9 +1619,9 @@ s/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
 type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/ty
 pe1/public/amsfonts/cm/cmtt12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
 1/public/amsfonts/symbols/msbm10.pfb>
-Output written on document.pdf (72 pages, 1844938 bytes).
+Output written on document.pdf (78 pages, 1963239 bytes).
 PDF statistics:
- 1100 PDF objects out of 1200 (max. 8388607)
- 273 named destinations out of 1000 (max. 500000)
- 441 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1180 PDF objects out of 1200 (max. 8388607)
+ 290 named destinations out of 1000 (max. 500000)
+ 470 words of extra memory for PDF output out of 10000 (max. 10000000)
 

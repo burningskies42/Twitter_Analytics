@@ -1,5 +1,5 @@
 	\subsubsection{Regressions}
-	Probably the most basic approach is simply running a regression with all the features as the independent variables and the a numeric representation of the classes as the dependent variable. Such an approach is shown in Equation \ref{regression}. Some threshold value between the classes must be determined since the estimate for the explained variable, will have a non-deterministic value. Regressions are primarily to be used as a benchmark for the other algorithms to measure up against.
+	Probably the most basic approach is simply running a regression with all the features as the independent variables and the a numeric representation of the classes as the dependent variable (0:\textit{not-news} , 1:\textit{news}). Such an approach is shown in Equation \ref{regression}. Some threshold value $ y^* $ between the classes must be determined, since the estimate for the explained variable, is not restricted to deterministic values. Regressions are primarily to be used as a benchmark for the other algorithms to measure up against.
 	
 	\begin{equation}
 		\mathbb{E}(\hat{y} \ \vert \ \textbf{x}) \approx 
@@ -17,21 +17,28 @@
 		\begin{figure}[h]
 			\centering
 			%\includegraphics[width=0.8\textwidth]{methods}
-			\scalebox{0.8}{\input{images/red_dist.eps_tex}}
+			\scalebox{0.8}{
+				\input{images/red_dist.eps_tex}
+			}
 			\captionsetup{width=0.8\textwidth}
 			\caption{Distribution of predicted $ \hat{y} $ around the labels}
 			\label{fig:y_dist_reg}
 		\end{figure}
 		
-		Another point of interest is the distribution of predicted classifications $\hat{y}$. In an ideal scenario, the distribution of $\hat{y}$ would be concentrated around the numerical representations of the classes as in Figure \ref{fig:y_dist_reg}. The basic premise for the use of linear regressions as classification tools, where $ n $ is the number of observations, $ m $ is the number of features as presented in Equation \ref{lin_reg}.
+		Another point of interest is the distribution of predicted classifications $\hat{y}$. In an ideal scenario, the distribution of $\hat{y}$ would be concentrated around the numerical representations of the classes as in Figure \ref{fig:y_dist_reg}. The basic premise for the use of linear regressions as classification tools, where $ n $ is the number of observations, $ m $ is the number of features as presented in Equation \ref{lin_reg}. After performing least squares estimation we can estimate our predicted class through the value of $ \hat{y} $.
 	
 	\begin{equation}
-		y_i = \beta_1 x_{1i}+ \beta_2 x_{2i} + ... + \beta_m x_{mi} + \epsilon_i \ \ \ \ \ \ \ \ 
-		\forall \ i \in [1,n].
+		\begin{aligned}
+			y_i& = \beta_1 x_{1i}+ \beta_2 x_{2i} + ... + \beta_m x_{mi} + \epsilon_i \ \ \ \ \ \ \ \ 
+			&\forall \ i \in [1,n] \\
+			& \hspace{2cm}\Downarrow \text{  least squares estimation}& \\
+			\hat{y_i}& = \hat{\beta_1} x_{1i}+ \hat{\beta_2} x_{2i} + ... + \hat{\beta_m} x_{mi} \ \ \ \ \ \ \ \ 
+			&\forall \ i \in [1,n]
+		\end{aligned}
 		\label{lin_reg}
 	\end{equation}
 	
-	\paragraph{Logistic Regression} Despite its name, the actual regression model executed here is linear, and is used primarily for classification rather than regression analysis (\cite{bishop2006logistic}). This regression scheme differs from linear firstly, in the fact, that the possible outcomes of the dependent variable are discreet rather than continuous. Secondly, the probabilities which describe the different outcomes of a regression instance, are modeled using a logistic function. The discrete outcomes can in turn be converted to labels, which in allows for a more fluent application as a classification tool and is therefore commonly employed in  Machine Learning. Logistic regression analysis is formally represented as follows in Equation \ref{logit}. The $x$ vector represents all explanatory variables, in our case, the Tweet features. The term error $\epsilon$ follows the standard logistic distribution, which also gives the regression its name. 
+	\paragraph{Logistic Regression} Despite its name, the actual regression model executed here is linear, and is used primarily for classification rather than regression analysis (\cite{bishop2006logistic}). This regression scheme differs from linear firstly, in the fact, that the possible outcomes of the dependent variable are discreet rather than continuous. Secondly, the probabilities which describe the different outcomes of a regression instance, are modeled using a logistic function. The discrete outcomes can in turn be converted to labels, which allows for a more fluent application as a classification tool and is therefore commonly employed in  Machine Learning. Logistic regression analysis is formally represented as follows in Equation \ref{logit}. The $x$ vector represents all explanatory variables, in our case, the Tweet features. The term error $\epsilon$ follows the standard logistic distribution, which also gives the regression its name. 
 	
 	\begin{equation}
 		y = 

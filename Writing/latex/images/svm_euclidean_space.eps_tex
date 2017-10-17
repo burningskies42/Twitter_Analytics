@@ -1,6 +1,6 @@
 %% Creator: Inkscape inkscape 0.92.2, www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'red_dist.eps' (pdf, eps, ps)
+%% Accompanies image file 'svm_euclidean_space.eps' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -36,7 +36,7 @@
   }%
   \providecommand\rotatebox[2]{#2}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{514.58701158bp}%
+    \setlength{\unitlength}{426.6782874bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -48,13 +48,15 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.36866657)%
-    \put(0,0){\includegraphics[width=\unitlength]{red_dist.eps}}%
-    \put(0.27906931,0.00797832){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\Large  0}}}%
-    \put(0.48311637,0.00797832){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\Large  1}}}%
-    \put(0.46854157,0.29072961){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textit{news}}}}%
-    \put(0.24117468,0.29072961){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textit{not-news}}}}%
-    \put(0.75128911,0.01089328){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\text{\Large $ \hat{y}$}}}}%
-    \put(0.03882172,0.12872548){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[lb]{\smash{Frequency}}}}%
+  \begin{picture}(1,0.73775629)%
+    \put(0,0){\includegraphics[width=\unitlength]{svm_euclidean_space.eps}}%
+    \put(0.73182167,0.21296777){\color[rgb]{0,0,0.00392157}\makebox(0,0)[lb]{\smash{optimal hyperplane}}}%
+    \put(0.37005367,0.44843711){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\text{\Large $w$}}}}%
+    \put(0.05115664,0.57577215){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$ \vec{w} \cdot \vec{w} - b = +1 $}}}%
+    \put(0.0536928,0.48461809){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$ \vec{w} \cdot \vec{w} - b = 0 $}}}%
+    \put(0.05242472,0.39012873){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$ \vec{w} \cdot \vec{w} - b = -1 $}}}%
+    \put(0.91947613,0.01485544){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$x^{(1)}$}}}%
+    \put(0.23493859,0.65344834){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$x^{(2)}$}}}%
+    \put(0.7743114,0.29214502){\color[rgb]{0,0,0.00392157}\makebox(0,0)[lb]{\smash{optimal margin}}}%
   \end{picture}%
 \endgroup%

@@ -1,10 +1,13 @@
 \include{header}
 \begin{document}
 	\input{title}
+	\newpage\null\thispagestyle{empty}\newpage
+	\input{statutory}
 	\tableofcontents
 	\newpage
 	\listoffigures
 	\listoftables
+	\newpage\null\thispagestyle{empty}\newpage
 	\include{1_intro}
 	\include{2_basic_concepts}
 	\include{3_method}
@@ -17,6 +20,5 @@
 	\bibliography{bibfile}
 	%\printbibliography
 	\newpage
-	\appendix
 	\input{appendix}
 \end{document}

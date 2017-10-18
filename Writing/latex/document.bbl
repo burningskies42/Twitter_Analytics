@@ -1,4 +1,4 @@
-\begin{thebibliography}{30}
+\begin{thebibliography}{29}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -173,11 +173,6 @@ Thorvald S{\o}rensen.
 \newblock {T}witter {D}eveloper {D}ocumentation.
 \newblock \url{https://dev.twitter.com/streaming/overview}.
 \newblock 2017.
-
-\bibitem["tweet"(2017)]{dict_Tweet}
-"tweet".
-\newblock \emph{https://www.merriam-webster.com}.
-\newblock Merriam-Webster, 2017.
 
 \bibitem[Wang et~al.(2013)Wang, Kisling, and Lam]{fake_post}
 Lu~Wang, Whitney Kisling, and Eric Lam.

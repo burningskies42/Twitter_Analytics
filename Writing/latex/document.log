@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100) (preloaded format=pdflatex 2017.3.31)  17 OCT 2017 14:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100) (preloaded format=pdflatex 2017.3.31)  18 OCT 2017 13:54
 entering extended mode
 **./document.tex
 (document.tex
@@ -1156,7 +1156,7 @@ Package epstopdf Info: Source file: <images/methods.eps>
 (epstopdf)                    date: 2017-10-06 11:26:19
 (epstopdf)                    size: 11188 bytes
 (epstopdf)             Output file: <images/methods-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-10-12 15:34:27
+(epstopdf)                    date: 2017-10-17 17:55:11
 (epstopdf)                    size: 8937 bytes
 (epstopdf)             Command: <epstopdf --outfile=images/methods-eps-converte
 d-to.pdf images/methods.eps>
@@ -1173,10 +1173,10 @@ Package pdftex.def Info: images/methods-eps-converted-to.pdf used on input line
 ) (regressions.tex [12 <./images/methods-eps-converted-to.pdf>] (images/red_dis
 t.eps_tex
 Package epstopdf Info: Source file: <images/red_dist.eps>
-(epstopdf)                    date: 2017-10-12 13:10:22
-(epstopdf)                    size: 67429 bytes
+(epstopdf)                    date: 2017-10-17 17:55:11
+(epstopdf)                    size: 68418 bytes
 (epstopdf)             Output file: <images/red_dist-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-10-12 13:10:25
+(epstopdf)                    date: 2017-10-17 17:55:11
 (epstopdf)                    size: 44298 bytes
 (epstopdf)             Command: <epstopdf --outfile=images/red_dist-eps-convert
 ed-to.pdf images/red_dist.eps>
@@ -1204,11 +1204,11 @@ erm, $\OML/cmm/m/it/12 P\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x[]\OMS/cmsy/m/n/12 j
 
 [15] [16] [17]) (svm.tex (images/svm_euclidean_space.eps_tex
 Package epstopdf Info: Source file: <images/svm_euclidean_space.eps>
-(epstopdf)                    date: 2017-10-12 13:05:51
-(epstopdf)                    size: 119137 bytes
+(epstopdf)                    date: 2017-10-17 17:55:11
+(epstopdf)                    size: 120976 bytes
 (epstopdf)             Output file: <images/svm_euclidean_space-eps-converted-t
 o.pdf>
-(epstopdf)                    date: 2017-10-12 13:05:58
+(epstopdf)                    date: 2017-10-17 17:55:11
 (epstopdf)                    size: 112445 bytes
 (epstopdf)             Command: <epstopdf --outfile=images/svm_euclidean_space-
 eps-converted-to.pdf images/svm_euclidean_space.eps>
@@ -1250,10 +1250,10 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [26] (images/perceptron.eps_tex
 Package epstopdf Info: Source file: <images/perceptron.eps>
-(epstopdf)                    date: 2017-10-12 16:18:00
-(epstopdf)                    size: 35499 bytes
+(epstopdf)                    date: 2017-10-17 17:55:11
+(epstopdf)                    size: 36041 bytes
 (epstopdf)             Output file: <images/perceptron-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-10-12 16:18:04
+(epstopdf)                    date: 2017-10-17 17:55:11
 (epstopdf)                    size: 35288 bytes
 (epstopdf)             Command: <epstopdf --outfile=images/perceptron-eps-conve
 rted-to.pdf images/perceptron.eps>
@@ -1274,10 +1274,10 @@ Overfull \hbox (83.81415pt too wide) in paragraph at lines 61--61
 
 [27 <./images/perceptron-eps-converted-to.pdf>] (images/grad_desc.eps_tex
 Package epstopdf Info: Source file: <images/grad_desc.eps>
-(epstopdf)                    date: 2017-10-12 17:53:50
-(epstopdf)                    size: 36011 bytes
+(epstopdf)                    date: 2017-10-17 17:55:11
+(epstopdf)                    size: 36613 bytes
 (epstopdf)             Output file: <images/grad_desc-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-10-12 17:54:02
+(epstopdf)                    date: 2017-10-17 17:55:11
 (epstopdf)                    size: 9388 bytes
 (epstopdf)             Command: <epstopdf --outfile=images/grad_desc-eps-conver
 ted-to.pdf images/grad_desc.eps>
@@ -1439,7 +1439,7 @@ Package epstopdf Info: Source file: <images/roc.eps>
 (epstopdf)                    date: 2017-10-02 15:37:57
 (epstopdf)                    size: 15511 bytes
 (epstopdf)             Output file: <images/roc-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-10-12 17:14:59
+(epstopdf)                    date: 2017-10-17 17:55:11
 (epstopdf)                    size: 14786 bytes
 (epstopdf)             Command: <epstopdf --outfile=images/roc-eps-converted-to
 .pdf images/roc.eps>
@@ -1497,23 +1497,23 @@ ence /
  []
 
 [66]
-Underfull \hbox (badness 1496) in paragraph at lines 183--188
+Underfull \hbox (badness 1496) in paragraph at lines 178--183
 []\OT1/cmr/m/n/12 Lu Wang, Whit-ney Kisling, and Eric Lam.  Fake post eras-ing
  []
 
 
-Underfull \hbox (badness 2846) in paragraph at lines 183--188
+Underfull \hbox (badness 2846) in paragraph at lines 178--183
 \OT1/cmr/m/n/12 136 bil-lion shows mar-kets need hu-mans, April 2013.  URL
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 183--188
+Underfull \hbox (badness 10000) in paragraph at lines 178--183
 []$\OT1/cmtt/m/n/12 https : / / www . bloomberg . com / news / articles / 2013-
 []04-[]23 /
  []
 
 
-Overfull \hbox (1.10307pt too wide) in paragraph at lines 183--188
+Overfull \hbox (1.10307pt too wide) in paragraph at lines 178--183
 \OT1/cmtt/m/n/12 fake-[]report-[]erasing-[]136-[]billion-[]shows-[]market-[]s-[
 ]fragility/$[]\OT1/cmr/m/n/12 .
  []
@@ -1551,13 +1551,13 @@ LaTeX Font Warning: Size substitutions with differences
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 24.
  ) 
 Here is how much of TeX's memory you used:
- 31541 strings out of 493333
- 735904 string characters out of 3136611
+ 31537 strings out of 493333
+ 735835 string characters out of 3136611
  956322 words of memory out of 3000000
- 34138 multiletter control sequences out of 15000+200000
+ 34135 multiletter control sequences out of 15000+200000
  24127 words of font info for 95 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 66i,27n,98p,2020b,2288s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 66i,27n,98p,2026b,2288s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{Hfootnote.13} has been referenced but does not ex
 ist, replaced by a fixed one
 
@@ -1619,9 +1619,9 @@ s/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
 type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/ty
 pe1/public/amsfonts/cm/cmtt12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
 1/public/amsfonts/symbols/msbm10.pfb>
-Output written on document.pdf (78 pages, 1963239 bytes).
+Output written on document.pdf (78 pages, 1963096 bytes).
 PDF statistics:
- 1180 PDF objects out of 1200 (max. 8388607)
- 290 named destinations out of 1000 (max. 500000)
+ 1179 PDF objects out of 1200 (max. 8388607)
+ 289 named destinations out of 1000 (max. 500000)
  470 words of extra memory for PDF output out of 10000 (max. 10000000)
 

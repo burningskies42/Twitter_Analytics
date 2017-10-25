@@ -1,47 +1,71 @@
-31.08.2017
-- Finish building the results data wit hall possible varaitions of:
-	- Data set size
-	- Amount of features
-- Derive correlation between all above factors
-- Observe the quality/time ratio
-- try live classification and how it compares to human labeling (in real time)
+09.10.2017:
+	1. Intoduction should be a little longer ~ 5 pages
+	2. Introduction should additionally contain: problems, detailed research quesion
+	3. In the application chapter, a short overview of how the etire application looks
+	4. Move the precision+recall table inside the paper
+	5. Conclusion should be longer (~5 pages) and contain: comparison of theory and practice, best practices.
 
-28.06.2017
--continue working on word_as_features 
--do something about ratios between news/spam when counting word
 
-26.06.2017
-- performed examination by neural networks networks parameters for training classifiers (algo and activation)
--	- activation = 'tanh' seems to perform better
+31.07.2017:
+	EMPIRIC
+	--------------
+	1. Try more SVM classifiers
+	2. read about and calculate Precision, Recall and F-Measure as measures for Success rate (and confusion matrix)
+	3. If classifivation results dont improve, try training with equal parts News and Not-News
+	4. Look up auto-tune methods for classifier parameters (in cross-validation maybe)
+
+	STRUCTURE
+	----------------------
+	5. Methodology (Theory) should be about as large as Application
+	6. Build 2 axes for sorting classifiers and describe all classifiers along those 2 measures
+	7. Add 'Research Question Statement'
+	8. At the end of application, there shoul be a mini-Conclussion:
+	9. The Summary should contain something about future-research
+
+31.08.2017:
+	- Finish building the results data wit hall possible varaitions of:
+		- Data set size
+		- Amount of features
+	- Derive correlation between all above factors
+	- Observe the quality/time ratio
+	- try live classification and how it compares to human labeling (in real time)
+
+28.06.2017:
+	- continue working on word_as_features 
+	- do something about ratios between news/spam when counting word
+
+26.06.2017:
+	- performed examination by neural networks networks parameters for training classifiers (algo and activation)
+	- activation = 'tanh' seems to perform better
 
 09.06.2017
-1. Clear duplicates
-2. Check for Overfitting
-3. Explore other properties of Confidence
-4. Examine False-Negatives/-Positives classification
+	1. Clear duplicates
+	2. Check for Overfitting
+	3. Explore other properties of Confidence
+	4. Examine False-Negatives/-Positives classification
 
-31.05.2017
--write Andreas an email regarding a meeting (w. Uli in skype) on Friday(before 1pm) -DONE
--try other classifiers
--inspect the diffrence between w. Preprocessing and without
--complete the collecting of 10k tweets
--visual representation of Random forests
--try using a manual trainig/testing split - so an average confidence could be established
+31.05.2017:
+	- write Andreas an email regarding a meeting (w. Uli in skype) on Friday(before 1pm) -DONE
+	- try other classifiers
+	- inspect the diffrence between w. Preprocessing and without
+	- complete the collecting of 10k tweets
+	- visual representation of Random forests
+	- try using a manual trainig/testing split - so an average confidence could be established
 
 29.05.2017
--collect more tweets, prefrebly heterogenous - goal: 10k
--start writing, maybe start with definitions of the different classifier types
--read on the book about ML in Python
--filter GUI
+	-collect more tweets, prefrebly heterogenous - goal: 10k
+	-start writing, maybe start with definitions of the different classifier types
+	-read on the book about ML in Python
+	-filter GUI
 
-28.03.2017
--changed python version to 3.5.2 (64bit), because no tensorflow support for 3.6.x
+28.03.2017:
+	- changed python version to 3.5.2 (64bit), because no tensorflow support for 3.6.x
 
-27.03.2017
--Sentdex tutorials on youtube <Data Analysis with Python and Pandas>
+27.03.2017:
+	- Sentdex tutorials on youtube <Data Analysis with Python and Pandas>
 
-22.03.2017
--Install python 3.#
--Install anaconda https://www.continuum.io/downloads
--Setup anaconda as python interperter
--to setup pydot : http://stackoverflow.com/questions/26349314/how-can-i-use-conda-to-install-pydot
+22.03.2017:
+	- Install python 3.#
+	- Install anaconda https://www.continuum.io/downloads
+	- Setup anaconda as python interperter
+	- to setup pydot : http://stackoverflow.com/questions/26349314/how-can-i-use-conda-to-install-pydot

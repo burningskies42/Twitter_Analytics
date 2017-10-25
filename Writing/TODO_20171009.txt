@@ -1,5 +1,0 @@
-1. Intoduction should be a little longer ~ 5 pages
-2. Introduction should additionally contain: problems, detailed research quesion
-3. In the application chapter, a short overview of how the etire application looks
-4. Move the precision+recall table inside the paper
-5. Conclusion should be longer (~5 pages) and contain: comparison of theory and practice, best practices.

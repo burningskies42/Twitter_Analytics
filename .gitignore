@@ -5,4 +5,6 @@ Python/twitter_filter/feature_sets/*
 id_rsa
 **/.idea/*
 **/__pycache__/*
+**/writing/*
+TODO.txt
 key
